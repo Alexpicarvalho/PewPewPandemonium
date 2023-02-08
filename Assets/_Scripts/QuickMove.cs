@@ -12,6 +12,8 @@ public class QuickMove : MonoBehaviour
     public GameObject muzzleFlash;
     public Transform firePoint;
     public GameObject mouseTracker;
+
+    private float vel = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +46,7 @@ public class QuickMove : MonoBehaviour
         {
             movementDirectionIndicator.GetComponent<Animator>().SetBool("On", false);
             //anim.SetBool("Moving", false);
+            float angle = Mathf.SmoothDamp(anim.GetFloat("MovBlend"), 1000,ref vel, 1f);
             anim.SetFloat("MovBlend", 1000);
 
         }

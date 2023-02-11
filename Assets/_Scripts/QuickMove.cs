@@ -12,8 +12,8 @@ public class QuickMove : MonoBehaviour
     public GameObject muzzleFlash;
     public Transform firePoint;
     public GameObject mouseTracker;
-
     private float vel = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,8 +27,7 @@ public class QuickMove : MonoBehaviour
         float zMov = Input.GetAxis("Vertical");
         Vector3 mousePos = MousePosition();
 
-        Vector3 moveDirection = new Vector3(xMov, 0f,zMov);
-        Vector3.Normalize(moveDirection);
+        Vector3 moveDirection = new Vector3(xMov, 0f,zMov).normalized;
 
         anim.SetFloat("xMov", xMov);
         anim.SetFloat("zMov", zMov);
@@ -88,7 +87,6 @@ public class QuickMove : MonoBehaviour
     {
         var mf = Instantiate(muzzleFlash, firePoint.position, Quaternion.LookRotation(transform.forward));
         var bt = Instantiate(bullet, firePoint.position, Quaternion.LookRotation(MousePosition()));
-
         Destroy(mf, 2);
         Destroy(bt, 4);
     }

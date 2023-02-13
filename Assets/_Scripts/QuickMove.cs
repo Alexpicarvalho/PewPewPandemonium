@@ -13,11 +13,18 @@ public class QuickMove : MonoBehaviour
     public Transform firePoint;
     public GameObject mouseTracker;
     private float vel = 0;
+    Rigidbody rb;
+
+    [Header("Dodge Values")]
+    [SerializeField] private float dodgeSpeed;
+    [SerializeField] private float dodgeDuration;
+    [SerializeField] private AnimationCurve speedCurve;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -58,7 +65,30 @@ public class QuickMove : MonoBehaviour
         {
             Shoot();
         }
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            anim.Play("Dodge");
+            Dodge();
+        }
 
+    }
+
+    public void Dodge()
+    { 
+        StartCoroutine(DodgeMove());
+    }
+    IEnumerator DodgeMove()
+    {
+        float startTime = Time.time;
+        while (Time.time < startTime + dodgeDuration)
+        {
+            transform.position += movementDirectionIndicator.transform.forward * dodgeSpeed 
+                * (speedCurve.Evaluate(Time.time - startTime) / dodgeDuration)
+                * Time.deltaTime;
+
+            yield return null;
+        }
+       
     }
 
     private Vector3 MousePosition()
@@ -70,8 +100,10 @@ public class QuickMove : MonoBehaviour
 
         if (Physics.Raycast(ray,out hit))
         {
+            Debug.Log(hit.collider.name);
             mouseTracker.transform.position = hit.point;
             return new Vector3(hit.point.x - transform.position.x,0,hit.point.z - transform.position.z);
+            
         }
         else return Vector3.zero;
     }

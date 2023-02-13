@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8819947385161814249}
   - component: {fileID: 7866133699872692800}
   - component: {fileID: 2843572163822160398}
+  - component: {fileID: 4613157205461599811}
   m_Layer: 6
   m_Name: MapIndicator
   m_TagString: Untagged
@@ -83,6 +84,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!111 &4613157205461599811
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624151545094593163}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 64ec64179eb0c674f8304c5bb0c449c8, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 64ec64179eb0c674f8304c5bb0c449c8, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &5047480192289913889
 GameObject:
   m_ObjectHideFlags: 0

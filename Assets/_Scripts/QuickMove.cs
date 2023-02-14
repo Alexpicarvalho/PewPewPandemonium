@@ -85,7 +85,7 @@ public class QuickMove : MonoBehaviour
         float startTime = Time.time;
         while (Time.time < startTime + dodgeDuration)
         {
-            transform.position += movementDirectionIndicator.transform.forward * dodgeSpeed 
+            transform.position += movementDirectionIndicator.transform.forward * dodgeSpeed * iTime.personalTimeScale
                 * (speedCurve.Evaluate(Time.time - startTime) / dodgeDuration)
                 * Time.deltaTime;
 

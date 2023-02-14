@@ -5,11 +5,20 @@ using UnityEngine;
 
 public class QuickGrenadeThrow : MonoBehaviour
 {
-    public GameObject grenade;
+
+    public enum GrenadeType
+    {
+        TimeGrenade, ExplosiveGrenade
+    }
+
+    public GameObject expoGrenade;
+    public GameObject timeGrenade;
     public GameObject indicator;
+    public GrenadeType type;
     public float grenadeThrowForce;
     public Vector3 grenadeHeightOffset;
     public float grenadeExplosionRadius;
+
 
     [Header("Grenade Curve Calculations")]
     public float maxDistance;
@@ -41,8 +50,23 @@ public class QuickGrenadeThrow : MonoBehaviour
 
     private void LaunchGrenade()
     {
-       var nade = Instantiate(grenade, transform.position +
+        GameObject nade = null;
+        switch (type)
+        {
+            case GrenadeType.TimeGrenade:
+                 nade = Instantiate(timeGrenade, transform.position +
             /*indicator.transform.position +*/ grenadeHeightOffset, Quaternion.LookRotation(indicator.transform.position));
+
+                break;
+            case GrenadeType.ExplosiveGrenade:
+                 nade = Instantiate(expoGrenade, transform.position +
+            /*indicator.transform.position +*/ grenadeHeightOffset, Quaternion.LookRotation(indicator.transform.position));
+
+                break;
+            default:
+                break;
+        }
+        
         
         nade.GetComponent<GrenadeScript>().throwDirection = CalculateThrowDirection();
         nade.GetComponent<GrenadeScript>().throwForce = grenadeThrowForce;

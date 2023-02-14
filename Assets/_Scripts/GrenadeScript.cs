@@ -1,3 +1,4 @@
+using CustomClasses;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,13 +11,16 @@ public class GrenadeScript : MonoBehaviour
     public Vector3 explosionOffset;
     public float throwForce;
     private Rigidbody rb;
-    [HideInInspector]public QuickGrenadeThrow throwScript;
+    private ITime iTime;
+    private bool slowed = false;
+    [HideInInspector] public QuickGrenadeThrow throwScript;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.AddForce(throwDirection * throwForce);
         rb.AddTorque(torque);
+        iTime = GetComponent<ITime>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -26,9 +30,12 @@ public class GrenadeScript : MonoBehaviour
         Destroy(gameObject);
     }
 
-    //private void Update()
-    //{
-    //    Vector3 direction = (targetPos - transform.position).normalized;
-    //    rb.AddForce(direction * throwForce, ForceMode.VelocityChange);
-    //}
+    private void LateUpdate()
+    {
+        if (!slowed && iTime.personalTimeScale != 1)
+        {
+            rb.velocity = rb.velocity * iTime.personalTimeScale;
+            slowed = true;
+        }
+    }
 }

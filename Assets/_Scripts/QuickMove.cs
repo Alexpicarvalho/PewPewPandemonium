@@ -1,3 +1,4 @@
+using CustomClasses;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ public class QuickMove : MonoBehaviour
     public Transform firePoint;
     public GameObject mouseTracker;
     private float vel = 0;
+    private ITime iTime;
     Rigidbody rb;
 
     [Header("Dodge Values")]
@@ -25,6 +27,7 @@ public class QuickMove : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        iTime = GetComponent<ITime>();
     }
 
     // Update is called once per frame
@@ -44,7 +47,7 @@ public class QuickMove : MonoBehaviour
         {
             movementDirectionIndicator.GetComponent<Animator>().SetBool("On", true);
             movementDirectionIndicator.transform.rotation = Quaternion.LookRotation(moveDirection);
-            transform.position += moveDirection * speed * Time.deltaTime;
+            transform.position += moveDirection * speed*iTime.personalTimeScale * Time.deltaTime;
             //anim.SetBool("Moving", true);
             CalculateAnimatorMovementValue(moveDirection);
         }
@@ -100,7 +103,6 @@ public class QuickMove : MonoBehaviour
 
         if (Physics.Raycast(ray,out hit))
         {
-            Debug.Log(hit.collider.name);
             mouseTracker.transform.position = hit.point;
             return new Vector3(hit.point.x - transform.position.x,0,hit.point.z - transform.position.z);
             

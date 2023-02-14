@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7535549533672699781}
   - component: {fileID: 722629407134320236}
   - component: {fileID: 1028421956453306453}
+  - component: {fileID: -3574332415606687112}
   m_Layer: 7
   m_Name: Nade
   m_TagString: Untagged
@@ -133,3 +134,15 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.15
   m_Center: {x: -0.000000040978193, y: 0.0000000037252903, z: 0.000000026077032}
+--- !u!114 &-3574332415606687112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7754100512310597835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a18193f48d6de54d81d2378efc58680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

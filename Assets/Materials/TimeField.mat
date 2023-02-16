@@ -162,7 +162,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_8D750926: {r: 0.001912117, g: 0, b: 1, a: 1}
-    - Color_DB555ADA: {r: 1.8493147, g: 0, b: 2.828427, a: 1}
+    - Color_DB555ADA: {r: 3.0966623, g: 2.792942, b: 3.776172, a: 1}
     - Vector2_781FB8A4: {r: 0.5, g: 0.5, b: 0, a: 0}
     - Vector2_892CE00: {r: 5, g: 5, b: 0, a: 0}
     - Vector2_8E0A3991: {r: -0.8, g: 0.1, b: 0, a: 0}

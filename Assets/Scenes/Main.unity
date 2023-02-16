@@ -5514,5 +5514,6 @@ PrefabInstance:
       propertyPath: timeGrenade
       value: 
       objectReference: {fileID: 6397207733372838648, guid: 44ac1890934545147b4681575ba918e7, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3969898348992654276, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}

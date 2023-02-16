@@ -9,7 +9,7 @@ namespace CustomClasses
     {
        public float personalTimeScale { get; set; }
     }
-    public class CustomTime 
+    public static class CustomTime 
     {
         private static float areaTimeScale = Time.timeScale;
 
@@ -19,12 +19,12 @@ namespace CustomClasses
 
         //Make The Rest as needed
     
-        public void SetTimeScale(float newTimeScale)
+        public static void SetTimeScale(float newTimeScale)
         {
             areaTimeScale = newTimeScale;
         }
 
-        public float GetTimeScale(ITime personalTime)
+        public static float GetTimeScale(ITime personalTime)
         {
             return timeScale * personalTime.personalTimeScale;
         }

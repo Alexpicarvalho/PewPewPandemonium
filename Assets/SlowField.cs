@@ -6,10 +6,13 @@ using UnityEngine;
 public class SlowField : MonoBehaviour
 {
     [SerializeField] float slowDownPercentage;
+    Animator anim;
         
     private void Start()
     {
+        anim = GetComponent<Animator>();
         Destroy(gameObject,5.0f);
+        Invoke("PlayEndAnimation",4.0f);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -29,6 +32,11 @@ public class SlowField : MonoBehaviour
         {
             iTime.personalTimeScale = 1f;
         }
+    }
+
+    private void PlayEndAnimation()
+    {
+        anim.Play("slowFieldDie");
     }
     private void OnDestroy()
     {

@@ -32,6 +32,7 @@ public class GrenadeScript : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (iTime == null) return;
         if (!slowed && iTime.personalTimeScale != 1)
         {
             rb.velocity = rb.velocity * iTime.personalTimeScale;

@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 2400737992447091476}
   - component: {fileID: 2400737992447091475}
   - component: {fileID: 2400737992447091474}
-  - component: {fileID: 4483179168622400715}
+  - component: {fileID: 2666945717901580761}
   m_Layer: 2
   m_Name: SlowDownTimeField
   m_TagString: Untagged
@@ -211,19 +211,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slowDownPercentage: 0.7
---- !u!111 &4483179168622400715
-Animation:
+--- !u!95 &2666945717901580761
+Animator:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2400737992447091473}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 352db2d5de6fb4340a7b8ddc1566b988, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 352db2d5de6fb4340a7b8ddc1566b988, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 25ad7da7b30b7144eb14dd42f5f1a570, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

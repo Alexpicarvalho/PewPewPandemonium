@@ -34,6 +34,10 @@ public class GunSO : ScriptableObject
     [SerializeField] private Vector3 _positionInHand;
     [SerializeField] private Quaternion _rotationInHand;
 
+    [Header("Animators and Animations")]
+    [SerializeField] private Animator _playerAnimator;
+    [SerializeField] private Animator _weaponAnimator;
+
     [Header("Hidden Variables")]
     [HideInInspector] public bool _shotReady;
     [HideInInspector] public float _timeBetweenShots;
@@ -41,7 +45,7 @@ public class GunSO : ScriptableObject
 
     //Methods
 
-    public void SetWeaponValues(PlayerCombatHandler _combatHandler)
+    public void SetWeaponValues()
     {
         _timeBetweenShots = 60.0f/_bulletsPerMinute;
         _shotReady = true;

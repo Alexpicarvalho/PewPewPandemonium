@@ -8,17 +8,29 @@ public class CharacterCostumization : MonoBehaviour
     [SerializeField] SkinnedMeshRenderer[] bodyParts;
     [SerializeField] SkinnedMeshRenderer[] headParts;
 
+    [SerializeField] float _dissolveTime;
+    [SerializeField] float _undissolveTime;
+
     private Mesh[] bodySkins = new Mesh[20];
     private Mesh[] headSkins = new Mesh[20];
     private int currentBodyIndex = 0;
     private int currentHeadIndex = 0;
     private SkinnedMeshRenderer currentBody;
     private SkinnedMeshRenderer currentHead;
+    [SerializeField] private Material _bodyMaterial;
+    [SerializeField] private Material _headMaterial;
+    bool _isDissolvingBody = false;
+    bool _isDissolvingHead = false;
     // Start is called before the first frame update
     void Start()
     {
+        
         currentBody = transform.GetChild(0).GetComponent<SkinnedMeshRenderer>();
         currentHead = transform.GetChild(1).GetComponent<SkinnedMeshRenderer>();
+        //_bodyMaterial = currentBody.GetComponent<Material>();
+        //_headMaterial = currentHead.GetComponent<Material>();
+        _bodyMaterial = currentBody.materials[0];
+        _headMaterial = currentHead.materials[0];
         GetSkins();
     }
 
@@ -53,7 +65,7 @@ public class CharacterCostumization : MonoBehaviour
         {
             SwapHeadPiece(true);
         }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             SwapHeadPiece(false);
         }
@@ -61,30 +73,64 @@ public class CharacterCostumization : MonoBehaviour
 
     void SwapBodyPiece(bool next)
     {
-        if (next && currentHeadIndex < bodySkins.Length)
-        {
-            currentBodyIndex++;
-            currentBody.sharedMesh = bodySkins[currentBodyIndex];
-        }
-        else if(currentHeadIndex > 0)
-        {
-            currentBodyIndex--;
-            currentBody.sharedMesh = bodySkins[currentBodyIndex];
-        }
+        if (next && currentBodyIndex < bodySkins.Length - 1) currentBodyIndex++;
+        else if (!next && currentBodyIndex > 0) currentBodyIndex--;
+        else return;
+        Invoke("ChangeBody", _dissolveTime);
+        if (!_isDissolvingBody) StartCoroutine(Dissolve(_bodyMaterial,true));
     }
-
+    void ChangeBody()
+    {
+        currentBody.sharedMesh = bodySkins[currentBodyIndex];
+    }
+    
     void SwapHeadPiece(bool next)
     {
-        if (next && currentHeadIndex < headSkins.Length)
-        {
-            currentHeadIndex++;
-            currentHead.sharedMesh = headSkins[currentHeadIndex];
-        }
-        else if(currentHeadIndex > 0)
-        {
-            currentHeadIndex--;
-            currentHead.sharedMesh = headSkins[currentHeadIndex];
-        }
+        if (next && currentHeadIndex < headSkins.Length - 1) currentHeadIndex++;
+        else if(!next && currentHeadIndex > 0) currentHeadIndex--;
+        else return;
+        Invoke("ChangeHead",_dissolveTime);
+        if(!_isDissolvingHead) StartCoroutine(Dissolve(_headMaterial,false));
+
+    }
+    void ChangeHead()
+    {
+        currentHead.sharedMesh = headSkins[currentHeadIndex];
     }
 
+    IEnumerator Dissolve(Material dissolveMat, bool isBody)
+    {
+        if(isBody) _isDissolvingBody = true;
+        else _isDissolvingHead = true;
+        float startTime = Time.time;
+        float time = 0;
+        while (Time.time < startTime + _dissolveTime)
+        {
+            time += Time.deltaTime;
+            float t = Mathf.Clamp01(time/_dissolveTime);
+            dissolveMat.SetFloat("_Dissolve", Mathf.Lerp(0,1,t));
+            yield return null;
+        }
+        StartCoroutine(Undissolve(dissolveMat,isBody));
+    }
+    IEnumerator Undissolve(Material undissolveMat, bool isBody)
+    {
+        float startTime = Time.time;
+        float time = 0;
+        while (Time.time < startTime + _dissolveTime)
+        {
+            time += Time.deltaTime;
+            float t = Mathf.Clamp01(time / _dissolveTime);
+            undissolveMat.SetFloat("_Dissolve", Mathf.Lerp(1, 0, t));
+            yield return null;
+        }
+        if (isBody) _isDissolvingBody = false;
+        else _isDissolvingHead = false;
+    }
+
+    private void OnApplicationQuit()
+    {
+        _bodyMaterial.SetFloat("_Dissolve", 0);
+        _headMaterial.SetFloat("_Dissolve", 0);
+    }
 }

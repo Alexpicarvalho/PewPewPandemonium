@@ -17,7 +17,7 @@ public class PlayerCombatHandler : MonoBehaviour
     {
         //TEMP 
         _gun.PlaceInHand(_hand);
-        _gun.SetWeaponValues(this);
+        _gun.SetWeaponValues();
         _timeBetweenShots = _gun._timeBetweenShots;
     }
 

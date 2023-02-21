@@ -62,12 +62,7 @@ public class QuickMove : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(mousePos);
         
 
-        //shoot
-
-        if (Input.GetMouseButton(0))
-        {
-            Shoot();
-        }
+  
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             anim.Play("Dodge");
@@ -115,14 +110,6 @@ public class QuickMove : MonoBehaviour
         float value = /*Mathf.Sin(*/Vector3.Angle(transform.forward, moveDir)/*)*/;
         if (moveDir.x > 0) value += 180;
         anim.SetFloat("MovBlend", value);
-    }
-
-    public void Shoot()
-    {
-        var mf = Instantiate(muzzleFlash, firePoint.position, Quaternion.LookRotation(transform.forward));
-        var bt = Instantiate(bullet, firePoint.position, Quaternion.LookRotation(MousePosition()));
-        Destroy(mf, 2);
-        Destroy(bt, 4);
     }
 }
 

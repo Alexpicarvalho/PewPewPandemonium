@@ -5,7 +5,24 @@ using UnityEngine;
 public class Interfaces
 { 
 }
-public interface IDamageable
+public interface IHitable
 {
-    void TakeDamage(float amount);
+    void HandleHit(Damage damage);
+}
+
+public class Damage
+{
+    public float _amount;
+    public float _addForce;
+    public int _tickAmount;
+    public float _damageOverTimeDuration;
+
+    // Fed Values Constructor
+    public Damage(float amount, float addForce = 0, int tickNum = 1, float damageOTDuration = 0)
+    {
+        _amount = amount;
+        _addForce = addForce;
+        _tickAmount = tickNum;
+        _damageOverTimeDuration = damageOTDuration;
+    }
 }

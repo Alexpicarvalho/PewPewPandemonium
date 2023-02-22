@@ -5,6 +5,7 @@ using CustomClasses;
 
 public class SimpleBullet : MonoBehaviour
 {
+    [SerializeField] GameObject _impact;
     public float speed;
     private Rigidbody rb;
     private ITime iTime;
@@ -22,15 +23,19 @@ public class SimpleBullet : MonoBehaviour
     private void LateUpdate()
     {
         rb.velocity = transform.forward * speed * iTime.personalTimeScale;
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        ContactPoint cp = collision.GetContact(0);
         var target = collision.collider.GetComponent<IHitable>();
         if (target != null)
         {
             target.HandleHit(damage);
         }
+        var hit = Instantiate(_impact, cp.point, Quaternion.LookRotation(cp.normal));
+        Destroy(hit, 2.0f);
         Destroy(gameObject);
     }
 

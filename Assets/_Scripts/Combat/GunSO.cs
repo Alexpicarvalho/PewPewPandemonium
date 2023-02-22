@@ -43,6 +43,10 @@ public class GunSO : ScriptableObject
     [HideInInspector] public float _timeBetweenShots;
 
 
+    public enum FireingType
+    {
+        Automatic, SemiAutomatic, Manual
+    }
     //Methods
 
     public void SetWeaponValues()

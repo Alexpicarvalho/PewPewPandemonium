@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 7468222713948103001}
   - component: {fileID: 3815006495233303212}
   - component: {fileID: 1186671340093388725}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7468222713948103001
 Transform:
   m_ObjectHideFlags: 0
@@ -4856,8 +4856,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3917125161732971584}
   - component: {fileID: 922336681562134068}
-  m_Layer: 6
-  m_Name: vfx_Hit_BulletSkill01_Blue
+  m_Layer: 0
+  m_Name: Hit1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4926,7 +4926,7 @@ GameObject:
   - component: {fileID: 3909718133236374212}
   - component: {fileID: 3788430311822289554}
   - component: {fileID: 3789226377901865458}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5031,8 +5031,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.4
-      minScalar: 0.2
+      scalar: 0.2
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5084,7 +5084,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 8
+      scalar: 4
       minScalar: 2
       maxCurve:
         serializedVersion: 2
@@ -5200,7 +5200,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.45
+      scalar: 0.2
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2
@@ -9772,7 +9772,7 @@ GameObject:
   - component: {fileID: 35457802375127156}
   - component: {fileID: 23368026069833127}
   - component: {fileID: 1987966217719928873}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ImpactRing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10046,7 +10046,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4
+      scalar: 3
       minScalar: 1.5
       maxCurve:
         serializedVersion: 2
@@ -14618,7 +14618,7 @@ GameObject:
   - component: {fileID: 2147119113991965712}
   - component: {fileID: 8351039802299156853}
   - component: {fileID: 704708233856284079}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParticlesImpactAB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14723,7 +14723,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.4
+      scalar: 0.2
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2
@@ -14776,7 +14776,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 15
+      scalar: 10
       minScalar: 3
       maxCurve:
         serializedVersion: 2
@@ -14892,8 +14892,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.3
-      minScalar: 0.1
+      scalar: 0.1
+      minScalar: 0.01
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -19464,13 +19464,13 @@ GameObject:
   - component: {fileID: 6739339279058325572}
   - component: {fileID: 5371510935446248978}
   - component: {fileID: 7800027991780458947}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: BeamAB (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6739339279058325572
 Transform:
   m_ObjectHideFlags: 0
@@ -19738,7 +19738,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3.5
+      scalar: 1
       minScalar: 1.5
       maxCurve:
         serializedVersion: 2
@@ -24310,7 +24310,7 @@ GameObject:
   - component: {fileID: 6090783609410508250}
   - component: {fileID: 3734392505526693397}
   - component: {fileID: 3309286523190760124}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: FlareAdd (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24584,8 +24584,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 4
-      minScalar: 3
+      scalar: 2.5
+      minScalar: 1.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -29156,7 +29156,7 @@ GameObject:
   - component: {fileID: 8580450330465889138}
   - component: {fileID: 8089964525520757282}
   - component: {fileID: 3037171674561726800}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: BeamAdd
   m_TagString: Untagged
   m_Icon: {fileID: 0}

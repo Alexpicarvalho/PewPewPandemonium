@@ -15,6 +15,9 @@ MonoBehaviour:
   _weaponGO: {fileID: 2273022344544888768, guid: 180fdca6a657c804ea236f9f0ac7d81b, type: 3}
   _bulletGO: {fileID: 1367524025346344, guid: aa244785eac6408478ce67b9ddf90ea2, type: 3}
   _muzzleFlash: {fileID: 4779800532271133379, guid: da31205b1a641cb40adbb11bfa094fd5, type: 3}
+  _weaponIcon: {fileID: 2800000, guid: e4c5be4d0df5a9640a39c6cd454d81a5, type: 3}
+  _groundPickUpPrefab: {fileID: 0}
+  _fireingType: 0
   _weaponSkill: {fileID: 0}
   _damageMultiplier: 1
   _bulletsPerMinute: 90
@@ -23,8 +26,10 @@ MonoBehaviour:
   _critDamageMultiplier: 2
   _weaponWeight: 0
   _weaponSights: 0
-  _bulletsInMag: -29
+  _bulletsInMag: 5
   _positionInHand: {x: 0.008, y: 0.004, z: 0.163}
   _rotationInHand: {x: 0.47400984, y: 0.4198337, z: 0.5323944, w: 0.5617924}
+  _playerAnimator: {fileID: 0}
+  _weaponAnimator: {fileID: 0}
   _shotReady: 1
   _timeBetweenShots: 0.6666667

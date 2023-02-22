@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CustomClasses;
 
+[RequireComponent(typeof(Rigidbody))]
 public class SimpleBullet : MonoBehaviour
 {
     [SerializeField] GameObject _impact;

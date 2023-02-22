@@ -15,12 +15,15 @@ public class GunSO : ScriptableObject
     [SerializeField] private GameObject _weaponGO;
     [SerializeField] private GameObject _bulletGO;
     [SerializeField] private GameObject _muzzleFlash;
+    [SerializeField] public Texture _weaponIcon;
+    [SerializeField] private GameObject _groundPickUpPrefab;
 
     [Header("Individual Attributes")]
+    [SerializeField] public FireingType _fireingType;
     [SerializeField] private WeaponSkillSO _weaponSkill;
     [SerializeField] private float _damageMultiplier = 1;
     [SerializeField] private int _bulletsPerMinute;
-    [SerializeField] private int _magazineSize;
+    [SerializeField] public int _magazineSize;
     [SerializeField] public float _reloadTime;
     [SerializeField] private float _critDamageMultiplier = 2;
     [SerializeField] [Range(0, 1)] private float _weaponWeight;
@@ -29,6 +32,7 @@ public class GunSO : ScriptableObject
     [Header("RunTime Properties")]
     [SerializeField] public int _bulletsInMag;
     private Transform _firePoint;
+    [HideInInspector] public GameObject _weaponClone;
 
     [Header("Hand Placement")]
     [SerializeField] private Vector3 _positionInHand;
@@ -51,7 +55,7 @@ public class GunSO : ScriptableObject
 
     public void SetWeaponValues()
     {
-        _timeBetweenShots = 60.0f/_bulletsPerMinute;
+        _timeBetweenShots = 60.0f / _bulletsPerMinute;
         _shotReady = true;
         Reload();
         if (_firePoint == null) Debug.LogError("NO FIREPOINT IN WEAPON");
@@ -59,15 +63,15 @@ public class GunSO : ScriptableObject
 
     public virtual void PlaceInHand(Transform parentBone)
     {
-        GameObject weapon = Instantiate(_weaponGO);
-        _firePoint = weapon.transform.GetChild(0);
-        weapon.transform.parent = parentBone;
-        weapon.transform.localPosition = _positionInHand;
-        weapon.transform.localRotation = _rotationInHand;
+        _weaponClone = Instantiate(_weaponGO);
+        _firePoint = _weaponClone.transform.GetChild(0);
+        _weaponClone.transform.parent = parentBone;
+        _weaponClone.transform.localPosition = _positionInHand;
+        _weaponClone.transform.localRotation = _rotationInHand;
     }
     public virtual void NormalShoot()
     {
-        if (!_shotReady) return;
+        if (!_shotReady || _firePoint == null) return;
         Debug.Log("Shot a shot");
         _shotReady = false;
         _bulletsInMag--;
@@ -84,5 +88,10 @@ public class GunSO : ScriptableObject
     public virtual void Reload()
     {
         _bulletsInMag = _magazineSize;
+    }
+
+    public void DestroyWeapon()
+    {
+        Destroy(_weaponClone);
     }
 }

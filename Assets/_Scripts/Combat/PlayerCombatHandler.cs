@@ -65,14 +65,14 @@ public class PlayerCombatHandler : MonoBehaviour
         _gun._weaponClone.SetActive(true);
     }
 
-    IEnumerator ReadyNextShot()
+    public IEnumerator ReadyNextShot()
     {
         yield return new WaitForSeconds(_timeBetweenShots);
         _gun._shotReady = true;
         _shotReady = true;
     }
 
-    IEnumerator Reload()
+    public IEnumerator Reload()
     {
         _gun._shotReady = false;
         _shotReady = false;

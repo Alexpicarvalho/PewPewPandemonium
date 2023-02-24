@@ -2,11 +2,13 @@ using CustomClasses;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class SlowField : MonoBehaviour
 {
     [SerializeField] float slowDownPercentage;
     Animator anim;
+    private List<ITime> slowedEnteties = new List<ITime> ();
         
     private void Start()
     {
@@ -21,35 +23,35 @@ public class SlowField : MonoBehaviour
         if (iTime != null)
         {
             Debug.Log("Gotcha");
+            slowedEnteties.Add(iTime);
             iTime.personalTimeScale = iTime.personalTimeScale - slowDownPercentage*iTime.personalTimeScale;
         }
     }
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log(other.name + "left the chat");
         ITime iTime = other.GetComponent<ITime>();
+        if (iTime != null) ResetSpeeds(iTime);
 
-        if (iTime != null)
-        {
-            iTime.personalTimeScale = 1f;
-        }
     }
 
     private void PlayEndAnimation()
     {
         anim.Play("slowFieldDie");
     }
+
+    private void ResetSpeeds(ITime entety)
+    {   
+        entety.personalTimeScale = 1;
+        Debug.Log("Reset" + entety);
+        slowedEnteties.Remove(entety);
+    }
     private void OnDestroy()
     {
-        Destroy(GetComponent<Collider>());
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 12.0f);
-        foreach (var item in colliders)
+        if (slowedEnteties.Count == 0) return;
+        foreach (var entety in slowedEnteties)
         {
-            var iTime = item.GetComponent<ITime>();
-            if (iTime != null)
-            {
-                iTime.personalTimeScale = 1;
-            }
+            ResetSpeeds(entety);
         }
-        
     }
 }

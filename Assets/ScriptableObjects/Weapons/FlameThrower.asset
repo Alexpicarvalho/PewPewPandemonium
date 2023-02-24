@@ -10,31 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c1eeb2c3cf977f41b5eb64512b1e0de, type: 3}
-  m_Name: Minigun
+  m_Name: FlameThrower
   m_EditorClassIdentifier: 
-  _weaponGO: {fileID: 2196376887939949475, guid: 79cfad6d28604f54a97b32d45af9d2b2, type: 3}
-  _bulletGO: {fileID: 2894552729440222365, guid: c7a68facac6f947489bc459cccf7cadd, type: 3}
+  _weaponGO: {fileID: 4982128866425352390, guid: 77c66d64e7d1a8b458934029d50fcbf1, type: 3}
+  _bulletGO: {fileID: 3092566135863958259, guid: 8b0fe9359e5fde443a832b27ba08c5e6, type: 3}
   _muzzleFlash: {fileID: 4779800532271133379, guid: da31205b1a641cb40adbb11bfa094fd5, type: 3}
-  _weaponIcon: {fileID: 2800000, guid: 56ebff5162cdd6f4ca9e515e428c0d1b, type: 3}
+  _weaponIcon: {fileID: 2800000, guid: a2a0b304a9f156d44ab3cf2441b55609, type: 3}
   _groundPickUpPrefab: {fileID: 0}
-  _visualEffect: {fileID: 0}
-  _extraEffectType: 0
-  _extraEffectTimeToShutOff: 0
+  _visualEffect: {fileID: 8764043878647920493, guid: c4ed38c72957f2241ad144a1614956d9, type: 3}
+  _extraEffectType: 1
+  _extraEffectTimeToShutOff: 0.6
   _fireingType: 0
   _weaponSkill: {fileID: 0}
   _damageMultiplier: 1
-  _bulletsPerMinute: 750
-  _magazineSize: 50
+  _bulletsPerMinute: 1200
+  _magazineSize: 100
   _reloadTime: 2
   _critDamageMultiplier: 2
   _weaponWeight: 0
   _weaponSights: 0
-  _bulletsInMag: 50
+  _bulletsInMag: 20
   _weaponClone: {fileID: 0}
   _vfxClone: {fileID: 0}
-  _positionInHand: {x: 0, y: 0, z: 0}
-  _rotationInHand: {x: 0.4740098, y: 0.41983366, z: 0.5323944, w: 0.56179243}
+  _positionInHand: {x: 0.076, y: -0.046, z: 0.012}
+  _rotationInHand: {x: 0.5006671, y: 0.49933192, z: 0.49933192, w: 0.5006671}
   _playerAnimator: {fileID: 0}
   _weaponAnimator: {fileID: 0}
   _shotReady: 1
-  _timeBetweenShots: 0.08
+  _timeBetweenShots: 0.05

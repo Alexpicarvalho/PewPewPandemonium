@@ -38,9 +38,20 @@ public class Stats : MonoBehaviour, IHitable
     public void HandleHit(Damage damage)
     {
         _currentHp -= damage._amount;
-        if (_currentHp <= 0) _currentHp = 0;
+        if (_currentHp <= 0)
+        {
+            _currentHp = 0;
+            Invoke("ResetHealth", 1.5f);
+        }
         
         
+        
+    }
+
+    //TEST ONLY 
+    public void ResetHealth()
+    {
+        _currentHp = MaxHP;
     }
 
     public IEnumerator DealDamageEnum(Damage damage, Vector3 forceDirection)

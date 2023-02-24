@@ -9,6 +9,7 @@ using UnityRandom = UnityEngine.Random;
 public class PlayerCombatHandler : MonoBehaviour
 {
     [SerializeField] Transform _hand;
+    [SerializeField] Transform _firePoint;
     public GunSO _weaponSlot1;
     public GunSO _weaponSlot2;
     [HideInInspector] public GunSO _gun;
@@ -30,10 +31,15 @@ public class PlayerCombatHandler : MonoBehaviour
     {
         if (Input.GetButton("Fire1") && _shotReady)
         {
+            //StopCoroutine(ShutOffExtraEffect());
             _gun.NormalShoot();
-            _shotReady = false;  
+            _shotReady = false;
             if (_gun._bulletsInMag <= 0) StartCoroutine(Reload());
-            else StartCoroutine(ReadyNextShot());
+            else
+            {
+                StartCoroutine(ReadyNextShot());
+                //StartCoroutine(ShutOffExtraEffect());
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -50,7 +56,7 @@ public class PlayerCombatHandler : MonoBehaviour
     public void SetupWeapon(GunSO newWeapon)
     {
         newWeapon.PlaceInHand(_hand);
-        newWeapon.SetWeaponValues();
+        newWeapon.SetWeaponValues(_firePoint);
     }
 
     private void SwapWeapons()
@@ -70,6 +76,12 @@ public class PlayerCombatHandler : MonoBehaviour
         yield return new WaitForSeconds(_timeBetweenShots);
         _gun._shotReady = true;
         _shotReady = true;
+    }
+
+    public IEnumerator ShutOffExtraEffect()
+    {
+        yield return new WaitForSeconds(_gun._extraEffectTimeToShutOff);
+        if (_gun._vfxClone != null) _gun._vfxClone.SetActive(false);
     }
 
     public IEnumerator Reload()

@@ -15,13 +15,13 @@ public class SimpleBullet : MonoBehaviour
     // Start is called before the first frame update    
     void Start()
     {
-        Destroy(gameObject,lifeTime);
+        Destroy(gameObject, lifeTime);
         rb = GetComponent<Rigidbody>();
         iTime = GetComponent<ITime>();
         rb.velocity = transform.forward * speed * iTime.personalTimeScale;
         damage = new Damage(1);
     }
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         rb.velocity = transform.forward * speed * iTime.personalTimeScale;
 
@@ -35,9 +35,24 @@ public class SimpleBullet : MonoBehaviour
         {
             target.HandleHit(damage);
         }
-        var hit = Instantiate(_impact, cp.point, Quaternion.LookRotation(cp.normal));
-        Destroy(hit, 2.0f);
+        if (_impact != null)
+        {
+            var hit = Instantiate(_impact, cp.point, Quaternion.LookRotation(cp.normal));
+            Destroy(hit, 2.0f);
+        }
+        
         Destroy(gameObject);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        var target = other.GetComponent<IHitable>();
+        if (target != null)
+        {
+            target.HandleHit(damage);
+        }
+
+        if(!other.GetComponent<Collider>().isTrigger) Destroy(transform.GetComponent<Collider>());
+        //Destroy(gameObject);
     }
 
 

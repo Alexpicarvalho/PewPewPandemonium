@@ -4,6 +4,7 @@ using UnityEngine;
 using CustomClasses;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(PersonalTime))]
 public class SimpleBullet : MonoBehaviour
 {
     [SerializeField] GameObject _impact;

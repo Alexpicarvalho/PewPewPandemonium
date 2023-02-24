@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 315fbd0bad51258428f522d0875e36fa, type: 3}
+  m_Name: RailgunSkill
+  m_EditorClassIdentifier: 
+  _cooldown: 5
+  _skillDescription: 
+  _skillState: 0
+  _animatorTrigger: RailgunSkill
+  _skillVFX: {fileID: 8602379007152908207, guid: 5dc69f8b77a1fd54dbac4dc26b55beb1, type: 3}
+  _activeTime: 0
+  _damage: 0
+  _firePoint: {fileID: 0}
+  _visualIndicator: {fileID: 6620889925544244994, guid: 017ff7c8191bc804b94c6f3f829c671d, type: 3}
+  _castVFX: {fileID: 0}
+  _finalDamage: 0

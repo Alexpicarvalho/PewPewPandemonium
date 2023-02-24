@@ -24,8 +24,8 @@ public class TempUIInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _weaponImage.texture = _playerCombatHandler._weaponSlot1._weaponIcon;
-        _offWeaponImage.texture = _playerCombatHandler._weaponSlot2._weaponIcon;
+        _weaponImage.texture = _playerCombatHandler._weaponSlot2._weaponIcon;
+        _offWeaponImage.texture = _playerCombatHandler._weaponSlot1._weaponIcon;
 
 
         if (_lastFrameWeapon && _lastFrameWeapon != _playerCombatHandler._gun)

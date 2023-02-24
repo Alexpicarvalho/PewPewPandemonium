@@ -25,7 +25,8 @@ public class GunSO : ScriptableObject
 
     [Header("Individual Attributes")]
     [SerializeField] public FireingType _fireingType;
-    [SerializeField] private WeaponSkillSO _weaponSkill;
+    [SerializeField] public WeaponSkillSO _weaponSkill;
+    [SerializeField] public float _skillDamage;
     [SerializeField] private float _damageMultiplier = 1;
     [SerializeField] private int _bulletsPerMinute;
     [SerializeField] public int _magazineSize;
@@ -67,8 +68,9 @@ public class GunSO : ScriptableObject
 
     public void SetWeaponValues(Transform firePoint)
     {
-        Debug.Log("Bruh");
         _firePoint = firePoint;
+        _weaponSkill.SetSkillValues(_firePoint);
+        _weaponSkill._damage = _skillDamage;
         _timeBetweenShots = 60.0f / _bulletsPerMinute;
         _shotReady = true;
         if (_visualEffect)
@@ -89,6 +91,11 @@ public class GunSO : ScriptableObject
         _weaponClone.transform.localPosition = _positionInHand;
         _weaponClone.transform.localRotation = _rotationInHand;
     }
+    public GameObject GetSwapped()
+    {
+        return _weaponClone;
+    }
+
     public virtual void NormalShoot()
     {
         if (!_shotReady || _firePoint == null) return;
@@ -120,6 +127,7 @@ public class GunSO : ScriptableObject
     public virtual void CastSkill()
     {
         // Cast Skill In Weapon Skill Scriptable Object
+        _weaponSkill.ExecuteSpell();
     }
 
     public virtual void Reload()

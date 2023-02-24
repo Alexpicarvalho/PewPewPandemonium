@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 9c24155491c3d4e46b398c724e9eaa42, type: 2}
 --- !u!1001 &26786783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -180,6 +180,58 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d3647d3f5a16c7499a104073371fda0, type: 3}
+--- !u!4 &61187447 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4513952394950646543, guid: 267ecdc4e07dd4541a92ec898bbf8118, type: 3}
+  m_PrefabInstance: {fileID: 8694348303969670849}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &241885003 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4513952395892707360, guid: 267ecdc4e07dd4541a92ec898bbf8118, type: 3}
+  m_PrefabInstance: {fileID: 8694348303969670849}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &241885004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241885003}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee9599dad9e6864cbe56b017dbbd3ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hand: {fileID: 61187447}
+  _gun: {fileID: 0}
+  _weaponSlot2: {fileID: 11400000, guid: e6bca8273b09c5d4f95cd96704a72be2, type: 2}
+  _reloading: 0
+  detectionRange: 10
+  shootingRange: 5
+  peekDuration: 2
+  peekInterval: 5
+--- !u!195 &241885005
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241885003}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &407297158
 GameObject:
   m_ObjectHideFlags: 0
@@ -2520,8 +2572,56 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 231212213558550329, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7016079
+      objectReference: {fileID: 0}
+    - target: {fileID: 231212213558550329, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.08801344
+      objectReference: {fileID: 0}
+    - target: {fileID: 231212213558550329, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7016079
+      objectReference: {fileID: 0}
+    - target: {fileID: 231212213558550329, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.08801344
+      objectReference: {fileID: 0}
+    - target: {fileID: 231212213558550329, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 231212213558550329, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 231212213558550329, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 231212214337253563, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 231212214337253563, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 231212214337253563, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 231212214337253563, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 231212215010212256, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 231212215010212256, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 231212215010212286, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
@@ -2581,13 +2681,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 407297159}
     - target: {fileID: 4920267075732269096, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
+      propertyPath: _dissolveMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 6d66b16b869da56498705e76b28c7ecb, type: 2}
+    - target: {fileID: 4920267075732269096, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
       propertyPath: _weaponSlot1
       value: 
-      objectReference: {fileID: 11400000, guid: e6bca8273b09c5d4f95cd96704a72be2, type: 2}
+      objectReference: {fileID: 11400000, guid: b20a96075162c564c8a9b4a021009876, type: 2}
     - target: {fileID: 4920267075732269096, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
       propertyPath: _weaponSlot2
       value: 
       objectReference: {fileID: 11400000, guid: 91f237c58dbf9ba4b9c33ffc07009d47, type: 2}
+    - target: {fileID: 4920267075732269096, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
+      propertyPath: _swapCooldown
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920267075732269096, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
+      propertyPath: _swapEffectDuration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4920267075732269097, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
       propertyPath: m_Enabled
       value: 1

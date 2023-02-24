@@ -103,6 +103,11 @@ public class PlayerCombatHandler : MonoBehaviour
     {
         _animator.SetTrigger(_gun._weaponSkill._animatorTrigger);
     }
+
+    public void StartCastingVFX()
+    {
+        _gun._weaponSkill.StartCastingVFX();
+    }
     public void ExecuteSkill()
     {
         _gun.CastSkill();

@@ -23,7 +23,7 @@ public class WeaponSkillSO : ScriptableObject
 
     [Header("Visual Properties")]
     [SerializeField] private GameObject _visualIndicator;
-    [SerializeField] private GameObject _castVFX;
+    [SerializeField] public GameObject _castVFX;
 
     [Header("Hidden/Runtime Properties")]
     [HideInInspector] public float _finalDamage; // may be obsolete

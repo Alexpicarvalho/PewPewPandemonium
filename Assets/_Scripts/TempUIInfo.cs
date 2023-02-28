@@ -11,7 +11,7 @@ public class TempUIInfo : MonoBehaviour
     [SerializeField] RawImage _weaponImage;
     [SerializeField] RawImage _offWeaponImage;
     private PlayerCombatHandler _playerCombatHandler;
-    private Stats _playerStats;
+    private PlayerStats _playerStats;
     private GunSO _lastFrameWeapon;
     public Animator _weaponUIAnimator;
     bool firstFrame = true;
@@ -19,7 +19,7 @@ public class TempUIInfo : MonoBehaviour
     void Start()
     {
         _playerCombatHandler = _player.GetComponent<PlayerCombatHandler>();
-        _playerStats = _player.GetComponent<Stats>();
+        _playerStats = _player.GetComponent<PlayerStats>();
 
     }
 

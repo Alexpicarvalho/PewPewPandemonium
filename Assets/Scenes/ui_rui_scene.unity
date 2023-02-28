@@ -3396,11 +3396,11 @@ PrefabInstance:
     - target: {fileID: 4920267075732269096, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
       propertyPath: _weaponSlot1
       value: 
-      objectReference: {fileID: 11400000, guid: b20a96075162c564c8a9b4a021009876, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 4920267075732269096, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
       propertyPath: _weaponSlot2
       value: 
-      objectReference: {fileID: 11400000, guid: 91f237c58dbf9ba4b9c33ffc07009d47, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 4920267075732269096, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
       propertyPath: _swapCooldown
       value: 0.6

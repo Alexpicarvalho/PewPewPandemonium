@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3589508960696346529}
   - component: {fileID: 7332932420918919986}
   - component: {fileID: 6649585734052706553}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ChargeUP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5000,7 +5000,7 @@ GameObject:
   - component: {fileID: 3269790150378902603}
   - component: {fileID: 6575926577831716194}
   - component: {fileID: 1476050437702661957}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ChargeUP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5015,7 +5015,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3884259398720255015}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9987,7 +9987,7 @@ GameObject:
   - component: {fileID: 8128787737698890035}
   - component: {fileID: 7855645491871741479}
   - component: {fileID: 4543794541614032200}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10002,7 +10002,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6184861306931059246}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10117,7 +10117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1604825351154660381}
   - component: {fileID: 805240861468564700}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10132,8 +10132,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9030694822514553769}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.75}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3589508960696346529}
@@ -10150,5 +10150,5 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.50000024
+  m_Radius: 1.33
   m_Center: {x: 0, y: -0.000000059604744, z: 0.0000009536745}

@@ -16,13 +16,13 @@ MonoBehaviour:
   _bulletGO: {fileID: 1367524025346344, guid: aa244785eac6408478ce67b9ddf90ea2, type: 3}
   _muzzleFlash: {fileID: 4779800532271133379, guid: da31205b1a641cb40adbb11bfa094fd5, type: 3}
   _weaponIcon: {fileID: 2800000, guid: e4c5be4d0df5a9640a39c6cd454d81a5, type: 3}
-  _groundPickUpPrefab: {fileID: 0}
+  _groundPickUpPrefab: {fileID: 2273022344544888768, guid: ce38cda54dcb7c34b83651657aa3a764, type: 3}
   _visualEffect: {fileID: 0}
   _extraEffectType: 0
   _extraEffectTimeToShutOff: 0
   _fireingType: 0
-  _weaponSkill: {fileID: 11400000, guid: 1bf6fb3b7c4c63d40b1950aa428ed43f, type: 2}
-  _skillDamage: 20
+  _weaponSkillRef: {fileID: 11400000, guid: 1bf6fb3b7c4c63d40b1950aa428ed43f, type: 2}
+  _skillDamage: 40
   _damageMultiplier: 1
   _bulletsPerMinute: 200
   _magazineSize: 30
@@ -33,8 +33,9 @@ MonoBehaviour:
   _bulletsInMag: 30
   _weaponClone: {fileID: 0}
   _vfxClone: {fileID: 0}
-  _positionInHand: {x: 0.008, y: 0.004, z: 0.163}
-  _rotationInHand: {x: 0.47400984, y: 0.4198337, z: 0.5323944, w: 0.5617924}
+  _weaponSkill: {fileID: 11400000, guid: 1bf6fb3b7c4c63d40b1950aa428ed43f, type: 2}
+  _positionInHand: {x: 0.047, y: 0.048, z: 0.168}
+  _rotationInHand: {x: 0.51887333, y: 0.36517614, z: 0.48051667, w: 0.6054095}
   _playerAnimator: {fileID: 0}
   _weaponAnimator: {fileID: 0}
   _shotReady: 1

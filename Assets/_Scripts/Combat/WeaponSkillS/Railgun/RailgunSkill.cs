@@ -15,12 +15,12 @@ public class RailgunSkill : WeaponSkillSO
     {
         base.ExecuteSpell();
         Destroy(_castVFXClone);
-        Instantiate(_skillVFX,_firePoint.position, Quaternion.LookRotation(_firePoint.forward));
+        var skill = Instantiate(_skillVFX,_firePoint.position, Quaternion.LookRotation(_firePoint.forward));
+        skill.GetComponent<SimpleBullet>()._damage = _damage;
     }
 
     public override void StartCastingVFX()
     {
-        _castVFXClone = Instantiate(_castVFX,_firePoint.position,Quaternion.LookRotation(_firePoint.forward)); 
-        _castVFXClone.transform.parent = _firePoint;
+        _castVFXClone = Instantiate(_castVFX,_firePoint.position,Quaternion.LookRotation(_firePoint.forward),_firePoint);
     }
 }

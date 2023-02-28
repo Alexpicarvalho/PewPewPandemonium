@@ -25,7 +25,7 @@ public class GunSO : ScriptableObject
 
     [Header("Individual Attributes")]
     [SerializeField] public FireingType _fireingType;
-    [SerializeField] public WeaponSkillSO _weaponSkill;
+    [SerializeField] public WeaponSkillSO _weaponSkillRef;
     [SerializeField] public float _skillDamage;
     [SerializeField] private float _damageMultiplier = 1;
     [SerializeField] private int _bulletsPerMinute;
@@ -40,6 +40,7 @@ public class GunSO : ScriptableObject
     private Transform _firePoint;
     [HideInInspector] public GameObject _weaponClone;
     [HideInInspector] public GameObject _vfxClone;
+    [HideInInspector] public WeaponSkillSO _weaponSkill;
 
     [Header("Hand Placement")]
     [SerializeField] private Vector3 _positionInHand;
@@ -69,7 +70,8 @@ public class GunSO : ScriptableObject
     public void SetWeaponValues(Transform firePoint)
     {
         _firePoint = firePoint;
-        _weaponSkill.SetSkillValues(_firePoint);
+        _weaponSkill = Instantiate(_weaponSkillRef);
+        _weaponSkill.SetSkillValues(_firePoint,_damageMultiplier);
         _weaponSkill._damage = _skillDamage;
         _timeBetweenShots = 60.0f / _bulletsPerMinute;
         _shotReady = true;
@@ -135,8 +137,20 @@ public class GunSO : ScriptableObject
         _bulletsInMag = _magazineSize;
     }
 
-    public void DestroyWeapon()
+    public void DropWeapon()
     {
         Destroy(_weaponClone);
+        Destroy(_vfxClone);
+        _weaponSkill.DestroySpell();
+        if (!_groundPickUpPrefab) return;
+
+        var drop = Instantiate(_groundPickUpPrefab, _firePoint.position + Vector3.up, Quaternion.identity);
+        var dropRB = drop.GetComponent<Rigidbody>();
+        drop.GetComponent<WeaponPickUp>()._weaponToGive = this;
+        Debug.LogWarning("Successfully pooped weapon");
+        dropRB.isKinematic = false;
+        dropRB.AddForce(Vector3.up + Vector3.forward * 100f);
+
+
     }
 }

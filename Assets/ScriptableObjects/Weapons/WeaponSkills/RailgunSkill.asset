@@ -18,8 +18,11 @@ MonoBehaviour:
   _animatorTrigger: RailgunSkill
   _skillVFX: {fileID: 8602379007152908207, guid: 5dc69f8b77a1fd54dbac4dc26b55beb1, type: 3}
   _activeTime: 0
-  _damage: 0
+  _damage: 30
   _firePoint: {fileID: 0}
   _visualIndicator: {fileID: 6620889925544244994, guid: 017ff7c8191bc804b94c6f3f829c671d, type: 3}
   _castVFX: {fileID: 1578795893834148268, guid: 520f3b17b27c143458bcf901a9c6aca9, type: 3}
+  _indicatorScale: {x: 10, y: 10, z: 10}
+  _indicatorPosition: {x: 0, y: 0, z: 0}
+  _indicatorRotation: {x: 0, y: 0, z: 0}
   _finalDamage: 0

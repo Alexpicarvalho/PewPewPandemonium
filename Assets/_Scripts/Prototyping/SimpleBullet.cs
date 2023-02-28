@@ -8,6 +8,7 @@ using CustomClasses;
 public class SimpleBullet : MonoBehaviour
 {
     [SerializeField] GameObject _impact;
+    [SerializeField] public float _damage = 1;
     public float speed;
     private Rigidbody rb;
     private ITime iTime;
@@ -20,7 +21,7 @@ public class SimpleBullet : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         iTime = GetComponent<ITime>();
         rb.velocity = transform.forward * speed * iTime.personalTimeScale;
-        damage = new Damage(1);
+        damage = new Damage(_damage);
     }
     private void FixedUpdate()
     {

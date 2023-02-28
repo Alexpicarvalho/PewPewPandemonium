@@ -10,6 +10,8 @@ public class PlayerCombatHandler : MonoBehaviour
 {
     [SerializeField] Transform _hand;
     [SerializeField] Transform _firePoint;
+    [SerializeField] GunSO _startingWeapon1;
+    [SerializeField] GunSO _startingWeapon2;
     public GunSO _weaponSlot1;
     public GunSO _weaponSlot2;
     [HideInInspector] public GunSO _gun;
@@ -22,22 +24,31 @@ public class PlayerCombatHandler : MonoBehaviour
     [SerializeField] private float _swapCooldown = .6f;
     [SerializeField] private float _swapEffectDuration;
     private bool _swapReady = true;
-    [SerializeField ] Material _dissolveMat;
+    [SerializeField] Material _dissolveMat;
 
-    private void Start()
+    private void Awake()
     {
         _swapReady = true;
         _animator = GetComponent<Animator>();
-        _gun = _weaponSlot2;
         //TEMP 
-        SetupWeapon(_weaponSlot1);
-        SetupWeapon(_weaponSlot2);
+        if (_startingWeapon1)
+        {
+            _weaponSlot1 = Instantiate(_startingWeapon1);
+            SetupWeapon(_weaponSlot1);
+        }
+        if (_startingWeapon2)
+        {
+            _weaponSlot2 = Instantiate(_startingWeapon2);
+            SetupWeapon(_weaponSlot2);
+        }
+        _gun = _weaponSlot2;
         SwapWeapons();
         _timeBetweenShots = _gun._timeBetweenShots;
     }
 
     private void Update()
     {
+        Debug.Log(_gun.name);
         if (Input.GetButton("Fire1") && _shotReady)
         {
             //StopCoroutine(ShutOffExtraEffect());
@@ -50,16 +61,15 @@ public class PlayerCombatHandler : MonoBehaviour
                 //StartCoroutine(ShutOffExtraEffect());
             }
         }
-        Debug.Log(_swapReady);
 
         if (Input.GetButton("Fire2"))
         {
             _gun._weaponSkill.ShowSkillIndicator();
         }
-        else if (Input.GetButtonUp("Fire2")) 
+        else if (Input.GetButtonUp("Fire2"))
         {
             //_gun._weaponSkill.HideSkillIndicator();
-            CallSkill(); 
+            CallSkill();
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -68,9 +78,41 @@ public class PlayerCombatHandler : MonoBehaviour
         }
     }
 
-    public void ReceiveWeapon()
+    public void ReceiveWeapon(GunSO _newGun)
     {
+        //First We check if any slots are empty, in which case weapon goes there
+        if (!_weaponSlot1)
+        {
+            Debug.LogWarning("1");
+            _weaponSlot1 = Instantiate(_newGun);
+            SetupWeapon(_weaponSlot1);
+        }
+        else if (!_weaponSlot2)
+        {
+            Debug.LogWarning("2");
+            _weaponSlot2 = Instantiate(_newGun);
+            SetupWeapon(_weaponSlot2);
+        }
 
+        //If there are no empty slots, we drop whichever gun we are holding and replace it with new one
+        else
+        {
+            _gun.DropWeapon();
+            if (_gun == _weaponSlot1)
+            {
+                Debug.LogWarning("3");
+                _weaponSlot1 = Instantiate(_newGun);
+                _gun = _weaponSlot1;
+            }
+            else
+            {
+                Debug.LogWarning("4");
+                _weaponSlot2 = Instantiate(_newGun);
+                _gun = _weaponSlot2;
+            }
+            SetupWeapon(_gun);
+        }
+        SwapWeapons();
     }
 
     public void SetupWeapon(GunSO newWeapon)

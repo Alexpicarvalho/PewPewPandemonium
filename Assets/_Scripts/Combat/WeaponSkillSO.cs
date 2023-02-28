@@ -17,13 +17,17 @@ public class WeaponSkillSO : ScriptableObject
 
     [Header("Optional Properties")]
     [SerializeField] public float _activeTime;
-    [HideInInspector] public float _damage;
+    [SerializeField] public float _damage;
     [SerializeField] public Transform _firePoint;
 
 
     [Header("Visual Properties")]
     [SerializeField] private GameObject _visualIndicator;
     [SerializeField] public GameObject _castVFX;
+    [SerializeField] public Vector3 _indicatorScale;
+    [SerializeField] public Vector3 _indicatorPosition;
+    [SerializeField] public Vector3 _indicatorRotation;
+
 
     [Header("Hidden/Runtime Properties")]
     [HideInInspector] public float _finalDamage; // may be obsolete
@@ -36,13 +40,16 @@ public class WeaponSkillSO : ScriptableObject
 
     //Methods
     
-    public void SetSkillValues(/*GameObject parent,*/ Transform firePoint = null) 
+    public void SetSkillValues(Transform firePoint = null, float damageMult = 1) 
     {
         _firePoint = firePoint;
+        _damage = _damage * damageMult;
         if (_visualIndicator)
         {
-            _indicatorClone = Instantiate(_visualIndicator, _firePoint.position, Quaternion.identity);
-            _indicatorClone.transform.parent = _firePoint;
+            _indicatorClone = Instantiate(_visualIndicator, _firePoint.position, Quaternion.identity,_firePoint);
+            _indicatorClone.transform.localScale = _indicatorScale;
+            _indicatorClone.transform.rotation = Quaternion.Euler(_indicatorRotation);
+            _indicatorClone.transform.localPosition = _indicatorPosition;
             _indicatorClone.SetActive(false);
         } 
     }
@@ -59,4 +66,9 @@ public class WeaponSkillSO : ScriptableObject
         _indicatorClone.SetActive(false);
     }
     public virtual void StartCastingVFX() { }
+
+    public virtual void DestroySpell() 
+    {
+        Destroy(_indicatorClone);
+    }
 }

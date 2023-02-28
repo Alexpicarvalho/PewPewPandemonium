@@ -14,27 +14,41 @@ public class TempUIInfo : MonoBehaviour
     private Stats _playerStats;
     private GunSO _lastFrameWeapon;
     public Animator _weaponUIAnimator;
+    bool firstFrame = true;
     // Start is called before the first frame update
     void Start()
     {
         _playerCombatHandler = _player.GetComponent<PlayerCombatHandler>();
         _playerStats = _player.GetComponent<Stats>();
+
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        _weaponImage.texture = _playerCombatHandler._weaponSlot2._weaponIcon;
-        _offWeaponImage.texture = _playerCombatHandler._weaponSlot1._weaponIcon;
+
+        if (_playerCombatHandler._weaponSlot2)
+        {
+            _weaponImage.enabled = true;
+            _weaponImage.texture = _playerCombatHandler._weaponSlot2._weaponIcon;
+        } 
+        else _weaponImage.enabled = false;
+        if (_playerCombatHandler._weaponSlot1)
+        {
+            _offWeaponImage.enabled = true;
+            _offWeaponImage.texture = _playerCombatHandler._weaponSlot1._weaponIcon;
+        }
+        else _offWeaponImage.enabled = false;
+
+
 
 
         if (_lastFrameWeapon && _lastFrameWeapon != _playerCombatHandler._gun)
         {
-            Debug.Log("Entrei no Swap");
             _weaponUIAnimator.SetTrigger("Swap1");
             //_weaponUIAnimator.SetBool("Swap",true);
             //StartCoroutine(SetBoolFalse());
-        } 
+        }
 
 
 
@@ -45,7 +59,7 @@ public class TempUIInfo : MonoBehaviour
         }
         else
         {
-            _ammoText.color= Color.green;
+            _ammoText.color = Color.green;
             _ammoText.text = _playerCombatHandler._gun._bulletsInMag.ToString() +
                 " / " + _playerCombatHandler._gun._magazineSize.ToString();
         }

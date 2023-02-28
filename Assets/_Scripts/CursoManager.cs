@@ -22,7 +22,7 @@ public class CursoManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        defaultCursor = PlayerSettings.defaultCursor;
+        //defaultCursor = PlayerSettings.defaultCursor;
     }
     public void ChangeCursor(Texture2D newCursor)
     {

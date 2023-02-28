@@ -46,7 +46,7 @@ public class WeaponSkillSO : ScriptableObject
         _damage = _damage * damageMult;
         if (_visualIndicator)
         {
-            _indicatorClone = Instantiate(_visualIndicator, _firePoint.position, Quaternion.identity,_firePoint);
+            _indicatorClone = Instantiate(_visualIndicator, _firePoint.position, Quaternion.identity,_firePoint.parent);
             _indicatorClone.transform.localScale = _indicatorScale;
             _indicatorClone.transform.rotation = Quaternion.Euler(_indicatorRotation);
             _indicatorClone.transform.localPosition = _indicatorPosition;

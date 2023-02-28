@@ -2732,6 +2732,14 @@ PrefabInstance:
       propertyPath: mouseTracker
       value: 
       objectReference: {fileID: 723913538}
+    - target: {fileID: 5151311613721021895, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
+      propertyPath: speedCurve.m_Curve.Array.data[2].time
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5151311613721021895, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
+      propertyPath: speedCurve.m_Curve.Array.data[2].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5151311613721021897, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
       propertyPath: indicator
       value: 

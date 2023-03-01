@@ -10,6 +10,10 @@ public interface IHitable
     void HandleHit(Damage damage);
 }
 
+
+public enum Rarity { Common, Uncomon, Rare }
+
+
 public class Damage
 {
     public float _amount;

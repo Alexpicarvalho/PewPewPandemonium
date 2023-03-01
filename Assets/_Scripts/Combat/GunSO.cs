@@ -145,11 +145,11 @@ public class GunSO : ScriptableObject
         if (!_groundPickUpPrefab) return;
 
         var drop = Instantiate(_groundPickUpPrefab, _firePoint.position + Vector3.up, Quaternion.identity);
-        var dropRB = drop.GetComponent<Rigidbody>();
+        //var dropRB = drop.GetComponent<Rigidbody>();
         drop.GetComponent<WeaponPickUp>()._weaponToGive = this;
         Debug.LogWarning("Successfully pooped weapon");
-        dropRB.isKinematic = false;
-        dropRB.AddForce(Vector3.up + Vector3.forward * 100f);
+        //dropRB.isKinematic = false;
+        //dropRB.AddForce(Vector3.up + Vector3.forward * 100f);
 
 
     }

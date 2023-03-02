@@ -26,6 +26,7 @@ public class GunSO : ScriptableObject
     [Header("Individual Attributes")]
     [SerializeField] public FireingType _fireingType;
     [SerializeField] public WeaponSkillSO _weaponSkillRef;
+    [SerializeField] public WeaponTier _weaponTier;
     [SerializeField] public float _skillDamage;
     [SerializeField] private float _damageMultiplier = 1;
     [SerializeField] private int _bulletsPerMinute;
@@ -64,7 +65,7 @@ public class GunSO : ScriptableObject
     {
         Toggle, OneUse
     }
-
+    
     //Methods
 
     public void SetWeaponValues(Transform firePoint)

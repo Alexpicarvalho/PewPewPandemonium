@@ -154,7 +154,13 @@ MonoBehaviour:
   _playersInRange: []
   _center: {fileID: 0}
   _weaponToGive: {fileID: 11400000, guid: b20a96075162c564c8a9b4a021009876, type: 2}
+  _weaponToGiveTier: 1
   _startThrowForce: 100
+  _glowEffect: {fileID: 4875068765627400811}
+  _commonGlow: {fileID: 2100000, guid: d314efe46f104f64f8fcab78cf3fd672, type: 2}
+  _uncommonGlow: {fileID: 2100000, guid: 8b414a389c7189645b17707bdf34cb17, type: 2}
+  _rareGlow: {fileID: 2100000, guid: edeb74a682b3ac749909521593f56c66, type: 2}
+  _specialGlow: {fileID: 2100000, guid: 29f7c08c29f8e5b4e95a0c5f34705f1d, type: 2}
 --- !u!65 &1063191834110405451
 BoxCollider:
   m_ObjectHideFlags: 0

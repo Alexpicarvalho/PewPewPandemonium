@@ -5001,12 +5001,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHp: 10
   _currentHP: 10
-  _rarity: 0
+  _rarity: 1
   _explosionVFX: {fileID: 1612255617566175962, guid: 5e1a3b466d777b449a05754f218adc60, type: 3}
-  _drops:
-  - {fileID: 2273022344544888768, guid: ce38cda54dcb7c34b83651657aa3a764, type: 3}
-  - {fileID: 2273022344544888768, guid: e9cce3ed1ce0fae409c52950968fb6a3, type: 3}
-  - {fileID: 5026766631988763003, guid: c702823f314eda24cb58a8d51c18b041, type: 3}
+  _glowEffect: {fileID: 1047172597790082075}
+  _glowCommon: {fileID: 2100000, guid: a1c824aa54d77c543a0f759032225274, type: 2}
+  _glowUncommon: {fileID: 2100000, guid: 4c007d08bf9b0fc4287ac19ea29cae79, type: 2}
+  _glowRare: {fileID: 2100000, guid: 58c1404c9f9d8d6448d8a952ca340b3b, type: 2}
+  _drops: []
 --- !u!1 &3188876854261376997
 GameObject:
   m_ObjectHideFlags: 0

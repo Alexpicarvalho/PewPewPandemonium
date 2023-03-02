@@ -44,20 +44,116 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d6c8df14749b5489333545e263a87a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dropGunsPref: []
+  _dropGunsPref:
+  - {fileID: 2273022344544888768, guid: e9cce3ed1ce0fae409c52950968fb6a3, type: 3}
+  - {fileID: 2273022344544888768, guid: 7d695708632147a4088967409f4c226a, type: 3}
+  - {fileID: 2273022344544888768, guid: ce38cda54dcb7c34b83651657aa3a764, type: 3}
   _dropGrenades: []
   _dropMedicine: []
   _dropWalkables: []
-  _xpAmount: 0
-  _commonBoxGunDropChance: 0
+  _dropXp: {fileID: 5026766631988763003, guid: c702823f314eda24cb58a8d51c18b041, type: 3}
+  _commonBoxT1GunDropChance: 0
+  _commonBoxT2GunDropChance: 0
+  _commonBoxT3GunDropChance: 0
   _commonBoxGrenadeDropChance: 0
   _commonBoxMedicineDropChance: 0
   _commonBoxWalkableDropChance: 0
-  _uncommonBoxGunDropChance: 0
+  _commonBoxXpAmount:
+    m_Mode: 3
+    m_CurveMultiplier: 1
+    m_CurveMin:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_CurveMax:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ConstantMin: 10
+    m_ConstantMax: 30
+  _uncommonBoxT1GunDropChance: 0
+  _uncommonBoxT2GunDropChance: 0
+  _uncommonBoxT3GunDropChance: 0
   _uncommonBoxGrenadeDropChance: 0
   _uncommonBoxMedicineDropChance: 0
   _uncommonBoxWalkableDropChance: 0
-  _rareBoxGunDropChance: 0
+  _uncommonBoxXpAmount:
+    m_Mode: 3
+    m_CurveMultiplier: 0
+    m_CurveMin:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_CurveMax:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ConstantMin: 30
+    m_ConstantMax: 70
+  _rareBoxT1GunDropChance: 0
+  _rareBoxT2GunDropChance: 0
+  _rareBoxT3GunDropChance: 0
   _rareBoxGrenadeDropChance: 0
   _rareBoxMedicineDropChance: 0
   _rareBoxWalkableDropChance: 0
+  _rareBoxXpAmount:
+    m_Mode: 3
+    m_CurveMultiplier: 0
+    m_CurveMin:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_CurveMax:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ConstantMin: 80
+    m_ConstantMax: 150

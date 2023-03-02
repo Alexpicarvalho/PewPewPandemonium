@@ -3,11 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using static UnityEngine.ParticleSystem;
 
 public class WeaponPickUp : Pickup
 {
     [SerializeField] public GunSO _weaponToGive;
+    [SerializeField] public WeaponTier _weaponToGiveTier;
     [SerializeField] private float _startThrowForce = 100f;
+    [SerializeField] private ParticleSystemRenderer _glowEffect;
+    [SerializeField] private Material _commonGlow;
+    [SerializeField] private Material _uncommonGlow;
+    [SerializeField] private Material _rareGlow;
+    [SerializeField] private Material _specialGlow;
     GunSO _gun;
     Rigidbody _rb;
 
@@ -15,11 +22,34 @@ public class WeaponPickUp : Pickup
     {
         base.Start();
         _gun = Instantiate(_weaponToGive);
+        _gun._weaponTier = _weaponToGiveTier;
         _rb = GetComponent<Rigidbody>();
         _rb.isKinematic = false;
+        SelectGlowColor();
         Vector3 temp = (Vector3.up + RandomDirectionalVector() * (Random.Range(0, 2) * 2 - 1)) * _startThrowForce;
         _rb.AddForce(temp);
-        Debug.Log("Added force" + temp);
+        
+    }
+
+    private void SelectGlowColor()
+    {
+        Debug.Log("Weapon tier : " + _weaponToGive._weaponTier);
+        switch (_weaponToGiveTier)
+        {
+            case WeaponTier.Tier3:
+                _glowEffect.material = _commonGlow;
+                break;
+            case WeaponTier.Tier2:
+                _glowEffect.material = _uncommonGlow;
+                break;
+            case WeaponTier.Tier1:
+                _glowEffect.material = _rareGlow;
+                break;
+            case WeaponTier.Special:
+                _glowEffect.material = _specialGlow;
+                break;
+        }
+        Debug.Log(_glowEffect.material);
     }
 
     private Vector3 RandomDirectionalVector()

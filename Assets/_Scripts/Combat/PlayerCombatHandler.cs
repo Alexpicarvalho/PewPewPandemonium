@@ -48,7 +48,6 @@ public class PlayerCombatHandler : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(_gun.name);
         if (Input.GetButton("Fire1") && _shotReady)
         {
             //StopCoroutine(ShutOffExtraEffect());

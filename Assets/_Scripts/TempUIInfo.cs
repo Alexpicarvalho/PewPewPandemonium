@@ -10,6 +10,8 @@ public class TempUIInfo : MonoBehaviour
     [SerializeField] TextMeshProUGUI _ammoText;
     [SerializeField] RawImage _weaponImage;
     [SerializeField] RawImage _offWeaponImage;
+    private Image _border1;
+    private Image _border2;
     private PlayerCombatHandler _playerCombatHandler;
     private PlayerStats _playerStats;
     private GunSO _lastFrameWeapon;
@@ -20,6 +22,8 @@ public class TempUIInfo : MonoBehaviour
     {
         _playerCombatHandler = _player.GetComponent<PlayerCombatHandler>();
         _playerStats = _player.GetComponent<PlayerStats>();
+        _border1 = _weaponImage.transform.GetChild(0).GetComponent<Image>();
+        _border2 = _offWeaponImage.transform.GetChild(0).GetComponent<Image>();
 
     }
 
@@ -30,15 +34,59 @@ public class TempUIInfo : MonoBehaviour
         if (_playerCombatHandler._weaponSlot2)
         {
             _weaponImage.enabled = true;
+            _border1.enabled = true;
             _weaponImage.texture = _playerCombatHandler._weaponSlot2._weaponIcon;
+            switch (_playerCombatHandler._weaponSlot2._weaponTier)
+            {
+                case WeaponTier.Tier3:
+                    _border1.color = Color.green;
+                    break;
+                case WeaponTier.Tier2:
+                    _border1.color = Color.blue;
+                    break;
+                case WeaponTier.Tier1:
+                    _border1.color = new Color(1,0,1);
+                    break;
+                case WeaponTier.Special:
+                    _border1.color = new Color(1,.5f,.5f);
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            _weaponImage.enabled = false;
+            _border1.enabled = false;
         } 
-        else _weaponImage.enabled = false;
         if (_playerCombatHandler._weaponSlot1)
         {
+            _border2.enabled = true;
             _offWeaponImage.enabled = true;
             _offWeaponImage.texture = _playerCombatHandler._weaponSlot1._weaponIcon;
+            switch (_playerCombatHandler._weaponSlot1._weaponTier)
+            {
+                case WeaponTier.Tier3:
+                    _border2.color = Color.green;
+                    break;
+                case WeaponTier.Tier2:
+                    _border2.color = Color.blue;
+                    break;
+                case WeaponTier.Tier1:
+                    _border2.color = new Color(1, 0, 1);
+                    break;
+                case WeaponTier.Special:
+                    _border2.color = new Color(1, .5f, .5f);
+                    break;
+                default:
+                    break;
+            }
         }
-        else _offWeaponImage.enabled = false;
+        else
+        {
+            _offWeaponImage.enabled = false;
+            _border2.enabled = false;
+        } 
 
 
 

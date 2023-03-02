@@ -21,6 +21,7 @@ public class LootBox : MonoBehaviour, IHitable
 
     [Header("Temporary Test Values")]
     public List<GameObject> _drops = new List<GameObject>();
+    public WeaponTier _weaponTier;
 
 
     private bool isQuitting;
@@ -50,7 +51,7 @@ public class LootBox : MonoBehaviour, IHitable
     public void HandleHit(Damage damage)
     {
         _currentHP -= damage._amount;
-        if(_currentHP <= 0) Destroy(gameObject);
+        if (_currentHP <= 0) Destroy(gameObject);
     }
 
     private void OnDestroy()
@@ -59,9 +60,17 @@ public class LootBox : MonoBehaviour, IHitable
         Instantiate(_explosionVFX, transform.position, Quaternion.identity);
         foreach (var drop in _drops)
         {
-            Instantiate(drop, transform.position 
+            var weaponInstance = Instantiate(drop, transform.position
                 + new Vector3(Random.insideUnitCircle.x, 0, Random.insideUnitCircle.y)
                 + Vector3.up * 2, Quaternion.identity);
+
+            var _weaponScript = weaponInstance.GetComponent<WeaponPickUp>();
+            if (_weaponScript != null)
+            {
+                _weaponTier = LootBoxManager.Instance.RequestWeaponTier(_rarity);
+                _weaponScript._weaponToGiveTier = _weaponTier;
+                Debug.Log("Weapon Tier is " + _weaponTier); 
+            }
 
         }
     }

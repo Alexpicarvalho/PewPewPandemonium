@@ -16,8 +16,11 @@ public class LootBoxManager : MonoBehaviour
     [SerializeField] private List<GameObject> _dropWalkables = new List<GameObject>();
     [SerializeField] private GameObject _dropXp;
 
-    [Header("Drop Chances")]
+    
     [Header("Common Percentages")]
+
+    [Header("Drop Chances")]
+
     [SerializeField] private float _commonBoxT1GunDropChance;
     [SerializeField] private float _commonBoxT2GunDropChance;
     [SerializeField] private float _commonBoxT3GunDropChance;
@@ -64,11 +67,14 @@ public class LootBoxManager : MonoBehaviour
 
         // Pick the weapon that is going to drop
         GameObject weaponToDrop = _dropGunsPref[WeaponToReturnIndex()]; // Selects Weapon
-        WeaponTier _dropWeaponTier = PickDropWeaponTier(_boxRarity);    // Selects Tier
-        weaponToDrop.GetComponent<WeaponPickUp>()._weaponToGiveTier = _dropWeaponTier;
         returnDrops.Add(weaponToDrop);
 
         return returnDrops;
+    }
+
+    public WeaponTier RequestWeaponTier(Rarity _boxRarity)
+    {
+        return PickDropWeaponTier(_boxRarity);
     }
 
     private int WeaponToReturnIndex()
@@ -77,21 +83,20 @@ public class LootBoxManager : MonoBehaviour
     }
     private WeaponTier PickDropWeaponTier(Rarity _boxRarity)
     {
-        WeaponTier _selectedTier = WeaponTier.Tier3;
 
         switch (_boxRarity)
         {
-            case Rarity.Common: 
-                _selectedTier = TryGetTier(_commonBoxT1GunDropChance,_commonBoxT2GunDropChance,_commonBoxT3GunDropChance);
-                break;
+            case Rarity.Common:
+                return TryGetTier(_commonBoxT1GunDropChance, _commonBoxT2GunDropChance, _commonBoxT3GunDropChance);
+
             case Rarity.Uncomon:
-                _selectedTier = TryGetTier(_uncommonBoxT1GunDropChance,_uncommonBoxT2GunDropChance,_uncommonBoxT3GunDropChance);
-                break;
+                return TryGetTier(_uncommonBoxT1GunDropChance, _uncommonBoxT2GunDropChance, _uncommonBoxT3GunDropChance);
+
             case Rarity.Rare:
-                _selectedTier = TryGetTier(_rareBoxT1GunDropChance, _rareBoxT2GunDropChance, _rareBoxT3GunDropChance);
-                break;
+                return TryGetTier(_rareBoxT1GunDropChance, _rareBoxT2GunDropChance, _rareBoxT3GunDropChance);
+
         }
-        return _selectedTier;
+        return WeaponTier.Tier3;
     }
 
     private WeaponTier TryGetTier(float tier1Chance, float tier2Chance, float tier3Chance)
@@ -103,7 +108,7 @@ public class LootBoxManager : MonoBehaviour
         else if (tier2Chance >= check) return WeaponTier.Tier2;
         else return WeaponTier.Tier3;
 
-        
+
     }
 
     private GameObject CreateXpInstance(Rarity _boxRarity)
@@ -113,7 +118,7 @@ public class LootBoxManager : MonoBehaviour
         switch (_boxRarity)
         {
             case Rarity.Common:
-                xpInstanceScript._xpToGive = (int)_commonBoxXpAmount.Evaluate(1,Random.value);
+                xpInstanceScript._xpToGive = (int)_commonBoxXpAmount.Evaluate(1, Random.value);
                 break;
             case Rarity.Uncomon:
                 xpInstanceScript._xpToGive = (int)_uncommonBoxXpAmount.Evaluate(1, Random.value);

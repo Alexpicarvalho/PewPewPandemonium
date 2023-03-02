@@ -154,7 +154,7 @@ MonoBehaviour:
   _playersInRange: []
   _center: {fileID: 0}
   _weaponToGive: {fileID: 11400000, guid: b20a96075162c564c8a9b4a021009876, type: 2}
-  _weaponToGiveTier: 1
+  _weaponToGiveTier: 0
   _startThrowForce: 100
   _glowEffect: {fileID: 4875068765627400811}
   _commonGlow: {fileID: 2100000, guid: d314efe46f104f64f8fcab78cf3fd672, type: 2}
@@ -944,7 +944,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 0.51349497, b: 1, a: 0.5882353}
+      maxColor: {r: 0, g: 0, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

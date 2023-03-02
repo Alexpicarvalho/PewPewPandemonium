@@ -4936,7 +4936,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a66a3d10f701a0840a8a83a74ab77a45, type: 2}
+  - {fileID: 2100000, guid: 4b54091ffcb1e0a4ebfc9d0ee842bfa9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5008,6 +5008,7 @@ MonoBehaviour:
   _glowUncommon: {fileID: 2100000, guid: 4c007d08bf9b0fc4287ac19ea29cae79, type: 2}
   _glowRare: {fileID: 2100000, guid: 58c1404c9f9d8d6448d8a952ca340b3b, type: 2}
   _drops: []
+  _weaponTier: 0
 --- !u!1 &3188876854261376997
 GameObject:
   m_ObjectHideFlags: 0

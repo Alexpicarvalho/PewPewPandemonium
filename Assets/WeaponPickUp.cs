@@ -21,14 +21,16 @@ public class WeaponPickUp : Pickup
     public override void Start()
     {
         base.Start();
-        _gun = Instantiate(_weaponToGive);
-        _gun._weaponTier = _weaponToGiveTier;
+
         _rb = GetComponent<Rigidbody>();
         _rb.isKinematic = false;
-        SelectGlowColor();
         Vector3 temp = (Vector3.up + RandomDirectionalVector() * (Random.Range(0, 2) * 2 - 1)) * _startThrowForce;
         _rb.AddForce(temp);
-        
+        _gun = Instantiate(_weaponToGive);
+        _gun._weaponTier = _weaponToGiveTier;
+
+        SelectGlowColor();
+
     }
 
     private void SelectGlowColor()
@@ -49,7 +51,6 @@ public class WeaponPickUp : Pickup
                 _glowEffect.material = _specialGlow;
                 break;
         }
-        Debug.Log(_glowEffect.material);
     }
 
     private Vector3 RandomDirectionalVector()

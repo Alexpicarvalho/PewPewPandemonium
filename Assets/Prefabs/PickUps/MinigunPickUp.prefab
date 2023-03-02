@@ -154,7 +154,7 @@ MonoBehaviour:
   _playersInRange: []
   _center: {fileID: 0}
   _weaponToGive: {fileID: 11400000, guid: e6bca8273b09c5d4f95cd96704a72be2, type: 2}
-  _weaponToGiveTier: 1
+  _weaponToGiveTier: 0
   _startThrowForce: 100
   _glowEffect: {fileID: 4875068765627400811}
   _commonGlow: {fileID: 2100000, guid: d314efe46f104f64f8fcab78cf3fd672, type: 2}
@@ -944,7 +944,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 1, b: 0.02948308, a: 0.5882353}
+      maxColor: {r: 0, g: 0, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5540,7 +5540,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d314efe46f104f64f8fcab78cf3fd672, type: 2}
+  - {fileID: 2100000, guid: 8b414a389c7189645b17707bdf34cb17, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

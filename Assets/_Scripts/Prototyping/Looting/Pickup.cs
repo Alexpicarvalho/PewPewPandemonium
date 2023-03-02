@@ -15,9 +15,9 @@ public class Pickup : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        _canPickUp = false;
+        _canPickUp = true;
         transform.GetComponent<BoxCollider>().isTrigger = true;
-        StartCoroutine(CanPickUp());
+       // StartCoroutine(CanPickUp());
         _center = transform.GetChild(0);
         _groundChecker = _center.GetComponent<Collider>();
     }
@@ -28,7 +28,6 @@ public class Pickup : MonoBehaviour
     IEnumerator CanPickUp()
     {
         yield return new WaitForSeconds(_newPickUpDelay);
-        Debug.Log("Can pick up");
         _canPickUp = true;
     }
     private void OnCollisionEnter(Collision collision)

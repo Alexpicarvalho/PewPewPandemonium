@@ -131,9 +131,9 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _Pulse_Alpha: 0.7
+    - _Pulse_Alpha: 1
     - _Pulse_Scale: 0.01
-    - _Pulse_Speed: 2
+    - _Pulse_Speed: 5
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1

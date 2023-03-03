@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityRandom = UnityEngine.Random;
+using Random = UnityEngine.Random;
 
 
 [CreateAssetMenu(menuName = "Weapons/GunSO", fileName = "Gun")]
@@ -33,8 +33,11 @@ public class GunSO : ScriptableObject
     [SerializeField] public int _magazineSize;
     [SerializeField] public float _reloadTime;
     [SerializeField] private float _critDamageMultiplier = 2;
-    [SerializeField][Range(0, 1)] private float _weaponWeight;
-    [SerializeField][Range(-1, 1)] private float _weaponSights;
+    [SerializeField] [Range(0, 1)]  private float _weaponWeight;
+    [SerializeField] [Range(-1, 1)] private float _weaponSights;
+    [SerializeField] [Range(0, 1)]  private float _weaponInaccuracy;
+    [SerializeField] public float _maxInaccuracy = 10;
+    [SerializeField] public float _maxDisplacement = .1f;
 
     [Header("RunTime Properties")]
     [SerializeField] public int _bulletsInMag;
@@ -65,14 +68,14 @@ public class GunSO : ScriptableObject
     {
         Toggle, OneUse
     }
-    
+
     //Methods
 
     public void SetWeaponValues(Transform firePoint)
     {
         _firePoint = firePoint;
         _weaponSkill = Instantiate(_weaponSkillRef);
-        _weaponSkill.SetSkillValues(_firePoint,_damageMultiplier);
+        _weaponSkill.SetSkillValues(_firePoint, _damageMultiplier);
         _weaponSkill._damage = _skillDamage;
         _timeBetweenShots = 60.0f / _bulletsPerMinute;
         _shotReady = true;
@@ -102,12 +105,14 @@ public class GunSO : ScriptableObject
     public virtual void NormalShoot()
     {
         if (!_shotReady || _firePoint == null) return;
-        
+
         _shotReady = false;
         _bulletsInMag--;
-        
+
         Instantiate(_muzzleFlash, _firePoint.position, Quaternion.identity);
         var bullet = Instantiate(_bulletGO, _firePoint.position, Quaternion.LookRotation(_firePoint.forward));
+        bullet.transform.Translate(GetDisplacement(), 0, GetDisplacement());
+        bullet.transform.Rotate(0, GetInaccuracy(),0 ,Space.Self);
         //PlayExtraEffect();
         // Get bullet script and pass necessary variables
     }
@@ -136,6 +141,16 @@ public class GunSO : ScriptableObject
     public virtual void Reload()
     {
         _bulletsInMag = _magazineSize;
+    }
+
+    float GetInaccuracy()
+    {
+        return Random.Range(0,_maxInaccuracy) * _weaponInaccuracy;
+    }
+
+    float GetDisplacement()
+    {
+        return Random.Range(-_maxDisplacement, _maxDisplacement) * _weaponInaccuracy;
     }
 
     public void DropWeapon()

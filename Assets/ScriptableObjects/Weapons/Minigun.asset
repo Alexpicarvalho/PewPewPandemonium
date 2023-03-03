@@ -22,14 +22,18 @@ MonoBehaviour:
   _extraEffectTimeToShutOff: 0
   _fireingType: 0
   _weaponSkillRef: {fileID: 11400000, guid: 1bf6fb3b7c4c63d40b1950aa428ed43f, type: 2}
+  _weaponTier: 0
   _skillDamage: 10
   _damageMultiplier: 1
-  _bulletsPerMinute: 750
+  _bulletsPerMinute: 500
   _magazineSize: 50
   _reloadTime: 2
   _critDamageMultiplier: 2
   _weaponWeight: 0
   _weaponSights: 0
+  _weaponInaccuracy: 1
+  _maxInaccuracy: 8
+  _maxDisplacement: 0.2
   _bulletsInMag: 50
   _weaponClone: {fileID: 0}
   _vfxClone: {fileID: 0}

@@ -3,28 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class TempUIInfo : MonoBehaviour
 {
     [SerializeField] GameObject _player;
     [SerializeField] TextMeshProUGUI _ammoText;
-    [SerializeField] RawImage _weaponImage;
-    [SerializeField] RawImage _offWeaponImage;
+    [SerializeField] Transform _weapon1UI;
+    [SerializeField] Transform _weapon2UI;
+    [SerializeField] Transform _skillUI;
+    RawImage _weaponImage;
+    RawImage _offWeaponImage;
+    [SerializeField] RawImage _skillImage;
+    [SerializeField] Image _cooldownMask;
+    TextMeshProUGUI _cooldownText;
     private Image _border1;
     private Image _border2;
     private PlayerCombatHandler _playerCombatHandler;
     private PlayerStats _playerStats;
     private GunSO _lastFrameWeapon;
     public Animator _weaponUIAnimator;
+    public Animator _skillUIAnimator;
     bool firstFrame = true;
     // Start is called before the first frame update
     void Start()
     {
         _playerCombatHandler = _player.GetComponent<PlayerCombatHandler>();
         _playerStats = _player.GetComponent<PlayerStats>();
-        _border1 = _weaponImage.transform.GetChild(0).GetComponent<Image>();
-        _border2 = _offWeaponImage.transform.GetChild(0).GetComponent<Image>();
-
+        _weaponImage = _weapon1UI.GetChild(2).GetComponent<RawImage>();
+        _offWeaponImage = _weapon2UI.GetChild(2).GetComponent<RawImage>();
+        _border1 = _weapon1UI.transform.GetChild(1).GetComponent<Image>();
+        _border2 = _weapon2UI.transform.GetChild(1).GetComponent<Image>();
+        _cooldownText = _cooldownMask.GetComponentInChildren<TextMeshProUGUI>();
+        _skillUIAnimator = _skillUI.GetComponent<Animator>();
+        _skillImage.texture = _playerCombatHandler._weaponSlot2._weaponSkill._skillIcon;
     }
 
     // Update is called once per frame
@@ -33,9 +45,9 @@ public class TempUIInfo : MonoBehaviour
 
         if (_playerCombatHandler._weaponSlot2)
         {
-            _weaponImage.enabled = true;
-            _border1.enabled = true;
+            _weapon1UI.gameObject.SetActive(true);
             _weaponImage.texture = _playerCombatHandler._weaponSlot2._weaponIcon;
+            
             switch (_playerCombatHandler._weaponSlot2._weaponTier)
             {
                 case WeaponTier.Tier3:
@@ -56,14 +68,13 @@ public class TempUIInfo : MonoBehaviour
         }
         else
         {
-            _weaponImage.enabled = false;
-            _border1.enabled = false;
+            _weapon1UI.gameObject.SetActive(false);
         } 
         if (_playerCombatHandler._weaponSlot1)
         {
-            _border2.enabled = true;
-            _offWeaponImage.enabled = true;
+            _weapon2UI.gameObject.SetActive(true);
             _offWeaponImage.texture = _playerCombatHandler._weaponSlot1._weaponIcon;
+            //_skillImage.texture = _playerCombatHandler._weaponSlot1._weaponSkill._skillIcon;
             switch (_playerCombatHandler._weaponSlot1._weaponTier)
             {
                 case WeaponTier.Tier3:
@@ -84,9 +95,26 @@ public class TempUIInfo : MonoBehaviour
         }
         else
         {
-            _offWeaponImage.enabled = false;
-            _border2.enabled = false;
-        } 
+            _weapon2UI.gameObject.SetActive(false);
+        }
+
+
+        //Skill Cooldown Zone
+        WeaponSkillSO _currentWeaponSkill = _playerCombatHandler._gun._weaponSkill;
+        
+        if (_currentWeaponSkill._skillState == WeaponSkillSO.SkillState.OnCooldown)
+        {
+            _cooldownMask.enabled = true;
+            _cooldownText.text = ((int)(_currentWeaponSkill._cooldown - _currentWeaponSkill._timeSinceLastUse) + 1).ToString();
+            _cooldownMask.fillAmount = 1 - (_currentWeaponSkill._timeSinceLastUse / _currentWeaponSkill._cooldown);
+            
+        }
+        else if(_currentWeaponSkill._skillState == WeaponSkillSO.SkillState.Ready)
+        {
+            _cooldownMask.enabled = false;
+            _cooldownText.text = "";
+        }
+        
 
 
 
@@ -94,6 +122,7 @@ public class TempUIInfo : MonoBehaviour
         if (_lastFrameWeapon && _lastFrameWeapon != _playerCombatHandler._gun)
         {
             _weaponUIAnimator.SetTrigger("Swap1");
+            _skillUIAnimator.SetTrigger("Flip");
             //_weaponUIAnimator.SetBool("Swap",true);
             //StartCoroutine(SetBoolFalse());
         }
@@ -113,6 +142,11 @@ public class TempUIInfo : MonoBehaviour
         }
 
         _lastFrameWeapon = _playerCombatHandler._gun;
+    }
+
+    public void SwapSkillIcon()
+    {
+        _skillImage.texture = _playerCombatHandler._gun._weaponSkill._skillIcon;
     }
 
     IEnumerator SetBoolFalse()

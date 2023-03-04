@@ -48,17 +48,23 @@ public class PlayerCombatHandler : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButton("Fire1") && _shotReady)
+        //Do we want the cooldown to go down only if the gun is equipped?
+        //_gun.UpdateWeaponStatus();
+
+        //Do we want the cooldown to keep going down wether or not the gun is equipped?
+        _weaponSlot1?.UpdateWeaponStatus();
+        _weaponSlot2?.UpdateWeaponStatus();
+
+
+        if (Input.GetButton("Fire1") /*&& _shotReady*/)
         {
-            //StopCoroutine(ShutOffExtraEffect());
             _gun.NormalShoot();
-            _shotReady = false;
-            if (_gun._bulletsInMag <= 0) StartCoroutine(Reload());
-            else
-            {
-                StartCoroutine(ReadyNextShot());
-                //StartCoroutine(ShutOffExtraEffect());
-            }
+            //_shotReady = false;
+            //if (_gun._bulletsInMag <= 0) StartCoroutine(Reload());
+            //else
+            //{
+            //    StartCoroutine(ReadyNextShot());
+            //}
         }
 
         if (Input.GetButton("Fire2"))
@@ -75,6 +81,7 @@ public class PlayerCombatHandler : MonoBehaviour
         {
             SwapWeapons();
         }
+        
     }
 
     public void ReceiveWeapon(GunSO _newGun)
@@ -142,7 +149,10 @@ public class PlayerCombatHandler : MonoBehaviour
 
     private void CallSkill()
     {
+        if (_gun._weaponSkill._skillState != WeaponSkillSO.SkillState.Ready) return;
         _animator.SetTrigger(_gun._weaponSkill._animatorTrigger);
+        Debug.LogWarning("Set it to cast");
+        _gun._weaponSkill._skillState = WeaponSkillSO.SkillState.Casting;
     }
 
     public void StartCastingVFX()
@@ -154,12 +164,12 @@ public class PlayerCombatHandler : MonoBehaviour
         _gun.CastSkill();
     }
 
-    public IEnumerator ReadyNextShot()
-    {
-        yield return new WaitForSeconds(_timeBetweenShots);
-        _gun._shotReady = true;
-        _shotReady = true;
-    }
+    //public IEnumerator ReadyNextShot()
+    //{
+    //    yield return new WaitForSeconds(_timeBetweenShots);
+    //    _gun._shotReady = true;
+    //    _shotReady = true;
+    //}
 
     public IEnumerator ShutOffExtraEffect()
     {
@@ -169,16 +179,17 @@ public class PlayerCombatHandler : MonoBehaviour
 
     public IEnumerator Reload()
     {
-        _gun._shotReady = false;
-        _shotReady = false;
+        _gun._currentShootingStatus = GunSO.ShootingStatus.Reloading;
+        //_shotReady = false;
         _reloading = true;
 
         yield return new WaitForSeconds(_gun._reloadTime);
 
         _gun.Reload();
         _reloading = false;
-        _shotReady = true;
-        _gun._shotReady = true;
+        _gun._currentShootingStatus = GunSO.ShootingStatus.ShotReady;
+        //_shotReady = true;
+        //_gun._shotReady = true;
     }
 
     public IEnumerator ReadySwap()

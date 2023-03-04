@@ -21,7 +21,7 @@ MonoBehaviour:
   _extraEffectType: 1
   _extraEffectTimeToShutOff: 0.6
   _fireingType: 0
-  _weaponSkillRef: {fileID: 11400000, guid: 1bf6fb3b7c4c63d40b1950aa428ed43f, type: 2}
+  _weaponSkillRef: {fileID: 11400000, guid: f4f3340eec62e08489077c087bdfe842, type: 2}
   _weaponTier: 0
   _skillDamage: 0
   _damageMultiplier: 1
@@ -31,10 +31,11 @@ MonoBehaviour:
   _critDamageMultiplier: 2
   _weaponWeight: 0
   _weaponSights: 0
-  _weaponInaccuracy: 1
+  _weaponInaccuracy: 0.5
   _maxInaccuracy: 25
-  _maxDisplacement: 0.1
+  _maxDisplacement: 0
   _bulletsInMag: 100
+  _currentShootingStatus: 0
   _weaponClone: {fileID: 0}
   _vfxClone: {fileID: 0}
   _weaponSkill: {fileID: 11400000, guid: 1bf6fb3b7c4c63d40b1950aa428ed43f, type: 2}
@@ -42,5 +43,4 @@ MonoBehaviour:
   _rotationInHand: {x: 0.5006671, y: 0.49933192, z: 0.49933192, w: 0.5006671}
   _playerAnimator: {fileID: 0}
   _weaponAnimator: {fileID: 0}
-  _shotReady: 1
   _timeBetweenShots: 0.05

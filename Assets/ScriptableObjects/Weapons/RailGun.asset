@@ -31,10 +31,11 @@ MonoBehaviour:
   _critDamageMultiplier: 2
   _weaponWeight: 0
   _weaponSights: 0
-  _weaponInaccuracy: 1
-  _maxInaccuracy: 10
-  _maxDisplacement: 10
+  _weaponInaccuracy: 0
+  _maxInaccuracy: 0
+  _maxDisplacement: 0
   _bulletsInMag: 30
+  _currentShootingStatus: 0
   _weaponClone: {fileID: 0}
   _vfxClone: {fileID: 0}
   _weaponSkill: {fileID: 11400000, guid: 1bf6fb3b7c4c63d40b1950aa428ed43f, type: 2}
@@ -42,5 +43,4 @@ MonoBehaviour:
   _rotationInHand: {x: 0.51887333, y: 0.36517614, z: 0.48051667, w: 0.6054095}
   _playerAnimator: {fileID: 0}
   _weaponAnimator: {fileID: 0}
-  _shotReady: 1
   _timeBetweenShots: 0.3

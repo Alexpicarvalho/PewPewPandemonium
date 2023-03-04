@@ -105,7 +105,7 @@ public class EnemyAI : MonoBehaviour
                 {
                     _gun.NormalShoot();
                     if (_gun._bulletsInMag <= 0) StartCoroutine(combatHandler.Reload());
-                    else StartCoroutine(combatHandler.ReadyNextShot());
+                    //else StartCoroutine(combatHandler.ReadyNextShot());
                 }
                 break;
         }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 315fbd0bad51258428f522d0875e36fa, type: 3}
-  m_Name: RailgunSkill
+  m_Name: Type3SkillTest
   m_EditorClassIdentifier: 
   _cooldown: 3
   _skillDescription: 

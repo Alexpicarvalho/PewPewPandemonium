@@ -27,15 +27,18 @@ public class WeaponSkillSO : ScriptableObject
     [SerializeField] public Vector3 _indicatorScale;
     [SerializeField] public Vector3 _indicatorPosition;
     [SerializeField] public Vector3 _indicatorRotation;
+    [SerializeField] public Texture _skillIcon;
 
 
     [Header("Hidden/Runtime Properties")]
-    [HideInInspector] public float _finalDamage; // may be obsolete
+    public float _finalDamage; // may be obsolete
+    /*[HideInInspector]*/ public float _timeSinceActivation; 
+    /*[HideInInspector]*/ public float _timeSinceLastUse; 
     private GameObject _indicatorClone;
     
 
     //Enums
-    public enum SkillState { Ready, Active, OnCooldown}
+    public enum SkillState { Ready, Casting, Active, OnCooldown}
 
 
     //Methods
@@ -54,6 +57,30 @@ public class WeaponSkillSO : ScriptableObject
         } 
     }
 
+
+    public void UpdateSkillStatus()
+    {
+
+        if(_skillState == SkillState.Active)
+        {
+            _timeSinceActivation += Time.deltaTime;
+            if(_timeSinceActivation >= _activeTime)
+            {
+                _skillState = SkillState.OnCooldown;
+                _timeSinceActivation = 0;
+            } 
+        }
+
+        if(_skillState == SkillState.OnCooldown)
+        {
+            _timeSinceLastUse += Time.deltaTime;
+            if(_timeSinceLastUse >= _cooldown)
+            {
+                _skillState = SkillState.Ready;
+                _timeSinceLastUse = 0;
+            } 
+        }
+    }
     public virtual void ShowSkillIndicator() 
     {
         /*Does it make sense to make this a generalized method or a case by case? */
@@ -63,6 +90,8 @@ public class WeaponSkillSO : ScriptableObject
     
     public virtual void ExecuteSpell(/*GameObject parent*/)
     {
+        if (_skillState != SkillState.Casting) return;
+        _skillState = SkillState.Active;
         _indicatorClone.SetActive(false);
     }
     public virtual void StartCastingVFX() { }

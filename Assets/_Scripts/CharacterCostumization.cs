@@ -11,6 +11,8 @@ public class CharacterCostumization : MonoBehaviour
     [SerializeField] float _dissolveTime;
     [SerializeField] float _undissolveTime;
 
+    [SerializeField] PlayerSkinData _skinDataOutput;
+
     private Mesh[] bodySkins = new Mesh[20];
     private Mesh[] headSkins = new Mesh[20];
     private int currentBodyIndex = 0;
@@ -82,6 +84,7 @@ public class CharacterCostumization : MonoBehaviour
     void ChangeBody()
     {
         currentBody.sharedMesh = bodySkins[currentBodyIndex];
+        _skinDataOutput._bodyMesh = currentBody.sharedMesh;
     }
     
     void SwapHeadPiece(bool next)
@@ -96,6 +99,7 @@ public class CharacterCostumization : MonoBehaviour
     void ChangeHead()
     {
         currentHead.sharedMesh = headSkins[currentHeadIndex];
+        _skinDataOutput._headMesh = currentHead.sharedMesh;
     }
 
     IEnumerator Dissolve(Material dissolveMat, bool isBody)

@@ -235,6 +235,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4920267075732269096, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
+      propertyPath: _startingWeapon2
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920267075732269097, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
+      propertyPath: _skinDataOutput
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c1ebb2b328ab1c46a1471875c0ceb6e, type: 2}
     - target: {fileID: 5151311613721021895, guid: 8b44e02e7cb320e42b48cbead0453df8, type: 3}
       propertyPath: m_Enabled
       value: 0

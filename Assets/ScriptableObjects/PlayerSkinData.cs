@@ -7,4 +7,5 @@ public class PlayerSkinData : ScriptableObject
 {
     public Mesh _bodyMesh;
     public Mesh _headMesh;
+
 }

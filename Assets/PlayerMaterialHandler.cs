@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteAlways]
 public class PlayerMaterialHandler : MonoBehaviour
 {
     private SkinnedMeshRenderer _bodyRenderer;

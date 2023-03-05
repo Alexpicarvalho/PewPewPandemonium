@@ -70,3 +70,5 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/Imports/Mech_Constructor_Turrets/Materials/X_Turrets_Source_PSD.psd.meta
+Assets/Imports/Mech_Constructor_Turrets/Materials/X_Turrets_Source_PSD.psd

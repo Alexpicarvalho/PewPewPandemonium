@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a690ec0070b8af479577366f969b2a8, type: 3}
   m_Name: SkinData
   m_EditorClassIdentifier: 
-  _bodyMesh: {fileID: 0}
-  _headMesh: {fileID: 0}
+  _bodyMesh: {fileID: 4300002, guid: 3e426054f8500e644909e2f3413263b7, type: 3}
+  _headMesh: {fileID: 4300000, guid: 05d939200761676479ad0d94a0a61ea5, type: 3}

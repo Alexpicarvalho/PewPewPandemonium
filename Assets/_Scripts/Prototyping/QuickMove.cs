@@ -43,6 +43,7 @@ public class QuickMove : MonoBehaviour
         anim.SetFloat("zMov", zMov);
         
 
+
         if (moveDirection.magnitude != 0.0f)
         {
             movementDirectionIndicator.GetComponent<Animator>().SetBool("On", true);
@@ -65,8 +66,8 @@ public class QuickMove : MonoBehaviour
   
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            anim.Play("Dodge");
-            Dodge();
+            anim.Play("Rollin Blend Tree");
+            //Dodge();
         }
 
     }

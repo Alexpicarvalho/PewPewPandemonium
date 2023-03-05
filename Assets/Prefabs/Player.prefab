@@ -497,7 +497,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 253e9716183f3514da3780f76c1d59aa, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -522,7 +522,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300010, guid: 9f078227c6f09b54392514bfaa25c741, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 05d939200761676479ad0d94a0a61ea5, type: 3}
   m_Bones:
   - {fileID: 231212214337253563}
   - {fileID: 231212213558550329}
@@ -805,7 +805,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1a50a9ace93fd614db63694d201e262b, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -830,7 +830,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300050, guid: 9f078227c6f09b54392514bfaa25c741, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 3e426054f8500e644909e2f3413263b7, type: 3}
   m_Bones:
   - {fileID: 231212214337253563}
   - {fileID: 231212213558550329}
@@ -1182,6 +1182,7 @@ GameObject:
   - component: {fileID: 4920267075732269093}
   - component: {fileID: 4920267075732269096}
   - component: {fileID: 4920267075732269097}
+  - component: {fileID: 4920267075732269088}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1304,8 +1305,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.13497071
     - serializedVersion: 3
-      time: 1
-      value: 0.50138474
+      time: 0.75
+      value: 0
       inSlope: -1.6419837
       outSlope: -1.6419837
       tangentMode: 0
@@ -1330,7 +1331,7 @@ MonoBehaviour:
   expoGrenade: {fileID: 7754100512310597835, guid: 310e09b63e02d2e41a3307b0f6c0b465, type: 3}
   timeGrenade: {fileID: 6397207733372838648, guid: 44ac1890934545147b4681575ba918e7, type: 3}
   indicator: {fileID: 0}
-  type: 0
+  type: 1
   grenadeThrowForce: 1000
   grenadeHeightOffset: {x: 0, y: 1, z: 0}
   grenadeExplosionRadius: 2
@@ -1441,8 +1442,24 @@ MonoBehaviour:
   - {fileID: 879989939643024283, guid: db9e2236c94e62743a5fb752628d9f23, type: 3}
   _dissolveTime: 1
   _undissolveTime: 1
+  _skinDataOutput: {fileID: 0}
   _bodyMaterial: {fileID: 2100000, guid: 1a50a9ace93fd614db63694d201e262b, type: 2}
   _headMaterial: {fileID: 2100000, guid: 253e9716183f3514da3780f76c1d59aa, type: 2}
+--- !u!114 &4920267075732269088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231212215010212256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e32420f8242137428fe913b6f464bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skinData: {fileID: 11400000, guid: 8c1ebb2b328ab1c46a1471875c0ceb6e, type: 2}
+  _flashDuration: 0.25
+  _flashMat: {fileID: 2100000, guid: 43f5e396bca15754fbb4f330e5b52c9c, type: 2}
 --- !u!1 &231212215045655013
 GameObject:
   m_ObjectHideFlags: 0

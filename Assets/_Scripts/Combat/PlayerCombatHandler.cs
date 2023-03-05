@@ -56,15 +56,10 @@ public class PlayerCombatHandler : MonoBehaviour
         _weaponSlot2?.UpdateWeaponStatus();
 
 
-        if (Input.GetButton("Fire1") /*&& _shotReady*/)
+        if (Input.GetButton("Fire1"))
         {
             _gun.NormalShoot();
-            //_shotReady = false;
-            //if (_gun._bulletsInMag <= 0) StartCoroutine(Reload());
-            //else
-            //{
-            //    StartCoroutine(ReadyNextShot());
-            //}
+
         }
 
         if (Input.GetButton("Fire2"))
@@ -73,7 +68,6 @@ public class PlayerCombatHandler : MonoBehaviour
         }
         else if (Input.GetButtonUp("Fire2"))
         {
-            //_gun._weaponSkill.HideSkillIndicator();
             CallSkill();
         }
 

@@ -9,7 +9,9 @@ using Cinemachine;
 
 public class CameraControler : MonoBehaviour
 {
-    [SerializeField] [Range(6,20)] float _cameraDistance;
+    float _cameraDistance;
+    [SerializeField] float _defaultCameraDistance;
+    [SerializeField] float _shootingCameraDistance;
     [SerializeField] float _waitBeforeDistanceReset;
     private CinemachineVirtualCamera _cinCam;
     bool _shooting = false;
@@ -17,7 +19,7 @@ public class CameraControler : MonoBehaviour
     private void Start()
     {
         _cinCam = GetComponent<CinemachineVirtualCamera>();
-        _cameraDistance = 13;
+        _cameraDistance = _defaultCameraDistance;
     }
 
     private void Update()
@@ -25,7 +27,7 @@ public class CameraControler : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             _shooting = true;
-            _cameraDistance = 15;
+            _cameraDistance = _shootingCameraDistance;
             StopCoroutine(ResetCamera());
         }
         else
@@ -46,7 +48,7 @@ public class CameraControler : MonoBehaviour
     private IEnumerator ResetCamera()
     {
         yield return new WaitForSeconds(_waitBeforeDistanceReset);
-        _cameraDistance = 13;
+        _cameraDistance = _defaultCameraDistance;
         _shooting = false;
     }
 }

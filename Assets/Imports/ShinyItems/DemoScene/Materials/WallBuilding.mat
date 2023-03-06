@@ -36,7 +36,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wall
+  m_Name: WallBuilding
   m_Shader: {fileID: -6465566751694194690, guid: 378267134c0fcf74e8b5d650afa1ffb7, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords:
@@ -207,7 +207,7 @@ Material:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _Tiling: {r: 7, g: 7, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
     - _Tint: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7797981563957236720

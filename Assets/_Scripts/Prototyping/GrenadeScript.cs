@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SphereCollider))]
+[RequireComponent(typeof(PersonalTime))]
 public class GrenadeScript : MonoBehaviour
 {
     public GameObject explosionVFX;
@@ -21,18 +23,26 @@ public class GrenadeScript : MonoBehaviour
     private void Start()
     {
         damage = new Damage(_damage);
+        transform.GetComponent<Collider>().enabled = false;
         rb = GetComponent<Rigidbody>();
         rb.AddForce(throwDirection * throwForce);
         rb.AddTorque(torque);
         iTime = GetComponent<ITime>();
+        Invoke("ActivateCollider", 0.6f);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(name + " hit " + collision.collider);
         Explode();
         Instantiate(explosionVFX, transform.position + explosionOffset, Quaternion.identity);
         throwScript.IndicatorGoHome();
         Destroy(gameObject);
+    }
+
+    private void ActivateCollider()
+    {
+        transform.GetComponent<Collider>().enabled = true;
     }
 
     private void Explode()

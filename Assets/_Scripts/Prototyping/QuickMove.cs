@@ -15,7 +15,11 @@ public class QuickMove : MonoBehaviour
     public GameObject mouseTracker;
     private float vel = 0;
     private ITime iTime;
+
+    bool _sleepAnimFloat = false;
+    bool _canMove = true;
     Rigidbody rb;
+    [SerializeField] private LayerMask layerMask;
 
     [Header("Dodge Values")]
     [SerializeField] private float dodgeSpeed;
@@ -37,47 +41,57 @@ public class QuickMove : MonoBehaviour
         float zMov = Input.GetAxis("Vertical");
         Vector3 mousePos = MousePosition();
 
-        Vector3 moveDirection = new Vector3(xMov, 0f,zMov).normalized;
-
-        anim.SetFloat("xMov", xMov);
-        anim.SetFloat("zMov", zMov);
-        
+        Vector3 moveDirection = new Vector3(xMov, 0f, zMov).normalized;
 
 
-        if (moveDirection.magnitude != 0.0f)
+        //Animation
+
+        float zVelocity = Vector3.Dot(moveDirection, transform.forward);
+        float xVelocity = Vector3.Dot(moveDirection, transform.right);
+
+
+        if (!_sleepAnimFloat)
+        {
+            anim.SetFloat("zMov", zVelocity, 0.1f, Time.deltaTime);
+            anim.SetFloat("xMov", xVelocity, 0.1f, Time.deltaTime);
+        }
+
+
+
+        if (moveDirection.magnitude != 0.0f && _canMove)
         {
             movementDirectionIndicator.GetComponent<Animator>().SetBool("On", true);
             movementDirectionIndicator.transform.rotation = Quaternion.LookRotation(moveDirection);
-            transform.position += moveDirection * speed*iTime.personalTimeScale * Time.deltaTime;
+            transform.position += moveDirection * speed * iTime.personalTimeScale * Time.deltaTime;
             //anim.SetBool("Moving", true);
+
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                anim.Play("Rollin Blend Tree");
+                Dodge();
+            }
             CalculateAnimatorMovementValue(moveDirection);
         }
         else
         {
             movementDirectionIndicator.GetComponent<Animator>().SetBool("On", false);
             //anim.SetBool("Moving", false);
-            float angle = Mathf.SmoothDamp(anim.GetFloat("MovBlend"), 1000,ref vel, 1f);
+            float angle = Mathf.SmoothDamp(anim.GetFloat("MovBlend"), 1000, ref vel, 1f);
             anim.SetFloat("MovBlend", 1000);
 
         }
-        transform.rotation = Quaternion.LookRotation(mousePos);
-        
-
-  
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            anim.Play("Rollin Blend Tree");
-            //Dodge();
-        }
+        if (_canMove) transform.rotation = Quaternion.LookRotation(mousePos);
 
     }
 
     public void Dodge()
-    { 
+    {
         StartCoroutine(DodgeMove());
     }
     IEnumerator DodgeMove()
     {
+        _sleepAnimFloat = true;
+        _canMove = false;
         float startTime = Time.time;
         while (Time.time < startTime + dodgeDuration)
         {
@@ -87,7 +101,8 @@ public class QuickMove : MonoBehaviour
 
             yield return null;
         }
-       
+        _sleepAnimFloat = false;
+        _canMove = true;
     }
 
     private Vector3 MousePosition()
@@ -95,13 +110,12 @@ public class QuickMove : MonoBehaviour
         Camera camera = Camera.main;
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        Plane plane = new Plane(Vector3.up, transform.position);
 
-        if (Physics.Raycast(ray,out hit))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
             mouseTracker.transform.position = hit.point;
-            return new Vector3(hit.point.x - transform.position.x,0,hit.point.z - transform.position.z);
-            
+            return new Vector3(hit.point.x - transform.position.x, 0, hit.point.z - transform.position.z);
+
         }
         else return Vector3.zero;
     }

@@ -39,7 +39,7 @@ public class SimpleBullet : MonoBehaviour
         }
         if (_impact != null)
         {
-            var hit = Instantiate(_impact, cp.point, Quaternion.LookRotation(cp.normal));
+            var hit = Instantiate(_impact, cp.point + cp.normal*.5f, Quaternion.LookRotation(cp.normal));
             Destroy(hit, 2.0f);
         }
         

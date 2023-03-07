@@ -16,7 +16,7 @@ public class RoofFade : MonoBehaviour
 
     private void Start()
     {
-        transform.GetComponent<BoxCollider>().isTrigger = true;
+        //transform.GetComponent<BoxCollider>().isTrigger = true;
         _renderer = GetComponent<MeshRenderer>();
         _material = _renderer.material;
         _initialColor = _transparentMat.color;

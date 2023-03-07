@@ -19,7 +19,7 @@ TagManager:
   - PickUpable
   - Ground
   - Roof
-  - 
+  - NoPostProcessing
   - 
   - 
   - 

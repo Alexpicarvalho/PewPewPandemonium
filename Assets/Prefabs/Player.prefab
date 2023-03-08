@@ -4062,7 +4062,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!136 &5151311613721021898
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4098,7 +4098,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 512
-  dodgeSpeed: 15
+  marker: {fileID: 5272550482579922978, guid: 0205fbf00faae214cb66311fa2e4cc74, type: 3}
+  dodgeSpeed: 20
   dodgeDuration: 0.75
   speedCurve:
     serializedVersion: 2

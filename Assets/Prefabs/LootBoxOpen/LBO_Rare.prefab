@@ -19071,7 +19071,7 @@ GameObject:
   - component: {fileID: 1609540817920146586}
   - component: {fileID: 3750073574659473772}
   m_Layer: 7
-  m_Name: LootBoxOpenVFX
+  m_Name: LBO_Rare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

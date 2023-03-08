@@ -18,7 +18,7 @@ public interface IHideable
 }
 
 
-public enum Rarity { Common, Uncomon, Rare }
+public enum Rarity { Common, Rare, Epic, Legendary }
 public enum WeaponTier { Tier3, Tier2, Tier1, Special }
 
 public class Damage

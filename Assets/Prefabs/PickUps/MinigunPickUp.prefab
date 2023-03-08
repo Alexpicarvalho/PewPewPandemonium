@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: 336720431}
   - component: {fileID: 336720435}
   - component: {fileID: 1063191834110405451}
+  - component: {fileID: 7965018511973988340}
   m_Layer: 0
   m_Name: MinigunPickUp
   m_TagString: Untagged
@@ -172,8 +173,23 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0.3}
+  m_Size: {x: 2, y: 0.5, z: 2}
+  m_Center: {x: 0, y: -0.3, z: 0.3}
+--- !u!114 &7965018511973988340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2273022344544888768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c36b7cfff6c0f643accbd156a15e804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _myRenderers: []
+  _hideParts: []
+  _hiden: 0
 --- !u!1 &2273022344544888770
 GameObject:
   m_ObjectHideFlags: 0

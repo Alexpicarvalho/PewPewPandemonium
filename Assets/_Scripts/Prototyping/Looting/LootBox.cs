@@ -13,11 +13,16 @@ public class LootBox : MonoBehaviour, IHitable
     [SerializeField] public Rarity _rarity;
 
     [Header("Visual")]
-    [SerializeField] private GameObject _explosionVFX;
     [SerializeField] private ParticleSystemRenderer _glowEffect;
     [SerializeField] private Material _glowCommon;
-    [SerializeField] private Material _glowUncommon;
     [SerializeField] private Material _glowRare;
+    [SerializeField] private Material _glowEpic;
+
+    [Header("Explosions")]
+    [SerializeField] private GameObject _commonExplosionVFX;
+    [SerializeField] private GameObject _rareExplosionVFX;
+    [SerializeField] private GameObject _epicExplosionVFX;
+    [SerializeField] private GameObject _legendaryExplosionVFX;
 
     [Header("Temporary Test Values")]
     public List<GameObject> _drops = new List<GameObject>();
@@ -39,11 +44,11 @@ public class LootBox : MonoBehaviour, IHitable
             case Rarity.Common:
                 _glowEffect.material = _glowCommon;
                 break;
-            case Rarity.Uncomon:
-                _glowEffect.material = _glowUncommon;
-                break;
             case Rarity.Rare:
                 _glowEffect.material = _glowRare;
+                break;
+            case Rarity.Epic:
+                _glowEffect.material = _glowEpic;
                 break;
         }
     }
@@ -57,7 +62,7 @@ public class LootBox : MonoBehaviour, IHitable
     private void OnDestroy()
     {
         if (isQuitting) return;
-        Instantiate(_explosionVFX, transform.position, Quaternion.identity);
+        PlayExplosion();
         foreach (var drop in _drops)
         {
             var weaponInstance = Instantiate(drop, transform.position
@@ -72,6 +77,25 @@ public class LootBox : MonoBehaviour, IHitable
                 Debug.Log("Weapon Tier is " + _weaponTier); 
             }
 
+        }
+    }
+
+    private void PlayExplosion()
+    {
+        switch (_rarity)
+        {
+            case Rarity.Common:
+                Instantiate(_commonExplosionVFX, transform.position, Quaternion.identity);
+                break;
+            case Rarity.Rare:
+                Instantiate(_rareExplosionVFX, transform.position, Quaternion.identity);
+                break;
+            case Rarity.Epic:
+                Instantiate(_epicExplosionVFX, transform.position, Quaternion.identity);
+                break;
+            case Rarity.Legendary:
+                Instantiate(_legendaryExplosionVFX, transform.position, Quaternion.identity);
+                break;
         }
     }
 

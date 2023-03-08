@@ -17,6 +17,7 @@ public class Pickup : MonoBehaviour
     {
         _canPickUp = true;
         transform.GetComponent<BoxCollider>().isTrigger = true;
+        transform.GetComponent<BoxCollider>().enabled = false;
        // StartCoroutine(CanPickUp());
         _center = transform.GetChild(0);
         _groundChecker = _center.GetComponent<Collider>();
@@ -34,6 +35,7 @@ public class Pickup : MonoBehaviour
     {
         _groundChecker.enabled = false;
         transform.GetComponent<Rigidbody>().isKinematic = true;
+        transform.GetComponent<BoxCollider>().enabled = true;
 
     }
 }

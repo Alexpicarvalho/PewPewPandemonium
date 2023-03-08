@@ -60,7 +60,7 @@ public class QuickMove : MonoBehaviour
             anim.SetFloat("xMov", xVelocity, 0.1f, Time.deltaTime);
         }
 
-
+        if (_canMove) transform.rotation = Quaternion.LookRotation(mousePos);
         if (moveDirection.magnitude != 0.0f && _canMove)
         {
             movementDirectionIndicator.GetComponent<Animator>().SetBool("On", true);
@@ -72,7 +72,6 @@ public class QuickMove : MonoBehaviour
                 anim.Play("Rollin Blend Tree");
                 Dodge();
             }
-            if (_canMove) transform.rotation = Quaternion.LookRotation(mousePos);
         }
         else
         {
@@ -82,6 +81,7 @@ public class QuickMove : MonoBehaviour
             anim.SetFloat("MovBlend", 1000);
 
         }
+        
 
     }
 

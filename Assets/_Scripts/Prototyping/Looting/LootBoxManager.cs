@@ -29,15 +29,6 @@ public class LootBoxManager : MonoBehaviour
     [SerializeField] private float _commonBoxWalkableDropChance;
     [SerializeField] private MinMaxCurve _commonBoxXpAmount;
 
-    [Header("Uncommon Percentages")]
-    [SerializeField] private float _uncommonBoxT1GunDropChance;
-    [SerializeField] private float _uncommonBoxT2GunDropChance;
-    [SerializeField] private float _uncommonBoxT3GunDropChance;
-    [SerializeField] private float _uncommonBoxGrenadeDropChance;
-    [SerializeField] private float _uncommonBoxMedicineDropChance;
-    [SerializeField] private float _uncommonBoxWalkableDropChance;
-    [SerializeField] private MinMaxCurve _uncommonBoxXpAmount;
-
     [Header("Rare Percentages")]
     [SerializeField] private float _rareBoxT1GunDropChance;
     [SerializeField] private float _rareBoxT2GunDropChance;
@@ -46,6 +37,15 @@ public class LootBoxManager : MonoBehaviour
     [SerializeField] private float _rareBoxMedicineDropChance;
     [SerializeField] private float _rareBoxWalkableDropChance;
     [SerializeField] private MinMaxCurve _rareBoxXpAmount;
+
+    [Header("Epic Percentages")]
+    [SerializeField] private float _epicBoxT1GunDropChance;
+    [SerializeField] private float _epicBoxT2GunDropChance;
+    [SerializeField] private float _epicBoxT3GunDropChance;
+    [SerializeField] private float _epicBoxGrenadeDropChance;
+    [SerializeField] private float _epicBoxMedicineDropChance;
+    [SerializeField] private float _epicBoxWalkableDropChance;
+    [SerializeField] private MinMaxCurve _epicBoxXpAmount;
 
 
     private void Awake()
@@ -89,11 +89,11 @@ public class LootBoxManager : MonoBehaviour
             case Rarity.Common:
                 return TryGetTier(_commonBoxT1GunDropChance, _commonBoxT2GunDropChance, _commonBoxT3GunDropChance);
 
-            case Rarity.Uncomon:
-                return TryGetTier(_uncommonBoxT1GunDropChance, _uncommonBoxT2GunDropChance, _uncommonBoxT3GunDropChance);
-
             case Rarity.Rare:
                 return TryGetTier(_rareBoxT1GunDropChance, _rareBoxT2GunDropChance, _rareBoxT3GunDropChance);
+
+            case Rarity.Epic:
+                return TryGetTier(_epicBoxT1GunDropChance, _epicBoxT2GunDropChance, _epicBoxT3GunDropChance);
 
         }
         return WeaponTier.Tier3;
@@ -120,11 +120,11 @@ public class LootBoxManager : MonoBehaviour
             case Rarity.Common:
                 xpInstanceScript._xpToGive = (int)_commonBoxXpAmount.Evaluate(1, Random.value);
                 break;
-            case Rarity.Uncomon:
-                xpInstanceScript._xpToGive = (int)_uncommonBoxXpAmount.Evaluate(1, Random.value);
-                break;
             case Rarity.Rare:
                 xpInstanceScript._xpToGive = (int)_rareBoxXpAmount.Evaluate(1, Random.value);
+                break;
+            case Rarity.Epic:
+                xpInstanceScript._xpToGive = (int)_epicBoxXpAmount.Evaluate(1, Random.value);
                 break;
             default:
                 break;

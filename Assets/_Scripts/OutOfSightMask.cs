@@ -8,39 +8,44 @@ using System;
 public class OutOfSightMask : MonoBehaviour
 {
 
-    [SerializeField] private GameObject _player;
-    [SerializeField] private int _minRaycastChecks;
-    [SerializeField] private int _maxRaycastChecks;
-    [SerializeField] private float _distanceForMinChecks;
-    [SerializeField] private float _distanceForMaxChecks;
-    private int _currentRaycastChecks;
+    private GameObject _player;
+    private Collider _playerCollider;
+    [Header("Line of Sight Checker")]
+    public float _viewDistance;
+    [SerializeField] private LayerMask _targetMask;
+    [SerializeField] private LayerMask _noLoSBlock;
+    [SerializeField] float _targetListClearFrequency;
 
-    [SerializeField] private float _raycastAngle;
-    public float _viewDistance { private get; set; }
-    public LayerMask _targetMask { private get; set; }
+    private float _timeSinceLastRefresh = 0;
 
     private List<Transform> _targetsInRange = new List<Transform>();
-    private List<Transform> _targetsInRangeLastFrame = new List<Transform>();
-    private List<Transform> _visibleTargets = new List<Transform>();
-    private List<Transform> _invisibleTargets = new List<Transform>();
 
-
+    private void Start()
+    {
+        _player = transform.gameObject;
+        _playerCollider = _player.GetComponent<Collider>();
+    }
 
     private void Update()
     {
+        _targetsInRange.Clear();
         CheckForTargets();
         CheckTargetLineOfSight();
-        RenderVisibleTargets();
-
-        _targetsInRangeLastFrame = _targetsInRange;
-        _targetsInRange.Clear();
     }
-
-    private void RenderVisibleTargets()
+    private void CheckForTargets()
     {
-        foreach (var target in _visibleTargets)
-        {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, _viewDistance, _targetMask);
 
+        foreach (var collider in hitColliders)
+        {
+            if (collider.GetComponent<IHideable>() == null)
+            {
+                Debug.LogError("CAREFUL, ENTETY IN TARGET LAYER DOESN'T HAVE HIDEABLE COMPONENT");
+            }
+            if (!_targetsInRange.Contains(collider.transform))
+            {
+                _targetsInRange.Add(collider.transform);
+            }
         }
     }
 
@@ -54,35 +59,39 @@ public class OutOfSightMask : MonoBehaviour
 
     private void RaycastBackToPlayer(Transform caster)
     {
-        Vector3 casterPos = new Vector3(caster.position.x, 1.5f, caster.position.z);
-        Vector3 playerPos = new Vector3(_player.transform.position.x, 1.5f, _player.transform.position.z);
+        Vector3 casterPos = new Vector3(caster.position.x, 1f, caster.position.z);
+        Vector3 playerPos = new Vector3(_player.transform.position.x, 1f, _player.transform.position.z);
         Vector3 rayCastDir = (playerPos - casterPos).normalized;
         Ray ray = new Ray(casterPos, rayCastDir);
         RaycastHit hit;
+        IHideable target = caster.GetComponent<IHideable>();
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, _noLoSBlock))
         {
-            if (hit.collider != _player)
+            if (hit.collider != _playerCollider && !target.Hiden())
             {
-                _invisibleTargets.Add(caster);
+                target.HideMe();
             }
-            else
+            else if (hit.collider == _playerCollider && target.Hiden())
             {
-                _visibleTargets.Add(caster);
+                target.RevealMe();
             }
         }
     }
 
-    private void CheckForTargets()
+
+    private void OnDrawGizmos()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, _viewDistance);
+        Gizmos.color = Color.red;
 
-        foreach (var collider in hitColliders)
+        foreach (var target in _targetsInRange)
         {
-            if (collider.gameObject.layer == _targetMask && !_targetsInRange.Contains(collider.transform))
-            {
-                _targetsInRange.Add(collider.transform);
-            }
+            Ray r = new Ray(target.position, (_player.transform.position + Vector3.up - target.transform.position) * 20000);
+            Gizmos.DrawRay(r);
         }
+
     }
+
+
+
 }

@@ -10,6 +10,13 @@ public interface IHitable
     void HandleHit(Damage damage);
 }
 
+public interface IHideable
+{
+    public void HideMe();
+    public void RevealMe();
+    public bool Hiden();
+}
+
 
 public enum Rarity { Common, Uncomon, Rare }
 public enum WeaponTier { Tier3, Tier2, Tier1, Special }

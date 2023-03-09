@@ -19,6 +19,7 @@ public class QuickMove : MonoBehaviour
     bool _canMove = true;
     Rigidbody rb;
     [SerializeField] private LayerMask layerMask;
+    private CreateFootPrint _footPrinter;
 
     Vector3 moveDirection;
 
@@ -33,6 +34,7 @@ public class QuickMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _footPrinter = GetComponent<CreateFootPrint>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         iTime = GetComponent<ITime>();
@@ -63,6 +65,7 @@ public class QuickMove : MonoBehaviour
         if (_canMove) transform.rotation = Quaternion.LookRotation(mousePos);
         if (moveDirection.magnitude != 0.0f && _canMove)
         {
+            _footPrinter.ready = true;
             movementDirectionIndicator.GetComponent<Animator>().SetBool("On", true);
             movementDirectionIndicator.transform.rotation = Quaternion.LookRotation(moveDirection);
             CalculateAnimatorMovementValue(moveDirection);
@@ -75,6 +78,7 @@ public class QuickMove : MonoBehaviour
         }
         else
         {
+            _footPrinter.ready = false;
             movementDirectionIndicator.GetComponent<Animator>().SetBool("On", false);
             //anim.SetBool("Moving", false);
             float angle = Mathf.SmoothDamp(anim.GetFloat("MovBlend"), 1000, ref vel, 1f);

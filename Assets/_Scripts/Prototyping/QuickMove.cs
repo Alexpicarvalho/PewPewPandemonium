@@ -19,6 +19,7 @@ public class QuickMove : MonoBehaviour
     bool _canMove = true;
     Rigidbody rb;
     [SerializeField] private LayerMask layerMask;
+    
     private CreateFootPrint _footPrinter;
 
     Vector3 moveDirection;
@@ -30,6 +31,7 @@ public class QuickMove : MonoBehaviour
     [SerializeField] private float dodgeSpeed;
     [SerializeField] private float dodgeDuration;
     [SerializeField] private AnimationCurve speedCurve;
+    [SerializeField] private GameObject _rollingSmoke;
 
     // Start is called before the first frame update
     void Start()
@@ -107,7 +109,7 @@ public class QuickMove : MonoBehaviour
     {
         _sleepAnimFloat = true;
         _canMove = false;
-
+        //_rollingSmoke?.SetActive(true);
         float startTime = Time.time;
         while (Time.time < startTime + dodgeDuration)
         {
@@ -118,7 +120,7 @@ public class QuickMove : MonoBehaviour
         }
         _sleepAnimFloat = false;
         _canMove = true;
-
+        //_rollingSmoke?.SetActive(false);
     }
 
     private Vector3 MousePosition()

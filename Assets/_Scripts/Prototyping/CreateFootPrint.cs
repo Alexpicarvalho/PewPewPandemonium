@@ -5,6 +5,7 @@ using static UnityEngine.ParticleSystem;
 
 public class CreateFootPrint : MonoBehaviour
 {
+    [SerializeField] Transform _moveDirectionIndicator;
     [SerializeField] GameObject _footPrintPrefab;
     [SerializeField] GameObject _trackerPrintPrefab;
     [SerializeField] LayerMask _noFpLayer;
@@ -37,19 +38,19 @@ public class CreateFootPrint : MonoBehaviour
             {
                 firstSpawner = false;
                 Instantiate(_footPrintPrefab, new Vector3(spawner1.position.x, .1f, spawner1.position.z)
-                , Quaternion.LookRotation(transform.forward));
+                , Quaternion.LookRotation(_moveDirectionIndicator.forward));
 
                 Instantiate(_trackerPrintPrefab, new Vector3(spawner1.position.x, .15f, spawner1.position.z)
-                , Quaternion.LookRotation(transform.forward));
+                , Quaternion.LookRotation(_moveDirectionIndicator.forward));
             }
             else
             {
                 firstSpawner = true;
                 Instantiate(_footPrintPrefab, new Vector3(spawner2.position.x, .1f, spawner2.position.z)
-                , Quaternion.LookRotation(transform.forward));
+                , Quaternion.LookRotation(_moveDirectionIndicator.forward));
 
                 Instantiate(_trackerPrintPrefab, new Vector3(spawner2.position.x, .15f, spawner2.position.z)
-                , Quaternion.LookRotation(transform.forward));
+                , Quaternion.LookRotation(_moveDirectionIndicator.forward));
             }
 
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2430135612417127794}
   - component: {fileID: 2249024243898474480}
   - component: {fileID: 6952503352513245797}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ParticleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4891,7 +4891,7 @@ GameObject:
   - component: {fileID: 1653822110676061608}
   - component: {fileID: 8243909685104606764}
   - component: {fileID: 1346169786007318318}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4975,8 +4975,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d4b7d455d6de024b8f0d4c6c41ceaba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delayBeforeFade: 4
-  _fadeDuration: 2
+  _delayBeforeFade: 1
+  _fadeDuration: 6
   _layerMask:
     serializedVersion: 2
     m_Bits: 512
@@ -4989,7 +4989,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1545792168646247377}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ShoePrint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

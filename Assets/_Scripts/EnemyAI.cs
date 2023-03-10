@@ -7,7 +7,7 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    PlayerCombatHandler combatHandler;
+    public PlayerCombatHandler combatHandler;
     [SerializeField] Transform _hand;
     [HideInInspector] public GunSO _gun;
     public GunSO _weaponSlot2;
@@ -19,7 +19,7 @@ public class EnemyAI : MonoBehaviour
     public float peekDuration = 2f;
     public float peekInterval = 5f;
 
-    private Transform player;
+    public Transform player;
     private NavMeshAgent agent;
     private float peekTimer = 0f;
     private bool isPeeking = false;
@@ -46,7 +46,7 @@ public class EnemyAI : MonoBehaviour
         if (Vector3.Distance(transform.position, player.position) <= detectionRange)
         {
             // Set state to hiding
-            currentState = State.Hiding;
+          //  currentState = State.Hiding;
 
             // Check if there is an obstacle between enemy and player
             RaycastHit hitInfo;

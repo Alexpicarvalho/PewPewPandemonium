@@ -17,8 +17,6 @@ public class EnemyAiT : MonoBehaviour
 
     public NavMeshAgent agent;
 
-    public Transform player;
-
     public LayerMask whatIsGround, whatIsPlayer;
 
     private enum State { Idle, Shooting };
@@ -31,7 +29,7 @@ public class EnemyAiT : MonoBehaviour
     List<GameObject> playersInRange = new List<GameObject>();
     GameObject currentTarget;
     float distanceToCurrentTarget;
-
+    List<GameObject> playersInRangeLastFrame = new List<GameObject>();
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -56,7 +54,6 @@ public class EnemyAiT : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         _gun = Instantiate(_gunRef);
-        player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         _gun.PlaceInHand(_hand);
         _gun.SetWeaponValues(_firepoint);
@@ -66,21 +63,19 @@ public class EnemyAiT : MonoBehaviour
 
     private void Update()
     {
+        playersInRange.Clear();
+        currentTarget = null;
+        _gun.UpdateWeaponStatus();
+
         //Look for players nearby
         CheckForPlayers();
         PickTarget();
+
+        if (currentTarget!= null) transform.LookAt(currentTarget.transform);
+     
         
+        if (CheckIfTargetInAttackRange() && currentTarget != null) AttackPlayer(State.Shooting);
 
-        _gun.UpdateWeaponStatus();
-
-        //Check for sight and attack range
-      //  playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-      //  playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
-        //if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (CheckIfTargetInAttackRange()) AttackPlayer(State.Shooting);
-        playersInRange.Clear();
-        currentTarget = null;
     }
 
     private bool CheckIfTargetInAttackRange()
@@ -102,6 +97,8 @@ public class EnemyAiT : MonoBehaviour
 
     private void PickTarget()
     {
+        if (playersInRange.Count == 0) return;
+
         float[] distances = new float[playersInRange.Count];
         int index = 0;
         foreach (var player in playersInRange)
@@ -124,7 +121,7 @@ public class EnemyAiT : MonoBehaviour
     {
         //   agent.SetDestination(transform.position);
         currentState = state;
-        transform.LookAt(currentTarget.transform);
+       
 
         switch (state)
         {
@@ -167,4 +164,9 @@ public class EnemyAiT : MonoBehaviour
     }
 
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(1, 1, 1, 0.5f);
+        Gizmos.DrawSphere(transform.position, sightRange);
+    }
 }

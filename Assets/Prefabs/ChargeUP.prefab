@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3589508960696346529}
   - component: {fileID: 7332932420918919986}
   - component: {fileID: 6649585734052706553}
-  m_Layer: 7
+  m_Layer: 16
   m_Name: ChargeUP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5000,7 +5000,7 @@ GameObject:
   - component: {fileID: 3269790150378902603}
   - component: {fileID: 6575926577831716194}
   - component: {fileID: 1476050437702661957}
-  m_Layer: 7
+  m_Layer: 16
   m_Name: ChargeUP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9987,7 +9987,7 @@ GameObject:
   - component: {fileID: 8128787737698890035}
   - component: {fileID: 7855645491871741479}
   - component: {fileID: 4543794541614032200}
-  m_Layer: 7
+  m_Layer: 16
   m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10117,7 +10117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1604825351154660381}
   - component: {fileID: 805240861468564700}
-  m_Layer: 7
+  m_Layer: 16
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

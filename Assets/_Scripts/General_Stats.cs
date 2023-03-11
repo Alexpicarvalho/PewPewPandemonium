@@ -34,15 +34,23 @@ public class General_Stats : MonoBehaviour, IHitable
     [Header("Test Visuals")]
     [SerializeField] TextMeshProUGUI _hpText;
     [SerializeField] TextMeshProUGUI _shieldText;
+    [SerializeField] Slider _hpSlider;
+    [SerializeField] Slider _shieldSlider;
 
     private void Start()
     {
         _currentHp = MaxHP;
         _currentShield = _startingShield;
-
+        
         //Temp
         if (_shieldText != null) _shieldText.text = _currentShield.ToString() + " / " + MaxShield;
         if (_hpText != null) _hpText.text = _currentHp.ToString() + " / " + MaxHP;
+        if (_shieldSlider != null) _shieldSlider.value = _currentShield / MaxShield;
+        if (_hpSlider != null) _hpSlider.value = _currentHp/ MaxHP;
+        
+
+       
+        
     }
 
     public void HandleHit(Damage damage)
@@ -55,6 +63,8 @@ public class General_Stats : MonoBehaviour, IHitable
         //TEMP
         if(_shieldText != null) _shieldText.text = _currentShield.ToString() + " / " + MaxShield;
         if(_hpText != null) _hpText.text = _currentHp.ToString() + " / " + MaxHP;
+        if (_shieldSlider != null) _shieldSlider.value = _currentShield / MaxShield;
+        if (_hpSlider != null) _hpSlider.value = _currentHp / MaxHP;
     }
 
     public void GainShield(float amount)
@@ -84,6 +94,8 @@ public class General_Stats : MonoBehaviour, IHitable
         //Temp
         if (_shieldText != null) _shieldText.text = _currentShield.ToString() + " / " + MaxShield;
         if (_hpText != null) _hpText.text = _currentHp.ToString() + " / " + MaxHP;
+        if (_shieldSlider != null) _shieldSlider.value = _currentShield / MaxShield;
+        if (_hpSlider != null) _hpSlider.value = _currentHp / MaxHP;
     }
 
     public IEnumerator DealDamageEnum(Damage damage, Vector3 forceDirection)

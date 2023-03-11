@@ -20,7 +20,7 @@ public class TempUIInfo : MonoBehaviour
     private Image _border1;
     private Image _border2;
     private PlayerCombatHandler _playerCombatHandler;
-    private PlayerStats _playerStats;
+    private General_Stats _playerStats;
     private GunSO _lastFrameWeapon;
     public Animator _weaponUIAnimator;
     public Animator _skillUIAnimator;
@@ -29,7 +29,7 @@ public class TempUIInfo : MonoBehaviour
     void Start()
     {
         _playerCombatHandler = _player.GetComponent<PlayerCombatHandler>();
-        _playerStats = _player.GetComponent<PlayerStats>();
+        _playerStats = _player.GetComponent<General_Stats>();
         _weaponImage = _weapon1UI.GetChild(2).GetComponent<RawImage>();
         _offWeaponImage = _weapon2UI.GetChild(2).GetComponent<RawImage>();
         _border1 = _weapon1UI.transform.GetChild(1).GetComponent<Image>();

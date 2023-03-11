@@ -699,7 +699,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4590778135743445626}
   - component: {fileID: 1695598896524891661}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: Spin
   m_TagString: Untagged
   m_Icon: {fileID: 0}

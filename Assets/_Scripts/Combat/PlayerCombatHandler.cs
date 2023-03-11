@@ -25,7 +25,15 @@ public class PlayerCombatHandler : MonoBehaviour
     [SerializeField] private float _swapEffectDuration;
     private bool _swapReady = true;
     [SerializeField] Material _dissolveMat;
+    
+    
+    //Temporary Knife Combat
+    void KnifeAttack() 
+    {
+        _animator.Play("Slash");
+    }
 
+    
     private void Awake()
     {
         _swapReady = true;
@@ -54,6 +62,11 @@ public class PlayerCombatHandler : MonoBehaviour
         //Do we want the cooldown to keep going down wether or not the gun is equipped?
         _weaponSlot1?.UpdateWeaponStatus();
         _weaponSlot2?.UpdateWeaponStatus();
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            KnifeAttack();
+        }
 
 
         if (Input.GetButton("Fire1"))

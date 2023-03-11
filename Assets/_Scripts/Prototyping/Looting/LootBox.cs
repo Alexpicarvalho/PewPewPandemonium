@@ -59,6 +59,8 @@ public class LootBox : MonoBehaviour, IHitable
         if (_currentHP <= 0) Destroy(gameObject);
     }
 
+    public void InstantDestroy() { Destroy(gameObject); }
+
     private void OnDestroy()
     {
         if (isQuitting) return;

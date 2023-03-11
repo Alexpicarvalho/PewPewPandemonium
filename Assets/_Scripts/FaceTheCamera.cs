@@ -14,6 +14,6 @@ public class FaceTheCamera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.LookAt( Camera.main.transform.position - transform.position );
+        transform.LookAt(new Vector3 (Camera.main.transform.position.y,0,0));
     }
 }

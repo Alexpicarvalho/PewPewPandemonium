@@ -12,7 +12,6 @@ public class QuickMove : MonoBehaviour
     public GameObject bullet;
     public GameObject muzzleFlash;
     public Transform firePoint;
-    public GameObject mouseTracker;
     private float vel = 0;
     private ITime iTime;
     bool _sleepAnimFloat = false;
@@ -131,7 +130,6 @@ public class QuickMove : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
-            mouseTracker.transform.position = hit.point;
             return new Vector3(hit.point.x - transform.position.x, 0, hit.point.z - transform.position.z);
 
         }

@@ -39,8 +39,8 @@ MonoBehaviour:
   _weaponClone: {fileID: 0}
   _vfxClone: {fileID: 0}
   _weaponSkill: {fileID: 11400000, guid: 1bf6fb3b7c4c63d40b1950aa428ed43f, type: 2}
-  _positionInHand: {x: 0, y: 0, z: 0}
-  _rotationInHand: {x: 0.4740098, y: 0.41983366, z: 0.5323944, w: 0.56179243}
+  _positionInHand: {x: 0.097, y: 0.087, z: 0.031}
+  _rotationInHand: {x: 0.55421007, y: 0.35332105, z: 0.43686423, w: 0.61413765}
   _playerAnimator: {fileID: 0}
   _weaponAnimator: {fileID: 0}
   _timeBetweenShots: 0.08

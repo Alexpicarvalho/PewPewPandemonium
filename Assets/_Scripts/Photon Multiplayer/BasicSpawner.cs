@@ -156,14 +156,14 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             {
                 StartGame(GameMode.Host);
             }
-            if (GUI.Button(new Rect(0, 0, 200, 40), "Join"))
-            {
-                StartGame(GameMode.Host);
-            }
-            if (GUI.Button(new Rect(0, 0, 200, 40), "Host"))
+            if (GUI.Button(new Rect(0, 40, 200, 40), "Join"))
             {
                 StartGame(GameMode.Client);
             }
+            //if (GUI.Button(new Rect(0, 0, 200, 40), "Client"))
+            //{
+            //    StartGame(GameMode.Client);
+            //}
         }
     }
 }

@@ -8,6 +8,7 @@ public class Pickup : MonoBehaviour
 {
     [SerializeField] float _newPickUpDelay = 1;
     [SerializeField] public float _pickUpRange = 2;
+    public Texture2D _pickupIcon { get; private set; }
     [HideInInspector] public Collider _groundChecker;
     [HideInInspector] public bool _canPickUp;
     [HideInInspector] public List<PlayerCombatHandler> _playersInRange = new List<PlayerCombatHandler>();

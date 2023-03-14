@@ -998,7 +998,7 @@ MonoBehaviour:
   _skillImage: {fileID: 7102466736236370009}
   _cooldownMask: {fileID: 7102466736384654265}
   _weaponUIAnimator: {fileID: 7102466735260881096}
-  _skillUIAnimator: {fileID: 0}
+  _skillUIAnimator: {fileID: 7102466736153071465}
 --- !u!1 &7102466735782746221
 GameObject:
   m_ObjectHideFlags: 0

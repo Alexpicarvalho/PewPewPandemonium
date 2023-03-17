@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 
 [CreateAssetMenu(menuName = "Weapons/GunSO", fileName = "Gun")]
-public class GunSO : ScriptableObject
+public class GunSO : Item
 {
     //Properties
 

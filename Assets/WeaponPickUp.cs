@@ -40,15 +40,19 @@ public class WeaponPickUp : Pickup
         {
             case WeaponTier.Tier3:
                 _glowEffect.material = _commonGlow;
+                _rarity = Rarity.Common;
                 break;
             case WeaponTier.Tier2:
                 _glowEffect.material = _uncommonGlow;
+                _rarity = Rarity.Rare;
                 break;
             case WeaponTier.Tier1:
                 _glowEffect.material = _rareGlow;
+                _rarity = Rarity.Epic;
                 break;
             case WeaponTier.Special:
                 _glowEffect.material = _specialGlow;
+                _rarity = Rarity.Legendary;
                 break;
         }
     }
@@ -60,41 +64,10 @@ public class WeaponPickUp : Pickup
         return returnVec;
     }
 
-    public virtual void Update()
+    public override void PickMeUp(PlayerCombatHandler _anyPlayer)
     {
-        Collider[] colliders = Physics.OverlapSphere(_center.position, _pickUpRange);
-        foreach (var collider in colliders)
-        {
-            var possiblePlayer = collider.transform.GetComponent<PlayerCombatHandler>();
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                foreach (var _anyPlayer in _playersInRange)
-                {
-                    if (_anyPlayer.transform == collider.transform)
-                    {
-                        _anyPlayer.ReceiveWeapon(_gun);
-                        Destroy(gameObject);
-                    }
-                }
-            }
-        }
-    }
-
-    public void OnTriggerStay(Collider other)
-    {
-        var player = other.transform.GetComponent<PlayerCombatHandler>();
-        if (player == null || !_canPickUp) return;
-        else if (!_playersInRange.Contains(player)) _playersInRange.Add(player);
-
-
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        var player = other.transform.GetComponent<PlayerCombatHandler>();
-        if (player == null) return;
-        else if (_playersInRange.Contains(player))
-        {
-            _playersInRange.Remove(player);
-        }
+        base.PickMeUp(_anyPlayer);
+        _anyPlayer.ReceiveWeapon(_gun);
+        Destroy(gameObject);
     }
 }

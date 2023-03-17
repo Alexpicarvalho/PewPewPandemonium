@@ -148,8 +148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b398666d4ee7ca44c91ad7b7e6404354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _newPickUpDelay: 1
+  _newPickUpDelay: 5
   _pickUpRange: 2
+  _pickupIcon: {fileID: 2800000, guid: 56ebff5162cdd6f4ca9e515e428c0d1b, type: 3}
+  _rarity: 0
   _groundChecker: {fileID: 0}
   _canPickUp: 1
   _playersInRange: []

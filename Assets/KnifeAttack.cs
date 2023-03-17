@@ -9,6 +9,7 @@ public class KnifeAttack : MonoBehaviour
     [SerializeField] float _swipeRange;
     [SerializeField] int _numberOfRaycasts;
     [SerializeField] Vector3 _startOffset;
+    [SerializeField] GameObject _impactVisual;
 
     [Header("Repetition to make it feel more Responsive while moving")]
     [SerializeField] int _numberOfRecasts;
@@ -83,16 +84,17 @@ public class KnifeAttack : MonoBehaviour
     {
         IHitable hitable = other.GetComponent<IHitable>();
         LootBox lootBox = other.GetComponent<LootBox>();
-        if (hitable == null) return;
+        if (hitable == null || _dontRecastHit.Contains(other)) return;
 
         //check if it's a loot box
         if (lootBox) { lootBox.InstantDestroy(); }
         //else handle Damage normally
-        else if(!_dontRecastHit.Contains(other))
+        else 
         {
             hitable.HandleHit(damage);
             _dontRecastHit.Add(other);
         }
+        Instantiate(_impactVisual, other.transform.position, Quaternion.LookRotation((other.transform.position - transform.position).normalized));
     }
 
     private void OnDrawGizmos()

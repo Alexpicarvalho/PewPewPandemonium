@@ -8,7 +8,8 @@ public class Pickup : MonoBehaviour
 {
     [SerializeField] float _newPickUpDelay = 1;
     [SerializeField] public float _pickUpRange = 2;
-    public Texture2D _pickupIcon { get; private set; }
+    public Texture2D _pickupIcon;
+    public Rarity _rarity;
     [HideInInspector] public Collider _groundChecker;
     [HideInInspector] public bool _canPickUp;
     [HideInInspector] public List<PlayerCombatHandler> _playersInRange = new List<PlayerCombatHandler>();
@@ -25,7 +26,7 @@ public class Pickup : MonoBehaviour
     }
 
 
-    public virtual void PickMeUp() { }
+    public virtual void PickMeUp(PlayerCombatHandler _anyPlayer) { if(!_canPickUp) return; }
 
     IEnumerator CanPickUp()
     {

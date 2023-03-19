@@ -55,6 +55,7 @@ public class LootBox : MonoBehaviour, IHitable
 
     public void HandleHit(Damage damage)
     {
+        if (damage == null) return;
         _currentHP -= damage._amount;
         if (_currentHP <= 0) Destroy(gameObject);
     }

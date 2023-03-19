@@ -17,7 +17,6 @@ public class WeaponSkillSO : ScriptableObject
 
     [Header("Optional Properties")]
     [SerializeField] public float _activeTime;
-    [SerializeField] public float _damage;
     [SerializeField] public Transform _firePoint;
 
 
@@ -29,13 +28,22 @@ public class WeaponSkillSO : ScriptableObject
     [SerializeField] public Vector3 _indicatorRotation;
     [SerializeField] public Texture _skillIcon;
 
+    [Header("Damage Properties")]
+    public float _amount;
+    public float _pushForce;
+    [Range(1, 99)] public int _tickAmount = 1;
+    public float _damageOverTimeDuration;
+    public Damage _damage;
+
 
     [Header("Hidden/Runtime Properties")]
     public float _finalDamage; // may be obsolete
     /*[HideInInspector]*/ public float _timeSinceActivation; 
     /*[HideInInspector]*/ public float _timeSinceLastUse; 
     private GameObject _indicatorClone;
+
     
+
 
     //Enums
     public enum SkillState { Ready, Casting, Active, OnCooldown}
@@ -46,7 +54,7 @@ public class WeaponSkillSO : ScriptableObject
     public void SetSkillValues(Transform firePoint = null, float damageMult = 1) 
     {
         _firePoint = firePoint;
-        _damage = _damage * damageMult;
+        _damage = new Damage(_amount * damageMult, _pushForce, _tickAmount, _damageOverTimeDuration);
         if (_visualIndicator)
         {
             _indicatorClone = Instantiate(_visualIndicator, _firePoint.position, Quaternion.identity,_firePoint.parent);

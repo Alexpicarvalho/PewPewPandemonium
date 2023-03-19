@@ -55,6 +55,7 @@ public class General_Stats : MonoBehaviour, IHitable
 
     public void HandleHit(Damage damage)
     {
+        if (damage == null) return;
         if (_currentShield < damage._amount) OverflowDamage(Mathf.Abs(_currentShield - damage._amount));
 
         _currentShield -= damage._amount;

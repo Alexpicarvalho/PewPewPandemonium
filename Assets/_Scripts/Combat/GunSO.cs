@@ -83,7 +83,7 @@ public class GunSO : Item
         _firePoint = firePoint;
         _weaponSkill = Instantiate(_weaponSkillRef);
         _weaponSkill.SetSkillValues(_firePoint, _damageMultiplier);
-        _weaponSkill._damage = _skillDamage;
+        _weaponSkill._damage._amount = _skillDamage;
         _timeBetweenShots = 60.0f / _bulletsPerMinute;
         _currentShootingStatus = ShootingStatus.ShotReady;
         if (_visualEffect)
@@ -147,6 +147,7 @@ public class GunSO : Item
         var bullet = Instantiate(_bulletGO, _firePoint.position, Quaternion.LookRotation(_firePoint.forward));
         bullet.transform.Translate(GetDisplacement(), 0, GetDisplacement());
         bullet.transform.Rotate(0, GetInaccuracy(), 0, Space.Self);
+        bullet.GetComponent<Damager>().SetDamage();
         //PlayExtraEffect();
         // Get bullet script and pass necessary variables
     }

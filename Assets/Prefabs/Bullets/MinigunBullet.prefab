@@ -4928,6 +4928,7 @@ GameObject:
   - component: {fileID: 292517293505984933}
   - component: {fileID: 8429635265358594485}
   - component: {fileID: 6434886363752869045}
+  - component: {fileID: -6915683689456062087}
   m_Layer: 7
   m_Name: MinigunBullet
   m_TagString: Untagged
@@ -4989,7 +4990,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2894552729440222365}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc15d410fb529544393036756304c323, type: 3}
   m_Name: 
@@ -5025,6 +5026,25 @@ MonoBehaviour:
   _myRenderers: []
   _hideParts: []
   _hiden: 0
+--- !u!114 &-6915683689456062087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2894552729440222365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0adc52c89dcd0ff4baf1890a7403a1e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _amount: 3
+  _addForce: 0
+  _tickAmount: 1
+  _damageOverTimeDuration: 0
+  _impact: {fileID: 3915230876885144064, guid: 1b688a6214a9fe1459a70bea846d23c2, type: 3}
+  speed: 20
+  lifeTime: 10
 --- !u!1 &7420386609024022550
 GameObject:
   m_ObjectHideFlags: 0

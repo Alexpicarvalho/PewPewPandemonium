@@ -16,7 +16,7 @@ public class RailgunSkill : WeaponSkillSO
         base.ExecuteSpell();
         Destroy(_castVFXClone);
         var skill = Instantiate(_skillVFX,_firePoint.position, Quaternion.LookRotation(_firePoint.forward));
-        skill.GetComponent<SimpleBullet>()._damage = _damage;
+        skill.GetComponent<Damager>().SetDamage(_damage);
     }
 
     public override void StartCastingVFX()

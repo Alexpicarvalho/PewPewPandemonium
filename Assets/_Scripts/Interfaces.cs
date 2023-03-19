@@ -5,9 +5,38 @@ using UnityEngine;
 public class Interfaces
 { 
 }
+
+public abstract class Damager : MonoBehaviour
+{ 
+    [Header("Set Damage Values")]
+    [SerializeField] float _amount;
+    [SerializeField] float _addForce;
+    [SerializeField] [Range(1,99)] int _tickAmount;
+    [SerializeField] float _damageOverTimeDuration;
+
+    public Damage _damage;
+
+    public virtual void SetDamage(Damage newDamage = null)
+    {
+        if (_damage != null) return;
+
+        if (newDamage != null) _damage = newDamage;
+        else _damage = new Damage(_amount, _addForce, _tickAmount, _damageOverTimeDuration);
+
+    }
+}
 public interface IHitable
 {
     void HandleHit(Damage damage);
+}
+
+public interface IDamager
+{
+    //Both skill effect and scriptable object have this, the latter sets the former
+    public Damage Damage { get; set; }
+
+    public void SetDamage(Damage newDamage);
+    
 }
 
 public interface IHideable

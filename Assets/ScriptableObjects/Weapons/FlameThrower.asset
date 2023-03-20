@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c1eeb2c3cf977f41b5eb64512b1e0de, type: 3}
   m_Name: FlameThrower
   m_EditorClassIdentifier: 
+  _name: 
+  _description: 
+  _icon: {fileID: 0}
   _weaponGO: {fileID: 4982128866425352390, guid: 77c66d64e7d1a8b458934029d50fcbf1, type: 3}
   _bulletGO: {fileID: 3092566135863958259, guid: 8b0fe9359e5fde443a832b27ba08c5e6, type: 3}
   _muzzleFlash: {fileID: 4779800532271133379, guid: da31205b1a641cb40adbb11bfa094fd5, type: 3}
@@ -23,7 +26,6 @@ MonoBehaviour:
   _fireingType: 0
   _weaponSkillRef: {fileID: 11400000, guid: f4f3340eec62e08489077c087bdfe842, type: 2}
   _weaponTier: 0
-  _skillDamage: 0
   _damageMultiplier: 1
   _bulletsPerMinute: 1200
   _magazineSize: 100
@@ -34,6 +36,7 @@ MonoBehaviour:
   _weaponInaccuracy: 0.5
   _maxInaccuracy: 25
   _maxDisplacement: 0
+  _soundData: {fileID: 11400000, guid: 7c6dc1c5437aaee47a827bc038943bca, type: 2}
   _bulletsInMag: 100
   _currentShootingStatus: 0
   _weaponClone: {fileID: 0}

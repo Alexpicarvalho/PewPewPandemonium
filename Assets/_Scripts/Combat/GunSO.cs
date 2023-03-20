@@ -38,6 +38,10 @@ public class GunSO : Item
     [SerializeField] public float _maxInaccuracy = 10;
     [SerializeField] public float _maxDisplacement = .1f;
 
+    [Header("Audio")]
+    [SerializeField] SoundData _soundData;
+    private AudioSource _audioSource;
+
     [Header("RunTime Properties")]
     [SerializeField] public int _bulletsInMag;
     [SerializeField] public ShootingStatus _currentShootingStatus;
@@ -84,6 +88,7 @@ public class GunSO : Item
         _weaponSkill.SetSkillValues(_firePoint, _damageMultiplier);
         _timeBetweenShots = 60.0f / _bulletsPerMinute;
         _currentShootingStatus = ShootingStatus.ShotReady;
+        _audioSource = _firePoint.GetComponent<AudioSource>();
         if (_visualEffect)
         {
             _vfxClone = Instantiate(_visualEffect, _firePoint.transform.position, Quaternion.LookRotation(_firePoint.forward));
@@ -146,6 +151,7 @@ public class GunSO : Item
         bullet.transform.Translate(GetDisplacement(), 0, GetDisplacement());
         bullet.transform.Rotate(0, GetInaccuracy(), 0, Space.Self);
         bullet.GetComponent<Damager>().SetDamage();
+        if(_soundData)_audioSource.PlayOneShot(_soundData.GetRandomSound(),_soundData.GetClipVolume());
         //PlayExtraEffect();
         // Get bullet script and pass necessary variables
     }

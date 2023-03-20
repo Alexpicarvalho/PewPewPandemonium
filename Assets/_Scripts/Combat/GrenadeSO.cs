@@ -41,7 +41,7 @@ public class GrenadeSO : Item
     public virtual void Throw(Vector3 target)
     {
         var grenadeGO = Instantiate(_grenadeGO, _firePoint.position, Quaternion.identity);
-        var grenadeScript = grenadeGO.GetComponent<GrenadeScript>();
+        var grenadeScript = grenadeGO.GetComponent<Grenade>();
         grenadeScript.CalculateThrowVelocity(target, _heightDisplacement);
         grenadeScript.Launch();
     }

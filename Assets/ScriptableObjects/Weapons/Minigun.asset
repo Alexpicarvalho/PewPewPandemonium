@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c1eeb2c3cf977f41b5eb64512b1e0de, type: 3}
   m_Name: Minigun
   m_EditorClassIdentifier: 
+  _name: 
+  _description: 
+  _icon: {fileID: 0}
   _weaponGO: {fileID: 2196376887939949475, guid: 79cfad6d28604f54a97b32d45af9d2b2, type: 3}
   _bulletGO: {fileID: 2894552729440222365, guid: c7a68facac6f947489bc459cccf7cadd, type: 3}
   _muzzleFlash: {fileID: 4779800532271133379, guid: da31205b1a641cb40adbb11bfa094fd5, type: 3}
@@ -23,7 +26,6 @@ MonoBehaviour:
   _fireingType: 0
   _weaponSkillRef: {fileID: 11400000, guid: dd638b5aa9412204296986f407011e0e, type: 2}
   _weaponTier: 0
-  _skillDamage: 10
   _damageMultiplier: 1
   _bulletsPerMinute: 500
   _magazineSize: 50
@@ -34,6 +36,7 @@ MonoBehaviour:
   _weaponInaccuracy: 1
   _maxInaccuracy: 8
   _maxDisplacement: 0.2
+  _soundData: {fileID: 11400000, guid: c9f504011c41ec540a9802b9bd93219a, type: 2}
   _bulletsInMag: 50
   _currentShootingStatus: 0
   _weaponClone: {fileID: 0}

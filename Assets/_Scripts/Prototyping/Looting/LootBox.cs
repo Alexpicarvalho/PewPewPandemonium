@@ -23,6 +23,7 @@ public class LootBox : MonoBehaviour, IHitable
     [SerializeField] private GameObject _rareExplosionVFX;
     [SerializeField] private GameObject _epicExplosionVFX;
     [SerializeField] private GameObject _legendaryExplosionVFX;
+    [SerializeField] private SoundData _explosionSound;
 
     [Header("Temporary Test Values")]
     public List<GameObject> _drops = new List<GameObject>();
@@ -85,6 +86,7 @@ public class LootBox : MonoBehaviour, IHitable
 
     private void PlayExplosion()
     {
+        AudioSource.PlayClipAtPoint(_explosionSound.GetRandomSound(), transform.position, _explosionSound.GetClipVolume());
         switch (_rarity)
         {
             case Rarity.Common:

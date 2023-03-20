@@ -69,7 +69,7 @@ public class QuickGrenadeThrow : MonoBehaviour
                 break;
         }
 
-        var nadeScript = nade.GetComponent<GrenadeScript>();
+        var nadeScript = nade.GetComponent<Grenade>();
 
         //nadeScript.Throw(grenadeThrowForce, grenadeThrowAngle);
         

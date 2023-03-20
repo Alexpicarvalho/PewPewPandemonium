@@ -16,6 +16,7 @@ public class QuickGrenadeThrow : MonoBehaviour
     public GameObject indicator;
     public GrenadeType type;
     public float grenadeThrowForce;
+    public float grenadeThrowAngle;
     public Vector3 grenadeHeightOffset;
     public float grenadeExplosionRadius;
 
@@ -40,11 +41,12 @@ public class QuickGrenadeThrow : MonoBehaviour
         if (Input.GetKey(KeyCode.Q))
         {
             indicator.transform.position = MousePosition();
+
         }
         else if (Input.GetKeyUp(KeyCode.Q))
         {
             LaunchGrenade();
-            //indicator.transform.position = indicatorHouse;
+            indicator.transform.position = indicatorHouse;
         }
     }
 
@@ -66,11 +68,15 @@ public class QuickGrenadeThrow : MonoBehaviour
             default:
                 break;
         }
+
+        var nadeScript = nade.GetComponent<GrenadeScript>();
+
+        //nadeScript.Throw(grenadeThrowForce, grenadeThrowAngle);
         
-        
-        nade.GetComponent<GrenadeScript>().throwDirection = CalculateThrowDirection();
-        nade.GetComponent<GrenadeScript>().throwForce = grenadeThrowForce;
-        nade.GetComponent<GrenadeScript>().throwScript = this;
+
+        //nade.GetComponent<GrenadeScript>().throwDirection = CalculateThrowDirection();
+        //nade.GetComponent<GrenadeScript>().throwForce = grenadeThrowForce;
+        //nade.GetComponent<GrenadeScript>().throwScript = this;
 
     }
 

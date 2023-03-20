@@ -24,7 +24,7 @@ public class Projectile : Damager
     public override void SetDamage(Damage newDamage = null)
     {
         base.SetDamage(newDamage);
-        Debug.Log("SET DAMAGE");
+        Debug.Log("SET DAMAGE: " + _damage._amount);
     }
     private void Update()
     {

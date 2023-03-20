@@ -9,7 +9,6 @@ using Random = UnityEngine.Random;
 [CreateAssetMenu(menuName = "Weapons/GunSO", fileName = "Gun")]
 public class GunSO : Item
 {
-    //Properties
 
     [Header("Physical/Visual Properties")]
     [SerializeField] private GameObject _weaponGO;
@@ -27,7 +26,7 @@ public class GunSO : Item
     [SerializeField] public FireingType _fireingType;
     [SerializeField] public WeaponSkillSO _weaponSkillRef;
     [SerializeField] public WeaponTier _weaponTier;
-    [SerializeField] public float _skillDamage;
+    //[SerializeField] public float _skillDamage;
     [SerializeField] private float _damageMultiplier = 1;
     [SerializeField] private int _bulletsPerMinute;
     [SerializeField] public int _magazineSize;
@@ -83,7 +82,6 @@ public class GunSO : Item
         _firePoint = firePoint;
         _weaponSkill = Instantiate(_weaponSkillRef);
         _weaponSkill.SetSkillValues(_firePoint, _damageMultiplier);
-        _weaponSkill._damage._amount = _skillDamage;
         _timeBetweenShots = 60.0f / _bulletsPerMinute;
         _currentShootingStatus = ShootingStatus.ShotReady;
         if (_visualEffect)

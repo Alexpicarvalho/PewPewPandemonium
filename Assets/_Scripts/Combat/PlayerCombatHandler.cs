@@ -8,23 +8,28 @@ using UnityRandom = UnityEngine.Random;
 
 public class PlayerCombatHandler : MonoBehaviour
 {
+    [Header("Starting Weapon")]
+    [SerializeField] GunSO _startingWeapon;
+    
+
+    [Header("Requirements")]
     [SerializeField] Transform _hand;
     [SerializeField] Transform _firePoint;
-    [SerializeField] GunSO _startingWeapon1;
-    [SerializeField] GunSO _startingWeapon2;
-    public GunSO _weaponSlot1;
-    public GunSO _weaponSlot2;
-    [HideInInspector] public GunSO _gun;
-    bool _shotReady = true;
-    float _timeBetweenShots;
-    [HideInInspector] public bool _reloading = false;
     private Animator _animator;
 
-    [Header("Weapon Swapping")]
+    [Header("Runtime Variables")]
+    [HideInInspector] public bool _reloading = false;
+    [HideInInspector] public GunSO _weaponSlot1;
+    [HideInInspector] public GunSO _weaponSlot2;
+    [HideInInspector] public GunSO _gun;
+    /*[HideInInspector]*/ public GrenadeSO _grenade;
+    //[HideInInspector] public UtilitySO _utility;
+
+    [Header("Weapon Swapping Properties")]
     [SerializeField] private float _swapCooldown = .6f;
-    [SerializeField] private float _swapEffectDuration;
+    //[SerializeField] private float _swapEffectDuration;
     private bool _swapReady = true;
-    [SerializeField] Material _dissolveMat;
+    //[SerializeField] Material _dissolveMat;
     
     
     //Temporary Knife Combat
@@ -39,19 +44,15 @@ public class PlayerCombatHandler : MonoBehaviour
         _swapReady = true;
         _animator = GetComponent<Animator>();
         //TEMP 
-        if (_startingWeapon1)
+        if (_startingWeapon)
         {
-            _weaponSlot1 = Instantiate(_startingWeapon1);
-            SetupWeapon(_weaponSlot1);
-        }
-        if (_startingWeapon2)
-        {
-            _weaponSlot2 = Instantiate(_startingWeapon2);
+            _weaponSlot2 = Instantiate(_startingWeapon);
             SetupWeapon(_weaponSlot2);
         }
         _gun = _weaponSlot2;
         SwapWeapons();
-        _timeBetweenShots = _gun._timeBetweenShots;
+
+        _grenade.SetValues(_firePoint);
     }
 
     private void Update()
@@ -88,7 +89,19 @@ public class PlayerCombatHandler : MonoBehaviour
         {
             SwapWeapons();
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            _grenade.Throw(MousePosition());
+            //_grenade.EnableIndicator();
+        }
+        else if (Input.GetKeyUp(KeyCode.Q))
+        {
+           // _grenade.DisableIndicator();
+        }
+
+        //_grenade.DrawProjection();
+
     }
 
     public void ReceiveWeapon(GunSO _newGun)
@@ -138,9 +151,6 @@ public class PlayerCombatHandler : MonoBehaviour
     {
         if (!_weaponSlot1 || !_weaponSlot2 || !_swapReady) return; //If player doesn't have 2 weapons returns
         NextWeapon();
-        //StartCoroutine(SwapVisualEffect());
-
-
     }
 
     private void NextWeapon()
@@ -149,7 +159,6 @@ public class PlayerCombatHandler : MonoBehaviour
         _swapReady = false;
         if (_gun == _weaponSlot1) _gun = _weaponSlot2;
         else _gun = _weaponSlot1;
-        _timeBetweenShots = _gun._timeBetweenShots;
         _gun._weaponClone.SetActive(true);
         StartCoroutine(ReadySwap());
     }
@@ -178,6 +187,41 @@ public class PlayerCombatHandler : MonoBehaviour
     //    _shotReady = true;
     //}
 
+    #region Grenade Path Simulations 
+
+    private Vector3 MousePosition()
+    {
+        Camera camera = Camera.main;
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        Plane plane = new Plane(Vector3.up, transform.position);
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            return new Vector3(hit.point.x, 0.1f, hit.point.z);
+        }
+        else return Vector3.zero;
+    }
+
+
+
+
+    IEnumerator GrenadeMovement(float initVel, float angle)
+    {
+        float t = 0;
+        while (t < 100)
+        {
+            float x = initVel * t * Mathf.Cos(angle);
+            float y = initVel * t * Mathf.Sin(angle) - (1f / 2f) * Physics.gravity.y * Mathf.Pow(t,2);
+            transform.position = new Vector3(x,y,0);
+            t += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    #endregion
+
+
     public IEnumerator ShutOffExtraEffect()
     {
         yield return new WaitForSeconds(_gun._extraEffectTimeToShutOff);
@@ -205,31 +249,29 @@ public class PlayerCombatHandler : MonoBehaviour
         _swapReady = true;
     }
 
-    public IEnumerator SwapVisualEffect()
-    {
-        _shotReady = false;
-        float startTime = Time.time;
-        float time = 0;
-        while (Time.time < startTime + _swapEffectDuration)
-        {
-            time += Time.deltaTime;
-            float t = Mathf.Clamp01(time / _swapEffectDuration);
-            _dissolveMat.SetFloat("_Dissolve", Mathf.Lerp(0, 1, t));
-            yield return null;
-        }
+    //public IEnumerator SwapVisualEffect()
+    //{
+    //    float startTime = Time.time;
+    //    float time = 0;
+    //    while (Time.time < startTime + _swapEffectDuration)
+    //    {
+    //        time += Time.deltaTime;
+    //        float t = Mathf.Clamp01(time / _swapEffectDuration);
+    //        _dissolveMat.SetFloat("_Dissolve", Mathf.Lerp(0, 1, t));
+    //        yield return null;
+    //    }
 
-        NextWeapon();
+    //    NextWeapon();
 
-        //Show again
-        startTime = Time.time;
-        time = 0;
-        while (Time.time < startTime + _swapEffectDuration)
-        {
-            time += Time.deltaTime;
-            float t = Mathf.Clamp01(time / _swapEffectDuration);
-            _dissolveMat.SetFloat("_Dissolve", Mathf.Lerp(1, 0, t));
-            yield return null;
-        }
-        _shotReady = true;
-    }
+    //    //Show again
+    //    startTime = Time.time;
+    //    time = 0;
+    //    while (Time.time < startTime + _swapEffectDuration)
+    //    {
+    //        time += Time.deltaTime;
+    //        float t = Mathf.Clamp01(time / _swapEffectDuration);
+    //        _dissolveMat.SetFloat("_Dissolve", Mathf.Lerp(1, 0, t));
+    //        yield return null;
+    //    }
+    //}
 }

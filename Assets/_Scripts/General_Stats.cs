@@ -15,6 +15,7 @@ public class General_Stats : MonoBehaviour, IHitable
     [SerializeField] float _maxHP;
     [SerializeField] float _maxShield; // Changeable by armor
     [SerializeField] bool _isPushable;
+    bool _dead = false;
 
     [Header("Start Properties")]
     [SerializeField] float _startingShield;
@@ -55,7 +56,7 @@ public class General_Stats : MonoBehaviour, IHitable
 
     public void HandleHit(Damage damage)
     {
-        if (damage == null) return;
+        if (damage == null || _dead) return;
         if (_currentShield < damage._amount) OverflowDamage(Mathf.Abs(_currentShield - damage._amount));
 
         _currentShield -= damage._amount;
@@ -83,6 +84,7 @@ public class General_Stats : MonoBehaviour, IHitable
         if(_currentHp <= 0)
         {
             _currentHp = 0;
+            _dead = true;
             Invoke("ResetHealth", 3.0f);
         } 
     }
@@ -90,6 +92,7 @@ public class General_Stats : MonoBehaviour, IHitable
     //TEST ONLY 
     public void ResetHealth()
     {
+        _dead = false;
         _currentHp = MaxHP;
         _currentShield = _startingShield;
         //Temp

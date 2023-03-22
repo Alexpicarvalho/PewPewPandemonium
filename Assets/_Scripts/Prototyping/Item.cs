@@ -10,7 +10,7 @@ using UnityRandom = UnityEngine.Random;
 [CreateAssetMenu(menuName = "Item", fileName = "Item")]
 public class Item : ScriptableObject
 {
-    [SerializeField] string _name;
-    [SerializeField] string _description;
-    [SerializeField] Texture _icon;
+    [SerializeField] public string _name;
+    [SerializeField] public string _description;
+    [SerializeField] public Texture _icon;
 }

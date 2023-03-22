@@ -8,16 +8,40 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Grenade : MonoBehaviour
 {
+    [SerializeField] Vector3 _torque = new Vector3(45, 0, 45);
     private Vector3 _throwDirection;
-    private Rigidbody _rb;
+    protected Rigidbody _rb;
+    protected GameObject _spawnEffect;
+    public Damage _damage;
+    public ITime _iTime;
+    protected bool _slowed;
 
-    public void Launch()
+    public virtual void Launch()
     {
+        GetComponent<Collider>().enabled = false;
+        Invoke("ActivateCollider", .3f);
         _rb = GetComponent<Rigidbody>();
+        _rb.AddTorque(_torque);
         _rb.velocity = _throwDirection;
+        
     }
 
-    public void CalculateThrowVelocity(Vector3 target, float offset)
+    public void SetSpawnEffect(GameObject effect)
+    {
+        _spawnEffect = effect;
+    }
+
+    public void ActivateCollider()
+    {
+        transform.GetComponent<Collider>().enabled = true;
+    }
+
+    public void SetDamage(Damage damage)
+    {
+        _damage = damage;
+    }
+
+    public virtual void CalculateThrowVelocity(Vector3 target, float offset)
     {
         float displacementY = target.y - transform.position.y;
         Vector3 displacementXZ = new Vector3(target.x - transform.position.x,0, target.z - transform.position.z);

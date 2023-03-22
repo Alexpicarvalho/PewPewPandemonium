@@ -160,10 +160,10 @@ GameObject:
   - component: {fileID: 7754100512310756587}
   - component: {fileID: 7754100512307365067}
   - component: {fileID: 7754100512308332043}
-  - component: {fileID: 7535549533672699781}
   - component: {fileID: 722629407134320236}
   - component: {fileID: 1028421956453306453}
   - component: {fileID: -3574332415606687112}
+  - component: {fileID: 2898070092601428347}
   m_Layer: 7
   m_Name: Nade
   m_TagString: Untagged
@@ -237,27 +237,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7535549533672699781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7754100512310597835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b2b8a77c135e4544aabb9fe482e2955, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _heightDisplacement: 0
-  explosionVFX: {fileID: 1042726115115234, guid: 00c65275be49a0a4e8f58a10cd548f0c, type: 3}
-  _damage: 50
-  _explosionRadius: 3
-  throwDirection: {x: 0, y: 0, z: 0}
-  torque: {x: 0, y: 0, z: 0}
-  explosionOffset: {x: 0, y: 0, z: 0}
-  throwForce: 0
-  throwScript: {fileID: 0}
 --- !u!54 &722629407134320236
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -299,3 +278,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a18193f48d6de54d81d2378efc58680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2898070092601428347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7754100512310597835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0652ddca270625843a9f5ace7e55e224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _explosionOffset: {x: 0, y: 1, z: 0}
+  _explosionRadius: 4

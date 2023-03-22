@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuickMove : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
 
     [Header("Movement Properties")]
@@ -38,6 +38,12 @@ public class QuickMove : MonoBehaviour
     bool _canMove = true;
     Vector3 moveDirection;
     float accelaration;
+
+    //READ ONLY
+    public float Speed => _currentSpeed;
+    public float MinSpeed => _startSpeed;
+    public float MaxSpeed => _maxSpeed;
+
     
 
     // Start is called before the first frame update

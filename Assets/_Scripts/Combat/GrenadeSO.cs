@@ -11,39 +11,64 @@ public class GrenadeSO : Item
 {
     [Header("Physical/Visual Properties")]
     [SerializeField] GameObject _grenadeGO;
+    [SerializeField] GameObject _spawnEffect;
 
-    [Header("Grenade Path Visuals")]
-    [SerializeField] LineRenderer _lineRenderer;
-    [SerializeField] [Range(10, 100)] int _linePoints = 25;
-    [SerializeField] [Range(0.01f, 0.25f)] float _timeBetweenPoints = 0.1f;
+    //[Header("Grenade Path Visuals")]
+    //[SerializeField] LineRenderer _lineRenderer;
+    //[SerializeField] [Range(10, 100)] int _linePoints = 25;
+    //[SerializeField] [Range(0.01f, 0.25f)] float _timeBetweenPoints = 0.1f;
 
     [Header("Individual Attributes")]
-    [SerializeField] float _throwForce;
-    [SerializeField] Vector3 _throwAngle;
+    //[SerializeField] float _throwForce;
+    //[SerializeField] Vector3 _throwAngle;
     [SerializeField] float _heightDisplacement;
     public float _cooldown;
     public string _animatorTrigger;
+
+    [Header("Optional Damage")]
+    [SerializeField] float _amount;
+    [SerializeField] float _pushForce;
+    [SerializeField] int _tickAmount = 1;
+    [SerializeField] float _duration = 0;
+    private Damage _damage;
+
 
     [Header("Runtime Properties")]
     private Transform _firePoint;
     private Rigidbody _grenadeRb;
     [Range(-1, 1)] public int gravityDirection;
+    public float _timeSinceLastUse = 0;
+    public bool _onCooldown;
     //[Header("Optional Parameters")]
 
+
+    public void UpdateState()
+    {
+        if (!_onCooldown) return;
+        _timeSinceLastUse += Time.deltaTime;
+        if(_timeSinceLastUse >= _cooldown) _onCooldown = false;
+    }
 
     public virtual void SetValues(Transform firePoint)
     {
         _firePoint = firePoint;
         _grenadeRb = _grenadeGO.GetComponent<Rigidbody>();
-        _lineRenderer = firePoint.GetComponent<LineRenderer>();
+        //_lineRenderer = firePoint.GetComponent<LineRenderer>();
+        _damage = new Damage(_amount, _pushForce, _tickAmount, _duration);
     }
 
     public virtual void Throw(Vector3 target)
     {
+        if (_onCooldown) return;
+
+        _onCooldown = true;
+        _timeSinceLastUse = 0;
         var grenadeGO = Instantiate(_grenadeGO, _firePoint.position, Quaternion.identity);
         var grenadeScript = grenadeGO.GetComponent<Grenade>();
         grenadeScript.CalculateThrowVelocity(target, _heightDisplacement);
         grenadeScript.Launch();
+        grenadeScript.SetSpawnEffect(_spawnEffect);
+        grenadeScript.SetDamage(_damage);
     }
 
     //public void EnableIndicator()

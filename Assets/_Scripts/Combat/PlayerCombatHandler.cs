@@ -51,7 +51,7 @@ public class PlayerCombatHandler : MonoBehaviour
         }
         _gun = _weaponSlot2;
         SwapWeapons();
-
+        _grenade = Instantiate(_grenade);
         _grenade.SetValues(_firePoint);
     }
 
@@ -63,6 +63,7 @@ public class PlayerCombatHandler : MonoBehaviour
         //Do we want the cooldown to keep going down wether or not the gun is equipped?
         _weaponSlot1?.UpdateWeaponStatus();
         _weaponSlot2?.UpdateWeaponStatus();
+        _grenade.UpdateState();
 
         if (Input.GetKeyDown(KeyCode.V))
         {

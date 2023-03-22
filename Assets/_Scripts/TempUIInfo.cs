@@ -16,7 +16,10 @@ public class TempUIInfo : MonoBehaviour
     RawImage _offWeaponImage;
     [SerializeField] RawImage _skillImage;
     [SerializeField] Image _cooldownMask;
+    [SerializeField] RawImage _grenadeImage;
+    [SerializeField] Image _cooldownMaskNade;
     TextMeshProUGUI _cooldownText;
+    TextMeshProUGUI _cooldownNadeText;
     private Image _border1;
     private Image _border2;
     private PlayerCombatHandler _playerCombatHandler;
@@ -35,8 +38,10 @@ public class TempUIInfo : MonoBehaviour
         _border1 = _weapon1UI.transform.GetChild(1).GetComponent<Image>();
         _border2 = _weapon2UI.transform.GetChild(1).GetComponent<Image>();
         _cooldownText = _cooldownMask.GetComponentInChildren<TextMeshProUGUI>();
+        _cooldownNadeText = _cooldownMaskNade.GetComponentInChildren<TextMeshProUGUI>();
         _skillUIAnimator = _skillUI.GetComponent<Animator>();
         _skillImage.texture = _playerCombatHandler._weaponSlot2._weaponSkill._skillIcon;
+        _grenadeImage.texture = _playerCombatHandler._grenade._icon;
     }
 
     // Update is called once per frame
@@ -114,7 +119,21 @@ public class TempUIInfo : MonoBehaviour
             _cooldownMask.enabled = false;
             _cooldownText.text = "";
         }
-        
+
+        GrenadeSO _currentGrenade = _playerCombatHandler._grenade;
+
+        if (_currentGrenade._onCooldown)
+        {
+            _cooldownMaskNade.enabled = true;
+            _cooldownNadeText.text = ((int)(_currentGrenade._cooldown - _currentGrenade._timeSinceLastUse) + 1).ToString();
+            _cooldownMaskNade.fillAmount = 1 - (_currentGrenade._timeSinceLastUse / _currentGrenade._cooldown);
+        }
+        else
+        {
+            _cooldownMaskNade.enabled = false;
+            _cooldownNadeText.text = "";
+        }
+
 
 
 

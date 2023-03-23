@@ -44,8 +44,8 @@ public class General_Stats : MonoBehaviour, IHitable
         _currentShield = _startingShield;
         
         //Temp
-        if (_shieldText != null) _shieldText.text = _currentShield.ToString() + " / " + MaxShield;
-        if (_hpText != null) _hpText.text = _currentHp.ToString() + " / " + MaxHP;
+        if (_shieldText != null) _shieldText.text = ((int)_currentShield).ToString() + " / " + MaxShield;
+        if (_hpText != null) _hpText.text = ((int)_currentHp).ToString() + " / " + MaxHP;
         if (_shieldSlider != null) _shieldSlider.value = _currentShield / MaxShield;
         if (_hpSlider != null) _hpSlider.value = _currentHp/ MaxHP;
         
@@ -63,8 +63,8 @@ public class General_Stats : MonoBehaviour, IHitable
         if(_currentShield <= 0) _currentShield = 0;
 
         //TEMP
-        if(_shieldText != null) _shieldText.text = _currentShield.ToString() + " / " + MaxShield;
-        if(_hpText != null) _hpText.text = _currentHp.ToString() + " / " + MaxHP;
+        if(_shieldText != null) _shieldText.text = ((int)_currentShield).ToString() + " / " + MaxShield;
+        if(_hpText != null) _hpText.text = ((int)_currentHp).ToString() + " / " + MaxHP;
         if (_shieldSlider != null) _shieldSlider.value = _currentShield / MaxShield;
         if (_hpSlider != null) _hpSlider.value = _currentHp / MaxHP;
     }
@@ -96,8 +96,8 @@ public class General_Stats : MonoBehaviour, IHitable
         _currentHp = MaxHP;
         _currentShield = _startingShield;
         //Temp
-        if (_shieldText != null) _shieldText.text = _currentShield.ToString() + " / " + MaxShield;
-        if (_hpText != null) _hpText.text = _currentHp.ToString() + " / " + MaxHP;
+        if (_shieldText != null) _shieldText.text = ((int)_currentShield).ToString() + " / " + MaxShield;
+        if (_hpText != null) _hpText.text = ((int)_currentHp).ToString() + " / " + MaxHP;
         if (_shieldSlider != null) _shieldSlider.value = _currentShield / MaxShield;
         if (_hpSlider != null) _hpSlider.value = _currentHp / MaxHP;
     }

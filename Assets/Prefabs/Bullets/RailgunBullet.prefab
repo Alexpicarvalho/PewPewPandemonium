@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 5232475142937387456}
   - component: {fileID: 7989043929883922412}
   m_Layer: 7
-  m_Name: Bullet1
+  m_Name: RailgunBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -392,13 +392,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0adc52c89dcd0ff4baf1890a7403a1e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _amount: 1
+  _amount: 10
   _addForce: 0
   _tickAmount: 1
   _damageOverTimeDuration: 0
   _impact: {fileID: 3915230876885144064, guid: 1b688a6214a9fe1459a70bea846d23c2, type: 3}
-  speed: 20
-  lifeTime: 10
+  _speed: 10
+  _lifeTime: 10
+  _minDamagePercent: 0.2
+  _decaysAfterSeconds: 0
+  _decayRateSecond: 1
 --- !u!1 &1574755380163598
 GameObject:
   m_ObjectHideFlags: 0

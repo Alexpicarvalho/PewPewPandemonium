@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b57e9733f217a9a4abdb6fa4182529cc, type: 3}
+  m_Name: ProwlerPerk
+  m_EditorClassIdentifier: 
+  _name: 
+  _description: 
+  _perkIcon: {fileID: 2800000, guid: 00299b0d69e2bf143beda32c081a4cad, type: 3}
+  _points: 0

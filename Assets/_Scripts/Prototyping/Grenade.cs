@@ -6,13 +6,12 @@ using UnityEngine;
 [RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(PersonalTime))]
 [RequireComponent(typeof(Rigidbody))]
-public class Grenade : MonoBehaviour
+public class Grenade : Damager
 {
     [SerializeField] Vector3 _torque = new Vector3(45, 0, 45);
     private Vector3 _throwDirection;
     protected Rigidbody _rb;
     protected GameObject _spawnEffect;
-    public Damage _damage;
     public ITime _iTime;
     protected bool _slowed;
 
@@ -36,9 +35,9 @@ public class Grenade : MonoBehaviour
         transform.GetComponent<Collider>().enabled = true;
     }
 
-    public void SetDamage(Damage damage)
+    public override void SetDamage(Damage newDamage = null)
     {
-        _damage = damage;
+        base.SetDamage(newDamage);
     }
 
     public virtual void CalculateThrowVelocity(Vector3 target, float offset)

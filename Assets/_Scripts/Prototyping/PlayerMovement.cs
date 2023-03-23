@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     bool _canMove = true;
     Vector3 moveDirection;
     float accelaration;
+    private float _perkSpeedModifier = 0;
 
     //READ ONLY
     public float Speed => _currentSpeed;
@@ -120,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (moveDirection.magnitude != 0.0f && _canMove)
         {
-            rb.MovePosition(transform.position + moveDirection * _currentSpeed * iTime.personalTimeScale * Time.deltaTime);
+            rb.MovePosition(transform.position + moveDirection * _currentSpeed * _perkSpeedModifier * iTime.personalTimeScale * Time.deltaTime);
             //anim.SetBool("Moving", true);  
         }
 
@@ -167,6 +168,11 @@ public class PlayerMovement : MonoBehaviour
         float value = /*Mathf.Sin(*/Vector3.Angle(transform.forward, moveDir)/*)*/;
         if (moveDir.x > 0) value += 180;
         anim.SetFloat("MovBlend", value);
+    }
+
+    public void PerkModifySpeed(float _multiplier)
+    {
+        _perkSpeedModifier = _multiplier;
     }
 }
 

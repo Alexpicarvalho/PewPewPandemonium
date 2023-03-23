@@ -146,8 +146,12 @@ MonoBehaviour:
   _tickAmount: 1
   _damageOverTimeDuration: 0
   _impact: {fileID: 0}
-  speed: 20
-  lifeTime: 0.4
+  _speed: 20
+  _lifeTime: 0.3
+  _minDamagePercent: 0.2
+  _decaysAfterSeconds: 0
+  _minDamageAfterSeconds: 0
+  _decayRateSecond: 0
 --- !u!1001 &7376552864120881572
 PrefabInstance:
   m_ObjectHideFlags: 0

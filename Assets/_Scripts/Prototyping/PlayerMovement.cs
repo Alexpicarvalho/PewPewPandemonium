@@ -121,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (moveDirection.magnitude != 0.0f && _canMove)
         {
-            rb.MovePosition(transform.position + moveDirection * _currentSpeed * _perkSpeedModifier * iTime.personalTimeScale * Time.deltaTime);
+            rb.MovePosition(transform.position + moveDirection * _currentSpeed * (1 + _perkSpeedModifier) * iTime.personalTimeScale * Time.deltaTime);
             //anim.SetBool("Moving", true);  
         }
 

@@ -459,8 +459,8 @@ MonoBehaviour:
   zoneWall: {fileID: 749579906}
   xRadius: 100
   speed: 0.1
-  timeToStart: 10
-  timeToEnd: 20
+  timeToStart: 5
+  timeToEnd: 5
   mul: 0.01
 --- !u!1 &180685957
 GameObject:

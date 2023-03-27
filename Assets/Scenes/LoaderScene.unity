@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 465462283}
+  - component: {fileID: 465462284}
   m_Layer: 0
   m_Name: Loader
   m_TagString: Untagged
@@ -147,10 +148,38 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465462282}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.527323, y: -27.74421, z: -49.172}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &465462284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465462282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac6982e8e3e1a3845b054d87f7a1c2d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _batchModeScene: 
+  _batchModeConfiguration:
+    GameplayType: 1
+    GameMode: 5
+    ServerName: Batch
+    MaxPlayers: 3
+    ExtraPeers: 0
+    Region: euw
+    SessionName: Batch
+    CustomLobby: 
+    IPAddress: 
+    Port: 0
+    Multiplay: 0
+    QueryProtocol: 0
+    Matchmaking: 0
+    Backfill: 0

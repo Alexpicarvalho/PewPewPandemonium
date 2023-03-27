@@ -571,7 +571,7 @@ public class NetworkDebugStart : Fusion.Behaviour {
     }
 
     return runner.StartGame(new StartGameArgs {
-      GameMode = gameMode,
+      //GameMode = gameMode,
       Address = address,
       Scene = scene,
       SessionName = DefaultRoomName,

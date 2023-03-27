@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1eeb2c3cf977f41b5eb64512b1e0de, type: 3}
+  m_Name: Shotgun
+  m_EditorClassIdentifier: 
+  _name: Shotgun
+  _description: 
+  _icon: {fileID: 2800000, guid: 62dc7b532c3a77e4bafa505069b2832c, type: 3}
+  _weaponGO: {fileID: 2031753809493029809, guid: 1f1289a1c8e71ab4f9f8050e0a78c9ca, type: 3}
+  _bulletGO: {fileID: 8570545901289635318, guid: 3716fe9528889f9488f3ee72a5146fda, type: 3}
+  _muzzleFlash: {fileID: 1227067792111776, guid: 5d9718dfb9b6a874d93fcbd5cb7cb816, type: 3}
+  _weaponIcon: {fileID: 2800000, guid: 62dc7b532c3a77e4bafa505069b2832c, type: 3}
+  _groundPickUpPrefab: {fileID: 2273022344544888768, guid: ce38cda54dcb7c34b83651657aa3a764, type: 3}
+  _visualEffect: {fileID: 0}
+  _extraEffectType: 0
+  _extraEffectTimeToShutOff: 0
+  _fireingType: 0
+  _weaponSkillRef: {fileID: 11400000, guid: cc5323cf69af93546a1b55263d65ae58, type: 2}
+  _weaponTier: 0
+  _damageMultiplier: 1
+  _bulletsPerMinute: 80
+  _magazineSize: 8
+  _reloadTime: 2
+  _critDamageMultiplier: 2
+  _weaponWeight: 0
+  _weaponSights: 0
+  _weaponInaccuracy: 0
+  _maxInaccuracy: 10
+  _maxDisplacement: 0.1
+  _coneShooting: 1
+  _bulletsFired: 5
+  _fireingConeAngle: 15
+  _soundData: {fileID: 0}
+  _bulletsInMag: 0
+  _currentShootingStatus: 0
+  _weaponClone: {fileID: 0}
+  _vfxClone: {fileID: 0}
+  _weaponSkill: {fileID: 0}
+  _ownerID: 0
+  _positionInHand: {x: 0.068, y: -0.053, z: 0.116}
+  _rotationInHand: {x: 0.49885878, y: 0.4993505, z: 0.49930686, w: 0.50247556}
+  _playerAnimator: {fileID: 0}
+  _weaponAnimator: {fileID: 0}
+  _timeBetweenShots: 0

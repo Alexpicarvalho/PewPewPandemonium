@@ -16,3 +16,5 @@ MonoBehaviour:
   _description: 
   _perkIcon: {fileID: 2800000, guid: d4124ca58cc207b4f8726a5a10583110, type: 3}
   _points: 0
+  _cameraControler: {fileID: 0}
+  _reachedMaxLevel: 0

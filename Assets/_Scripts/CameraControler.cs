@@ -15,11 +15,13 @@ public class CameraControler : MonoBehaviour
     [SerializeField] float _waitBeforeDistanceReset;
     private CinemachineVirtualCamera _cinCam;
     bool _shooting = false;
+    private Camera _mainCam;
 
     private void Start()
     {
         _cinCam = GetComponent<CinemachineVirtualCamera>();
         _cameraDistance = _defaultCameraDistance;
+        _mainCam = Camera.main;
     }
 
     private void Update()
@@ -43,6 +45,12 @@ public class CameraControler : MonoBehaviour
         {
             (componentBase as CinemachineFramingTransposer).m_CameraDistance = _cameraDistance;
         }
+    }
+
+    public void AddRemoveRenderLayers(LayerMask layerToAdd, LayerMask layerToRemove)
+    {
+        _mainCam.cullingMask += layerToAdd;
+        _mainCam.cullingMask -= layerToRemove;
     }
 
     private IEnumerator ResetCamera()

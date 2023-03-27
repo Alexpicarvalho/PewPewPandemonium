@@ -96,7 +96,7 @@ public class WeaponSkillSO : ScriptableObject
     }
     public virtual void HideSkillIndicator() { _indicatorClone?.SetActive(false); }
     
-    public virtual void ExecuteSpell(/*GameObject parent*/)
+    public virtual void ExecuteSpell(/*GameObject parent*/ Vector3 _target = new Vector3())
     {
         if (_skillState != SkillState.Casting) return;
         _skillState = SkillState.Active;

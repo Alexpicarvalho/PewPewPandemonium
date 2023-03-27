@@ -18,10 +18,14 @@ public class PlayerMovement : MonoBehaviour
     public GameObject marker;
 
     [Header("Dodge Values")]
+    public int _maxDodgeCharges = 2;
+    public float _dodgeRechargeCooldown;
     [SerializeField] private float dodgeSpeed;
     [SerializeField] private float dodgeDuration;
     [SerializeField] private AnimationCurve speedCurve;
     [SerializeField] private GameObject _rollingSmoke;
+    private float _timeSinceLastDodge;
+    public int _currentDodgeCharges;
 
     [Header("Mouse")]
     [SerializeField] private LayerMask layerMask;
@@ -31,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     private ITime iTime;
     private CreateFootPrint _footPrinter;
     Rigidbody rb;
+    private Object_ID _id;
 
     [Header("Runtime Variables")]
     private float vel = 0;
@@ -38,7 +43,13 @@ public class PlayerMovement : MonoBehaviour
     bool _canMove = true;
     Vector3 moveDirection;
     float accelaration;
+    
+    [Header("Perk Values")]
     private float _perkSpeedModifier = 0;
+    public bool _prowlerActive = false;
+    public bool _trackSpeedUp = false;
+    [HideInInspector] public float _trackSpeed;
+
 
     //READ ONLY
     public float Speed => _currentSpeed;
@@ -53,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
         ComponentSetup();
         accelaration = (_maxSpeed - _startSpeed) / _timeToAchieveMaxSpeed;
         _currentSpeed = _startSpeed;
+        _currentDodgeCharges = _maxDodgeCharges;
     }
 
     void ComponentSetup()
@@ -61,12 +73,13 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         iTime = GetComponent<ITime>();
+        _id = GetComponent<Object_ID>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        RechargeDodge();
         float xMov = Input.GetAxis("Horizontal");
         float zMov = Input.GetAxis("Vertical");
         Vector3 mousePos = MousePosition();
@@ -99,7 +112,6 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                anim.Play("Rollin Blend Tree");
                 Dodge();
             }
         }
@@ -116,7 +128,6 @@ public class PlayerMovement : MonoBehaviour
         
 
     }
-
     private void FixedUpdate()
     {
         if (moveDirection.magnitude != 0.0f && _canMove)
@@ -127,8 +138,25 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void RechargeDodge()
+    {
+        if (_currentDodgeCharges == _maxDodgeCharges) return;
+
+        _timeSinceLastDodge += Time.deltaTime;
+
+        if(_timeSinceLastDodge >= _dodgeRechargeCooldown) 
+        {
+            _currentDodgeCharges++;
+            _timeSinceLastDodge = 0;
+        }
+    }
+
     public void Dodge()
     {
+        if (_currentDodgeCharges <= 0) return;
+        anim.Play("Rollin Blend Tree");
+        _timeSinceLastDodge = 0;
+        _currentDodgeCharges--;
         StartCoroutine(DodgeMove());
     }
     IEnumerator DodgeMove()
@@ -170,10 +198,32 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("MovBlend", value);
     }
 
-    public void PerkModifySpeed(float _multiplier)
+
+    #region Perk Effects On Movement
+    public void PerkModifySpeed(float _multiplier, bool add = true)
     {
-        _perkSpeedModifier = _multiplier;
+        _perkSpeedModifier += _multiplier;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Entered");
+        if (other.gameObject.layer != LayerMask.NameToLayer("TrackerPrint") || other.GetComponent<Object_ID>().my_ID == _id.my_ID) return;
+        Debug.Log("On Tracks");
+        PerkModifySpeed(_trackSpeed);
+        _trackSpeedUp = true;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer != LayerMask.NameToLayer("TrackerPrint") || other.GetComponent<Object_ID>().my_ID == _id.my_ID) return;
+        Debug.Log("Off Tracks");
+        PerkModifySpeed(-_trackSpeed);
+        _trackSpeedUp = false;
+    }
+
+
+    #endregion
+
 }
 
 

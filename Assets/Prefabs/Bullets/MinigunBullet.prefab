@@ -5026,8 +5026,13 @@ MonoBehaviour:
   _tickAmount: 1
   _damageOverTimeDuration: 0
   _impact: {fileID: 3915230876885144064, guid: 1b688a6214a9fe1459a70bea846d23c2, type: 3}
-  speed: 20
-  lifeTime: 10
+  _unparentOnDestroy: []
+  _speed: 20
+  _lifeTime: 10
+  _shrinkOnDestroyDuration: 0.1
+  _minDamagePercent: 0.2
+  _decaysAfterSeconds: 0
+  _decayRateSecond: 0
 --- !u!1 &7420386609024022550
 GameObject:
   m_ObjectHideFlags: 0

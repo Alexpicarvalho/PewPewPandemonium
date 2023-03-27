@@ -16,6 +16,7 @@ public class PlayerCombatHandler : MonoBehaviour
     [SerializeField] Transform _hand;
     [SerializeField] Transform _firePoint;
     private Animator _animator;
+    private Object_ID _id;
 
     [Header("Runtime Variables")]
     [HideInInspector] public bool _reloading = false;
@@ -30,8 +31,11 @@ public class PlayerCombatHandler : MonoBehaviour
     //[SerializeField] private float _swapEffectDuration;
     private bool _swapReady = true;
     //[SerializeField] Material _dissolveMat;
-    
-    
+
+    [Header("Perk Related Properties")]
+    private float _cooldownReduction;
+    private float _reloadTimeReduction;
+
     //Temporary Knife Combat
     void KnifeAttack() 
     {
@@ -41,6 +45,8 @@ public class PlayerCombatHandler : MonoBehaviour
     
     private void Awake()
     {
+        Debug.Log("ENTREI NO AWAKE");
+        _id = GetComponent<Object_ID>();
         _swapReady = true;
         _animator = GetComponent<Animator>();
         //TEMP 
@@ -54,6 +60,7 @@ public class PlayerCombatHandler : MonoBehaviour
         _grenade = Instantiate(_grenade);
         _grenade.SetValues(_firePoint);
     }
+
 
     private void Update()
     {
@@ -145,7 +152,7 @@ public class PlayerCombatHandler : MonoBehaviour
     public void SetupWeapon(GunSO newWeapon)
     {
         newWeapon.PlaceInHand(_hand);
-        newWeapon.SetWeaponValues(_firePoint);
+        newWeapon.SetWeaponValues(_firePoint, _id);
     }
 
     private void SwapWeapons()
@@ -178,7 +185,7 @@ public class PlayerCombatHandler : MonoBehaviour
     }
     public void ExecuteSkill()
     {
-        _gun.CastSkill();
+        _gun.CastSkill(MousePosition());
     }
 
     //public IEnumerator ReadyNextShot()
@@ -222,6 +229,18 @@ public class PlayerCombatHandler : MonoBehaviour
 
     #endregion
 
+    #region Perk Related Methods
+
+    public void UpdateCooldownReduction(float cdGain)
+    {
+        _cooldownReduction += cdGain;
+    }
+    public void UpdateReloadSpeed(float reloadSpeedGain)
+    {
+        _reloadTimeReduction += reloadSpeedGain;
+    }
+
+    #endregion
 
     public IEnumerator ShutOffExtraEffect()
     {

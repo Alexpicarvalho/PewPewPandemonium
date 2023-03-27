@@ -16,3 +16,5 @@ MonoBehaviour:
   _description: 
   _perkIcon: {fileID: 0}
   _points: 0
+  _cameraControler: {fileID: 0}
+  _reachedMaxLevel: 0

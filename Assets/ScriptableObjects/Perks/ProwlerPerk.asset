@@ -16,3 +16,13 @@ MonoBehaviour:
   _description: 
   _perkIcon: {fileID: 2800000, guid: 00299b0d69e2bf143beda32c081a4cad, type: 3}
   _points: 0
+  _cameraControler: {fileID: 0}
+  _reachedMaxLevel: 0
+  _prowlerTrackLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  _normalTrackLayer:
+    serializedVersion: 2
+    m_Bits: 8192
+  _speedOnTracksLvl1: 0.25
+  _speedOnTracksLvl2: 0.5

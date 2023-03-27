@@ -2,16 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerPerkHandler : MonoBehaviour
 {
-    [SerializeField] List<Perk> _perkRefs = new List<Perk>();
-    private List<Perk> _perks = new List<Perk>();
+    [SerializeField] List<Perk> _perks = new List<Perk>();
+    //private List<Perk> _perks = new List<Perk>();
 
-    [Header("Relevant Player Components")]
+    [Header("Relevant Components")]
     private PlayerMovement _playerMovement;
     private General_Stats _playerStats;
+    [SerializeField] private CameraControler _cameraControler;
+    private PlayerCombatHandler _playerCombatHandler;
 
+    Button button;
 
     private void Start()
     {
@@ -19,18 +23,39 @@ public class PlayerPerkHandler : MonoBehaviour
         InstatiatePerks();
     }
 
+
+    //UPDATE IS TEST ONLY
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            foreach (var perk in _perks)
+            {
+                if(perk is AdrenalineJunkiePerk)
+                {
+                    perk.GetCamController(_cameraControler);
+                    perk.LevelUp();
+                    perk.UpdateEffects(transform.gameObject);
+                }
+            }
+        }
+    }
+
     private void GetComponents()
     {
         _playerMovement = GetComponent<PlayerMovement>();
         _playerStats = GetComponent<General_Stats>();
+        _playerCombatHandler = GetComponent<PlayerCombatHandler>();
     }
 
     private void InstatiatePerks()
     {
-        foreach (var perk in _perkRefs)
+        foreach (var perk in /*_perkRefs*/_perks)
         {
-            Perk newPerk = Instantiate(perk);
-            _perks.Add(newPerk);
+            perk._points = 0;
+            perk._reachedMaxLevel = false;
+            //Perk newPerk = Instantiate(perk);
+            //_perks.Add(newPerk);
         }
     }
 
@@ -38,7 +63,11 @@ public class PlayerPerkHandler : MonoBehaviour
     {
         foreach (var perk in _perks)
         {
-            perk.UpdateEffects();
+            perk.UpdateEffects(transform.gameObject);
         }
+    }
+
+    public void LevelUpPerk()
+    {
     }
 }

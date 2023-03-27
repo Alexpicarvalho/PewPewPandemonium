@@ -38,6 +38,12 @@ public class GunSO : Item
     [SerializeField] public float _maxInaccuracy = 10;
     [SerializeField] public float _maxDisplacement = .1f;
 
+    [Header("Special Properties")]
+    [SerializeField] bool _coneShooting = false;
+    [SerializeField] private int _bulletsFired = 1;
+    [SerializeField] private float _fireingConeAngle;
+
+
     [Header("Audio")]
     [SerializeField] SoundData _soundData;
     private AudioSource _audioSource;
@@ -49,6 +55,7 @@ public class GunSO : Item
     [HideInInspector] public GameObject _weaponClone;
     [HideInInspector] public GameObject _vfxClone;
     public WeaponSkillSO _weaponSkill;
+    public int _ownerID;
 
     [Header("Hand Placement")]
     [SerializeField] private Vector3 _positionInHand;
@@ -81,7 +88,7 @@ public class GunSO : Item
 
     //Methods
 
-    public void SetWeaponValues(Transform firePoint)
+    public void SetWeaponValues(Transform firePoint, Object_ID parentID = null)
     {
         _firePoint = firePoint;
         _weaponSkill = Instantiate(_weaponSkillRef);
@@ -89,6 +96,7 @@ public class GunSO : Item
         _timeBetweenShots = 60.0f / _bulletsPerMinute;
         _currentShootingStatus = ShootingStatus.ShotReady;
         _audioSource = _firePoint.GetComponent<AudioSource>();
+        if (parentID) _ownerID = parentID.my_ID;
         if (_visualEffect)
         {
             _vfxClone = Instantiate(_visualEffect, _firePoint.transform.position, Quaternion.LookRotation(_firePoint.forward));
@@ -142,6 +150,12 @@ public class GunSO : Item
     {
         if (_currentShootingStatus != ShootingStatus.ShotReady || _firePoint == null) return;
 
+        if(_coneShooting) { ConeShoot(); return; }
+        else ShootForward();
+        
+    }
+    private void ShootForward()
+    {
         _currentShootingStatus = ShootingStatus.BetweenShots;
         _bulletsInMag--;
         _timeSinceLastShot = 0;
@@ -151,10 +165,51 @@ public class GunSO : Item
         bullet.transform.Translate(GetDisplacement(), 0, GetDisplacement());
         bullet.transform.Rotate(0, GetInaccuracy(), 0, Space.Self);
         bullet.GetComponent<Damager>().SetDamage();
-        if(_soundData)_audioSource.PlayOneShot(_soundData.GetRandomSound(),_soundData.GetClipVolume());
+        if (_soundData) _audioSource.PlayOneShot(_soundData.GetRandomSound(), _soundData.GetClipVolume());
         //PlayExtraEffect();
         // Get bullet script and pass necessary variables
     }
+
+    private void ConeShoot()
+    {
+        if (_bulletsFired % 2 == 1) ShootForward();
+        else
+        {
+            Instantiate(_muzzleFlash, _firePoint.position, Quaternion.identity);
+            _currentShootingStatus = ShootingStatus.BetweenShots;
+            _bulletsInMag--;
+            _timeSinceLastShot = 0;
+            if (_soundData) _audioSource.PlayOneShot(_soundData.GetRandomSound(), _soundData.GetClipVolume());
+        }
+        ShootSideBullets();
+    }
+
+    private void ShootSideBullets()
+    {  
+        int _bulletsToSpawn = _bulletsFired - 1;
+        for (int i = 1; i <= _bulletsToSpawn / 2; i++)
+        {
+            Quaternion rotation = Quaternion.AngleAxis((_fireingConeAngle / _bulletsToSpawn) * i, Vector3.up);
+            Vector3 direction = (rotation * _firePoint.forward).normalized;
+   
+            var bullet = Instantiate(_bulletGO, _firePoint.position, Quaternion.LookRotation(direction));
+            bullet.transform.Translate(GetDisplacement(), 0, GetDisplacement());
+            bullet.transform.Rotate(0, GetInaccuracy(), 0, Space.Self);
+            bullet.GetComponent<Damager>().SetDamage();
+        }
+        for (int i = 1; i <= _bulletsToSpawn / 2; i++)
+        {
+            Quaternion rotation = Quaternion.AngleAxis((_fireingConeAngle / _bulletsToSpawn) * i, Vector3.up);
+            Vector3 direction = (Quaternion.Inverse(rotation) * _firePoint.forward).normalized;
+
+            var bullet = Instantiate(_bulletGO, _firePoint.position, Quaternion.LookRotation(direction));
+            bullet.transform.Translate(GetDisplacement(), 0, GetDisplacement());
+            bullet.transform.Rotate(0, GetInaccuracy(), 0, Space.Self);
+            bullet.GetComponent<Damager>().SetDamage();
+        }
+    }
+
+   
 
     private void PlayExtraEffect()
     {
@@ -171,10 +226,10 @@ public class GunSO : Item
         }
     }
 
-    public virtual void CastSkill()
+    public virtual void CastSkill(Vector3 target = default)
     {
         // Cast Skill In Weapon Skill Scriptable Object
-        _weaponSkill.ExecuteSpell();
+        _weaponSkill.ExecuteSpell(target);
     }
 
     public virtual void Reload()

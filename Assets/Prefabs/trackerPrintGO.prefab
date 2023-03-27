@@ -4989,6 +4989,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1545792168646247377}
+  - component: {fileID: 4651468328436976064}
+  - component: {fileID: -6577250208436521584}
+  - component: {fileID: -262691097445579363}
   m_Layer: 12
   m_Name: trackerPrintGO
   m_TagString: Untagged
@@ -5013,3 +5016,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4651468328436976064
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5104786141639719680}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.2, z: 1}
+  m_Center: {x: 0, y: 0.1, z: 0}
+--- !u!114 &-6577250208436521584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5104786141639719680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c36b7cfff6c0f643accbd156a15e804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _myRenderers: []
+  _hideParts: []
+  _hiden: 0
+--- !u!114 &-262691097445579363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5104786141639719680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b36b18f97b18e8479ed35237f64ac77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

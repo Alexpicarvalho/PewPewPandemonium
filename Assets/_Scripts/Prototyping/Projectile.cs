@@ -4,16 +4,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ITime))]
+[RequireComponent(typeof(PersonalTime))]
 [RequireComponent(typeof(Rigidbody))]
 public class Projectile : Damager
 {
     [Header("Visuals")]
     [SerializeField] GameObject _impact;
+    [SerializeField] Transform[] _unparentOnDestroy;
 
     [Header("Individual Properties")]
     public float _speed;
     public float _lifeTime = 10;
+    public float _shrinkOnDestroyDuration = .1f;
 
     [Header("Damage Decay")]
     [SerializeField] [Range(0, 1)] private float _minDamagePercent = 0.2f;
@@ -31,9 +33,9 @@ public class Projectile : Damager
     int collisionIndex = 0;
 
     // Start is called before the first frame update    
-    void Start()
+    public virtual void Start()
     {
-        Destroy(gameObject, _lifeTime);
+        Invoke("DestroyAfter", _lifeTime - _shrinkOnDestroyDuration);
         iTime = GetComponent<ITime>();
 
     }
@@ -65,8 +67,9 @@ public class Projectile : Damager
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public virtual void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision.collider.name);
         ContactPoint cp = collision.GetContact(0);
         var target = collision.collider.GetComponent<IHitable>();
         if (target != null)
@@ -79,10 +82,17 @@ public class Projectile : Damager
             var hit = Instantiate(_impact, cp.point + cp.normal * .5f, Quaternion.LookRotation(cp.normal));
             Destroy(hit, 2.0f);
         }
-
         Destroy(gameObject);
     }
-    private void OnTriggerEnter(Collider other)
+
+    private void UnparentTrails()
+    {
+        foreach (var trail in _unparentOnDestroy)
+        {
+            trail.parent = null;
+        }
+    }
+    public virtual void OnTriggerEnter(Collider other)
     {
         var target = other.GetComponent<IHitable>();
         if (target != null)
@@ -93,4 +103,27 @@ public class Projectile : Damager
         if (!other.GetComponent<Collider>().isTrigger) Destroy(transform.GetComponent<Collider>());
         //Destroy(gameObject);
     }
+
+    private void DestroyAfter()
+    {
+        StartCoroutine(DestroyMe());
+    }
+
+    private IEnumerator DestroyMe()
+    {
+        Vector3 startScale = transform.localScale;
+        float startTime = Time.time;
+        while (Time.time < startTime + _shrinkOnDestroyDuration)
+        {
+            transform.localScale = Vector3.Lerp(startScale, Vector3.zero,(Time.time - startTime)/_shrinkOnDestroyDuration);
+            yield return null;
+        }
+        Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        UnparentTrails();
+    }
+
 }

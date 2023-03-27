@@ -23,6 +23,7 @@ public class GunSO : Item
     [SerializeField] public float _extraEffectTimeToShutOff;
 
     [Header("Individual Attributes")]
+    [SerializeField] public string _shootingAnimTrigger;
     [SerializeField] public FireingType _fireingType;
     [SerializeField] public WeaponSkillSO _weaponSkillRef;
     [SerializeField] public WeaponTier _weaponTier;

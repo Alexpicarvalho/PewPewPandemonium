@@ -81,6 +81,7 @@ public class PlayerCombatHandler : MonoBehaviour
         if (Input.GetButton("Fire1"))
         {
             _gun.NormalShoot();
+            _animator.SetTrigger(_gun._shootingAnimTrigger);
 
         }
 

@@ -23,6 +23,7 @@ MonoBehaviour:
   _visualEffect: {fileID: 0}
   _extraEffectType: 0
   _extraEffectTimeToShutOff: 0
+  _shootingAnimTrigger: Shoot
   _fireingType: 0
   _weaponSkillRef: {fileID: 11400000, guid: cc5323cf69af93546a1b55263d65ae58, type: 2}
   _weaponTier: 0

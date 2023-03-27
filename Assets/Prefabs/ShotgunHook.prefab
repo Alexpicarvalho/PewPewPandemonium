@@ -334,5 +334,5 @@ MonoBehaviour:
   _minDamagePercent: 0.2
   _decaysAfterSeconds: 0
   _decayRateSecond: 0
-  _pullForce: 60
+  _pullForce: 45
   _minDistanceOffset: 1

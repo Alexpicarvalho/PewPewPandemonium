@@ -31,7 +31,7 @@ public class PlayerPerkHandler : MonoBehaviour
         {
             foreach (var perk in _perks)
             {
-                if(perk is AdrenalineJunkiePerk)
+                if(perk is ProwlerPerk)
                 {
                     perk.GetCamController(_cameraControler);
                     perk.LevelUp();

@@ -4991,6 +4991,7 @@ GameObject:
   - component: {fileID: 1545792168646247377}
   - component: {fileID: -6461410511612573157}
   - component: {fileID: -2316211370706300564}
+  - component: {fileID: -499036400168999344}
   m_Layer: 13
   m_Name: ShoePrint
   m_TagString: Untagged
@@ -5042,3 +5043,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b36b18f97b18e8479ed35237f64ac77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  my_ID: 0
+--- !u!114 &-499036400168999344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5104786141639719680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4b7d455d6de024b8f0d4c6c41ceaba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _delayBeforeFade: 2
+  _fadeDuration: 5
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0

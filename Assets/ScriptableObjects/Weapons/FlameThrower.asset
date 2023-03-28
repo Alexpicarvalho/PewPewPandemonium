@@ -23,6 +23,7 @@ MonoBehaviour:
   _visualEffect: {fileID: 8764043878647920493, guid: c4ed38c72957f2241ad144a1614956d9, type: 3}
   _extraEffectType: 1
   _extraEffectTimeToShutOff: 0.6
+  _shootingAnimTrigger: 
   _fireingType: 0
   _weaponSkillRef: {fileID: 11400000, guid: f4f3340eec62e08489077c087bdfe842, type: 2}
   _weaponTier: 0
@@ -36,12 +37,16 @@ MonoBehaviour:
   _weaponInaccuracy: 0.5
   _maxInaccuracy: 25
   _maxDisplacement: 0
+  _coneShooting: 0
+  _bulletsFired: 100
+  _fireingConeAngle: 360
   _soundData: {fileID: 11400000, guid: 7c6dc1c5437aaee47a827bc038943bca, type: 2}
   _bulletsInMag: 100
   _currentShootingStatus: 0
   _weaponClone: {fileID: 0}
   _vfxClone: {fileID: 0}
   _weaponSkill: {fileID: 11400000, guid: 1bf6fb3b7c4c63d40b1950aa428ed43f, type: 2}
+  _ownerID: 0
   _positionInHand: {x: 0.076, y: -0.046, z: 0.012}
   _rotationInHand: {x: 0.5006671, y: 0.49933192, z: 0.49933192, w: 0.5006671}
   _playerAnimator: {fileID: 0}

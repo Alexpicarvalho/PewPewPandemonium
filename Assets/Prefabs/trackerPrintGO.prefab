@@ -4992,6 +4992,7 @@ GameObject:
   - component: {fileID: 4651468328436976064}
   - component: {fileID: -6577250208436521584}
   - component: {fileID: -262691097445579363}
+  - component: {fileID: -7020988570755717237}
   m_Layer: 12
   m_Name: trackerPrintGO
   m_TagString: Untagged
@@ -5056,3 +5057,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b36b18f97b18e8479ed35237f64ac77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  my_ID: 0
+--- !u!114 &-7020988570755717237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5104786141639719680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4b7d455d6de024b8f0d4c6c41ceaba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _delayBeforeFade: 2
+  _fadeDuration: 5
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0

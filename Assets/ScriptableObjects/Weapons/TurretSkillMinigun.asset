@@ -38,7 +38,7 @@ MonoBehaviour:
   _maxInaccuracy: 8
   _maxDisplacement: 0.2
   _coneShooting: 0
-  _bulletsFired: 100
+  _bulletsFired: 12
   _fireingConeAngle: 360
   _soundData: {fileID: 11400000, guid: c9f504011c41ec540a9802b9bd93219a, type: 2}
   _bulletsInMag: 50

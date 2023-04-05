@@ -161,14 +161,23 @@ public class GunSO : Item
         _bulletsInMag--;
         _timeSinceLastShot = 0;
 
-        Instantiate(_muzzleFlash, _firePoint.position, Quaternion.identity);
+        if (_muzzleFlash) Instantiate(_muzzleFlash, _firePoint.position, Quaternion.identity);
         var bullet = Instantiate(_bulletGO, _firePoint.position, Quaternion.LookRotation(_firePoint.forward));
         bullet.transform.Translate(GetDisplacement(), 0, GetDisplacement());
         bullet.transform.Rotate(0, GetInaccuracy(), 0, Space.Self);
         bullet.GetComponent<Damager>().SetDamage();
-        if (_soundData) _audioSource.PlayOneShot(_soundData.GetRandomSound(), _soundData.GetClipVolume());
+        if (_soundData != null) _audioSource.PlayOneShot(_soundData.GetRandomSound(), _soundData.GetClipVolume());
         //PlayExtraEffect();
         // Get bullet script and pass necessary variables
+    }
+
+    private void ShootEffects()
+    {
+        if (_muzzleFlash) Instantiate(_muzzleFlash, _firePoint.position, Quaternion.identity);
+        _currentShootingStatus = ShootingStatus.BetweenShots;
+        _bulletsInMag--;
+        _timeSinceLastShot = 0;
+        if (_soundData) _audioSource.PlayOneShot(_soundData.GetRandomSound(), _soundData.GetClipVolume());
     }
 
     private void ConeShoot()
@@ -180,7 +189,7 @@ public class GunSO : Item
             _currentShootingStatus = ShootingStatus.BetweenShots;
             _bulletsInMag--;
             _timeSinceLastShot = 0;
-            if (_soundData) _audioSource.PlayOneShot(_soundData.GetRandomSound(), _soundData.GetClipVolume());
+            //if (_soundData) _audioSource.PlayOneShot(_soundData.GetRandomSound(), _soundData.GetClipVolume());
         }
         ShootSideBullets();
     }

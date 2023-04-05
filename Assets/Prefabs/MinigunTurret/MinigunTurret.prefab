@@ -336,7 +336,7 @@ MonoBehaviour:
   _lifeTime: 8
   _targetLayers:
     serializedVersion: 2
-    m_Bits: 16392
+    m_Bits: 16393
   _targetDetectionRange: 10
   _rangeVisualisor: {fileID: 8260984532154360428}
   _onDestroyExplosionVFX: {fileID: 1612255617566175962, guid: 7b186484d85245b4db3a5311cec5cfb5, type: 3}

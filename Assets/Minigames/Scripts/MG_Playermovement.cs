@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MG_Playermovement : MonoBehaviour
 {
+    bool alive = true;
    public float speed = 1f;
    public Rigidbody rb;
    private Vector3 moveDirection = Vector3.zero;
@@ -13,6 +15,8 @@ public class MG_Playermovement : MonoBehaviour
 
     void Update()
     {
+        if (!alive) return;
+
         // move the player front
         moveDirection = transform.forward * speed * Time.deltaTime;
 
@@ -27,5 +31,21 @@ public class MG_Playermovement : MonoBehaviour
         }
         
         rb.MovePosition(rb.position + moveDirection);
+
+        if (transform.position.y < -5)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        alive = false;
+        Invoke("Restart", 2);
+
+    }
+    void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

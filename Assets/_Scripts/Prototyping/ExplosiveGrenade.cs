@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ExplosiveGrenade : Grenade
 {
     [SerializeField] Vector3 _explosionOffset;
@@ -20,7 +21,7 @@ public class ExplosiveGrenade : Grenade
     {
         Debug.Log(name + " hit " + collision.collider);
         Explode();
-        Instantiate(_spawnEffect, transform.position + _explosionOffset, Quaternion.identity);
+        Runner.Spawn(_spawnEffect, transform.position + _explosionOffset, Quaternion.identity);
         Destroy(gameObject);
     }
 
@@ -39,7 +40,7 @@ public class ExplosiveGrenade : Grenade
         }
     }
 
-    private void LateUpdate()
+    public override void FixedUpdateNetwork()
     {
         if (_iTime == null) return;
         if (!_slowed && _iTime.personalTimeScale != 1)

@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(PersonalTime))]
 [RequireComponent(typeof(Rigidbody))]
+//[RequireComponent(typeof(Fusion.NetworkTransform))]
+//[RequireComponent(typeof(Fusion.NetworkObject))]
 public class Grenade : Damager
 {
     [SerializeField] Vector3 _torque = new Vector3(45, 0, 45);
@@ -22,7 +24,7 @@ public class Grenade : Damager
         Invoke("ActivateCollider", .3f);
         _rb = GetComponent<Rigidbody>();
         _rb.AddTorque(_torque);
-        _rb.velocity = _throwDirection;
+        _rb.velocity = _throwDirection /** _iTime.personalTimeScale*/;
         
     }
 

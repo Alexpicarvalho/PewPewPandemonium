@@ -17,7 +17,7 @@ public class SpawnerGrenade : Grenade
     public virtual void OnCollisionEnter(Collision collision)
     {
         if (!(_canCollideLayers == (_canCollideLayers | (1 << collision.collider.gameObject.layer)))) return;
-        Instantiate(_spawnEffect, transform.position, Quaternion.identity);
+        Runner.Spawn(_spawnEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

@@ -60,7 +60,7 @@ public class PlayerCombatHandler : NetworkBehaviour
         _gun = _weaponSlot2;
         SwapWeapons();
         _grenade = Instantiate(_grenade);
-        _grenade.SetValues(_firePoint);
+        _grenade.SetValues(_firePoint, _id);
     }
 
 

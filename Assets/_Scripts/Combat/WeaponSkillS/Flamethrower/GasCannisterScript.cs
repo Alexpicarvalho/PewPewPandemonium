@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fusion;
 
 public class GasCannisterScript : Grenade
 {
@@ -22,9 +23,12 @@ public class GasCannisterScript : Grenade
         if (!(_canCollideLayers == (_canCollideLayers | (1 << collision.collider.gameObject.layer)))) return;
         else
         {
+            if (_spawnEffect == null) Debug.Log("SpawnEffect null");
+            if (_spawnEffect == null) Debug.Log("SpawnEffect null");
+            if (!Runner) Debug.Log("Runner null");
             Explode();
-            Instantiate(_spawnEffect, transform.position, Quaternion.identity);
-            Instantiate(_explosionVFX, transform.position + _explosionOffset, Quaternion.identity);
+            Runner.Spawn(_spawnEffect, transform.position, Quaternion.identity);    
+            Runner.Spawn(_explosionVFX, transform.position + _explosionOffset, Quaternion.identity);
             Destroy(gameObject);
         }
         
@@ -45,7 +49,7 @@ public class GasCannisterScript : Grenade
         }
     }
 
-    private void LateUpdate()
+    public override void FixedUpdateNetwork()
     {
         if (_iTime == null) return;
         if (!_slowed && _iTime.personalTimeScale != 1)

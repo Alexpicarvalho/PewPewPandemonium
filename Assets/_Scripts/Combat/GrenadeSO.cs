@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityRandom = UnityEngine.Random;
+using Fusion;
 
 
 [CreateAssetMenu(menuName = "Weapons/Grenade", fileName = "GrenadeSO")]
@@ -39,6 +40,8 @@ public class GrenadeSO : Item
     [Range(-1, 1)] public int gravityDirection;
     public float _timeSinceLastUse = 0;
     public bool _onCooldown;
+    private int _ownerID;
+    private NetworkBehaviour _runnerNetworkBehaviour;
     //[Header("Optional Parameters")]
 
 
@@ -49,9 +52,16 @@ public class GrenadeSO : Item
         if(_timeSinceLastUse >= _cooldown) _onCooldown = false;
     }
 
-    public virtual void SetValues(Transform firePoint)
+    public virtual void SetValues(Transform firePoint, Object_ID parentID)
     {
         _firePoint = firePoint;
+
+        if (parentID)
+        {
+            _ownerID = parentID.GetInstanceID();
+            _runnerNetworkBehaviour = parentID.GetComponent<NetworkBehaviour>();
+        }
+
         _grenadeRb = _grenadeGO.GetComponent<Rigidbody>();
         //_lineRenderer = firePoint.GetComponent<LineRenderer>();
         _damage = new Damage(_amount, _pushForce, _tickAmount, _duration);
@@ -63,7 +73,7 @@ public class GrenadeSO : Item
 
         _onCooldown = true;
         _timeSinceLastUse = 0;
-        var grenadeGO = Instantiate(_grenadeGO, _firePoint.position, Quaternion.identity);
+        var grenadeGO = _runnerNetworkBehaviour.Runner.Spawn(_grenadeGO, _firePoint.position, Quaternion.identity);
         var grenadeScript = grenadeGO.GetComponent<Grenade>();
         grenadeScript.CalculateThrowVelocity(target, _heightDisplacement);
         grenadeScript.Launch();

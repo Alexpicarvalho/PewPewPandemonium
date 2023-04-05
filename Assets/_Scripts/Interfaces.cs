@@ -6,6 +6,8 @@ public class Interfaces
 { 
 }
 
+//[RequireComponent(typeof(Fusion.NetworkTransform))]
+//[RequireComponent(typeof(Fusion.NetworkObject))]
 public abstract class Damager : NetworkBehaviour
 { 
     [Header("Set Damage Values")]

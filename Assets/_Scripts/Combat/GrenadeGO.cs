@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class GrenadeGO : MonoBehaviour
+using Fusion;
+public class GrenadeGO : NetworkBehaviour
 {
 
     [SerializeField] public float _damage;

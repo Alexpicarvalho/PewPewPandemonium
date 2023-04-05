@@ -150,9 +150,9 @@ MonoBehaviour:
   _damageOverTimeDuration: 0
   _impact: {fileID: 0}
   _unparentOnDestroy: []
-  _speed: 20
-  _lifeTime: 0.3
-  _shrinkOnDestroyDuration: 0.1
+  _speed: 18
+  _lifeTime: 0.4
+  _shrinkOnDestroyDuration: 0
   _minDamagePercent: 0.2
   _decaysAfterSeconds: 0
   _decayRateSecond: 0

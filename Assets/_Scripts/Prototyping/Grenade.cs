@@ -9,6 +9,7 @@ using UnityEngine;
 public class Grenade : Damager
 {
     [SerializeField] Vector3 _torque = new Vector3(45, 0, 45);
+    [SerializeField] protected LayerMask _canCollideLayers;
     private Vector3 _throwDirection;
     protected Rigidbody _rb;
     protected GameObject _spawnEffect;

@@ -14,6 +14,7 @@ public class CreateFootPrint : MonoBehaviour
     [SerializeField] float _startDelay;
     [SerializeField] Transform spawner1;
     [SerializeField] Transform spawner2;
+    [SerializeField] float _heightOffset = .1f;
     private Object_ID _id;
 
 
@@ -36,13 +37,14 @@ public class CreateFootPrint : MonoBehaviour
         {
             _timeSinceLastRc = 0;
 
+
             if (firstSpawner)
             {
                 firstSpawner = false;
-                var track1 =Instantiate(_footPrintPrefab, new Vector3(spawner1.position.x, .1f, spawner1.position.z)
+                var track1 =Instantiate(_footPrintPrefab, new Vector3(spawner1.position.x, spawner1.position.y + _heightOffset, spawner1.position.z)
                 , Quaternion.LookRotation(_moveDirectionIndicator.forward));
 
-                var track2 = Instantiate(_trackerPrintPrefab, new Vector3(spawner1.position.x, .15f, spawner1.position.z)
+                var track2 = Instantiate(_trackerPrintPrefab, new Vector3(spawner1.position.x, spawner1.position.y + _heightOffset, spawner1.position.z)
                 , Quaternion.LookRotation(_moveDirectionIndicator.forward));
 
                 track1.GetComponent<Object_ID>().CreateID(_id);
@@ -51,10 +53,10 @@ public class CreateFootPrint : MonoBehaviour
             else
             {
                 firstSpawner = true;
-                var track1 = Instantiate(_footPrintPrefab, new Vector3(spawner2.position.x, .1f, spawner2.position.z)
+                var track1 = Instantiate(_footPrintPrefab, new Vector3(spawner2.position.x, spawner2.position.y + _heightOffset, spawner2.position.z)
                 , Quaternion.LookRotation(_moveDirectionIndicator.forward));
 
-                var track2 = Instantiate(_trackerPrintPrefab, new Vector3(spawner2.position.x, .15f, spawner2.position.z)
+                var track2 = Instantiate(_trackerPrintPrefab, new Vector3(spawner2.position.x, spawner2.position.y + _heightOffset, spawner2.position.z)
                 , Quaternion.LookRotation(_moveDirectionIndicator.forward));
 
                 track1.GetComponent<Object_ID>().CreateID(_id);

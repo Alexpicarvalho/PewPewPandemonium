@@ -140,4 +140,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdc9bbac318c8c1488073b96eab9e788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _amount: 0
+  _addForce: 0
+  _tickAmount: 0
+  _damageOverTimeDuration: 0
   _torque: {x: 120, y: 0, z: 120}
+  _canCollideLayers:
+    serializedVersion: 2
+    m_Bits: 513

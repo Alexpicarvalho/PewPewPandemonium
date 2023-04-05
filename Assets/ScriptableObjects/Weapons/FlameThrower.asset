@@ -25,7 +25,7 @@ MonoBehaviour:
   _extraEffectTimeToShutOff: 0.6
   _shootingAnimTrigger: 
   _fireingType: 0
-  _weaponSkillRef: {fileID: 11400000, guid: f4f3340eec62e08489077c087bdfe842, type: 2}
+  _weaponSkillRef: {fileID: 11400000, guid: 4b1ffe5556e067445adee32b74144586, type: 2}
   _weaponTier: 0
   _damageMultiplier: 1
   _bulletsPerMinute: 1200

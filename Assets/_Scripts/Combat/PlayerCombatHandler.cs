@@ -24,6 +24,7 @@ public class PlayerCombatHandler : MonoBehaviour
     [HideInInspector] public GunSO _weaponSlot2;
     [HideInInspector] public GunSO _gun;
     /*[HideInInspector]*/ public GrenadeSO _grenade;
+    private Vector3 _currentSkillTargetLocation;
     //[HideInInspector] public UtilitySO _utility;
 
     [Header("Weapon Swapping Properties")]
@@ -175,9 +176,17 @@ public class PlayerCombatHandler : MonoBehaviour
     private void CallSkill()
     {
         if (_gun._weaponSkill._skillState != WeaponSkillSO.SkillState.Ready) return;
-        _animator.SetTrigger(_gun._weaponSkill._animatorTrigger);
-        Debug.LogWarning("Set it to cast");
+
+        _currentSkillTargetLocation = MousePosition();
         _gun._weaponSkill._skillState = WeaponSkillSO.SkillState.Casting;
+        
+        if (_gun._weaponSkill._animatorTrigger != "") _animator.SetTrigger(_gun._weaponSkill._animatorTrigger);
+        else ExecuteSkill();
+
+        
+        
+        Debug.LogWarning("Set it to cast");
+        
     }
 
     public void StartCastingVFX()
@@ -186,7 +195,7 @@ public class PlayerCombatHandler : MonoBehaviour
     }
     public void ExecuteSkill()
     {
-        _gun.CastSkill(MousePosition());
+        _gun.CastSkill(_currentSkillTargetLocation);
     }
 
     //public IEnumerator ReadyNextShot()
@@ -207,7 +216,7 @@ public class PlayerCombatHandler : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            return new Vector3(hit.point.x, 0.1f, hit.point.z);
+            return new Vector3(hit.point.x, hit.point.y + 0.1f, hit.point.z);
         }
         else return Vector3.zero;
     }

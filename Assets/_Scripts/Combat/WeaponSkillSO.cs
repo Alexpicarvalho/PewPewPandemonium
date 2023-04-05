@@ -100,7 +100,7 @@ public class WeaponSkillSO : ScriptableObject
     {
         if (_skillState != SkillState.Casting) return;
         _skillState = SkillState.Active;
-        _indicatorClone.SetActive(false);
+        if(_indicatorClone != null)_indicatorClone.SetActive(false);
     }
     public virtual void StartCastingVFX() { }
 

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72fea70314f6bf41b6162c713982f86, type: 3}
+  m_Name: MinigunSkill
+  m_EditorClassIdentifier: 
+  _cooldown: 6
+  _skillDescription: 
+  _skillState: 0
+  _animatorTrigger: 
+  _skillVFX: {fileID: 7981051898678050426, guid: bb3fefcc3f7db2b4a8c61ed7bbb1faa0, type: 3}
+  _activeTime: 0
+  _firePoint: {fileID: 0}
+  _visualIndicator: {fileID: 0}
+  _castVFX: {fileID: 0}
+  _indicatorScale: {x: 0, y: 0, z: 0}
+  _indicatorPosition: {x: 0, y: 0, z: 0}
+  _indicatorRotation: {x: 0, y: 0, z: 0}
+  _skillIcon: {fileID: 2800000, guid: 484dcdaf0825148b886e56472fb3bb78, type: 3}
+  _amount: 0
+  _pushForce: 0
+  _tickAmount: 1
+  _damageOverTimeDuration: 0
+  _finalDamage: 0
+  _timeSinceActivation: 0
+  _timeSinceLastUse: 0
+  _groundHitEffect: {fileID: 4875569123517598787, guid: 8aea8ec7f3a55714cb914c59615ecbfd, type: 3}

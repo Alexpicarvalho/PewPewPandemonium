@@ -46,7 +46,7 @@ public class Projectile : Damager
         _startDamage = _damage._amount;
         Debug.Log("SET DAMAGE: " + _damage._amount);
     }
-    private void Update()
+    public virtual void Update()
     {
         transform.position += iTime.personalTimeScale * _speed * Time.deltaTime * transform.forward;
         _timeSinceBirth += Time.deltaTime;

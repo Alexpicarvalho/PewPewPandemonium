@@ -4928,6 +4928,8 @@ GameObject:
   - component: {fileID: 8429635265358594485}
   - component: {fileID: 6434886363752869045}
   - component: {fileID: -6915683689456062087}
+  - component: {fileID: 26151687490776118}
+  - component: {fileID: -8640258192940646326}
   m_Layer: 7
   m_Name: MinigunBullet
   m_TagString: Untagged
@@ -5021,6 +5023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0adc52c89dcd0ff4baf1890a7403a1e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   _amount: 3
   _addForce: 0
   _tickAmount: 1
@@ -5033,6 +5036,59 @@ MonoBehaviour:
   _minDamagePercent: 0.2
   _decaysAfterSeconds: 0
   _decayRateSecond: 0
+--- !u!114 &26151687490776118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2894552729440222365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2305
+  NetworkGuid:
+    RawGuidValue: c7a68facac6f947489bc459cccf7cadd
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: -6915683689456062087}
+  - {fileID: -8640258192940646326}
+  SimulationBehaviours: []
+--- !u!114 &-8640258192940646326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2894552729440222365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  InterpolationSpace: 0
+  InterpolationTarget: {fileID: 1909756653149626107}
+  InterpolateErrorCorrection: 1
+  InterpolatedErrorCorrectionSettings:
+    MinRate: 3.3
+    MaxRate: 10
+    PosBlendStart: 0.25
+    PosBlendEnd: 1
+    PosMinCorrection: 0.025
+    PosTeleportDistance: 2
+    RotBlendStart: 0.1
+    RotBlendEnd: 0.5
+    RotTeleportRadians: 1.5
+  UseLegacySharedModeInterpolation: 0
+  TargetInterpolationDelay: 0.03
 --- !u!1 &7420386609024022550
 GameObject:
   m_ObjectHideFlags: 0

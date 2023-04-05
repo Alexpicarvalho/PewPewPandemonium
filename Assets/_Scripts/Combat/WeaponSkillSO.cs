@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityRandom = UnityEngine.Random;
+using Fusion;
 
 [CreateAssetMenu(menuName = "Weapons/Skill", fileName = "Skill")]
 public class WeaponSkillSO : ScriptableObject
@@ -41,8 +42,10 @@ public class WeaponSkillSO : ScriptableObject
     /*[HideInInspector]*/ public float _timeSinceActivation; 
     /*[HideInInspector]*/ public float _timeSinceLastUse; 
     private GameObject _indicatorClone;
+    protected NetworkBehaviour _runnerNetworkBehaviour;
+    public int _ownerID;
 
-    
+
 
 
     //Enums
@@ -51,10 +54,15 @@ public class WeaponSkillSO : ScriptableObject
 
     //Methods
     
-    public void SetSkillValues(Transform firePoint = null, float damageMult = 1) 
+    public void SetSkillValues(Transform firePoint = null, float damageMult = 1, Object_ID _parentID = null) 
     {
         _firePoint = firePoint;
         _damage = new Damage(_amount * damageMult, _pushForce, _tickAmount, _damageOverTimeDuration);
+        if (_parentID)
+        {
+            _ownerID = _parentID.my_ID;
+            _runnerNetworkBehaviour = _parentID.GetComponent<NetworkBehaviour>();
+        } 
         if (_visualIndicator)
         {
             _indicatorClone = Instantiate(_visualIndicator, _firePoint.position, Quaternion.identity,_firePoint.parent);

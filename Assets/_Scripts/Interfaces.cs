@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Fusion;
 public class Interfaces
 { 
 }
 
-public abstract class Damager : MonoBehaviour
+public abstract class Damager : NetworkBehaviour
 { 
     [Header("Set Damage Values")]
     [SerializeField] float _amount;

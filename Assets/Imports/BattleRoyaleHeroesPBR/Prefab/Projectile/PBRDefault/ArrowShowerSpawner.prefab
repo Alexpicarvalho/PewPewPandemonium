@@ -145,6 +145,8 @@ GameObject:
   - component: {fileID: 2168655496714303962}
   - component: {fileID: 5831762597643927416}
   - component: {fileID: -3437393957665793859}
+  - component: {fileID: -2219668601691793335}
+  - component: {fileID: -7743504106671862486}
   m_Layer: 0
   m_Name: ArrowShowerSpawner
   m_TagString: Untagged
@@ -258,6 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b127fa451a5364f4580ee4593e8e7a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   _amount: 0
   _addForce: 0
   _tickAmount: 0
@@ -273,3 +276,56 @@ MonoBehaviour:
   _arrowShower: {fileID: 6191501053479356829, guid: 05c26a61dbf95ca4fbb43339ce820642, type: 3}
   _explodePosition: {x: 0, y: 0, z: 0}
   _targetPos: {x: 0, y: 0, z: 0}
+--- !u!114 &-2219668601691793335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429543989968508660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2305
+  NetworkGuid:
+    RawGuidValue: ce6d111d9314e0d40b2e7be9a9b6adc8
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: -3437393957665793859}
+  - {fileID: -7743504106671862486}
+  SimulationBehaviours: []
+--- !u!114 &-7743504106671862486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429543989968508660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  InterpolationSpace: 0
+  InterpolationTarget: {fileID: 0}
+  InterpolateErrorCorrection: 1
+  InterpolatedErrorCorrectionSettings:
+    MinRate: 3.3
+    MaxRate: 10
+    PosBlendStart: 0.25
+    PosBlendEnd: 1
+    PosMinCorrection: 0.025
+    PosTeleportDistance: 2
+    RotBlendStart: 0.1
+    RotBlendEnd: 0.5
+    RotTeleportRadians: 1.5
+  UseLegacySharedModeInterpolation: 0
+  TargetInterpolationDelay: 0.03

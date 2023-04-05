@@ -5,9 +5,10 @@ using System.Linq;
 using UnityEngine;
 using UnityRandom = UnityEngine.Random;
 using Cinemachine;
+using Fusion;
 
 
-public class CameraControler : MonoBehaviour
+public class CameraControler : NetworkBehaviour
 {
     float _cameraDistance;
     [SerializeField] float _defaultCameraDistance;
@@ -16,12 +17,16 @@ public class CameraControler : MonoBehaviour
     private CinemachineVirtualCamera _cinCam;
     bool _shooting = false;
     private Camera _mainCam;
+    private CinemachineBrain _cmBrain;
+    private Transform _player;
 
     private void Start()
     {
         _cinCam = GetComponent<CinemachineVirtualCamera>();
         _cameraDistance = _defaultCameraDistance;
         _mainCam = Camera.main;
+        _cmBrain = _mainCam.GetComponent<CinemachineBrain>();
+        _player = transform.parent;
     }
 
     private void Update()
@@ -47,6 +52,11 @@ public class CameraControler : MonoBehaviour
         }
     }
 
+    public override void FixedUpdateNetwork()
+    {
+        Debug.Log("Entered Network Update cycle");
+        _cmBrain.ManualUpdate();
+    }
     public void AddRemoveRenderLayers(LayerMask layerToAdd, LayerMask layerToRemove)
     {
         _mainCam.cullingMask += layerToAdd;

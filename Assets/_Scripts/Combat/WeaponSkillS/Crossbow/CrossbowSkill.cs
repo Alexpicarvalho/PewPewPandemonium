@@ -16,7 +16,7 @@ public class CrossbowSkill : WeaponSkillSO
         Vector3 temp = new Vector3(_target.x, _target.y + _aimAtHeight, _target.z);
         Vector3 direction = GetProjectileTargetPosition(_target);
 
-        var spawnerArrow = Instantiate(_skillVFX, _firePoint.position, Quaternion.LookRotation(direction));
+        var spawnerArrow = _runnerNetworkBehaviour.Runner.Spawn(_skillVFX, _firePoint.position, Quaternion.LookRotation(direction));
         var spawnerScript = spawnerArrow.GetComponent<ArrowShowerSpawner>();
 
         spawnerScript._explodePosition = temp;

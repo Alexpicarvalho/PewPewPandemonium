@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fusion;
 
 [RequireComponent(typeof(PersonalTime))]
 [RequireComponent(typeof(Rigidbody))]
@@ -46,10 +47,12 @@ public class Projectile : Damager
         _startDamage = _damage._amount;
         Debug.Log("SET DAMAGE: " + _damage._amount);
     }
-    public virtual void Update()
+    public override void FixedUpdateNetwork()
     {
-        transform.position += iTime.personalTimeScale * _speed * Time.deltaTime * transform.forward;
-        _timeSinceBirth += Time.deltaTime;
+        //TENS QUE MUDAR OS FILHOS DISTO NABO
+
+        transform.position += iTime.personalTimeScale * _speed * Runner.DeltaTime * transform.forward;
+        _timeSinceBirth += Runner.DeltaTime;
         DecayDamage();
 
     }

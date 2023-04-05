@@ -285,6 +285,8 @@ GameObject:
   - component: {fileID: -5776896066007017089}
   - component: {fileID: 5232475142937387456}
   - component: {fileID: 7989043929883922412}
+  - component: {fileID: -2489406323052561167}
+  - component: {fileID: 8857350231582692174}
   m_Layer: 7
   m_Name: RailgunBullet
   m_TagString: Untagged
@@ -392,16 +394,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0adc52c89dcd0ff4baf1890a7403a1e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   _amount: 10
   _addForce: 0
   _tickAmount: 1
   _damageOverTimeDuration: 0
   _impact: {fileID: 3915230876885144064, guid: 1b688a6214a9fe1459a70bea846d23c2, type: 3}
+  _unparentOnDestroy: []
   _speed: 30
   _lifeTime: 10
+  _shrinkOnDestroyDuration: 0.1
   _minDamagePercent: 0.2
   _decaysAfterSeconds: 1
   _decayRateSecond: 0.2
+--- !u!114 &-2489406323052561167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367524025346344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2305
+  NetworkGuid:
+    RawGuidValue: aa244785eac6408478ce67b9ddf90ea2
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 7989043929883922412}
+  - {fileID: 8857350231582692174}
+  SimulationBehaviours: []
+--- !u!114 &8857350231582692174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367524025346344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  InterpolationSpace: 0
+  InterpolationTarget: {fileID: 2101249406946489936}
+  InterpolateErrorCorrection: 1
+  InterpolatedErrorCorrectionSettings:
+    MinRate: 3.3
+    MaxRate: 10
+    PosBlendStart: 0.25
+    PosBlendEnd: 1
+    PosMinCorrection: 0.025
+    PosTeleportDistance: 2
+    RotBlendStart: 0.1
+    RotBlendEnd: 0.5
+    RotTeleportRadians: 1.5
+  UseLegacySharedModeInterpolation: 0
+  TargetInterpolationDelay: 0.03
 --- !u!1 &1574755380163598
 GameObject:
   m_ObjectHideFlags: 0

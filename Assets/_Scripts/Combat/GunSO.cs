@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Fusion;
 
 
 [CreateAssetMenu(menuName = "Weapons/GunSO", fileName = "Gun")]
@@ -57,6 +58,7 @@ public class GunSO : Item
     [HideInInspector] public GameObject _vfxClone;
     public WeaponSkillSO _weaponSkill;
     public int _ownerID;
+    protected NetworkBehaviour _runnerNetworkbehaviour;
 
     [Header("Hand Placement")]
     [SerializeField] private Vector3 _positionInHand;
@@ -92,8 +94,9 @@ public class GunSO : Item
     public void SetWeaponValues(Transform firePoint, Object_ID parentID = null)
     {
         _firePoint = firePoint;
+        _runnerNetworkbehaviour = parentID.GetComponentInParent<NetworkBehaviour>();
         _weaponSkill = Instantiate(_weaponSkillRef);
-        _weaponSkill.SetSkillValues(_firePoint, _damageMultiplier);
+        _weaponSkill.SetSkillValues(_firePoint, _damageMultiplier, parentID);
         _timeBetweenShots = 60.0f / _bulletsPerMinute;
         _currentShootingStatus = ShootingStatus.ShotReady;
         _audioSource = _firePoint.GetComponent<AudioSource>();
@@ -162,7 +165,7 @@ public class GunSO : Item
         _timeSinceLastShot = 0;
 
         if (_muzzleFlash) Instantiate(_muzzleFlash, _firePoint.position, Quaternion.identity);
-        var bullet = Instantiate(_bulletGO, _firePoint.position, Quaternion.LookRotation(_firePoint.forward));
+        var bullet = _runnerNetworkbehaviour.Runner.Spawn(_bulletGO, _firePoint.position, Quaternion.LookRotation(_firePoint.forward));
         bullet.transform.Translate(GetDisplacement(), 0, GetDisplacement());
         bullet.transform.Rotate(0, GetInaccuracy(), 0, Space.Self);
         bullet.GetComponent<Damager>().SetDamage();
@@ -202,7 +205,7 @@ public class GunSO : Item
             Quaternion rotation = Quaternion.AngleAxis((_fireingConeAngle / _bulletsToSpawn) * i, Vector3.up);
             Vector3 direction = (rotation * _firePoint.forward).normalized;
    
-            var bullet = Instantiate(_bulletGO, _firePoint.position, Quaternion.LookRotation(direction));
+            var bullet = _runnerNetworkbehaviour.Runner.Spawn(_bulletGO, _firePoint.position, Quaternion.LookRotation(direction));
             bullet.transform.Translate(GetDisplacement(), 0, GetDisplacement());
             bullet.transform.Rotate(0, GetInaccuracy(), 0, Space.Self);
             bullet.GetComponent<Damager>().SetDamage();
@@ -212,7 +215,7 @@ public class GunSO : Item
             Quaternion rotation = Quaternion.AngleAxis((_fireingConeAngle / _bulletsToSpawn) * i, Vector3.up);
             Vector3 direction = (Quaternion.Inverse(rotation) * _firePoint.forward).normalized;
 
-            var bullet = Instantiate(_bulletGO, _firePoint.position, Quaternion.LookRotation(direction));
+            var bullet = _runnerNetworkbehaviour.Runner.Spawn(_bulletGO, _firePoint.position, Quaternion.LookRotation(direction));
             bullet.transform.Translate(GetDisplacement(), 0, GetDisplacement());
             bullet.transform.Rotate(0, GetInaccuracy(), 0, Space.Self);
             bullet.GetComponent<Damager>().SetDamage();

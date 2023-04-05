@@ -1146,7 +1146,7 @@ MonoBehaviour:
     m_AmplitudeGain: 1
     m_FrequencyGain: 1
     m_Duration: 1
-    m_NoiseOffsets: {x: 0, y: 0, z: 0}
+    m_NoiseOffsets: {x: -881.041, y: 263.83636, z: -68.33374}
 --- !u!114 &761370637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1159,6 +1159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 560b1a7b991f4f14c930f7050780e423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   _defaultCameraDistance: 15
   _shootingCameraDistance: 20
   _waitBeforeDistanceReset: 0.7
@@ -3255,7 +3256,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 253e9716183f3514da3780f76c1d59aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3563,7 +3564,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 1a50a9ace93fd614db63694d201e262b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3933,6 +3934,7 @@ GameObject:
   - component: {fileID: 231212215010212286}
   - component: {fileID: -6212458596962213126}
   - component: {fileID: -2352177917270726789}
+  - component: {fileID: 7341005803505761706}
   - component: {fileID: 231212215010212257}
   - component: {fileID: 5151311613721021899}
   - component: {fileID: 5151311613721021898}
@@ -3950,7 +3952,6 @@ GameObject:
   - component: {fileID: 4920267075732269102}
   - component: {fileID: 4920267075732269103}
   - component: {fileID: 2778861641204139548}
-  - component: {fileID: 7341005803505761706}
   m_Layer: 3
   m_Name: PlayerTeste
   m_TagString: Player
@@ -4011,6 +4012,9 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: -2352177917270726789}
   - {fileID: 7341005803505761706}
+  - {fileID: 5151311613721021895}
+  - {fileID: 4920267075732269096}
+  - {fileID: 761370637}
   SimulationBehaviours: []
 --- !u!114 &-2352177917270726789
 MonoBehaviour:
@@ -4048,6 +4052,19 @@ MonoBehaviour:
   rotationSpeed: 15
   _IsGrounded: 0
   _Velocity: {x: 0, y: 0, z: 0}
+--- !u!114 &7341005803505761706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231212215010212256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc099465baed4e84783a4a5e42111558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 2
 --- !u!95 &231212215010212257
 Animator:
   serializedVersion: 4
@@ -4110,6 +4127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd5f69870d5b6541a0a6218fdda3680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   _startSpeed: 4
   _maxSpeed: 8
   _currentSpeed: 1
@@ -4185,6 +4203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4445cbce9cff04d458bf2df3d25e724d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   _startingWeapon: {fileID: 11400000, guid: beae176377853f3449045ec8026a7aba, type: 2}
   _hand: {fileID: 231212214069097103}
   _firePoint: {fileID: 407297159}
@@ -4326,6 +4345,7 @@ MonoBehaviour:
   _startDelay: 0.5
   spawner1: {fileID: 804281304}
   spawner2: {fileID: 1954170072}
+  _heightOffset: 0.1
   ready: 0
 --- !u!114 &2316585452388468728
 MonoBehaviour:
@@ -4440,19 +4460,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7341005803505761706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 231212215010212256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc099465baed4e84783a4a5e42111558, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interpolationDataSource: 2
 --- !u!1 &231212215045655013
 GameObject:
   m_ObjectHideFlags: 0

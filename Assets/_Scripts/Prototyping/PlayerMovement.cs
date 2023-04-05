@@ -3,8 +3,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fusion;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
 
     [Header("Movement Properties")]
@@ -61,10 +62,18 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.GetComponent<Collider>().enabled = false;
+        Invoke("TempFix", 1);
         ComponentSetup();
         accelaration = (_maxSpeed - _startSpeed) / _timeToAchieveMaxSpeed;
         _currentSpeed = _startSpeed;
         _currentDodgeCharges = _maxDodgeCharges;
+    }
+
+    void TempFix()
+    {
+        transform.position += Vector3.up * 50;
+        transform.GetComponent<Collider>().enabled = true;
     }
 
     void ComponentSetup()
@@ -79,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!Object.HasInputAuthority) return;
         RechargeDodge();
         float xMov = Input.GetAxis("Horizontal");
         float zMov = Input.GetAxis("Vertical");
@@ -128,11 +138,12 @@ public class PlayerMovement : MonoBehaviour
         
 
     }
-    private void FixedUpdate()
+    public override void FixedUpdateNetwork()
     {
+        //if (!Object.HasStateAuthority) return;
         if (moveDirection.magnitude != 0.0f && _canMove)
         {
-            rb.MovePosition(transform.position + moveDirection * _currentSpeed * (1 + _perkSpeedModifier) * iTime.personalTimeScale * Time.deltaTime);
+            rb.MovePosition(transform.position + (1 + _perkSpeedModifier) * _currentSpeed * iTime.personalTimeScale * Runner.DeltaTime * moveDirection);
             //anim.SetBool("Moving", true);  
         }
 
@@ -167,8 +178,8 @@ public class PlayerMovement : MonoBehaviour
         float startTime = Time.time;
         while (Time.time < startTime + dodgeDuration)
         {
-            rb.velocity = moveDirection * dodgeSpeed * iTime.personalTimeScale
-                * (speedCurve.Evaluate(Time.time - startTime) / dodgeDuration);
+            rb.velocity = (speedCurve.Evaluate(Time.time - startTime) / dodgeDuration) 
+                * dodgeSpeed * iTime.personalTimeScale * moveDirection;
 
             yield return null;
         }

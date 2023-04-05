@@ -9,21 +9,26 @@ public class ArrowShowerSpawner : Projectile
     [SerializeField] GameObject _arrowShower;
     public Vector3 _explodePosition;
     public Vector3 _targetPos;
-    public override void Update()
+    private float _lastFrameDistance = 300;
+
+
+    public override void FixedUpdateNetwork()
     {
-        base.Update();
+        base.FixedUpdateNetwork();
 
         Debug.Log("Distance to target is : " + Vector3.Distance(transform.position, _explodePosition));
-        if(Vector3.Distance(transform.position, _explodePosition) <= .1f)
+        float distance = Vector3.Distance(transform.position, _explodePosition);
+        if (distance <= .1f || distance > _lastFrameDistance)
         {
             SpawnArrowShower();
             Destroy(gameObject);
         }
+        _lastFrameDistance = distance;
         
     }
 
     private void SpawnArrowShower()
     {
-        var arrowShower = Instantiate(_arrowShower, _targetPos, Quaternion.identity);
+        var arrowShower = Runner.Spawn(_arrowShower, _targetPos, Quaternion.identity);
     }
 }

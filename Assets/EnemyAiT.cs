@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using Fusion;
 
-
-public class EnemyAiT : MonoBehaviour
+public class EnemyAiT : NetworkBehaviour
 {
 
     //public PlayerCombatHandler combatHandler;
@@ -56,7 +56,7 @@ public class EnemyAiT : MonoBehaviour
         _gun = Instantiate(_gunRef);
         agent = GetComponent<NavMeshAgent>();
         _gun.PlaceInHand(_hand);
-        _gun.SetWeaponValues(_firepoint);
+        _gun.SetWeaponValues(_firepoint, GetComponent<Object_ID>());
         timeBetweenAttacks = _gun._timeBetweenShots;
         transform.localScale *= bossScale;
     }

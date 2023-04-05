@@ -168,43 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e468d2e61516978469f0fc4237010384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cachedName: 
-  _nameCached: 0
-  _cachedGameObject: {fileID: 0}
-  _gameObjectCached: 0
-  _cachedTransform: {fileID: 0}
-  _transformCached: 0
-  _scene: {fileID: 0}
-  _context:
-    PeerUserID: 
-    Audio: {fileID: 0}
-    UI: {fileID: 0}
-    ObjectCache: {fileID: 0}
-    Input: {fileID: 0}
-    Camera: {fileID: 0}
-    NetworkGame: {fileID: 0}
-    Settings: {fileID: 0}
-    Announcer: {fileID: 0}
-    IsVisible: 0
-    HasInput: 0
-    Runner: {fileID: 0}
-    GameplayMode: {fileID: 0}
-    LocalPlayerRef:
-      _index: 0
-    ObservedPlayerRef:
-      _index: 0
-    ObservedAgent: {fileID: 0}
-    WaitingAgentTransform: {fileID: 0}
-    Map: {fileID: 0}
-    PlayerPreview: {fileID: 0}
-    Matchmaking: {fileID: 0}
-  _isInitialized: 0
-  _isActive: 0
-  <EnableCamera>k__BackingField: 1
-  _camera: {fileID: 1154304985}
-  _audioListener: {fileID: 0}
-  _shakeEffect: {fileID: 0}
-  _cameraCullingMask: 0
 --- !u!1 &208727860
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,21 +197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c58c813581fcca48a36469253973c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultConfiguration:
-    GameplayType: 1
-    GameMode: 4
-    ServerName: Standalone Game
-    MaxPlayers: 4
-    ExtraPeers: 0
-    Region: 
-    SessionName: 
-    CustomLobby: 
-    IPAddress: 
-    Port: 0
-    Multiplay: 0
-    QueryProtocol: 0
-    Matchmaking: 0
-    Backfill: 0
 --- !u!4 &208727862
 Transform:
   m_ObjectHideFlags: 0
@@ -262,7 +210,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &226706429
 GameObject:
@@ -426,7 +374,7 @@ Transform:
   - {fileID: 1526794890}
   - {fileID: 2015339835}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &583899995
 GameObject:
@@ -472,40 +420,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a20367b4c17c8f14a9d641664f45a486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cachedName: 
-  _nameCached: 0
-  _cachedGameObject: {fileID: 0}
-  _gameObjectCached: 0
-  _cachedTransform: {fileID: 0}
-  _transformCached: 0
-  _scene: {fileID: 0}
-  _context:
-    PeerUserID: 
-    Audio: {fileID: 0}
-    UI: {fileID: 0}
-    ObjectCache: {fileID: 0}
-    Input: {fileID: 0}
-    Camera: {fileID: 0}
-    NetworkGame: {fileID: 0}
-    Settings: {fileID: 0}
-    Announcer: {fileID: 0}
-    IsVisible: 0
-    HasInput: 0
-    Runner: {fileID: 0}
-    GameplayMode: {fileID: 0}
-    LocalPlayerRef:
-      _index: 0
-    ObservedPlayerRef:
-      _index: 0
-    ObservedAgent: {fileID: 0}
-    WaitingAgentTransform: {fileID: 0}
-    Map: {fileID: 0}
-    PlayerPreview: {fileID: 0}
-    Matchmaking: {fileID: 0}
-  _isInitialized: 0
-  _isActive: 0
-  _hideCachedObjectsInHierarchy: 1
-  _precacheObjects: []
 --- !u!1001 &594001370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -619,7 +533,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8155599968676903540, guid: 47f305104b30b7e46836ec4d5e7fce68, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8155599968676903540, guid: 47f305104b30b7e46836ec4d5e7fce68, type: 3}
       propertyPath: m_LocalPosition.x
@@ -791,7 +705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerPrefab:
-    RawGuidValue: ca855c47eaf1e5848b1c4afda9b02fbc
+    RawGuidValue: 8b44e02e7cb320e42b48cbead0453df8
 --- !u!4 &608344825
 Transform:
   m_ObjectHideFlags: 0
@@ -805,7 +719,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &641793868
 GameObject:
@@ -1250,45 +1164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21c15b0eff88dc49ba8df1269231c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WordOffset: 0
-  WordCount: 0
-  _interpolationDataSource: 0
-  <Context>k__BackingField:
-    PeerUserID: 
-    Audio: {fileID: 0}
-    UI: {fileID: 0}
-    ObjectCache: {fileID: 0}
-    Input: {fileID: 0}
-    Camera: {fileID: 0}
-    NetworkGame: {fileID: 0}
-    Settings: {fileID: 0}
-    Announcer: {fileID: 0}
-    IsVisible: 0
-    HasInput: 0
-    Runner: {fileID: 0}
-    GameplayMode: {fileID: 0}
-    LocalPlayerRef:
-      _index: 0
-    ObservedPlayerRef:
-      _index: 0
-    ObservedAgent: {fileID: 0}
-    WaitingAgentTransform: {fileID: 0}
-    Map: {fileID: 0}
-    PlayerPreview: {fileID: 0}
-    Matchmaking: {fileID: 0}
-  <ActivePlayerCount>k__BackingField: 0
-  _playerPrefab: {fileID: 0}
-  _modePrefabs: []
-  _fixedSeed: 0
-  _levelSize: 30
-  _areaCount: 5
-  _shrinkingArea: {fileID: 0}
-  _localPlayer:
-    _index: 0
-  _gameplayMode: {fileID: 0}
-  _levelGenerated: 0
-  _isActive: 0
-  _Players: []
 --- !u!1 &969769273
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,39 +1208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10188ed7ac7f7ab45bf7107e0d1cab94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cachedName: 
-  _nameCached: 0
-  _cachedGameObject: {fileID: 0}
-  _gameObjectCached: 0
-  _cachedTransform: {fileID: 0}
-  _transformCached: 0
-  _scene: {fileID: 0}
-  _context:
-    PeerUserID: 
-    Audio: {fileID: 0}
-    UI: {fileID: 0}
-    ObjectCache: {fileID: 0}
-    Input: {fileID: 0}
-    Camera: {fileID: 0}
-    NetworkGame: {fileID: 0}
-    Settings: {fileID: 0}
-    Announcer: {fileID: 0}
-    IsVisible: 0
-    HasInput: 0
-    Runner: {fileID: 0}
-    GameplayMode: {fileID: 0}
-    LocalPlayerRef:
-      _index: 0
-    ObservedPlayerRef:
-      _index: 0
-    ObservedAgent: {fileID: 0}
-    WaitingAgentTransform: {fileID: 0}
-    Map: {fileID: 0}
-    PlayerPreview: {fileID: 0}
-    Matchmaking: {fileID: 0}
-  _isInitialized: 0
-  _isActive: 0
-  _masterMixer: {fileID: 0}
 --- !u!1 &1154304981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1577,7 +1419,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &1196284882
 MonoBehaviour:
@@ -1599,124 +1441,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
---- !u!1 &1249995905
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1249995908}
-  - component: {fileID: 1249995907}
-  - component: {fileID: 1249995906}
-  - component: {fileID: 1249995909}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!81 &1249995906
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249995905}
-  m_Enabled: 1
---- !u!20 &1249995907
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249995905}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!4 &1249995908
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249995905}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1249995909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249995905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_Version: 2
 --- !u!1 &1384090255
 GameObject:
   m_ObjectHideFlags: 0
@@ -1761,40 +1485,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67cd8f377a1045a49aa4080beb3d2173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cachedName: 
-  _nameCached: 0
-  _cachedGameObject: {fileID: 0}
-  _gameObjectCached: 0
-  _cachedTransform: {fileID: 0}
-  _transformCached: 0
-  _scene: {fileID: 0}
-  _context:
-    PeerUserID: 
-    Audio: {fileID: 0}
-    UI: {fileID: 0}
-    ObjectCache: {fileID: 0}
-    Input: {fileID: 0}
-    Camera: {fileID: 0}
-    NetworkGame: {fileID: 0}
-    Settings: {fileID: 0}
-    Announcer: {fileID: 0}
-    IsVisible: 0
-    HasInput: 0
-    Runner: {fileID: 0}
-    GameplayMode: {fileID: 0}
-    LocalPlayerRef:
-      _index: 0
-    ObservedPlayerRef:
-      _index: 0
-    ObservedAgent: {fileID: 0}
-    WaitingAgentTransform: {fileID: 0}
-    Map: {fileID: 0}
-    PlayerPreview: {fileID: 0}
-    Matchmaking: {fileID: 0}
-  _isInitialized: 0
-  _isActive: 0
-  _cursorVisibilitySources: 0
-  _hasInput: 0
 --- !u!1 &1489204330
 GameObject:
   m_ObjectHideFlags: 0
@@ -1840,42 +1530,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98cb9a749f284fc78432a36c8ce99179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cachedName: 
-  _nameCached: 0
-  _cachedGameObject: {fileID: 0}
-  _gameObjectCached: 0
-  _cachedTransform: {fileID: 0}
-  _transformCached: 0
-  _scene: {fileID: 0}
-  _context:
-    PeerUserID: 
-    Audio: {fileID: 0}
-    UI: {fileID: 0}
-    ObjectCache: {fileID: 0}
-    Input: {fileID: 0}
-    Camera: {fileID: 0}
-    NetworkGame: {fileID: 0}
-    Settings: {fileID: 0}
-    Announcer: {fileID: 0}
-    IsVisible: 0
-    HasInput: 0
-    Runner: {fileID: 0}
-    GameplayMode: {fileID: 0}
-    LocalPlayerRef:
-      _index: 0
-    ObservedPlayerRef:
-      _index: 0
-    ObservedAgent: {fileID: 0}
-    WaitingAgentTransform: {fileID: 0}
-    Map: {fileID: 0}
-    PlayerPreview: {fileID: 0}
-    Matchmaking: {fileID: 0}
-  _isInitialized: 0
-  _isActive: 0
-  _audio: {fileID: 0}
-  _announcements: []
-  _collectedAnnouncements: []
-  _waitingAnnouncements: []
 --- !u!1 &1526794889
 GameObject:
   m_ObjectHideFlags: 0
@@ -2002,42 +1656,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1acff5a67429816419d5bc1e6e7d2e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cachedName: 
-  _nameCached: 0
-  _cachedGameObject: {fileID: 0}
-  _gameObjectCached: 0
-  _cachedTransform: {fileID: 0}
-  _transformCached: 0
-  <ContextReady>k__BackingField: 0
-  <IsActive>k__BackingField: 0
-  _selfInitialize: 0
-  _context:
-    PeerUserID: 
-    Audio: {fileID: 0}
-    UI: {fileID: 0}
-    ObjectCache: {fileID: 583899997}
-    Input: {fileID: 1384090257}
-    Camera: {fileID: 133039876}
-    NetworkGame: {fileID: 914934085}
-    Settings: {fileID: 0}
-    Announcer: {fileID: 1489204332}
-    IsVisible: 0
-    HasInput: 0
-    Runner: {fileID: 0}
-    GameplayMode: {fileID: 0}
-    LocalPlayerRef:
-      _index: 0
-    ObservedPlayerRef:
-      _index: 0
-    ObservedAgent: {fileID: 0}
-    WaitingAgentTransform: {fileID: 0}
-    Map: {fileID: 0}
-    PlayerPreview: {fileID: 0}
-    Matchmaking: {fileID: 0}
-  _isInitialized: 0
-  _services: []
-  _UIScene:
-    m_Handle: 0
 --- !u!4 &1801535964
 Transform:
   m_ObjectHideFlags: 0
@@ -2059,7 +1677,7 @@ Transform:
   - {fileID: 245382472}
   - {fileID: 759409553}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2015339834
 GameObject:

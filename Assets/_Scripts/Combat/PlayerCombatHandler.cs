@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityRandom = UnityEngine.Random;
+using Fusion;
 
 
-public class PlayerCombatHandler : MonoBehaviour
+public class PlayerCombatHandler : NetworkBehaviour
 {
     [Header("Starting Weapon")]
     [SerializeField] GunSO _startingWeapon;

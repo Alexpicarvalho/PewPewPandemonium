@@ -5,25 +5,24 @@ using UnityEngine;
 public class GroundTile : MonoBehaviour
 {
     GroundSpawner groundSpawner;
-    public GameObject obstaclePrefab;
-    public GameObject coinPrefab;
+    [SerializeField] GameObject obstaclePrefab;
+    [SerializeField] GameObject coinPrefab;
 
     void Start()
     {
         groundSpawner = GameObject.FindObjectOfType<GroundSpawner>();
-        SpawnObstacle();
-        SpawnCoins();
+
     }
 
 
     private void OnTriggerExit (Collider other)
     {
         // Spawn tile
-        groundSpawner.SpawnTile();
+        groundSpawner.SpawnTile(true);
         Destroy(gameObject, 2);
     }
 
-    void SpawnObstacle()
+    public void SpawnObstacle()
     {
         //choose a random point to spawn obstacle
         int obstacleSpawnIndex = Random.Range(2, 5);
@@ -36,7 +35,7 @@ public class GroundTile : MonoBehaviour
     }
 
    
-    void SpawnCoins() 
+    public void SpawnCoins() 
     {
         int coinsToSpawn = 10;
         for (int i = 0; i < coinsToSpawn; i++)

@@ -7,10 +7,11 @@ public class MG_Playermovement : MonoBehaviour
 {
     bool alive = true;
    public float speed = 1f;
-   public Rigidbody rb;
+   [SerializeField] Rigidbody rb;
    private Vector3 moveDirection = Vector3.zero;
 
     public float sideSpeed = 5f;
+    public float speedIncreasePerPoint = 0.1f;
 
 
     void Update()

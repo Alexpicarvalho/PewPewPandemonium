@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Minigame_manager2 : MonoBehaviour
 {
 
-    public int score;
+    int score;
     public static Minigame_manager2 inst;
     [SerializeField] Text scoreText;
     [SerializeField] MG_Playermovement playermovement;

@@ -51,13 +51,10 @@ public class PlayerMovement : NetworkBehaviour
     public bool _trackSpeedUp = false;
     [HideInInspector] public float _trackSpeed;
 
-
     //READ ONLY
     public float Speed => _currentSpeed;
     public float MinSpeed => _startSpeed;
     public float MaxSpeed => _maxSpeed;
-
-    
 
     // Start is called before the first frame update
     void Start()
@@ -88,14 +85,13 @@ public class PlayerMovement : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Object.HasInputAuthority) return;
+        if (!this.HasInputAuthority) return;
         RechargeDodge();
         float xMov = Input.GetAxis("Horizontal");
         float zMov = Input.GetAxis("Vertical");
         Vector3 mousePos = MousePosition();
 
         moveDirection = new Vector3(xMov, 0f, zMov).normalized;
-
 
         //Animation
 
@@ -133,20 +129,16 @@ public class PlayerMovement : NetworkBehaviour
             //anim.SetBool("Moving", false);
             float angle = Mathf.SmoothDamp(anim.GetFloat("MovBlend"), 1000, ref vel, 1f);
             anim.SetFloat("MovBlend", 1000);
-
-        }
-        
-
+        }      
     }
     public override void FixedUpdateNetwork()
     {
-        //if (!Object.HasStateAuthority) return;
+        //if (!this.HasStateAuthority) return;
         if (moveDirection.magnitude != 0.0f && _canMove)
         {
             rb.MovePosition(transform.position + (1 + _perkSpeedModifier) * _currentSpeed * iTime.personalTimeScale * Runner.DeltaTime * moveDirection);
             //anim.SetBool("Moving", true);  
         }
-
     }
 
     private void RechargeDodge()

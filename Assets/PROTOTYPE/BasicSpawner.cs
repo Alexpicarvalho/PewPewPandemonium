@@ -10,7 +10,10 @@ using Cinemachine;
 public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
     [SerializeField] private NetworkPrefabRef _playerPrefab;
+
+    //PLAYERS
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
+    
     private bool _mouseButton0;
     private bool _mouseButton1;
 

@@ -2,6 +2,8 @@ using CustomClasses;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fusion;
+using UnityEditor;
 
 [RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(PersonalTime))]
@@ -18,6 +20,11 @@ public class Grenade : Damager
     public ITime _iTime;
     protected bool _slowed;
 
+    private void Awake()
+    {
+        //ApplyNetworkComponents();
+    }
+
     public virtual void Launch()
     {
         GetComponent<Collider>().enabled = false;
@@ -27,6 +34,25 @@ public class Grenade : Damager
         _rb.velocity = _throwDirection /** _iTime.personalTimeScale*/;
         
     }
+
+    //private void ApplyNetworkComponents()
+    //{
+    //    if (!_spawnEffect) return;
+
+    //    if (!_spawnEffect.TryGetComponent(out NetworkObject _)) _spawnEffect.AddComponent<NetworkObject>();
+
+    //    if (!_spawnEffect.TryGetComponent(out NetworkTransform _))
+    //    {
+    //        _spawnEffect.AddComponent<NetworkTransform>();
+    //        if (_spawnEffect.transform.childCount == 0) Instantiate(new GameObject(), _spawnEffect.transform);
+    //        _spawnEffect.GetComponent<NetworkTransform>().InterpolationTarget = _spawnEffect.transform.GetChild(0);
+    //    }
+    //    else return;
+
+    //    //Save In Disk
+    //    PrefabUtility.SavePrefabAsset(_spawnEffect);
+    //    AssetDatabase.SaveAssets();
+    //}
 
     public void SetSpawnEffect(GameObject effect)
     {

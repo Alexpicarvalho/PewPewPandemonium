@@ -4,17 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using static UnityEngine.ParticleSystem;
+using Fusion;
 
 public class WeaponPickUp : Pickup
 {
     [SerializeField] public GunSO _weaponToGive;
-    [SerializeField] public WeaponTier _weaponToGiveTier;
+    [Networked][field :SerializeField] public WeaponTier _weaponToGiveTier { get; set; }
     [SerializeField] private float _startThrowForce = 100f;
     [SerializeField] private ParticleSystemRenderer _glowEffect;
     [SerializeField] private Material _commonGlow;
     [SerializeField] private Material _uncommonGlow;
     [SerializeField] private Material _rareGlow;
     [SerializeField] private Material _specialGlow;
+
+    //[Networked (OnChanged = nameof(SelectGlowColor))]
+    public NetworkBool _colorChanged { get; set; }
+
     GunSO _gun;
     Rigidbody _rb;
 
@@ -30,8 +35,8 @@ public class WeaponPickUp : Pickup
         _gun._weaponTier = _weaponToGiveTier;
 
         SelectGlowColor();
-
     }
+
 
     private void SelectGlowColor()
     {

@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Fusion;
 
 [RequireComponent(typeof(Object_ID))]
-public class MinigunTurretGO : MonoBehaviour
+public class MinigunTurretGO : NetworkBehaviour
 {
     [Header("Setup Variables")]
     [SerializeField] Transform _hand;
@@ -44,7 +45,7 @@ public class MinigunTurretGO : MonoBehaviour
         _lineRenderer = GetComponent<LineRenderer>();
         _gun = Instantiate(_gunRef);
         _gun.PlaceInHand(_hand);
-        _gun.SetWeaponValues(_firePoint);
+        _gun.SetWeaponValues(_firePoint, _ID);
         _rangeVisualisor.transform.localScale = 0.3f * _targetDetectionRange * Vector3.one;
     }
 
@@ -123,7 +124,7 @@ public class MinigunTurretGO : MonoBehaviour
 
     private void OnDestroy()
     {
-        Instantiate(_onDestroyExplosionVFX, transform.position, Quaternion.identity);
+        Runner.Spawn(_onDestroyExplosionVFX, transform.position, Quaternion.identity);
     }
 
     private void OnDrawGizmos()

@@ -9,7 +9,7 @@ public class MinigunSkill : WeaponSkillSO
     public override void ExecuteSpell(Vector3 _target = default)
     {
         base.ExecuteSpell(_target);
-        var grenadeGO = Instantiate(_skillVFX, _firePoint.position, Quaternion.identity);
+        var grenadeGO = _runnerNetworkBehaviour.Runner.Spawn(_skillVFX, _firePoint.position, Quaternion.identity);
         var grenadeScript = grenadeGO.GetComponent<SpawnerGrenade>();
         grenadeScript.CalculateThrowVelocity(_target, 5.0f);
         grenadeScript.Launch();

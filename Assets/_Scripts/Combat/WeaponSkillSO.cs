@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityRandom = UnityEngine.Random;
 using Fusion;
+using UnityEditor;
 
 [CreateAssetMenu(menuName = "Weapons/Skill", fileName = "Skill")]
 public class WeaponSkillSO : ScriptableObject
@@ -45,6 +46,8 @@ public class WeaponSkillSO : ScriptableObject
     protected NetworkBehaviour _runnerNetworkBehaviour;
     public int _ownerID;
 
+    [Header("Network Components Handeling")]
+    [SerializeField] bool _skillIsNetworkRigidbody = false;
 
 
 
@@ -53,7 +56,37 @@ public class WeaponSkillSO : ScriptableObject
 
 
     //Methods
-    
+
+    private void Awake()
+    {
+       // ApplyNetworkComponents();
+    }
+
+    //private void ApplyNetworkComponents()
+    //{
+    //    if (!_skillVFX) return;
+
+    //    if (!_skillVFX.TryGetComponent(out NetworkObject _)) _skillVFX.AddComponent<NetworkObject>();
+
+    //    if (!_skillIsNetworkRigidbody && !_skillVFX.TryGetComponent(out NetworkTransform _))
+    //    {
+    //        _skillVFX.AddComponent<NetworkTransform>();
+    //        if (_skillVFX.transform.childCount == 0) Instantiate(new GameObject(), _skillVFX.transform);
+    //        _skillVFX.GetComponent<NetworkTransform>().InterpolationTarget = _skillVFX.transform.GetChild(0);
+    //    }
+    //    else if (_skillIsNetworkRigidbody && !_skillVFX.TryGetComponent(out NetworkRigidbody _))
+    //    {
+    //        _skillVFX.AddComponent<NetworkRigidbody>();
+    //        if (_skillVFX.transform.childCount == 0) Instantiate(new GameObject(), _skillVFX.transform);
+    //        _skillVFX.GetComponent<NetworkRigidbody>().InterpolationTarget = _skillVFX.transform.GetChild(0);
+    //    }
+    //    else return;
+
+    //    //Save In Disk
+    //    PrefabUtility.SavePrefabAsset(_skillVFX);
+    //    AssetDatabase.SaveAssets();
+    //}
+
     public void SetSkillValues(Transform firePoint = null, float damageMult = 1, Object_ID _parentID = null) 
     {
         _firePoint = firePoint;

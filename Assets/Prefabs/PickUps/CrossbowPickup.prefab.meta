@@ -1,11 +1,7 @@
 fileFormatVersion: 2
-guid: d5ee775b8b5556040a494dbbd2f81e48
+guid: c1de7eb591dc6384cbaed94f032721cd
 labels:
 - FusionPrefab
-- cartoonfx
-- hit
-- particles
-- toon
 PrefabImporter:
   externalObjects: {}
   userData: 

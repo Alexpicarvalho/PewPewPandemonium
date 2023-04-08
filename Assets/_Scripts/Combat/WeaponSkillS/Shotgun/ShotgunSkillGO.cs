@@ -24,10 +24,14 @@ public class ShotgunSkillGO : Projectile
             Destroy(gameObject); 
         }
         else PullTarget(collision.collider.gameObject);
-
-
-
     }
+
+    public override void FixedUpdateNetwork()
+    {
+        base.FixedUpdateNetwork();
+        Debug.Log("I be moving");
+    }
+
 
     private void PullTarget(GameObject target)
     {

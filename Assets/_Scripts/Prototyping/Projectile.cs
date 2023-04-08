@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using UnityEditor;
 
 [RequireComponent(typeof(PersonalTime))]
 [RequireComponent(typeof(Rigidbody))]
@@ -38,8 +39,24 @@ public class Projectile : Damager
     {
         Invoke("DestroyAfter", _lifeTime - _shrinkOnDestroyDuration);
         iTime = GetComponent<ITime>();
-
+        //ApplyNetworkComponents();
     }
+
+    //private void ApplyNetworkComponents()
+    //{
+    //    if (!_impact) return;
+
+    //    if (!_impact.TryGetComponent(out NetworkObject _))
+    //    {
+    //        _impact.AddComponent<NetworkObject>();
+
+    //        //Save In Disk
+    //        PrefabUtility.SavePrefabAsset(_impact);
+    //        AssetDatabase.SaveAssets();
+    //    } 
+
+        
+    //}
 
     public override void SetDamage(Damage newDamage = null)
     {
@@ -63,7 +80,7 @@ public class Projectile : Damager
         if (_damage == null) { Debug.LogWarning("No Damage in Damager Projectile"); return; }
         if (_timeSinceBirth < _decaysAfterSeconds || _currentDamagePercent <= _minDamagePercent) return;
 
-        _currentDamagePercent -= _decayRateSecond * Time.deltaTime;
+        _currentDamagePercent -= _decayRateSecond * Runner.DeltaTime;
         if (_currentDamagePercent < _minDamagePercent) _currentDamagePercent = _minDamagePercent;
         _damage._amount = _startDamage * _currentDamagePercent;
         
@@ -82,7 +99,7 @@ public class Projectile : Damager
         }
         if (_impact != null)
         {
-            var hit = Instantiate(_impact, cp.point + cp.normal * .5f, Quaternion.LookRotation(cp.normal));
+            var hit = Runner.Spawn(_impact, cp.point + cp.normal * .5f, Quaternion.LookRotation(cp.normal));
             Destroy(hit, 2.0f);
         }
         Destroy(gameObject);

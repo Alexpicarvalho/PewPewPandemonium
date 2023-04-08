@@ -19070,6 +19070,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1609540817920146586}
   - component: {fileID: 3750073574659473772}
+  - component: {fileID: 501432633954552612}
   m_Layer: 7
   m_Name: LBO_Legendary
   m_TagString: Untagged
@@ -19115,6 +19116,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _destroyAfterTime: 3
+--- !u!114 &501432633954552612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612255617566175962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2305
+  NetworkGuid:
+    RawGuidValue: 77aab1cd99e5b3e41b4fd867a4b239d1
+  NestedObjects: []
+  NetworkedBehaviours: []
+  SimulationBehaviours: []
 --- !u!1 &4728588138188880995
 GameObject:
   m_ObjectHideFlags: 0

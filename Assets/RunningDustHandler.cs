@@ -16,7 +16,7 @@ public class RunningDustHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_playerMovement.Speed == _playerMovement.MaxSpeed && _dustPS.enableEmission == false) _dustPS.enableEmission = true;
-        else _dustPS.enableEmission = false;
+        //if (_playerMovement.Speed == _playerMovement.MaxSpeed && _dustPS.enableEmission == false) _dustPS.enableEmission = true;
+        //else _dustPS.enableEmission = false;
     }
 }

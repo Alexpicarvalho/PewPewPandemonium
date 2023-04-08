@@ -27,8 +27,9 @@ public class GasCannisterScript : Grenade
             if (_spawnEffect == null) Debug.Log("SpawnEffect null");
             if (!Runner) Debug.Log("Runner null");
             Explode();
-            Runner.Spawn(_spawnEffect, transform.position, Quaternion.identity);    
-            Runner.Spawn(_explosionVFX, transform.position + _explosionOffset, Quaternion.identity);
+            Vector3 spawnPos = new Vector3(transform.position.x, 0.01f, transform.position.z);
+            Runner.Spawn(_spawnEffect, spawnPos, Quaternion.identity);    
+            Runner.Spawn(_explosionVFX, spawnPos + _explosionOffset, Quaternion.identity);
             Destroy(gameObject);
         }
         

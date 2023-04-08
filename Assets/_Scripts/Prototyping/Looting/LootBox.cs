@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using static UnityEngine.ParticleSystem;
+using Fusion;
 
 [RequireComponent(typeof(Rigidbody))]
-public class LootBox : MonoBehaviour, IHitable
+public class LootBox : NetworkBehaviour, IHitable
 {
     [Header("Box Stats")]
     [SerializeField] private float _maxHp = 10;
@@ -58,30 +59,41 @@ public class LootBox : MonoBehaviour, IHitable
     {
         if (damage == null) return;
         _currentHP -= damage._amount;
-        if (_currentHP <= 0) Destroy(gameObject);
+        if (_currentHP <= 0) 
+        {
+            RPC_SendLootInfoToServer();
+        } 
     }
 
-    public void InstantDestroy() { Destroy(gameObject); }
-
-    private void OnDestroy()
+    public void InstantDestroy() 
     {
-        if (isQuitting) return;
+        RPC_SendLootInfoToServer();
+    }
+
+
+    [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
+    private void RPC_SendLootInfoToServer()
+    {
         PlayExplosion();
         foreach (var drop in _drops)
         {
-            var weaponInstance = Instantiate(drop, transform.position
+            var weaponInstance = Runner.Spawn(drop, transform.position
                 + new Vector3(Random.insideUnitCircle.x, 0, Random.insideUnitCircle.y)
                 + Vector3.up * 2, Quaternion.identity);
+
+            if (weaponInstance == null) Debug.Log("Weapon Instance null");
 
             var _weaponScript = weaponInstance.GetComponent<WeaponPickUp>();
             if (_weaponScript != null)
             {
                 _weaponTier = LootBoxManager.Instance.RequestWeaponTier(_rarity);
                 _weaponScript._weaponToGiveTier = _weaponTier;
-                Debug.Log("Weapon Tier is " + _weaponTier); 
+                Debug.Log("Weapon Tier is " + _weaponTier);
             }
+            else Debug.Log("No WEaponPickUp");
 
         }
+        Destroy(gameObject);
     }
 
     private void PlayExplosion()
@@ -90,16 +102,16 @@ public class LootBox : MonoBehaviour, IHitable
         switch (_rarity)
         {
             case Rarity.Common:
-                Instantiate(_commonExplosionVFX, transform.position, Quaternion.identity);
+                Runner.Spawn(_commonExplosionVFX, transform.position, Quaternion.identity);
                 break;
             case Rarity.Rare:
-                Instantiate(_rareExplosionVFX, transform.position, Quaternion.identity);
+                Runner.Spawn(_rareExplosionVFX, transform.position, Quaternion.identity);
                 break;
             case Rarity.Epic:
-                Instantiate(_epicExplosionVFX, transform.position, Quaternion.identity);
+                Runner.Spawn(_epicExplosionVFX, transform.position, Quaternion.identity);
                 break;
             case Rarity.Legendary:
-                Instantiate(_legendaryExplosionVFX, transform.position, Quaternion.identity);
+                Runner.Spawn(_legendaryExplosionVFX, transform.position, Quaternion.identity);
                 break;
         }
     }

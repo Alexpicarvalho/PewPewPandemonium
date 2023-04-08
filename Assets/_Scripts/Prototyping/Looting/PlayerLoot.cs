@@ -159,6 +159,7 @@ public class PlayerLoot : MonoBehaviour
         _nearestPickup = _nearbyPickups[pickupIndex];
 
         _lootMEPrefab.transform.position = _nearestPickup.transform.position + _offset;
+        _lootMEPrefab.GetComponentInChildren<TextMeshProUGUI>().text = _nearestPickup._rarity.ToString();
     }
 
     private void ShowInList()

@@ -238,6 +238,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7402540948860261373}
   - component: {fileID: 4654849219751698257}
+  - component: {fileID: 2544607540163140929}
+  - component: {fileID: 8156969995624634375}
   m_Layer: 0
   m_Name: MinigunTurret
   m_TagString: Untagged
@@ -281,6 +283,59 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &2544607540163140929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4875569123517598787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2305
+  NetworkGuid:
+    RawGuidValue: 8aea8ec7f3a55714cb914c59615ecbfd
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 8156969995624634375}
+  - {fileID: 8102016472162096967}
+  SimulationBehaviours: []
+--- !u!114 &8156969995624634375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4875569123517598787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  InterpolationSpace: 0
+  InterpolationTarget: {fileID: 3534493344318593991}
+  InterpolateErrorCorrection: 1
+  InterpolatedErrorCorrectionSettings:
+    MinRate: 3.3
+    MaxRate: 10
+    PosBlendStart: 0.25
+    PosBlendEnd: 1
+    PosMinCorrection: 0.025
+    PosTeleportDistance: 2
+    RotBlendStart: 0.1
+    RotBlendEnd: 0.5
+    RotTeleportRadians: 1.5
+  UseLegacySharedModeInterpolation: 0
+  TargetInterpolationDelay: 0.03
 --- !u!1 &5585732136742513998
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,6 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22fe39cc38bef049ad333d8f177ac59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   _hand: {fileID: 4285703031181835014}
   _firePoint: {fileID: 3137551691968887095}
   _gunRef: {fileID: 11400000, guid: 4ed880f7cf11f0d408177a8b2ff78abd, type: 2}

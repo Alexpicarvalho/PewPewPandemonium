@@ -15,7 +15,7 @@ MonoBehaviour:
   _cooldown: 5
   _skillDescription: 
   _skillState: 0
-  _animatorTrigger: RailgunSkill
+  _animatorTrigger: 
   _skillVFX: {fileID: 5619586723189411082, guid: a0996e9d961e7f2428b5c898b8370e3e, type: 3}
   _activeTime: 0
   _firePoint: {fileID: 0}
@@ -32,3 +32,5 @@ MonoBehaviour:
   _finalDamage: 0
   _timeSinceActivation: 0
   _timeSinceLastUse: 0
+  _ownerID: 0
+  _skillIsNetworkRigidbody: 0

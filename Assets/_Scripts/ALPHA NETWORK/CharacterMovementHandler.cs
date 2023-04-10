@@ -44,6 +44,17 @@ public class CharacterMovementHandler : NetworkBehaviour
             moveDirection.Normalize();
 
             networkCharacterControllerPrototype.Move(moveDirection);
+
+            // check if the player fell of the world
+            CheckFallRespawn();
+        }
+    }
+
+    void CheckFallRespawn()
+    {
+        if (transform.position.y < -12)
+        {
+            transform.position = Utils.GetRandomSpawnPoint();
         }
     }
 

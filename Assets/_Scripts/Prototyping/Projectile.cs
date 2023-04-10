@@ -102,7 +102,7 @@ public class Projectile : Damager
             var hit = Runner.Spawn(_impact, cp.point + cp.normal * .5f, Quaternion.LookRotation(cp.normal));
             Destroy(hit, 2.0f);
         }
-        Destroy(gameObject);
+        Runner.Despawn(GetComponent<NetworkObject>());
     }
 
     private void UnparentTrails()
@@ -138,7 +138,7 @@ public class Projectile : Damager
             transform.localScale = Vector3.Lerp(startScale, Vector3.zero,(Time.time - startTime)/_shrinkOnDestroyDuration);
             yield return null;
         }
-        Destroy(gameObject);
+        Runner.Despawn(GetComponent<NetworkObject>());
     }
 
     private void OnDestroy()

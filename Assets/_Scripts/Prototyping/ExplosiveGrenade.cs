@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AlexCarvalho_Utils;
+using Fusion;
 
 
 public class ExplosiveGrenade : Grenade
@@ -21,8 +23,8 @@ public class ExplosiveGrenade : Grenade
     {
         Debug.Log(name + " hit " + collision.collider);
         Explode();
-        Runner.Spawn(_spawnEffect, transform.position + _explosionOffset, Quaternion.identity);
-        Destroy(gameObject);
+        Runner.Spawn(_spawnEffect, My_Utils.SnapToGroundGetPosition(transform.position) + _explosionOffset, Quaternion.identity);
+        Runner.Despawn(GetComponent<NetworkObject>());
     }
 
     private void Explode()

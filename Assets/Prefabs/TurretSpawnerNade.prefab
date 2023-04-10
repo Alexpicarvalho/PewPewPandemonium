@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3098749170282132779}
   - component: {fileID: 2685461938436072125}
   - component: {fileID: 1063876918829383733}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 6229801163925991710}
   - component: {fileID: -3119345048662196254}
   - component: {fileID: 4415842275110112493}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TurretSpawnerNade
   m_TagString: Untagged
   m_Icon: {fileID: 0}

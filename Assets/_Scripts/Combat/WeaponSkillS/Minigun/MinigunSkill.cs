@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AlexCarvalho_Utils;
 
 [CreateAssetMenu(menuName = "Weapons/Skill/Minigun", fileName = "MinigunSkill")]
 public class MinigunSkill : WeaponSkillSO

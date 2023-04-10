@@ -90,7 +90,7 @@ public class LootBox : NetworkBehaviour, IHitable
                 _weaponScript._weaponToGiveTier = _weaponTier;
                 Debug.Log("Weapon Tier is " + _weaponTier);
             }
-            else Debug.Log("No WEaponPickUp");
+            else Debug.Log("No WeaponPickUp");
 
         }
         Destroy(gameObject);

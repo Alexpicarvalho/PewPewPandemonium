@@ -273,7 +273,7 @@ public class GunSO : Item
         _weaponSkill.DestroySpell();
         if (!_groundPickUpPrefab) return;
 
-        var drop = Instantiate(_groundPickUpPrefab, _firePoint.position + Vector3.up, Quaternion.identity);
+        var drop = _runnerNetworkbehaviour.Runner.Spawn(_groundPickUpPrefab, _firePoint.position + Vector3.up, Quaternion.identity);
         //var dropRB = drop.GetComponent<Rigidbody>();
         drop.GetComponent<WeaponPickUp>()._weaponToGive = this;
         Debug.LogWarning("Successfully pooped weapon");

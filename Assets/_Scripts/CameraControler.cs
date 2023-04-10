@@ -60,11 +60,11 @@ public class CameraControler : NetworkBehaviour
         }
     }
 
-    //public override void FixedUpdateNetwork()
-    //{
-    //    Debug.Log("Entered Network Update cycle");
-    //    _cmBrain.ManualUpdate();
-    //}
+    public void LateUpdate()
+    {
+        //Debug.Log("Entered Network Update cycle");
+        _cmBrain.ManualUpdate();
+    }
     public void AddRemoveRenderLayers(LayerMask layerToAdd, LayerMask layerToRemove)
     {
         _mainCam.cullingMask += layerToAdd;

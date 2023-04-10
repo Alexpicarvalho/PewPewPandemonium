@@ -39,7 +39,8 @@ public class MinigunTurretGO : NetworkBehaviour
 
     private void Start()
     {
-        Destroy(transform.parent.gameObject, _lifeTime + _activationDelay);
+        StartCoroutine(DestroyAfer());
+        //Destroy(transform.parent.gameObject, _lifeTime + _activationDelay);
         Invoke("Activate", _activationDelay);
         _ID = GetComponent<Object_ID>();
         _lineRenderer = GetComponent<LineRenderer>();
@@ -122,9 +123,17 @@ public class MinigunTurretGO : NetworkBehaviour
 
     }
 
-    private void OnDestroy()
+    private void DestroyMe()
     {
+        if (Runner == null) Debug.LogWarning("Runner Is null");
         Runner.Spawn(_onDestroyExplosionVFX, transform.position, Quaternion.identity);
+    }
+
+    IEnumerator DestroyAfer()
+    {
+        yield return new WaitForSeconds(_lifeTime + _activationDelay);
+        DestroyMe();
+        Runner.Despawn(transform.parent.gameObject.GetComponent<NetworkObject>());
     }
 
     private void OnDrawGizmos()

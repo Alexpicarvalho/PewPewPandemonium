@@ -6,6 +6,7 @@ using Fusion;
 public class CharacterMovementHandler : NetworkBehaviour
 {
     NetworkCharacterControllerPrototype networkCharacterControllerPrototype;
+    PlayerMovement playerMovement;
     Camera localCamera;
 
     Vector2 viewInput;
@@ -13,6 +14,7 @@ public class CharacterMovementHandler : NetworkBehaviour
 
     private void Awake()
     {
+        playerMovement = GetComponent<PlayerMovement>();
         networkCharacterControllerPrototype = GetComponent<NetworkCharacterControllerPrototype>();
         localCamera = GetComponentInChildren<Camera>();
     }
@@ -37,13 +39,15 @@ public class CharacterMovementHandler : NetworkBehaviour
        if (GetInput(out NetworkInputData networkInputData))
         {
             //rotate
-            networkCharacterControllerPrototype.Rotate(networkInputData.rotationInput);
+            //networkCharacterControllerPrototype.Rotate(networkInputData.rotationInput);
+            //playerMovement.MousePosition();
 
             //move
             Vector3 moveDirection = transform.forward * networkInputData.movementInput.y + transform.right * networkInputData.movementInput.x;
             moveDirection.Normalize();
 
             networkCharacterControllerPrototype.Move(moveDirection);
+            
 
             // check if the player fell of the world
             CheckFallRespawn();

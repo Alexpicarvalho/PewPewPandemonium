@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using Cinemachine;
 
 public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
 {
@@ -18,19 +19,27 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
         if (Object.HasInputAuthority)
         {
             Local = this;
+            
+
+            //Camera myCamera = GetComponentInChildren<Camera>();
+            //myCamera.enabled = true;
+            
 
             //disable main camera
-            Camera.main.gameObject.SetActive(false);
+            //Camera.main.gameObject.SetActive(false);
 
             Debug.Log("Spawned local player");
         }
         else {
             // disable the camera if we are not the local player
-            Camera localCamera = GetComponentInChildren<Camera>();
-            localCamera.enabled = false;
+            //Camera localCamera = GetComponentInChildren<Camera>();
+            //localCamera.enabled = false;
 
-            AudioListener audioListener = GetComponentInChildren<AudioListener>();
-            audioListener.enabled = false;
+            CinemachineVirtualCamera cmCam = GetComponentInChildren<CinemachineVirtualCamera>();
+            cmCam.enabled = false;
+
+            //AudioListener audioListener = GetComponentInChildren<AudioListener>();
+            //audioListener.enabled = false;
 
             Debug.Log("Spawned remote player"); 
         }

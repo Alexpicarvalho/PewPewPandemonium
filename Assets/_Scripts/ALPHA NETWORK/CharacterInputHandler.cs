@@ -18,10 +18,10 @@ public class CharacterInputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        viewInputVector.x = Input.GetAxis("Mouse X");
-        viewInputVector.y = Input.GetAxis("Mouse Y") - 1; // invert the mouse look
+        //viewInputVector.x = Input.GetAxis("Mouse X");
+        //viewInputVector.y = Input.GetAxis("Mouse Y") - 1; // invert the mouse look
 
-        characterMovementHandler.SetViewInputVector(viewInputVector);
+        //characterMovementHandler.SetViewInputVector(viewInputVector);
 
         // move input
         moveInputVector.x = Input.GetAxis("Horizontal");
@@ -31,7 +31,7 @@ public class CharacterInputHandler : MonoBehaviour
     public NetworkInputData GetNetworkInput()
     {
         NetworkInputData networkInputData = new NetworkInputData();
-        networkInputData.rotationInput = viewInputVector.x;
+        //networkInputData.rotationInput = viewInputVector.x;
         networkInputData.movementInput = moveInputVector;
 
         return networkInputData;

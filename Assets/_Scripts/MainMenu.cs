@@ -34,16 +34,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetFloat("mastervolume", AudioListener.volume);
     }
 
-    public void ResetButton(string MenuType)
-    {
-        if (MenuType == "Audio")
-        {
-            AudioListener.volume += defaultVolume;
-            volumeSlider.value = defaultVolume;
-            volumeTextValue.text = defaultVolume.ToString("0.0");
-            VolumeApply();
-        }
-    }
+
 
     public IEnumerator ConfirmationBox()
     {

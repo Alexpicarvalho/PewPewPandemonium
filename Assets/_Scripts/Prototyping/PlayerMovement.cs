@@ -138,7 +138,8 @@ public class PlayerMovement : NetworkBehaviour
         //if (!this.HasStateAuthority) return;
         if (GetInput(out NetworkInputData networkInputData))
         {
-            Vector3 moveDirection = transform.forward * networkInputData.movementInput.y + transform.right * networkInputData.movementInput.x;
+            //Vector3 moveDirection = transform.forward * networkInputData.movementInput.y + transform.right * networkInputData.movementInput.x;
+            Vector3 moveDirection = new Vector3(networkInputData.movementInput.x, 0, networkInputData.movementInput.y);
             moveDirection.Normalize();
 
             if (moveDirection.magnitude != 0.0f && _canMove)

@@ -5251,6 +5251,8 @@ MonoBehaviour:
   _targetIsSibling: 0
   _targetChildIndex: 0
   _targetSiblingIndex: 0
+  _startOffset: {x: 0, y: 2.3, z: 1}
+  _autoOffset: 0
 --- !u!114 &8592191985095530464
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,7 +13,8 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] float _maxSpeed;
     public float _currentSpeed = 8.0f;
     [SerializeField] float _timeToAchieveMaxSpeed;
-    
+    private Vector2 moveInputVector;
+
     [Header("Visuals")]
     public GameObject movementDirectionIndicator;
     public GameObject marker;
@@ -82,28 +83,32 @@ public class PlayerMovement : NetworkBehaviour
         _id = GetComponent<Object_ID>();
     }
 
+    public NetworkInputData GetNetworkInput()
+    {
+        NetworkInputData networkInputData = new NetworkInputData();
+        //networkInputData.rotationInput = viewInputVector.x;
+        networkInputData.movementInput = moveInputVector;
+
+        return networkInputData;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (!this.HasInputAuthority) return;
+        //if (!this.HasInputAuthority) return;
         RechargeDodge();
         float xMov = Input.GetAxis("Horizontal");
         float zMov = Input.GetAxis("Vertical");
+        moveInputVector.x = xMov;
+        moveInputVector.y = zMov;
         Vector3 mousePos = MousePosition();
 
         moveDirection = new Vector3(xMov, 0f, zMov).normalized;
 
-        //Animation
 
-        float zVelocity = Vector3.Dot(moveDirection, transform.forward);
-        float xVelocity = Vector3.Dot(moveDirection, transform.right);
-        float movSpeedMult = _currentSpeed / _maxSpeed;
-
-        if (!_sleepAnimFloat)
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            anim.SetFloat("zMov", zVelocity, 0.1f, Time.deltaTime);
-            anim.SetFloat("xMov", xVelocity, 0.1f, Time.deltaTime);
-            anim.SetFloat("movSpeedMult", movSpeedMult);
+            Dodge();
         }
 
         if (_canMove) transform.rotation = Quaternion.LookRotation(mousePos);
@@ -116,10 +121,7 @@ public class PlayerMovement : NetworkBehaviour
             movementDirectionIndicator.transform.rotation = Quaternion.LookRotation(moveDirection);
             CalculateAnimatorMovementValue(moveDirection);
 
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                Dodge();
-            }
+            
         }
         else
         {
@@ -134,10 +136,30 @@ public class PlayerMovement : NetworkBehaviour
     public override void FixedUpdateNetwork()
     {
         //if (!this.HasStateAuthority) return;
-        if (moveDirection.magnitude != 0.0f && _canMove)
+        if (GetInput(out NetworkInputData networkInputData))
         {
-            rb.MovePosition(transform.position + (1 + _perkSpeedModifier) * _currentSpeed * iTime.personalTimeScale * Runner.DeltaTime * moveDirection);
-            //anim.SetBool("Moving", true);  
+            Vector3 moveDirection = transform.forward * networkInputData.movementInput.y + transform.right * networkInputData.movementInput.x;
+            moveDirection.Normalize();
+
+            if (moveDirection.magnitude != 0.0f && _canMove)
+            {
+                rb.MovePosition(transform.position + (1 + _perkSpeedModifier) * _currentSpeed * iTime.personalTimeScale * Runner.DeltaTime * moveDirection);
+                //anim.SetBool("Moving", true);  
+            }
+
+            //Animation
+
+            float zVelocity = Vector3.Dot(moveDirection, transform.forward);
+            float xVelocity = Vector3.Dot(moveDirection, transform.right);
+            float movSpeedMult = _currentSpeed / _maxSpeed;
+
+            if (!_sleepAnimFloat)
+            {
+                anim.SetFloat("zMov", zVelocity, 0.1f, Runner.DeltaTime);
+                anim.SetFloat("xMov", xVelocity, 0.1f, Runner.DeltaTime);
+                anim.SetFloat("movSpeedMult", movSpeedMult);
+            }
+
         }
     }
 
@@ -180,7 +202,7 @@ public class PlayerMovement : NetworkBehaviour
         //_rollingSmoke?.SetActive(false);
     }
 
-    private Vector3 MousePosition()
+    public Vector3 MousePosition()
     {
         Camera camera = Camera.main;
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);

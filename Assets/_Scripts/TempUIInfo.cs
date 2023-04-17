@@ -18,8 +18,11 @@ public class TempUIInfo : MonoBehaviour
     [SerializeField] Image _cooldownMask;
     [SerializeField] RawImage _grenadeImage;
     [SerializeField] Image _cooldownMaskNade;
+    [SerializeField] RawImage _utilityImage;
+    [SerializeField] Image _cooldownMaskUtility;
     TextMeshProUGUI _cooldownText;
     TextMeshProUGUI _cooldownNadeText;
+    TextMeshProUGUI _cooldownUtilityText;
     private Image _border1;
     private Image _border2;
     private PlayerCombatHandler _playerCombatHandler;
@@ -39,9 +42,11 @@ public class TempUIInfo : MonoBehaviour
         _border2 = _weapon2UI.transform.GetChild(1).GetComponent<Image>();
         _cooldownText = _cooldownMask.GetComponentInChildren<TextMeshProUGUI>();
         _cooldownNadeText = _cooldownMaskNade.GetComponentInChildren<TextMeshProUGUI>();
+        _cooldownUtilityText = _cooldownMaskUtility.GetComponentInChildren<TextMeshProUGUI>();
         _skillUIAnimator = _skillUI.GetComponent<Animator>();
         _skillImage.texture = _playerCombatHandler._weaponSlot2._weaponSkill._skillIcon;
         _grenadeImage.texture = _playerCombatHandler._grenade._icon;
+        _utilityImage.texture = _playerCombatHandler._utility._icon;
     }
 
     // Update is called once per frame
@@ -120,6 +125,8 @@ public class TempUIInfo : MonoBehaviour
             _cooldownText.text = "";
         }
 
+        //NADE
+
         GrenadeSO _currentGrenade = _playerCombatHandler._grenade;
 
         if (_currentGrenade._onCooldown)
@@ -134,8 +141,21 @@ public class TempUIInfo : MonoBehaviour
             _cooldownNadeText.text = "";
         }
 
+        //UTILITY
 
+        UtilitySO _currentUtility = _playerCombatHandler._utility;
 
+        if (_currentUtility._onCooldown)
+        {
+            _cooldownMaskUtility.enabled = true;
+            _cooldownUtilityText.text = ((int)(_currentUtility._cooldown - _currentUtility._timeSinceLastUse) + 1).ToString();
+            _cooldownMaskUtility.fillAmount = 1 - (_currentUtility._timeSinceLastUse / _currentUtility._cooldown);
+        }
+        else
+        {
+            _cooldownMaskUtility.enabled = false;
+            _cooldownUtilityText.text = "";
+        }
 
 
         if (_lastFrameWeapon && _lastFrameWeapon != _playerCombatHandler._gun)

@@ -13,6 +13,7 @@ public class GrenadeSO : Item
     [Header("Physical/Visual Properties")]
     [SerializeField] GameObject _grenadeGO;
     [SerializeField] GameObject _spawnEffect;
+    [SerializeField] GameObject _dropPrefab;
 
     //[Header("Grenade Path Visuals")]
     //[SerializeField] LineRenderer _lineRenderer;
@@ -79,6 +80,11 @@ public class GrenadeSO : Item
         grenadeScript.Launch();
         grenadeScript.SetSpawnEffect(_spawnEffect);
         grenadeScript.SetDamage(_damage);
+    }
+
+    public virtual void DropGrenade()
+    {
+
     }
 
     //public void EnableIndicator()

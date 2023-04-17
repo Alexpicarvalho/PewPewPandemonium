@@ -5,6 +5,7 @@ using AlexCarvalho_Utils;
 
 public class SpawnerGrenade : Grenade
 {
+    [SerializeField] LayerMask _groundLayer;
     public override void CalculateThrowVelocity(Vector3 target, float offset)
     {
         base.CalculateThrowVelocity(target, offset);
@@ -18,7 +19,7 @@ public class SpawnerGrenade : Grenade
     public virtual void OnCollisionEnter(Collision collision)
     {
         if (!(_canCollideLayers == (_canCollideLayers | (1 << collision.collider.gameObject.layer)))) return;
-        Runner.Spawn(_spawnEffect, My_Utils.SnapToGroundGetPosition(transform.position), Quaternion.identity);
+        Runner.Spawn(_spawnEffect, My_Utils.SnapToGroundGetPosition(transform.position,_groundLayer), Quaternion.identity);
         Destroy(gameObject);
     }
 }

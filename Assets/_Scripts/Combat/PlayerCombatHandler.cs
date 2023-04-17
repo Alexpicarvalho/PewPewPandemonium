@@ -25,6 +25,7 @@ public class PlayerCombatHandler : NetworkBehaviour
     [HideInInspector] public GunSO _weaponSlot2;
     [HideInInspector] public GunSO _gun;
     /*[HideInInspector]*/ public GrenadeSO _grenade;
+    public UtilitySO _utility;
     private Vector3 _currentSkillTargetLocation;
     //[HideInInspector] public UtilitySO _utility;
 
@@ -61,6 +62,8 @@ public class PlayerCombatHandler : NetworkBehaviour
         SwapWeapons();
         _grenade = Instantiate(_grenade);
         _grenade.SetValues(_firePoint, _id);
+        _utility = Instantiate(_utility);
+        _utility.SetupUtility(transform, _firePoint);
     }
 
 
@@ -73,6 +76,7 @@ public class PlayerCombatHandler : NetworkBehaviour
         _weaponSlot1?.UpdateWeaponStatus();
         _weaponSlot2?.UpdateWeaponStatus();
         _grenade.UpdateState();
+        _utility.UpdateUtilityStatus();
 
         if (Input.GetKeyDown(KeyCode.V))
         {
@@ -110,6 +114,9 @@ public class PlayerCombatHandler : NetworkBehaviour
         {
            // _grenade.DisableIndicator();
         }
+
+        if (Input.GetKeyDown(KeyCode.E)) _utility.Use();
+
 
         //_grenade.DrawProjection();
 
@@ -150,6 +157,22 @@ public class PlayerCombatHandler : NetworkBehaviour
             SetupWeapon(_gun);
         }
         SwapWeapons();
+    }
+
+    public void ReceiveGrenade(GrenadeSO _newGrenade)
+    {
+        if (_grenade != null) _grenade.DropGrenade();
+
+        _grenade = Instantiate(_newGrenade);
+        _grenade.SetValues(_firePoint, _id);
+    }
+
+    public void ReceiveUtility(UtilitySO _newUtility)
+    {
+        if (_grenade != null) _utility.DropUtility();
+
+        _utility = Instantiate(_newUtility);
+        _utility.SetupUtility(transform, _firePoint);
     }
 
     public void SetupWeapon(GunSO newWeapon)

@@ -48,6 +48,8 @@ MonoBehaviour:
   - {fileID: 2273022344544888768, guid: e9cce3ed1ce0fae409c52950968fb6a3, type: 3}
   - {fileID: 2273022344544888768, guid: 7d695708632147a4088967409f4c226a, type: 3}
   - {fileID: 2273022344544888768, guid: ce38cda54dcb7c34b83651657aa3a764, type: 3}
+  - {fileID: 6679746688503811354, guid: e3c26a4b016834c4bab30d4e389e6462, type: 3}
+  - {fileID: 6679746688503811354, guid: c1de7eb591dc6384cbaed94f032721cd, type: 3}
   _dropGrenades: []
   _dropMedicine: []
   _dropWalkables: []

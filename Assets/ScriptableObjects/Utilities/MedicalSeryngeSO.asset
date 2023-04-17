@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437d8752c1ba00c4488dd28b399ddd39, type: 3}
+  m_Name: MedicalSeryngeSO
+  m_EditorClassIdentifier: 
+  _name: MedSerynge
+  _description: 
+  _icon: {fileID: 2800000, guid: 7a90898e59481fa47ac21b22f9cf4ba9, type: 3}
+  _cooldown: 4
+  _animatorTrigger: 
+  _timeSinceLastUse: 0
+  _onCooldown: 0
+  _healAmount: 20

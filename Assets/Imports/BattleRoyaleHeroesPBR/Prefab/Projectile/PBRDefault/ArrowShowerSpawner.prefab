@@ -276,6 +276,9 @@ MonoBehaviour:
   _arrowShower: {fileID: 6191501053479356829, guid: 05c26a61dbf95ca4fbb43339ce820642, type: 3}
   _explodePosition: {x: 0, y: 0, z: 0}
   _targetPos: {x: 0, y: 0, z: 0}
+  _ground:
+    serializedVersion: 2
+    m_Bits: 513
 --- !u!114 &-2219668601691793335
 MonoBehaviour:
   m_ObjectHideFlags: 0

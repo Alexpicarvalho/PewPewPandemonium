@@ -90,7 +90,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726765471971305707}
   m_LocalRotation: {x: -0, y: -0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.44999993}
+  m_LocalPosition: {x: -0.326, y: -0, z: 0.524}
   m_LocalScale: {x: 0.7142857, y: 0.7142857, z: 0.7142857}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -441,11 +441,11 @@ Transform:
   m_GameObject: {fileID: 4585808881475874986}
   m_LocalRotation: {x: -0, y: -0, z: 2.1175821e-22, w: 1}
   m_LocalPosition: {x: 0, y: -0.39499688, z: 0.46999827}
-  m_LocalScale: {x: 0.99999994, y: 0.9999998, z: 0.9999998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6679746688503714106}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &1018311872713019500
 ParticleSystem:
@@ -5349,8 +5349,8 @@ Transform:
   - {fileID: 538068246556656752}
   - {fileID: 3263193838778597086}
   m_Father: {fileID: 6679746688503714106}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 254.4, z: 0}
 --- !u!135 &721744025712569137
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5462,8 +5462,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6486989210399072680}
   - {fileID: 5174476680656692415}
+  - {fileID: 6486989210399072680}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5513,14 +5513,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _newPickUpDelay: 5
   _pickUpRange: 2
-  _pickupIcon: {fileID: 2800000, guid: 62dc7b532c3a77e4bafa505069b2832c, type: 3}
+  _pickupIcon: {fileID: 2800000, guid: 6278b8db6ad6aa44b8d449192001a735, type: 3}
   _rarity: 0
   _groundChecker: {fileID: 0}
   _canPickUp: 1
   _playersInRange: []
   _center: {fileID: 0}
-  _weaponToGive: {fileID: 11400000, guid: beae176377853f3449045ec8026a7aba, type: 2}
-  _weaponToGiveTier: 0
+  _weaponToGive: {fileID: 11400000, guid: 486899aa3f73cb8429bdd40191f50994, type: 2}
+  <_weaponToGiveTier>k__BackingField: 0
   _startThrowForce: 100
   _glowEffect: {fileID: 45008276119742641}
   _commonGlow: {fileID: 2100000, guid: d314efe46f104f64f8fcab78cf3fd672, type: 2}
@@ -5663,7 +5663,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6800395507435297488}
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0.162, y: 0, z: -0.134}
+  m_LocalPosition: {x: 0.054, y: 0, z: 0.097}
   m_LocalScale: {x: 0.7142857, y: 0.7142857, z: 0.7142857}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5759,7 +5759,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7506926106634268708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.44999996}
+  m_LocalPosition: {x: -0.108, y: 0, z: -0.219}
   m_LocalScale: {x: 0.7142857, y: 0.7142857, z: 0.7142857}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5885,7 +5885,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8682192090960557164}
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0.162, y: 0, z: -0.134}
+  m_LocalPosition: {x: 0.054, y: 0, z: 0.097}
   m_LocalScale: {x: 0.7142857, y: 0.7142857, z: 0.7142857}
   m_ConstrainProportionsScale: 0
   m_Children:

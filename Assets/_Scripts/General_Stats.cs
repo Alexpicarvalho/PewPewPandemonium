@@ -40,7 +40,7 @@ public class General_Stats : MonoBehaviour, IHitable
 
     private void Start()
     {
-        _currentHp = MaxHP;
+        _currentHp = MaxHP -50;
         _currentShield = _startingShield;
         
         //Temp
@@ -75,6 +75,14 @@ public class General_Stats : MonoBehaviour, IHitable
     }
     public void GainHealth(float amount)
     {
+        _currentHp += amount;
+        if(_currentHp > MaxHP) _currentHp = MaxHP;
+
+        //TEMP
+        if (_shieldText != null) _shieldText.text = ((int)_currentShield).ToString() + " / " + MaxShield;
+        if (_hpText != null) _hpText.text = ((int)_currentHp).ToString() + " / " + MaxHP;
+        if (_shieldSlider != null) _shieldSlider.value = _currentShield / MaxShield;
+        if (_hpSlider != null) _hpSlider.value = _currentHp / MaxHP;
 
     }
 

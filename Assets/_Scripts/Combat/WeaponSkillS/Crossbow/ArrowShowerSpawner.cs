@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AlexCarvalho_Utils;
 
 public class ArrowShowerSpawner : Projectile
 {
@@ -10,6 +11,7 @@ public class ArrowShowerSpawner : Projectile
     public Vector3 _explodePosition;
     public Vector3 _targetPos;
     private float _lastFrameDistance = 300;
+    [SerializeField] LayerMask _ground;
 
 
     public override void FixedUpdateNetwork()
@@ -29,6 +31,7 @@ public class ArrowShowerSpawner : Projectile
 
     private void SpawnArrowShower()
     {
-        var arrowShower = Runner.Spawn(_arrowShower, _targetPos, Quaternion.identity);
+        var arrowShower = Runner.Spawn(_arrowShower, My_Utils.SnapToGroundGetPosition(_targetPos + Vector3.up,_ground ), Quaternion.identity);
+        if (arrowShower.transform.position.y < 0) arrowShower.transform.Translate(Vector3.down * arrowShower.transform.position.y);
     }
 }

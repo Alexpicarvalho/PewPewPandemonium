@@ -1527,6 +1527,8 @@ MonoBehaviour:
   _targetIsSibling: 1
   _targetChildIndex: 0
   _targetSiblingIndex: 0
+  _startOffset: {x: 0, y: 0, z: 0}
+  _autoOffset: 1
 --- !u!114 &1099860062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1589,6 +1591,8 @@ MonoBehaviour:
   _targetIsSibling: 0
   _targetChildIndex: 0
   _targetSiblingIndex: 0
+  _startOffset: {x: 0, y: 0, z: 0}
+  _autoOffset: 1
 --- !u!114 &1111712011
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ public class PlayerMovement : NetworkBehaviour
     public float _currentSpeed = 8.0f;
     [SerializeField] float _timeToAchieveMaxSpeed;
     private Vector2 moveInputVector;
+    [SerializeField] KeyCode _dodgeKey;
 
     [Header("Visuals")]
     public GameObject movementDirectionIndicator;
@@ -106,7 +107,7 @@ public class PlayerMovement : NetworkBehaviour
         moveDirection = new Vector3(xMov, 0f, zMov).normalized;
 
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(_dodgeKey))
         {
             Dodge();
         }

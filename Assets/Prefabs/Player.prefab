@@ -3917,6 +3917,7 @@ MonoBehaviour:
   _maxSpeed: 8
   _currentSpeed: 1
   _timeToAchieveMaxSpeed: 1.2
+  _dodgeKey: 304
   movementDirectionIndicator: {fileID: 4254118873130202667}
   marker: {fileID: 5272550482579922978, guid: 0205fbf00faae214cb66311fa2e4cc74, type: 3}
   _maxDodgeCharges: 2

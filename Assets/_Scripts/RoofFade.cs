@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fusion;
 
 [RequireComponent(typeof(BoxCollider))]
-public class RoofFade : MonoBehaviour
+public class RoofFade : NetworkBehaviour
 {
     [Range(0, 1)] public float _minFadeAlpha;
     [SerializeField] private Material _transparentMat;
@@ -13,6 +14,9 @@ public class RoofFade : MonoBehaviour
     private Material _material;
     private Color _initialColor;
     bool _isTransparent = false;
+
+    public string _lastStateWas = "";
+    private bool _buffering = false;
 
     private void Start()
     {
@@ -24,25 +28,48 @@ public class RoofFade : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && other.GetComponent<NetworkObject>().HasInputAuthority)
         {
             //Make Transparent
-            StartCoroutine(MakeTransparent());
+            //StartCoroutine(MakeTransparent());
+            //StartCoroutine(NetworkCorrectionSafeguard(true));
+            _renderer.enabled = false;
             _isTransparent = true;
+            _lastStateWas = "Entered";
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && other.GetComponent<NetworkObject>().HasInputAuthority)
         {
-            StartCoroutine(MakeOpaque());
+            //StartCoroutine(MakeOpaque());
+            //StartCoroutine(NetworkCorrectionSafeguard(false));
+            _renderer.enabled = true;
             _isTransparent = false;
+            _lastStateWas = "Exited";
         }
+    }
+
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.CompareTag("Player") && other.GetComponent<NetworkObject>().HasInputAuthority)
+    //        StopCoroutine(MakeOpaque());
+    //}
+
+    IEnumerator NetworkCorrectionSafeguard(bool entered)
+    {
+        if (_buffering) yield break;
+        _buffering = true;
+        yield return new WaitForSeconds(.1f);
+        if (entered) StartCoroutine(MakeTransparent());
+        else StartCoroutine(MakeOpaque());
+        _buffering = false;
     }
 
     IEnumerator MakeTransparent()
     {
+        StopCoroutine(MakeOpaque());
         _renderer.material = _transparentMat;
         float startTime = Time.time;
         float time = 0;
@@ -58,6 +85,7 @@ public class RoofFade : MonoBehaviour
 
     IEnumerator MakeOpaque()
     {
+        StopCoroutine(MakeTransparent());
         float startTime = Time.time;
         float time = 0;
 

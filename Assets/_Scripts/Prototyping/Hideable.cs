@@ -2,17 +2,24 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fusion;
 
-public class Hideable : MonoBehaviour, IHideable
+public class Hideable : NetworkBehaviour, IHideable
 {
 
     [SerializeField] private List<Renderer> _myRenderers = new List<Renderer>();
     [SerializeField] private List<GameObject> _hideParts = new List<GameObject>();
     [SerializeField] private bool _hiden = false;
 
+    public bool _isLocal;
+
     private void Awake()
-    {
+    { 
         GetRenderers();
+    }
+    private void Start()
+    {
+        if (Object.HasInputAuthority) RevertIssues();
     }
 
     private void GetRenderers()
@@ -21,18 +28,34 @@ public class Hideable : MonoBehaviour, IHideable
 
         foreach (Renderer renderer in renderers)
         {
-            _myRenderers.Add(renderer);
+            if (!_myRenderers.Contains(renderer)) _myRenderers.Add(renderer);
         }
+    }
+
+    private void RevertIssues()
+    {
+        RevealMe();
+        _isLocal = true;
+        Destroy(this);
+
+    }
+
+    public void UpdateRenderers()
+    {
+        if (_isLocal) return;
+        GetRenderers();
     }
 
     public void HideMe()
     {
+        if (_isLocal) return;
         _hiden = true;
         DisableRendering();
     }
 
     public void RevealMe()
     {
+        if (_isLocal) return;
         _hiden = false;
         EnableRendering();
     }

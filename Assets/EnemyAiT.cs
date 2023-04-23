@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using Fusion;
+using AlexCarvalho_Utils;
 
 public class EnemyAiT : NetworkBehaviour
 {
@@ -34,6 +35,7 @@ public class EnemyAiT : NetworkBehaviour
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
+    [SerializeField] LayerMask _blockLOSMask;
 
     //Attacking
     public float timeBetweenAttacks;
@@ -59,6 +61,7 @@ public class EnemyAiT : NetworkBehaviour
         _gun.SetWeaponValues(_firepoint, GetComponent<Object_ID>());
         timeBetweenAttacks = _gun._timeBetweenShots;
         transform.localScale *= bossScale;
+        GetComponent<Hideable>().UpdateRenderers();
     }
 
     private void Update()
@@ -71,9 +74,9 @@ public class EnemyAiT : NetworkBehaviour
         CheckForPlayers();
         PickTarget();
 
-        if (currentTarget!= null) transform.LookAt(currentTarget.transform);
-     
-        
+        if (currentTarget != null) transform.LookAt(currentTarget.transform);
+
+
         if (CheckIfTargetInAttackRange() && currentTarget != null) AttackPlayer(State.Shooting);
 
     }
@@ -121,7 +124,8 @@ public class EnemyAiT : NetworkBehaviour
     {
         //   agent.SetDestination(transform.position);
         currentState = state;
-       
+
+        //if (!My_Utils.CheckLineOfSight(transform, currentTarget.transform, _blockLOSMask)) return;
 
         switch (state)
         {

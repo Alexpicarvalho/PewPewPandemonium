@@ -4,8 +4,9 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using Fusion;
 
-public class TempUIInfo : MonoBehaviour
+public class TempUIInfo : NetworkBehaviour
 {
     [SerializeField] GameObject _player;
     [SerializeField] TextMeshProUGUI _ammoText;
@@ -34,6 +35,11 @@ public class TempUIInfo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        if(!GetComponentInParent<NetworkObject>().HasInputAuthority) transform.gameObject.SetActive(false);
+
+
+
         _playerCombatHandler = _player.GetComponent<PlayerCombatHandler>();
         _playerStats = _player.GetComponent<General_Stats>();
         _weaponImage = _weapon1UI.GetChild(2).GetComponent<RawImage>();

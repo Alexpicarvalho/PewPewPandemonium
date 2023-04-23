@@ -4,8 +4,9 @@ using UnityEngine;
 using System.Linq;
 using Random = UnityEngine.Random;
 using System;
+using Fusion;
 
-public class OutOfSightMask : MonoBehaviour
+public class OutOfSightMask : NetworkBehaviour
 {
 
     private GameObject _player;
@@ -20,8 +21,14 @@ public class OutOfSightMask : MonoBehaviour
 
     private List<Transform> _targetsInRange = new List<Transform>();
 
+    private void Awake()
+    {
+        
+    }
+
     private void Start()
     {
+        if (!Object.HasInputAuthority) this.enabled = false;
         _player = transform.gameObject;
         _playerCollider = _player.GetComponent<Collider>();
     }

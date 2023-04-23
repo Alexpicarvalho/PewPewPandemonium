@@ -115,8 +115,6 @@ public class PlayerMovement : NetworkBehaviour
         if (_canMove) transform.rotation = Quaternion.LookRotation(mousePos);
         if (moveDirection.magnitude != 0.0f && _canMove)
         {
-            _currentSpeed += accelaration * Time.deltaTime;
-            _currentSpeed = Mathf.Clamp(_currentSpeed, _startSpeed, _maxSpeed);
             _footPrinter.ready = true;
             movementDirectionIndicator.GetComponent<Animator>().SetBool("On", true);
             movementDirectionIndicator.transform.rotation = Quaternion.LookRotation(moveDirection);
@@ -145,6 +143,8 @@ public class PlayerMovement : NetworkBehaviour
 
             if (moveDirection.magnitude != 0.0f && _canMove)
             {
+                _currentSpeed += accelaration * Runner.DeltaTime;
+                _currentSpeed = Mathf.Clamp(_currentSpeed, _startSpeed, _maxSpeed);
                 rb.MovePosition(transform.position + (1 + _perkSpeedModifier) * _currentSpeed * iTime.personalTimeScale * Runner.DeltaTime * moveDirection);
                 //anim.SetBool("Moving", true);  
             }

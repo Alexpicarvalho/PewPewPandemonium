@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Fusion;
 
-[ExecuteAlways]
-public class FieldOfView : MonoBehaviour
+//[ExecuteAlways]
+public class FieldOfView : NetworkBehaviour
 {
 
 	public float viewRadius;
@@ -23,9 +24,19 @@ public class FieldOfView : MonoBehaviour
 	public MeshFilter viewMeshFilter;
 	Mesh viewMesh;
 
-	void Start()
+    private void Awake()
+    {
+        
+    }
+
+    void Start()
 	{
-		viewMesh = new Mesh();
+        if (!GetComponentInParent<NetworkObject>().HasInputAuthority)
+        {
+            Debug.LogError("Disabled Field Off View, no Input Authority");
+            this.enabled = false;
+        }
+        viewMesh = new Mesh();
 		viewMesh.name = "View Mesh";
 		viewMeshFilter.mesh = viewMesh;
 
@@ -206,6 +217,11 @@ public class FieldOfView : MonoBehaviour
 			pointB = _pointB;
 		}
 	}
+
+    private void OnDisable()
+    {
+		if(viewMesh) Destroy(viewMesh);
+    }
 
 }
 

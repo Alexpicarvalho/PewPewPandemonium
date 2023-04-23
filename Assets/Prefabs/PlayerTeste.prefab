@@ -716,11 +716,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420357893}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 084e678d816a3cf4e8f1f734efded86a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   viewRadius: 100
   viewAngle: 360
   targetMask:
@@ -1600,6 +1601,8 @@ MonoBehaviour:
   _targetIsSibling: 0
   _targetChildIndex: 0
   _targetSiblingIndex: 0
+  _startOffset: {x: 0, y: 0, z: 0}
+  _autoOffset: 1
 --- !u!1 &1007901601
 GameObject:
   m_ObjectHideFlags: 0
@@ -4101,6 +4104,7 @@ MonoBehaviour:
   _weaponSlot2: {fileID: 0}
   _gun: {fileID: 11400000, guid: b20a96075162c564c8a9b4a021009876, type: 2}
   _grenade: {fileID: 11400000, guid: fd4d1c12b83821d41852824a858437fe, type: 2}
+  _utility: {fileID: 0}
   _swapCooldown: 0.6
 --- !u!114 &4920267075732269097
 MonoBehaviour:
@@ -4188,6 +4192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 496b50eacf08c99448daf0593a7b81e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   _viewDistance: 100
   _targetMask:
     serializedVersion: 2
@@ -4208,6 +4213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c36b7cfff6c0f643accbd156a15e804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   _myRenderers: []
   _hideParts: []
   _hiden: 0
@@ -4355,10 +4361,14 @@ MonoBehaviour:
   - {fileID: 2808386916309310843}
   NetworkedBehaviours:
   - {fileID: 4920267075732269096}
+  - {fileID: 1606084920}
+  - {fileID: 312757882}
   - {fileID: 56216049236393390}
   - {fileID: 4213692187291135969}
   - {fileID: 8963244312948826838}
   - {fileID: 5848223842253460550}
+  - {fileID: 3400246039576948737}
+  - {fileID: 420357894}
   SimulationBehaviours: []
 --- !u!114 &56216049236393390
 MonoBehaviour:
@@ -4415,6 +4425,7 @@ MonoBehaviour:
   _maxSpeed: 8
   _currentSpeed: 1
   _timeToAchieveMaxSpeed: 1.2
+  _dodgeKey: 0
   movementDirectionIndicator: {fileID: 4254118873130202667}
   marker: {fileID: 5272550482579922978, guid: 0205fbf00faae214cb66311fa2e4cc74, type: 3}
   _maxDodgeCharges: 2
@@ -7317,6 +7328,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7102466735281839606, guid: 52e786c339bad94478c1026e0c0152a4, type: 3}
   m_PrefabInstance: {fileID: 5593785319427710358}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3400246039576948737 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7102466735720181143, guid: 52e786c339bad94478c1026e0c0152a4, type: 3}
+  m_PrefabInstance: {fileID: 5593785319427710358}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b7c97932dabba444b4a58c54f48a113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &3400246039576948738 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7102466735720181140, guid: 52e786c339bad94478c1026e0c0152a4, type: 3}

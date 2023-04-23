@@ -48,7 +48,6 @@ public class PlayerCombatHandler : NetworkBehaviour
     
     private void Awake()
     {
-        Debug.Log("ENTREI NO AWAKE");
         _id = GetComponent<Object_ID>();
         _swapReady = true;
         _animator = GetComponent<Animator>();

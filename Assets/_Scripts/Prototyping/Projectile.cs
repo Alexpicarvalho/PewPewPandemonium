@@ -62,11 +62,14 @@ public class Projectile : Damager
     {
         base.SetDamage(newDamage);
         _startDamage = _damage._amount;
-        Debug.Log("SET DAMAGE: " + _damage._amount);
+        //Debug.Log("SET DAMAGE: " + _damage._amount);
     }
     public override void FixedUpdateNetwork()
     {
         //TENS QUE MUDAR OS FILHOS DISTO NABO
+
+        if (iTime == null) Debug.LogWarning("ITime Missing");
+        if (Runner == null) Debug.LogWarning("Runner Missing");
 
         transform.position += iTime.personalTimeScale * _speed * Runner.DeltaTime * transform.forward;
         _timeSinceBirth += Runner.DeltaTime;

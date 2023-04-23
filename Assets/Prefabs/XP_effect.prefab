@@ -4893,6 +4893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c36b7cfff6c0f643accbd156a15e804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   _myRenderers: []
   _hideParts: []
   _hiden: 0
@@ -4918,6 +4919,7 @@ MonoBehaviour:
     RawGuidValue: c702823f314eda24cb58a8d51c18b041
   NestedObjects: []
   NetworkedBehaviours:
+  - {fileID: 4174483908780538152}
   - {fileID: 8233638033608049299}
   SimulationBehaviours: []
 --- !u!114 &8233638033608049299

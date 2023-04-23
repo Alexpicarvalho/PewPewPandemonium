@@ -90,6 +90,15 @@ namespace AlexCarvalho_Utils
             }
             else return Vector3.zero;
         }
+
+        public static bool CheckLineOfSight(Transform _this, Transform _checkTarget, LayerMask _blocksLOS = default)
+        {
+            if (_blocksLOS == default) _blocksLOS = ~0;
+            Vector3 raycastDirection = (_checkTarget.position - _this.position).normalized;
+
+            if(Physics.Raycast(_this.position + Vector3.up, raycastDirection,Mathf.Infinity,_blocksLOS)) return false;
+            else return true;
+        }
     }
 
 

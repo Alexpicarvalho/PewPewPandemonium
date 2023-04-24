@@ -59,6 +59,12 @@ public class Projectile : Damager
         
     //}
 
+    //public override void SetDamage(Damage newDamage = null)
+    //{
+    //    base.SetDamage(newDamage);
+    //    _startDamage = _damage._amount;
+    //    //Debug.Log("SET DAMAGE: " + _damage._amount);
+    //}
     public override void SetDamage(Damage newDamage = null)
     {
         base.SetDamage(newDamage);

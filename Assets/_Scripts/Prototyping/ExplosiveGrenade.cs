@@ -7,8 +7,11 @@ using Fusion;
 
 public class ExplosiveGrenade : Grenade
 {
+
+    [Networked] [field: SerializeField] float damage { get; set; }
     [SerializeField] Vector3 _explosionOffset;
     [SerializeField] float _explosionRadius;
+    [SerializeField] LayerMask _blocksExplosion;
     public override void Launch()
     {
         base.Launch();
@@ -35,9 +38,9 @@ public class ExplosiveGrenade : Grenade
         {
             var target = collider.GetComponent<IHitable>();
 
-            if (target != null)
+            if (target != null )
             {
-                target.HandleHit(_damage);
+                target.HandleHit(new Damage(damage));
             }
         }
     }

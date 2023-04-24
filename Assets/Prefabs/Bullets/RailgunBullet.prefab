@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  _amount: 10
+  __amount: 10
   _addForce: 0
   _tickAmount: 1
   _damageOverTimeDuration: 0

@@ -164,7 +164,7 @@ public class GunSO : Item
         _bulletsInMag--;
         _timeSinceLastShot = 0;
 
-        if (_muzzleFlash) Instantiate(_muzzleFlash, _firePoint.position, Quaternion.identity);
+        if (_muzzleFlash) _runnerNetworkbehaviour.Runner.Spawn(_muzzleFlash, _firePoint.position, Quaternion.identity);
         var bullet = _runnerNetworkbehaviour.Runner.Spawn(_bulletGO, _firePoint.position, Quaternion.LookRotation(_firePoint.forward));
         bullet.transform.Translate(GetDisplacement(), 0, GetDisplacement());
         bullet.transform.Rotate(0, GetInaccuracy(), 0, Space.Self);
@@ -176,7 +176,7 @@ public class GunSO : Item
 
     private void ShootEffects()
     {
-        if (_muzzleFlash) Instantiate(_muzzleFlash, _firePoint.position, Quaternion.identity);
+        if (_muzzleFlash) _runnerNetworkbehaviour.Runner.Spawn(_muzzleFlash, _firePoint.position, Quaternion.identity);
         _currentShootingStatus = ShootingStatus.BetweenShots;
         _bulletsInMag--;
         _timeSinceLastShot = 0;
@@ -188,7 +188,7 @@ public class GunSO : Item
         if (_bulletsFired % 2 == 1) ShootForward();
         else
         {
-            Instantiate(_muzzleFlash, _firePoint.position, Quaternion.identity);
+            _runnerNetworkbehaviour.Runner.Spawn(_muzzleFlash, _firePoint.position, Quaternion.identity);
             _currentShootingStatus = ShootingStatus.BetweenShots;
             _bulletsInMag--;
             _timeSinceLastShot = 0;

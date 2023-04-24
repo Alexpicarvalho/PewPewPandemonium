@@ -93,7 +93,7 @@ public class LootBox : NetworkBehaviour, IHitable
             else Debug.Log("No WeaponPickUp");
 
         }
-        Destroy(gameObject);
+        Runner.Despawn(Object);
     }
 
     private void PlayExplosion()

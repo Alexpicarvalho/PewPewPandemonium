@@ -10,13 +10,13 @@ public class Interfaces
 //[RequireComponent(typeof(Fusion.NetworkObject))]
 public abstract class Damager : NetworkBehaviour
 { 
-    [Header("Set Damage Values")]
-    [SerializeField] float _amount;
+    [field : Header("Set Damage Values")]
+    [Networked][field : SerializeField] float _amount { get; set; }
     [SerializeField] float _addForce;
     [SerializeField] [Range(1,99)] int _tickAmount;
     [SerializeField] float _damageOverTimeDuration;
 
-    public Damage _damage;
+    /*[Networked]*/ public Damage _damage { get; set; }
 
     public virtual void SetDamage(Damage newDamage = null)
     {
@@ -54,10 +54,10 @@ public enum WeaponTier { Tier3, Tier2, Tier1, Special }
 
 public class Damage
 {
-    public float _amount;
-    public float _addForce;
-    public int _tickAmount;
-    public float _damageOverTimeDuration;
+    [Networked] public float _amount { get; set; }
+    [Networked] public float _addForce {get; set;}
+    [Networked] public int _tickAmount {get; set;}
+    [Networked] public float _damageOverTimeDuration {get; set;}
 
     // Fed Values Constructor
     public Damage(float amount, float addForce = 0, int tickNum = 1, float damageOTDuration = 0)

@@ -40,6 +40,7 @@ public class Projectile : Damager
         Invoke("DestroyAfter", _lifeTime - _shrinkOnDestroyDuration);
         iTime = GetComponent<ITime>();
         //ApplyNetworkComponents();
+        SetDamage();
     }
 
     //private void ApplyNetworkComponents()

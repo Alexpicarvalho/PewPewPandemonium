@@ -6,9 +6,10 @@ using UnityEngine;
 using TMPro;
 using UnityRandom = UnityEngine.Random;
 using UnityEngine.UI;
+using Fusion;
 
 
-public class General_Stats : MonoBehaviour, IHitable
+public class General_Stats : NetworkBehaviour, IHitable
 {
     //General Properties
     [Header("General Properties")]
@@ -28,9 +29,9 @@ public class General_Stats : MonoBehaviour, IHitable
     public float CurrentShield => _currentShield;
     public bool IsPushable => _isPushable;
 
-    [Header("Runtime Properties")]
-    float _currentShield;
-    float _currentHp;
+    [field : Header("Runtime Properties")]
+    [Networked] float _currentShield { get; set; }
+    [Networked] float _currentHp { get; set; }
 
     [Header("Test Visuals")]
     [SerializeField] TextMeshProUGUI _hpText;
@@ -47,11 +48,11 @@ public class General_Stats : MonoBehaviour, IHitable
         if (_shieldText != null) _shieldText.text = ((int)_currentShield).ToString() + " / " + MaxShield;
         if (_hpText != null) _hpText.text = ((int)_currentHp).ToString() + " / " + MaxHP;
         if (_shieldSlider != null) _shieldSlider.value = _currentShield / MaxShield;
-        if (_hpSlider != null) _hpSlider.value = _currentHp/ MaxHP;
-        
+        if (_hpSlider != null) _hpSlider.value = _currentHp/ MaxHP;     
+    }
 
-       
-        
+    public override void FixedUpdateNetwork()
+    {
     }
 
     public void HandleHit(Damage damage)

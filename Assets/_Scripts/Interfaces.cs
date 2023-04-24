@@ -20,7 +20,7 @@ public abstract class Damager : NetworkBehaviour
 
     public virtual void SetDamage(Damage newDamage = null)
     {
-        if (_damage != null) return;
+        //if (_damage != null) return;
 
         if (newDamage != null) _damage = newDamage;
         else _damage = new Damage(_amount, _addForce, _tickAmount, _damageOverTimeDuration);

@@ -1603,6 +1603,8 @@ MonoBehaviour:
   _targetSiblingIndex: 0
   _startOffset: {x: 0, y: 0, z: 0}
   _autoOffset: 1
+  _maintainRotation: 1
+  _destroyOnTargetLoss: 1
 --- !u!1 &1007901601
 GameObject:
   m_ObjectHideFlags: 0
@@ -4217,6 +4219,7 @@ MonoBehaviour:
   _myRenderers: []
   _hideParts: []
   _hiden: 0
+  _isLocal: 0
 --- !u!114 &4920267075732269100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4273,10 +4276,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb9e259cddae8f3469b7e8ee7ccb9f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   _maxHP: 100
   _maxShield: 50
   _isPushable: 0
   _startingShield: 25
+  __currentShield: 0
+  __currentHp: 0
   _hpText: {fileID: 3400246038152994737}
   _shieldText: {fileID: 3400246038495936052}
   _hpSlider: {fileID: 0}
@@ -4363,6 +4369,7 @@ MonoBehaviour:
   - {fileID: 4920267075732269096}
   - {fileID: 1606084920}
   - {fileID: 312757882}
+  - {fileID: 4920267075732269101}
   - {fileID: 56216049236393390}
   - {fileID: 4213692187291135969}
   - {fileID: 8963244312948826838}

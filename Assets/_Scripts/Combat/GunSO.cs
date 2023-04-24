@@ -168,7 +168,7 @@ public class GunSO : Item
         var bullet = _runnerNetworkbehaviour.Runner.Spawn(_bulletGO, _firePoint.position, Quaternion.LookRotation(_firePoint.forward));
         bullet.transform.Translate(GetDisplacement(), 0, GetDisplacement());
         bullet.transform.Rotate(0, GetInaccuracy(), 0, Space.Self);
-        bullet.GetComponent<Damager>().SetDamage();
+        //bullet.GetComponent<Damager>().SetDamage();
         if (_soundData != null) _audioSource.PlayOneShot(_soundData.GetRandomSound(), _soundData.GetClipVolume());
         //PlayExtraEffect();
         // Get bullet script and pass necessary variables

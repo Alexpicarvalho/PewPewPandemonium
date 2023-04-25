@@ -31,7 +31,7 @@ public class General_Stats : NetworkBehaviour, IHitable
 
     [field : Header("Runtime Properties")]
     [Networked] float _currentShield { get; set; }
-    [Networked] float _currentHp { get; set; }
+    [field : SerializeField][Networked] float _currentHp { get; set; }
 
     [Header("Test Visuals")]
     [SerializeField] TextMeshProUGUI _hpText;
@@ -53,6 +53,8 @@ public class General_Stats : NetworkBehaviour, IHitable
 
     public override void FixedUpdateNetwork()
     {
+        if (_shieldSlider != null) _shieldSlider.value = _currentShield / MaxShield;
+        if (_hpSlider != null) _hpSlider.value = _currentHp / MaxHP;
     }
 
     public void HandleHit(Damage damage)

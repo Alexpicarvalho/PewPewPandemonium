@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fusion;
 
 [RequireComponent(typeof(Rigidbody))]
 
-public class Pickup : MonoBehaviour
+public class Pickup : NetworkBehaviour
 {
     [SerializeField] float _newPickUpDelay = 1;
     [SerializeField] public float _pickUpRange = 2;

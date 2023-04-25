@@ -33,7 +33,12 @@ public class WeaponPickUp : Pickup
         _rb.AddForce(temp);
         _gun = Instantiate(_weaponToGive);
         _gun._weaponTier = _weaponToGiveTier;
+        SelectGlowColor();
+    }
 
+    public override void Spawned()
+    {
+        base.Spawned();
         SelectGlowColor();
     }
 

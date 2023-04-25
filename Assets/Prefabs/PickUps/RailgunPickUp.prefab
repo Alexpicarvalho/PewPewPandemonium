@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b398666d4ee7ca44c91ad7b7e6404354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   _newPickUpDelay: 5
   _pickUpRange: 2
   _pickupIcon: {fileID: 2800000, guid: e4c5be4d0df5a9640a39c6cd454d81a5, type: 3}
@@ -159,7 +160,7 @@ MonoBehaviour:
   _playersInRange: []
   _center: {fileID: 0}
   _weaponToGive: {fileID: 11400000, guid: b20a96075162c564c8a9b4a021009876, type: 2}
-  <_weaponToGiveTier>k__BackingField: 0
+  __weaponToGiveTier: 0
   _startThrowForce: 100
   _glowEffect: {fileID: 4875068765627400811}
   _commonGlow: {fileID: 2100000, guid: d314efe46f104f64f8fcab78cf3fd672, type: 2}
@@ -195,6 +196,7 @@ MonoBehaviour:
   _myRenderers: []
   _hideParts: []
   _hiden: 0
+  _isLocal: 0
 --- !u!114 &-1290020331647250773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,6 +247,7 @@ MonoBehaviour:
     RawGuidValue: ce38cda54dcb7c34b83651657aa3a764
   NestedObjects: []
   NetworkedBehaviours:
+  - {fileID: 336720435}
   - {fileID: 2650242126206664895}
   - {fileID: -1290020331647250773}
   SimulationBehaviours: []

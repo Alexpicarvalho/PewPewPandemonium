@@ -12,5 +12,7 @@ public struct NetworkInputData : INetworkInput
     //public Vector3 direction;
 
     public Vector2 movementInput;
-    public float rotationInput;
+    public Vector3 rotationInput;
+    public NetworkBool isMouse1ButtonPressed;
+    public NetworkBool isMouse2ButtonPressed;
 }

@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
+using Fusion;
 
-public class CreateFootPrint : MonoBehaviour
+public class CreateFootPrint : NetworkBehaviour
 {
     [SerializeField] Transform _moveDirectionIndicator;
     [SerializeField] GameObject _footPrintPrefab;
@@ -18,12 +19,13 @@ public class CreateFootPrint : MonoBehaviour
     private Object_ID _id;
 
 
-    public bool ready = false;
+    [Networked] public bool ready {get; set;}
     float _timeSinceLastRc = 0;
     bool firstSpawner = true;
     // Start is called before the first frame update
     void Start()
     {
+        if(!Object.HasInputAuthority) this.enabled = false;
         _id = GetComponent<Object_ID>();
         StartCoroutine(MakeReady());
     }
@@ -41,10 +43,10 @@ public class CreateFootPrint : MonoBehaviour
             if (firstSpawner)
             {
                 firstSpawner = false;
-                var track1 =Instantiate(_footPrintPrefab, new Vector3(spawner1.position.x, spawner1.position.y + _heightOffset, spawner1.position.z)
+                var track1 = Runner.Spawn(_footPrintPrefab, new Vector3(spawner1.position.x, spawner1.position.y + _heightOffset, spawner1.position.z)
                 , Quaternion.LookRotation(_moveDirectionIndicator.forward));
 
-                var track2 = Instantiate(_trackerPrintPrefab, new Vector3(spawner1.position.x, spawner1.position.y + _heightOffset, spawner1.position.z)
+                var track2 = Runner.Spawn(_trackerPrintPrefab, new Vector3(spawner1.position.x, spawner1.position.y + _heightOffset, spawner1.position.z)
                 , Quaternion.LookRotation(_moveDirectionIndicator.forward));
 
                 track1.GetComponent<Object_ID>().CreateID(_id);
@@ -53,10 +55,10 @@ public class CreateFootPrint : MonoBehaviour
             else
             {
                 firstSpawner = true;
-                var track1 = Instantiate(_footPrintPrefab, new Vector3(spawner2.position.x, spawner2.position.y + _heightOffset, spawner2.position.z)
+                var track1 = Runner.Spawn(_footPrintPrefab, new Vector3(spawner2.position.x, spawner2.position.y + _heightOffset, spawner2.position.z)
                 , Quaternion.LookRotation(_moveDirectionIndicator.forward));
 
-                var track2 = Instantiate(_trackerPrintPrefab, new Vector3(spawner2.position.x, spawner2.position.y + _heightOffset, spawner2.position.z)
+                var track2 = Runner.Spawn(_trackerPrintPrefab, new Vector3(spawner2.position.x, spawner2.position.y + _heightOffset, spawner2.position.z)
                 , Quaternion.LookRotation(_moveDirectionIndicator.forward));
 
                 track1.GetComponent<Object_ID>().CreateID(_id);

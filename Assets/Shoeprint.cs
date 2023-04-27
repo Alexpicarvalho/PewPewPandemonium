@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fusion;
 
-public class Shoeprint : MonoBehaviour
+public class Shoeprint : NetworkBehaviour
 {
     public float _delayBeforeFade;
     public float _fadeDuration;
@@ -11,10 +12,12 @@ public class Shoeprint : MonoBehaviour
     private Renderer _renderer;
     private Material _mat;
     private GameObject _parent;
+    private NetworkObject _object;
     private void Start()
     {
         SetColor();
         _parent = transform.parent.gameObject;
+        _object = _parent.GetComponent<NetworkObject>();
         _renderer = GetComponent<Renderer>();
         _mat = _renderer.material;
         StartCoroutine(FadeFootPrint());
@@ -47,7 +50,7 @@ public class Shoeprint : MonoBehaviour
             _parent.transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, t);
             yield return null;
         }
-        Destroy(_parent);
+        Runner.Despawn(_object);
     }
 
     private void OnDrawGizmos()

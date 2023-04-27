@@ -47,11 +47,11 @@ public class General_Stats : NetworkBehaviour, IHitable
         //Temp
         if (_shieldText != null) _shieldText.text = ((int)_currentShield).ToString() + " / " + MaxShield;
         if (_hpText != null) _hpText.text = ((int)_currentHp).ToString() + " / " + MaxHP;
-        if (_shieldSlider != null) _shieldSlider.value = _currentShield / MaxShield;
-        if (_hpSlider != null) _hpSlider.value = _currentHp/ MaxHP;     
+        //if (_shieldSlider != null) _shieldSlider.value = _currentShield / MaxShield;
+        //if (_hpSlider != null) _hpSlider.value = _currentHp/ MaxHP;     
     }
 
-    public override void FixedUpdateNetwork()
+    public override void Render()
     {
         if (_shieldSlider != null) _shieldSlider.value = _currentShield / MaxShield;
         if (_hpSlider != null) _hpSlider.value = _currentHp / MaxHP;
@@ -66,10 +66,10 @@ public class General_Stats : NetworkBehaviour, IHitable
         if(_currentShield <= 0) _currentShield = 0;
 
         //TEMP
-        if(_shieldText != null) _shieldText.text = ((int)_currentShield).ToString() + " / " + MaxShield;
-        if(_hpText != null) _hpText.text = ((int)_currentHp).ToString() + " / " + MaxHP;
-        if (_shieldSlider != null) _shieldSlider.value = _currentShield / MaxShield;
-        if (_hpSlider != null) _hpSlider.value = _currentHp / MaxHP;
+        if (_shieldText != null) _shieldText.text = ((int)_currentShield).ToString() + " / " + MaxShield;
+        if (_hpText != null) _hpText.text = ((int)_currentHp).ToString() + " / " + MaxHP;
+        //if (_shieldSlider != null) _shieldSlider.value = _currentShield / MaxShield;
+        //if (_hpSlider != null) _hpSlider.value = _currentHp / MaxHP;
     }
 
     public void GainShield(float amount)
@@ -84,8 +84,8 @@ public class General_Stats : NetworkBehaviour, IHitable
         //TEMP
         if (_shieldText != null) _shieldText.text = ((int)_currentShield).ToString() + " / " + MaxShield;
         if (_hpText != null) _hpText.text = ((int)_currentHp).ToString() + " / " + MaxHP;
-        if (_shieldSlider != null) _shieldSlider.value = _currentShield / MaxShield;
-        if (_hpSlider != null) _hpSlider.value = _currentHp / MaxHP;
+        //if (_shieldSlider != null) _shieldSlider.value = _currentShield / MaxShield;
+        //if (_hpSlider != null) _hpSlider.value = _currentHp / MaxHP;
 
     }
 
@@ -109,8 +109,8 @@ public class General_Stats : NetworkBehaviour, IHitable
         //Temp
         if (_shieldText != null) _shieldText.text = ((int)_currentShield).ToString() + " / " + MaxShield;
         if (_hpText != null) _hpText.text = ((int)_currentHp).ToString() + " / " + MaxHP;
-        if (_shieldSlider != null) _shieldSlider.value = _currentShield / MaxShield;
-        if (_hpSlider != null) _hpSlider.value = _currentHp / MaxHP;
+        //if (_shieldSlider != null) _shieldSlider.value = _currentShield / MaxShield;
+        //if (_hpSlider != null) _hpSlider.value = _currentHp / MaxHP;
     }
 
     public IEnumerator DealDamageEnum(Damage damage, Vector3 forceDirection)

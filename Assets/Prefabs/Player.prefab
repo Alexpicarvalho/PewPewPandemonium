@@ -3817,7 +3817,7 @@ MonoBehaviour:
   _interpolationDataSource: 0
   _startSpeed: 4
   _maxSpeed: 8
-  _currentSpeed: 1
+  __currentSpeed: 0
   _timeToAchieveMaxSpeed: 1.2
   _dodgeKey: 304
   movementDirectionIndicator: {fileID: 4254118873130202667}
@@ -4027,6 +4027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 135fca302d9ad544091952516f57cad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   _moveDirectionIndicator: {fileID: 4752670240076434862}
   _footPrintPrefab: {fileID: 5104786141639719680, guid: 1b23c883b56b2664f9f31326b19c473a, type: 3}
   _trackerPrintPrefab: {fileID: 5104786141639719680, guid: fa04bc98191082040b872046343f0cc3, type: 3}
@@ -4039,7 +4040,7 @@ MonoBehaviour:
   spawner1: {fileID: 804281304}
   spawner2: {fileID: 1954170072}
   _heightOffset: 0.1
-  ready: 0
+  _ready: 0
 --- !u!114 &2316585452388468728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4076,6 +4077,7 @@ MonoBehaviour:
   _maxShield: 50
   _isPushable: 0
   _startingShield: 25
+  __currentHp: 0
   _hpText: {fileID: 3400246038152994737}
   _shieldText: {fileID: 3400246038495936052}
   _hpSlider: {fileID: 6445718350463092164}
@@ -4164,6 +4166,7 @@ MonoBehaviour:
   - {fileID: 4920267075732269096}
   - {fileID: 1606084920}
   - {fileID: 312757882}
+  - {fileID: 4920267075732269100}
   - {fileID: 4920267075732269101}
   - {fileID: 6916487375287019265}
   - {fileID: 39697780263629218}

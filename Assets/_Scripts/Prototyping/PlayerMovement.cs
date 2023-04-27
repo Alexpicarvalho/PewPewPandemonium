@@ -11,7 +11,16 @@ public class PlayerMovement : NetworkBehaviour
     [Header("Movement Properties")]
     [SerializeField] float _startSpeed = 1.0f;
     [SerializeField] float _maxSpeed;
-    public float _currentSpeed = 8.0f;
+    private float curSpeed;
+    [Networked] [field: SerializeField] public float _currentSpeed
+    {
+        get => curSpeed;
+        set
+        {
+            Debug.Log(value);
+            curSpeed = value;
+        }
+    }
     [SerializeField] float _timeToAchieveMaxSpeed;
     private Vector2 moveInputVector;
     [SerializeField] KeyCode _dodgeKey;
@@ -45,8 +54,8 @@ public class PlayerMovement : NetworkBehaviour
     bool _sleepAnimFloat = false;
     bool _canMove = true;
     Vector3 moveDirection;
-    float accelaration;
-    
+    [Networked] float accelaration { get; set; }
+
     [Header("Perk Values")]
     private float _perkSpeedModifier = 0;
     public bool _prowlerActive = false;
@@ -59,8 +68,14 @@ public class PlayerMovement : NetworkBehaviour
     public float MaxSpeed => _maxSpeed;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Spawned()
     {
+        base.Spawned();
+
+        if (!Object.HasInputAuthority)
+        {
+            movementDirectionIndicator.SetActive(false);
+        }
         transform.GetComponent<Collider>().enabled = false;
         Invoke("TempFix", 1);
         ComponentSetup();
@@ -102,7 +117,6 @@ public class PlayerMovement : NetworkBehaviour
         float zMov = Input.GetAxis("Vertical");
         moveInputVector.x = xMov;
         moveInputVector.y = zMov;
-        Vector3 mousePos = MousePosition();
 
         moveDirection = new Vector3(xMov, 0f, zMov).normalized;
 
@@ -112,25 +126,7 @@ public class PlayerMovement : NetworkBehaviour
             Dodge();
         }
 
-        if (_canMove) transform.rotation = Quaternion.LookRotation(mousePos);
-        if (moveDirection.magnitude != 0.0f && _canMove)
-        {
-            _footPrinter.ready = true;
-            movementDirectionIndicator.GetComponent<Animator>().SetBool("On", true);
-            movementDirectionIndicator.transform.rotation = Quaternion.LookRotation(moveDirection);
-            CalculateAnimatorMovementValue(moveDirection);
 
-            
-        }
-        else
-        {
-            _currentSpeed = _startSpeed;
-            _footPrinter.ready = false;
-            movementDirectionIndicator.GetComponent<Animator>().SetBool("On", false);
-            //anim.SetBool("Moving", false);
-            float angle = Mathf.SmoothDamp(anim.GetFloat("MovBlend"), 1000, ref vel, 1f);
-            anim.SetFloat("MovBlend", 1000);
-        }      
     }
     public override void FixedUpdateNetwork()
     {
@@ -143,8 +139,7 @@ public class PlayerMovement : NetworkBehaviour
 
             if (moveDirection.magnitude != 0.0f && _canMove)
             {
-                _currentSpeed += accelaration * Runner.DeltaTime;
-                _currentSpeed = Mathf.Clamp(_currentSpeed, _startSpeed, _maxSpeed);
+                //Debug.Log("Current Speed is " + _currentSpeed);
                 rb.MovePosition(transform.position + (1 + _perkSpeedModifier) * _currentSpeed * iTime.personalTimeScale * Runner.DeltaTime * moveDirection);
                 //anim.SetBool("Moving", true);  
             }
@@ -163,6 +158,30 @@ public class PlayerMovement : NetworkBehaviour
             }
 
         }
+
+        Vector3 mousePos = MousePosition();
+        if (_canMove && Object.HasInputAuthority) transform.rotation = Quaternion.LookRotation(mousePos);
+        if (moveDirection.magnitude != 0.0f && _canMove)
+        {
+            _currentSpeed += accelaration * Runner.DeltaTime;
+            _currentSpeed = Mathf.Clamp(_currentSpeed, _startSpeed, _maxSpeed);
+            //Debug.Log("Current Speed IS " + _currentSpeed);
+            _footPrinter.ready = true;
+            movementDirectionIndicator.GetComponent<Animator>().SetBool("On", true);
+            movementDirectionIndicator.transform.rotation = Quaternion.LookRotation(moveDirection);
+            CalculateAnimatorMovementValue(moveDirection);
+
+
+        }
+        else
+        {
+            _currentSpeed = _startSpeed;
+            _footPrinter.ready = false;
+            movementDirectionIndicator.GetComponent<Animator>().SetBool("On", false);
+            //anim.SetBool("Moving", false);
+            float angle = Mathf.SmoothDamp(anim.GetFloat("MovBlend"), 1000, ref vel, 1f);
+            anim.SetFloat("MovBlend", 1000);
+        }
     }
 
     private void RechargeDodge()
@@ -171,7 +190,7 @@ public class PlayerMovement : NetworkBehaviour
 
         _timeSinceLastDodge += Time.deltaTime;
 
-        if(_timeSinceLastDodge >= _dodgeRechargeCooldown) 
+        if (_timeSinceLastDodge >= _dodgeRechargeCooldown)
         {
             _currentDodgeCharges++;
             _timeSinceLastDodge = 0;
@@ -194,7 +213,7 @@ public class PlayerMovement : NetworkBehaviour
         float startTime = Time.time;
         while (Time.time < startTime + dodgeDuration)
         {
-            rb.velocity = (speedCurve.Evaluate(Time.time - startTime) / dodgeDuration) 
+            rb.velocity = (speedCurve.Evaluate(Time.time - startTime) / dodgeDuration)
                 * dodgeSpeed * iTime.personalTimeScale * moveDirection;
 
             yield return null;

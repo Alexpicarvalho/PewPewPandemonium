@@ -3817,7 +3817,6 @@ MonoBehaviour:
   _interpolationDataSource: 0
   _startSpeed: 4
   _maxSpeed: 8
-  __currentSpeed: 0
   _timeToAchieveMaxSpeed: 1.2
   _dodgeKey: 304
   movementDirectionIndicator: {fileID: 4254118873130202667}
@@ -3864,6 +3863,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 512
+  __currentSpeed: 0
   _prowlerActive: 0
   _trackSpeedUp: 0
   _trackSpeed: 0
@@ -3973,6 +3973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e32420f8242137428fe913b6f464bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   _skinData: {fileID: 11400000, guid: 8c1ebb2b328ab1c46a1471875c0ceb6e, type: 2}
   _flashDuration: 0.25
   _flashMat: {fileID: 2100000, guid: 43f5e396bca15754fbb4f330e5b52c9c, type: 2}
@@ -4164,6 +4165,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 5151311613721021895}
   - {fileID: 4920267075732269096}
+  - {fileID: 4920267075732269088}
   - {fileID: 1606084920}
   - {fileID: 312757882}
   - {fileID: 4920267075732269100}

@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using Fusion;
 
-public class PlayerMaterialHandler : MonoBehaviour
+public class PlayerMaterialHandler : NetworkBehaviour
 {
     private SkinnedMeshRenderer _bodyRenderer;
     private SkinnedMeshRenderer _headRenderer;
@@ -18,8 +19,10 @@ public class PlayerMaterialHandler : MonoBehaviour
     private Material _bodyMat;
     private Material _headMat;
 
-    private void Start()
+    public override void Spawned()
     {
+        base.Spawned();
+
         _bodyRenderer = transform.GetChild(0).GetComponent<SkinnedMeshRenderer>();
         _headRenderer = transform.GetChild(1).GetComponent<SkinnedMeshRenderer>();
         _bodyRenderer.sharedMesh = _skinData._bodyMesh;

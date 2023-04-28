@@ -26,7 +26,7 @@ public class CharacterCostumization : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
         currentBody = transform.GetChild(0).GetComponent<SkinnedMeshRenderer>();
         currentHead = transform.GetChild(1).GetComponent<SkinnedMeshRenderer>();
         //_bodyMaterial = currentBody.GetComponent<Material>();
@@ -55,6 +55,7 @@ public class CharacterCostumization : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             SwapBodyPiece(true);
@@ -73,27 +74,27 @@ public class CharacterCostumization : MonoBehaviour
         }
     }
 
-    void SwapBodyPiece(bool next)
+    public void SwapBodyPiece(bool next)
     {
         if (next && currentBodyIndex < bodySkins.Length - 1) currentBodyIndex++;
         else if (!next && currentBodyIndex > 0) currentBodyIndex--;
         else return;
         Invoke("ChangeBody", _dissolveTime);
-        if (!_isDissolvingBody) StartCoroutine(Dissolve(_bodyMaterial,true));
+        if (!_isDissolvingBody) StartCoroutine(Dissolve(_bodyMaterial, true));
     }
     void ChangeBody()
     {
         currentBody.sharedMesh = bodySkins[currentBodyIndex];
         _skinDataOutput._bodyMesh = currentBody.sharedMesh;
     }
-    
-    void SwapHeadPiece(bool next)
+
+    public void SwapHeadPiece(bool next)
     {
         if (next && currentHeadIndex < headSkins.Length - 1) currentHeadIndex++;
-        else if(!next && currentHeadIndex > 0) currentHeadIndex--;
+        else if (!next && currentHeadIndex > 0) currentHeadIndex--;
         else return;
-        Invoke("ChangeHead",_dissolveTime);
-        if(!_isDissolvingHead) StartCoroutine(Dissolve(_headMaterial,false));
+        Invoke("ChangeHead", _dissolveTime);
+        if (!_isDissolvingHead) StartCoroutine(Dissolve(_headMaterial, false));
 
     }
     void ChangeHead()
@@ -104,18 +105,18 @@ public class CharacterCostumization : MonoBehaviour
 
     IEnumerator Dissolve(Material dissolveMat, bool isBody)
     {
-        if(isBody) _isDissolvingBody = true;
+        if (isBody) _isDissolvingBody = true;
         else _isDissolvingHead = true;
         float startTime = Time.time;
         float time = 0;
         while (Time.time < startTime + _dissolveTime)
         {
             time += Time.deltaTime;
-            float t = Mathf.Clamp01(time/_dissolveTime);
-            dissolveMat.SetFloat("_Dissolve", Mathf.Lerp(0,1,t));
+            float t = Mathf.Clamp01(time / _dissolveTime);
+            dissolveMat.SetFloat("_Dissolve", Mathf.Lerp(0, 1, t));
             yield return null;
         }
-        StartCoroutine(Undissolve(dissolveMat,isBody));
+        StartCoroutine(Undissolve(dissolveMat, isBody));
     }
     IEnumerator Undissolve(Material undissolveMat, bool isBody)
     {

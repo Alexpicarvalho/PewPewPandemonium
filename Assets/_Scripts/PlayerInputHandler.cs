@@ -17,6 +17,10 @@ public class PlayerInputHandler : NetworkBehaviour
 
     public bool _hasInputAuthority;
     public bool _hasStateAuthority;
+
+    Dictionary<int, KeyCode> Keybinds;
+
+
     private void Awake()
     {
         LoadInputMap();
@@ -38,4 +42,13 @@ public class PlayerInputHandler : NetworkBehaviour
     {
         //If there are any changes, rewrites the controil settings file
     }
+
+    public void ChangeKeyBind(int keyId, KeyCode keyBind)
+    {
+        //procura pelo id no dic e muda o valor
+
+
+    }
+
+
 }

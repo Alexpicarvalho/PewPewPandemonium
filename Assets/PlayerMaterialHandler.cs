@@ -22,7 +22,7 @@ public class PlayerMaterialHandler : NetworkBehaviour
     public override void Spawned()
     {
         base.Spawned();
-        if (!HasInputAuthority) return;
+        if (!HasInputAuthority) this.enabled = false;
         RPC_ChangeSkin();
 
     }

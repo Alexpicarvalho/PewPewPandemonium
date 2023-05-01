@@ -77,48 +77,74 @@ public class PlayerCombatHandler : NetworkBehaviour
         _grenade.UpdateState();
         _utility.UpdateUtilityStatus();
 
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            KnifeAttack();
-        }
+        //if (Input.GetKeyDown(KeyCode.V))
+        //{
+        //    KnifeAttack();
+        //}
 
 
-        if (Input.GetButton("Fire1"))
-        {
-            _gun.NormalShoot();
-            _animator.SetTrigger(_gun._shootingAnimTrigger);
+        //if (Input.GetButton("Fire1"))
+        //{
+        //    _gun.NormalShoot();
+        //    _animator.SetTrigger(_gun._shootingAnimTrigger);
 
-        }
+        //}
 
-        if (Input.GetButton("Fire2"))
-        {
-            _gun._weaponSkill.ShowSkillIndicator();
-        }
-        else if (Input.GetButtonUp("Fire2"))
-        {
-            CallSkill();
-        }
+        //if (Input.GetButton("Fire2"))
+        //{
+        //    _gun._weaponSkill.ShowSkillIndicator();
+        //}
+        //else if (Input.GetButtonUp("Fire2"))
+        //{
+        //    CallSkill();
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            SwapWeapons();
-        }
+        //if (Input.GetKeyDown(KeyCode.Tab))
+        //{
+        //    SwapWeapons();
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            _grenade.Throw(MousePosition());
-            //_grenade.EnableIndicator();
-        }
-        else if (Input.GetKeyUp(KeyCode.Q))
-        {
-           // _grenade.DisableIndicator();
-        }
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    _grenade.Throw(MousePosition());
+        //    //_grenade.EnableIndicator();
+        //}
+        //else if (Input.GetKeyUp(KeyCode.Q))
+        //{
+        //   // _grenade.DisableIndicator();
+        //}
 
-        if (Input.GetKeyDown(KeyCode.E)) _utility.Use();
+        //if (Input.GetKeyDown(KeyCode.E)) _utility.Use();
 
 
         //_grenade.DrawProjection();
 
+    }
+
+    public override void FixedUpdateNetwork()
+    {
+        if (GetInput(out NetworkInputData networkInputData))
+        {
+            if (networkInputData.isMouse1ButtonPressed)
+            {
+                _gun.NormalShoot();
+                _animator.SetTrigger(_gun._shootingAnimTrigger);
+            }
+
+            if (networkInputData.isMouse2ButtonPressed)
+            {
+                CallSkill();
+            }
+
+            if (networkInputData.isGrenadePressed)   //NEEDS TO BE REPLACED IN INPUTS BY ON KEY UP IF WE WANT INDICATORS
+            {
+                _grenade.Throw(networkInputData.mousePosition + Vector3.up * 0.1f);
+            }
+
+            if (networkInputData.isUtilityPressed) _utility.Use();
+
+            if (networkInputData.isMeleePressed) KnifeAttack();
+        }
     }
 
     public void ReceiveWeapon(GunSO _newGun)

@@ -45,7 +45,7 @@ public class WeaponPickUp : Pickup
 
     private void SelectGlowColor()
     {
-        Debug.Log("Weapon tier : " + _weaponToGive._weaponTier);
+       // Debug.Log("Weapon tier : " + _weaponToGive._weaponTier);
         switch (_weaponToGiveTier)
         {
             case WeaponTier.Tier3:

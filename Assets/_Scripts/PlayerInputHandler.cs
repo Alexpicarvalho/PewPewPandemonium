@@ -11,6 +11,7 @@ public class PlayerInputHandler : MonoBehaviour
     public KeyCode _utilityKey; 
     public KeyCode _weaponSwapKey; 
     public KeyCode _interactKey; 
+    public KeyCode _meleeKey = KeyCode.V; 
     private void Awake()
     {
         LoadInputMap();

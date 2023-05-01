@@ -22,12 +22,16 @@ public class ExplosiveGrenade : Grenade
         base.CalculateThrowVelocity(target, offset);
     }
 
-    private void OnCollisionEnter(Collision collision)
+
+    public void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(name + " hit " + collision.collider);
-        Explode();
-        Runner.Spawn(_spawnEffect, My_Utils.SnapToGroundGetPosition(transform.position) + _explosionOffset, Quaternion.identity);
-        Runner.Despawn(GetComponent<NetworkObject>());
+        if (HasStateAuthority)
+        {
+            Debug.Log(name + " hit " + collision.collider);
+            Runner.Spawn(_spawnEffect, My_Utils.SnapToGroundGetPosition(transform.position) + _explosionOffset, Quaternion.identity);
+            Explode();
+            Runner.Despawn(Object);
+        }
     }
 
     private void Explode()
@@ -38,7 +42,7 @@ public class ExplosiveGrenade : Grenade
         {
             var target = collider.GetComponent<IHitable>();
 
-            if (target != null )
+            if (target != null)
             {
                 target.HandleHit(new Damage(damage));
             }

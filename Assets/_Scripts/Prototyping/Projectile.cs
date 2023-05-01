@@ -35,8 +35,9 @@ public class Projectile : Damager
     int collisionIndex = 0;
 
     // Start is called before the first frame update    
-    public virtual void Start()
+    public override void Spawned()
     {
+        base.Spawned();
         Invoke("DestroyAfter", _lifeTime - _shrinkOnDestroyDuration);
         iTime = GetComponent<ITime>();
         //ApplyNetworkComponents();
@@ -99,6 +100,7 @@ public class Projectile : Damager
 
     public virtual void OnCollisionEnter(Collision collision)
     {
+        if (!HasStateAuthority) return;
         Debug.Log(collision.collider.name);
         ContactPoint cp = collision.GetContact(0);
         var target = collision.collider.GetComponent<IHitable>();

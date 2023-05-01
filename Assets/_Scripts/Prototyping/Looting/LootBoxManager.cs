@@ -102,7 +102,7 @@ public class LootBoxManager : MonoBehaviour
     private WeaponTier TryGetTier(float tier1Chance, float tier2Chance, float tier3Chance)
     {
         float check = Random.Range(0.0f, 1.0f);
-        Debug.Log($"Check was {check}, T1: {tier1Chance}, T2: {tier2Chance}, T3: {tier3Chance} ");
+        //Debug.Log($"Check was {check}, T1: {tier1Chance}, T2: {tier2Chance}, T3: {tier3Chance} ");
 
         if (tier1Chance >= check) return WeaponTier.Tier1;
         else if (tier2Chance >= check) return WeaponTier.Tier2;

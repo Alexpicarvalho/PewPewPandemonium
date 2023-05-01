@@ -74,6 +74,7 @@ public class LootBox : NetworkBehaviour, IHitable
     [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
     private void RPC_SendLootInfoToServer()
     {
+        if (!HasStateAuthority) return;
         PlayExplosion();
         foreach (var drop in _drops)
         {
@@ -88,9 +89,7 @@ public class LootBox : NetworkBehaviour, IHitable
             {
                 _weaponTier = LootBoxManager.Instance.RequestWeaponTier(_rarity);
                 _weaponScript._weaponToGiveTier = _weaponTier;
-                Debug.Log("Weapon Tier is " + _weaponTier);
             }
-            else Debug.Log("No WeaponPickUp");
 
         }
         Runner.Despawn(Object);

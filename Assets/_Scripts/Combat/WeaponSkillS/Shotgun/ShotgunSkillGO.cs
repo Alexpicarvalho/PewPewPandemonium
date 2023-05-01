@@ -9,9 +9,8 @@ public class ShotgunSkillGO : Projectile
     [SerializeField] float _minDistanceOffset;
     private Vector3 _startPos;
 
-    public override void Start()
+    public void Start()
     {
-        base.Start();
         _startPos = transform.position;
 
     }

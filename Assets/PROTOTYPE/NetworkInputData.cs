@@ -12,7 +12,11 @@ public struct NetworkInputData : INetworkInput
     //public Vector3 direction;
 
     public Vector2 movementInput;
-    public Vector3 rotationInput;
+    public Vector3 mousePosition;
     public NetworkBool isMouse1ButtonPressed;
     public NetworkBool isMouse2ButtonPressed;
+    public NetworkBool isDodgePressed;
+    public NetworkBool isGrenadePressed;
+    public NetworkBool isUtilityPressed;
+    public NetworkBool isMeleePressed;
 }

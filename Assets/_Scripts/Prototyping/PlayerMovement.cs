@@ -22,8 +22,8 @@ public class PlayerMovement : NetworkBehaviour
         }
     }
     [SerializeField] float _timeToAchieveMaxSpeed;
-    private Vector2 moveInputVector;
-    [SerializeField] KeyCode _dodgeKey;
+
+    [SerializeField] public KeyCode _dodgeKey;
 
     [Header("Visuals")]
     public GameObject movementDirectionIndicator;
@@ -40,7 +40,7 @@ public class PlayerMovement : NetworkBehaviour
     public int _currentDodgeCharges;
 
     [Header("Mouse")]
-    [SerializeField] private LayerMask layerMask;
+    [SerializeField] public LayerMask layerMask;
 
     [Header("Script and Component References")]
     private Animator anim;
@@ -53,7 +53,7 @@ public class PlayerMovement : NetworkBehaviour
     private float vel = 0;
     bool _sleepAnimFloat = false;
     bool _canMove = true;
-    Vector3 moveDirection;
+    Vector3 movementDirection;
     [Networked] float accelaration { get; set; }
 
     [Header("Perk Values")]
@@ -74,6 +74,7 @@ public class PlayerMovement : NetworkBehaviour
 
         if (!Object.HasInputAuthority)
         {
+            //this.enabled = false;
             movementDirectionIndicator.SetActive(false);
         }
         transform.GetComponent<Collider>().enabled = false;
@@ -99,32 +100,27 @@ public class PlayerMovement : NetworkBehaviour
         _id = GetComponent<Object_ID>();
     }
 
-    public NetworkInputData GetNetworkInput()
-    {
-        NetworkInputData networkInputData = new NetworkInputData();
-        //networkInputData.rotationInput = viewInputVector.x;
-        networkInputData.movementInput = moveInputVector;
-
-        return networkInputData;
-    }
 
     // Update is called once per frame
     void Update()
     {
         //if (!this.HasInputAuthority) return;
         RechargeDodge();
-        float xMov = Input.GetAxis("Horizontal");
-        float zMov = Input.GetAxis("Vertical");
-        moveInputVector.x = xMov;
-        moveInputVector.y = zMov;
+        //float xMov = Input.GetAxis("Horizontal");
+        //float zMov = Input.GetAxis("Vertical");
+        //moveInputVector.x = xMov;
+        //moveInputVector.y = zMov;
 
-        moveDirection = new Vector3(xMov, 0f, zMov).normalized;
+        //rotationInputVector = MousePosition();
+        //Debug.Log("Rotation In Update : " + rotationInputVector);
+
+        //moveDirection = new Vector3(xMov, 0f, zMov).normalized;
 
 
-        if (Input.GetKeyDown(_dodgeKey))
-        {
-            Dodge();
-        }
+        //if (Input.GetKeyDown(_dodgeKey))
+        //{
+        //    Dodge();
+        //}
 
 
     }
@@ -136,7 +132,7 @@ public class PlayerMovement : NetworkBehaviour
             //Vector3 moveDirection = transform.forward * networkInputData.movementInput.y + transform.right * networkInputData.movementInput.x;
             Vector3 moveDirection = new Vector3(networkInputData.movementInput.x, 0, networkInputData.movementInput.y);
             moveDirection.Normalize();
-
+            movementDirection = moveDirection;
             if (moveDirection.magnitude != 0.0f && _canMove)
             {
                 //Debug.Log("Current Speed is " + _currentSpeed);
@@ -159,17 +155,23 @@ public class PlayerMovement : NetworkBehaviour
 
         }
 
-        Vector3 mousePos = MousePosition();
-        if (_canMove && Object.HasInputAuthority) transform.rotation = Quaternion.LookRotation(mousePos);
-        if (moveDirection.magnitude != 0.0f && _canMove)
+        if (networkInputData.isDodgePressed) RPC_Dodge(); 
+
+
+        //Vector3 mousePos = MousePosition();
+        if (_canMove /*&& Object.HasInputAuthority*/) 
+        {
+            rb.MoveRotation(Quaternion.LookRotation(CalculateLookAt(networkInputData.mousePosition)));
+        } 
+        if (movementDirection.magnitude != 0.0f && _canMove)
         {
             _currentSpeed += accelaration * Runner.DeltaTime;
             _currentSpeed = Mathf.Clamp(_currentSpeed, _startSpeed, _maxSpeed);
             //Debug.Log("Current Speed IS " + _currentSpeed);
             _footPrinter.ready = true;
             movementDirectionIndicator.GetComponent<Animator>().SetBool("On", true);
-            movementDirectionIndicator.transform.rotation = Quaternion.LookRotation(moveDirection);
-            CalculateAnimatorMovementValue(moveDirection);
+            movementDirectionIndicator.transform.rotation = Quaternion.LookRotation(movementDirection);
+            CalculateAnimatorMovementValue(movementDirection);
 
 
         }
@@ -182,6 +184,11 @@ public class PlayerMovement : NetworkBehaviour
             float angle = Mathf.SmoothDamp(anim.GetFloat("MovBlend"), 1000, ref vel, 1f);
             anim.SetFloat("MovBlend", 1000);
         }
+    }
+
+    private Vector3 CalculateLookAt(Vector3 mousePosition)
+    {
+        return new Vector3(mousePosition.x - transform.position.x, 0, mousePosition.z - transform.position.z);
     }
 
     private void RechargeDodge()
@@ -197,7 +204,8 @@ public class PlayerMovement : NetworkBehaviour
         }
     }
 
-    public void Dodge()
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RPC_Dodge()
     {
         if (_currentDodgeCharges <= 0) return;
         anim.Play("Rollin Blend Tree");
@@ -205,16 +213,21 @@ public class PlayerMovement : NetworkBehaviour
         _currentDodgeCharges--;
         StartCoroutine(DodgeMove());
     }
+
+    
     IEnumerator DodgeMove()
     {
         _sleepAnimFloat = true;
         _canMove = false;
         //_rollingSmoke?.SetActive(true);
-        float startTime = Time.time;
-        while (Time.time < startTime + dodgeDuration)
+        float startTime = Runner.SimulationRenderTime;
+        while (Runner.SimulationRenderTime < startTime + dodgeDuration)
         {
-            rb.velocity = (speedCurve.Evaluate(Time.time - startTime) / dodgeDuration)
-                * dodgeSpeed * iTime.personalTimeScale * moveDirection;
+            //rb.MovePosition(transform.position + (speedCurve.Evaluate(Runner.SimulationRenderTime - startTime) / dodgeDuration)
+            //    * dodgeSpeed * iTime.personalTimeScale * movementDirection);
+
+            rb.velocity = (speedCurve.Evaluate(Runner.SimulationRenderTime - startTime) / dodgeDuration)
+                * dodgeSpeed * iTime.personalTimeScale * movementDirection;
 
             yield return null;
         }
@@ -223,19 +236,19 @@ public class PlayerMovement : NetworkBehaviour
         //_rollingSmoke?.SetActive(false);
     }
 
-    public Vector3 MousePosition()
-    {
-        Camera camera = Camera.main;
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+    //public Vector3 MousePosition()
+    //{
+    //    Camera camera = Camera.main;
+    //    Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+    //    RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
-        {
-            return new Vector3(hit.point.x - transform.position.x, 0, hit.point.z - transform.position.z);
+    //    if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
+    //    {
+    //        return new Vector3(hit.point.x - transform.position.x, 0, hit.point.z - transform.position.z);
 
-        }
-        else return Vector3.zero;
-    }
+    //    }
+    //    else return Vector3.zero;
+    //}
 
     private void CalculateAnimatorMovementValue(Vector3 moveDir)
     {
@@ -253,16 +266,15 @@ public class PlayerMovement : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Entered");
         if (other.gameObject.layer != LayerMask.NameToLayer("TrackerPrint") || other.GetComponent<Object_ID>().my_ID == _id.my_ID) return;
-        Debug.Log("On Tracks");
+       
         PerkModifySpeed(_trackSpeed);
         _trackSpeedUp = true;
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.layer != LayerMask.NameToLayer("TrackerPrint") || other.GetComponent<Object_ID>().my_ID == _id.my_ID) return;
-        Debug.Log("Off Tracks");
+        
         PerkModifySpeed(-_trackSpeed);
         _trackSpeedUp = false;
     }

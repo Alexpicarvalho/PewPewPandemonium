@@ -27,7 +27,7 @@ public class PlayerMaterialHandler : NetworkBehaviour
 
     }
 
-    [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
     void RPC_ChangeSkin()
     {
         _bodyRenderer = transform.GetChild(0).GetComponent<SkinnedMeshRenderer>();

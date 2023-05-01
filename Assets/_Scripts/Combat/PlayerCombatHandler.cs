@@ -140,6 +140,7 @@ public class PlayerCombatHandler : NetworkBehaviour
             {
                 _grenade.Throw(networkInputData.mousePosition + Vector3.up * 0.1f);
             }
+            if(networkInputData.isWeaponSwapPressed) SwapWeapons();
 
             if (networkInputData.isUtilityPressed) _utility.Use();
 

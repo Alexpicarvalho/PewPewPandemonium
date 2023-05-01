@@ -10,6 +10,11 @@ public class MG3_movement : MonoBehaviour
 
     private Transform cameraTransform; // The transform of the camera
 
+    public GameObject ui_start;
+    public GameObject ui_gameover;
+    public GameObject ui_Win;
+
+
     void Start()
     {
         // Get the transform of the main camera
@@ -47,5 +52,14 @@ public class MG3_movement : MonoBehaviour
         Vector3 cameraPosition = transform.position - transform.forward * cameraDistance + Vector3.up * cameraHeight;
         cameraTransform.position = cameraPosition;
         cameraTransform.LookAt(transform.position);
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Finish")
+        {
+            ui_Win.SetActive(true);
+        }
     }
 }

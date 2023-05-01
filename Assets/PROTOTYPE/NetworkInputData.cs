@@ -19,4 +19,7 @@ public struct NetworkInputData : INetworkInput
     public NetworkBool isGrenadePressed;
     public NetworkBool isUtilityPressed;
     public NetworkBool isMeleePressed;
+    public NetworkBool isInteractPressed;
+    public NetworkBool isWeaponSwapPressed;
+    public NetworkBool isReloadPressed;
 }

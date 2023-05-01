@@ -23,7 +23,7 @@ public class PlayerCombatHandler : NetworkBehaviour
     [HideInInspector] public bool _reloading = false;
     [HideInInspector] public GunSO _weaponSlot1;
     [HideInInspector] public GunSO _weaponSlot2;
-    [HideInInspector] public GunSO _gun;
+    /*[HideInInspector]*/ public GunSO _gun;
     /*[HideInInspector]*/ public GrenadeSO _grenade;
     public UtilitySO _utility;
     private Vector3 _currentSkillTargetLocation;
@@ -144,6 +144,9 @@ public class PlayerCombatHandler : NetworkBehaviour
             if (networkInputData.isUtilityPressed) _utility.Use();
 
             if (networkInputData.isMeleePressed) KnifeAttack();
+
+            if (networkInputData.isReloadPressed) _gun.ForceReload();
+
         }
     }
 

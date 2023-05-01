@@ -4083,6 +4083,9 @@ MonoBehaviour:
   _shieldText: {fileID: 3400246038495936052}
   _hpSlider: {fileID: 6445718350463092164}
   _shieldSlider: {fileID: 3074050459905140074}
+  _scriptsToDisable:
+  - {fileID: 4920267075732269096}
+  - {fileID: 5151311613721021895}
 --- !u!114 &974983751090955264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4173,6 +4176,7 @@ MonoBehaviour:
   - {fileID: 6916487375287019265}
   - {fileID: 39697780263629218}
   - {fileID: 272023887418494293}
+  - {fileID: 7626743907143717972}
   - {fileID: 823525077775382497}
   - {fileID: 3400246039576948737}
   - {fileID: 5593785319645916508}
@@ -4234,8 +4238,8 @@ MonoBehaviour:
     _value: 0
     _inverse: 0
     _hash: -814817977
-  StateHashes: 00000000d51b59c9582926e731ccd7f6ef6796954fb5fad532b9c51ecf9b9004b7259865ba185f690ae9e03775ccee7d567ceddbc6156388beab6be9590da76e6abe8259f5680fc677274343
-  TriggerHashes: 0000000076821ad2641234a2bad385b1
+  StateHashes: 00000000d51b59c9582926e731ccd7f6ef6796954fb5fad532b9c51ecf9b9004b7259865ba185f690ae9e03775ccee7d567ceddbc6156388beab6be9590da76e6abe8259f5680fc6772743431fc78d8c677985ed2ab4b9ec691a8aef
+  TriggerHashes: 0000000076821ad2641234a2bad385b137b935012ab4b9ec
 --- !u!114 &272023887418494293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4273,12 +4277,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b7b22fd55171847aa782916c08526e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   _dodgeKey: 304
   _grenadeKey: 113
   _utilityKey: 101
   _weaponSwapKey: 9
   _interactKey: 102
   _meleeKey: 118
+  _reloadKey: 114
 --- !u!1 &231212215045655013
 GameObject:
   m_ObjectHideFlags: 0

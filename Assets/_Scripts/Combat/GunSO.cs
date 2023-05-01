@@ -251,6 +251,13 @@ public class GunSO : Item
         _timeSinceReloadStart = 0;
         _currentShootingStatus = ShootingStatus.ShotReady;
     }
+
+    public virtual void ForceReload()
+    {
+        if (_bulletsInMag == _magazineSize) return;
+        _currentShootingStatus = ShootingStatus.Reloading;
+    }
+
     public virtual void ReloadCanceled()
     {
         _timeSinceReloadStart = 0;

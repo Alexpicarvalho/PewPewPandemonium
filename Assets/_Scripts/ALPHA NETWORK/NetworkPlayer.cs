@@ -28,7 +28,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
             //disable main camera
             //Camera.main.gameObject.SetActive(false);
 
-            Debug.Log("Spawned local player");
+            Debug.Log("Spawned local player with ID -> " + Object.Id);
         }
         else {
             // disable the camera if we are not the local player

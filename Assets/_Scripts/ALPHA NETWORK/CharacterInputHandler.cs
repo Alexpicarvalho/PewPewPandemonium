@@ -14,6 +14,9 @@ public class CharacterInputHandler : MonoBehaviour
     bool isGrenadePressed = false;
     bool isUtilityPressed = false;
     bool isMeleePressed = false;
+    bool isWeaponSwapPressed = false;
+    bool isInteractPressed = false;
+    bool isReloadPressed = false;
 
     PlayerInputHandler _playerInputHandler;
     PlayerMovement characterMovementHandler;
@@ -67,6 +70,16 @@ public class CharacterInputHandler : MonoBehaviour
 
         if (Input.GetKeyDown(_playerInputHandler._meleeKey))
             isMeleePressed = true;
+
+        if (Input.GetKeyDown(_playerInputHandler._interactKey))
+            isInteractPressed = true;
+
+        if (Input.GetKeyDown(_playerInputHandler._weaponSwapKey))
+            isWeaponSwapPressed = true;
+        
+        if (Input.GetKeyDown(_playerInputHandler._reloadKey))
+            isReloadPressed = true;
+
     }
 
     public Vector3 MousePosition()
@@ -105,6 +118,10 @@ public class CharacterInputHandler : MonoBehaviour
         networkInputData.isGrenadePressed = isGrenadePressed;
         networkInputData.isUtilityPressed = isUtilityPressed;
         networkInputData.isMeleePressed = isMeleePressed;
+        networkInputData.isWeaponSwapPressed = isWeaponSwapPressed;
+        networkInputData.isInteractPressed = isInteractPressed;
+        networkInputData.isReloadPressed = isReloadPressed;
+
 
 
         // reset variables now that we have read their states
@@ -114,6 +131,9 @@ public class CharacterInputHandler : MonoBehaviour
         isGrenadePressed = false;
         isUtilityPressed = false;
         isMeleePressed = false;
+        isWeaponSwapPressed = false;
+        isInteractPressed = false;
+        isReloadPressed = false;
 
         return networkInputData;
     }

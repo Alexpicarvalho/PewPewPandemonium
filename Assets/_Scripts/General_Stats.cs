@@ -16,7 +16,7 @@ public class General_Stats : NetworkBehaviour, IHitable
     [SerializeField] float _maxHP;
     [SerializeField] float _maxShield; // Changeable by armor
     [SerializeField] bool _isPushable;
-    bool _dead = false;
+    [Networked] NetworkBool _dead { get; set; }
 
     [Header("Start Properties")]
     [SerializeField] float _startingShield;
@@ -33,16 +33,20 @@ public class General_Stats : NetworkBehaviour, IHitable
     [Networked] float _currentShield { get; set; }
     [field : SerializeField][Networked] float _currentHp { get; set; }
 
-    [Header("Test Visuals")]
+    [Header("Test")]
     [SerializeField] TextMeshProUGUI _hpText;
     [SerializeField] TextMeshProUGUI _shieldText;
     [SerializeField] Slider _hpSlider;
     [SerializeField] Slider _shieldSlider;
+    [SerializeField] List<NetworkBehaviour> _scriptsToDisable;
+    private Animator _anim;
 
     private void Start()
     {
+        _anim = GetComponent<Animator>();
         _currentHp = MaxHP -50;
         _currentShield = _startingShield;
+        _dead = false;
         
         //Temp
         if (_shieldText != null) _shieldText.text = ((int)_currentShield).ToString() + " / " + MaxShield;
@@ -59,6 +63,7 @@ public class General_Stats : NetworkBehaviour, IHitable
 
     public void HandleHit(Damage damage)
     {
+        if (!HasStateAuthority) return;
         if (damage == null || _dead) return;
         if (_currentShield < damage._amount) OverflowDamage(Mathf.Abs(_currentShield - damage._amount));
 
@@ -78,6 +83,7 @@ public class General_Stats : NetworkBehaviour, IHitable
     }
     public void GainHealth(float amount)
     {
+        if (!HasStateAuthority) return;
         _currentHp += amount;
         if(_currentHp > MaxHP) _currentHp = MaxHP;
 
@@ -95,9 +101,19 @@ public class General_Stats : NetworkBehaviour, IHitable
         if(_currentHp <= 0)
         {
             _currentHp = 0;
-            _dead = true;
-            Invoke("ResetHealth", 3.0f);
+            RPC_Die();
         } 
+    }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void RPC_Die()
+    {
+        //if (!HasStateAuthority) return;
+        Debug.Log("I DIED!");
+        _dead = true;
+        OnDeathScripts(false);
+        _anim.SetTrigger("Die");
+        Invoke("Revive", 3.0f);
     }
 
     //TEST ONLY 
@@ -106,11 +122,26 @@ public class General_Stats : NetworkBehaviour, IHitable
         _dead = false;
         _currentHp = MaxHP;
         _currentShield = _startingShield;
+        OnDeathScripts(true);
         //Temp
         if (_shieldText != null) _shieldText.text = ((int)_currentShield).ToString() + " / " + MaxShield;
         if (_hpText != null) _hpText.text = ((int)_currentHp).ToString() + " / " + MaxHP;
         //if (_shieldSlider != null) _shieldSlider.value = _currentShield / MaxShield;
         //if (_hpSlider != null) _hpSlider.value = _currentHp / MaxHP;
+    }
+
+    public void Revive()
+    {
+        _anim.SetTrigger("Revive");
+    }
+
+    private void OnDeathScripts(bool activate)
+    {
+        foreach (var script in _scriptsToDisable)
+        {
+            if(activate) script.enabled = true;
+            else script.enabled = false;
+        }
     }
 
     public IEnumerator DealDamageEnum(Damage damage, Vector3 forceDirection)

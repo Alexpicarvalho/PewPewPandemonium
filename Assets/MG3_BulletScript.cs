@@ -6,10 +6,16 @@ public class MG3_BulletScript : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Obstacle")
+        if (other.gameObject.tag == "Obstacle")
         {
             Destroy(gameObject);
         }
+
+        if (other.gameObject.tag == "Player")
+        {
+            Destroy(gameObject);
+        }
+
     }
 
 }

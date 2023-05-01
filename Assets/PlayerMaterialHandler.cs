@@ -23,12 +23,12 @@ public class PlayerMaterialHandler : NetworkBehaviour
     {
         base.Spawned();
         if (!HasInputAuthority) return;
-        ChangeSkin();
+        RPC_ChangeSkin();
 
     }
 
     [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
-    void ChangeSkin()
+    void RPC_ChangeSkin()
     {
         _bodyRenderer = transform.GetChild(0).GetComponent<SkinnedMeshRenderer>();
         _headRenderer = transform.GetChild(1).GetComponent<SkinnedMeshRenderer>();

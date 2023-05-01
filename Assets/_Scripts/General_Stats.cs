@@ -113,7 +113,7 @@ public class General_Stats : NetworkBehaviour, IHitable
         _dead = true;
         OnDeathScripts(false);
         _anim.SetTrigger("Die");
-        Invoke("Revive", 3.0f);
+        Invoke("RPC_Revive", 3.0f);
     }
 
     //TEST ONLY 
@@ -130,7 +130,8 @@ public class General_Stats : NetworkBehaviour, IHitable
         //if (_hpSlider != null) _hpSlider.value = _currentHp / MaxHP;
     }
 
-    public void Revive()
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void RPC_Revive()
     {
         _anim.SetTrigger("Revive");
     }

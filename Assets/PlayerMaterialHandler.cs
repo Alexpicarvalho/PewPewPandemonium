@@ -22,7 +22,7 @@ public class PlayerMaterialHandler : NetworkBehaviour
     public override void Spawned()
     {
         base.Spawned();
-
+        if (!HasInputAuthority) return;
         _bodyRenderer = transform.GetChild(0).GetComponent<SkinnedMeshRenderer>();
         _headRenderer = transform.GetChild(1).GetComponent<SkinnedMeshRenderer>();
         _bodyRenderer.sharedMesh = _skinData._bodyMesh;

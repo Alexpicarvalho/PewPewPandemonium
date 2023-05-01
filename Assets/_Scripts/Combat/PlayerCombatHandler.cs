@@ -212,6 +212,7 @@ public class PlayerCombatHandler : NetworkBehaviour
 
     private void SwapWeapons()
     {
+        if (!HasInputAuthority) return;
         if (!_weaponSlot1 || !_weaponSlot2 || !_swapReady) return; //If player doesn't have 2 weapons returns
         NextWeapon();
     }

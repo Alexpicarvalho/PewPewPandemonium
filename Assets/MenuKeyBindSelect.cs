@@ -1,39 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+//using TMPro;
+//using System;
 
-public class MenuKeyBindSelect : MonoBehaviour
-{
+//public class MenuKeyBindSelect : MonoBehaviour
+//{
 
-    private PlayerInputHandler playerInputs;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        playerInputs = FindObjectOfType<PlayerInputHandler>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void GetNewKeyBind(int bindId)
-    {
-        //   KeyCode newBind = Input.get;
-       KeyCode OnGUI(){
+//    public TextMeshProUGUI buttonLabel;
 
 
-            return KeyCode.E;
-       }
+//    // Start is called before the first frame update
+//    public void Start()
+//    {
+//      //  buttonLabel.text = PlayerPrefs.GetString("CustomKey");
+//    }
 
-    }
+//    // Update is called once per frame
+//    public void Update()
+//    {
+//        if (buttonLabel.text == "Press key to bind")
+//        {
+//            foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
+//            {
+//                buttonLabel.text = keycode.ToString();
+//                PlayerPrefs.SetString("CustomKey", keycode.ToString());
+//                PlayerPrefs.Save();
+//            }
+//        }
+//    }
 
-    //private void OnGUI()
-    //{
-    //    Event keyPress = Event.current;
-    //}
+//    public void GetNewKeyBind()
+//    {
+//        buttonLabel.text = "Press key to bind";
 
-}
+//    }
+
+
+//}

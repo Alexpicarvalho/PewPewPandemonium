@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fusion;
 
-public class CharacterCostumization : MonoBehaviour
+public class CharacterCostumization : NetworkBehaviour
 {
-    [SerializeField] SkinnedMeshRenderer[] bodyParts;
-    [SerializeField] SkinnedMeshRenderer[] headParts;
+    [SerializeField] public SkinnedMeshRenderer[] bodyParts;
+    [SerializeField] public SkinnedMeshRenderer[] headParts;
 
     [SerializeField] float _dissolveTime;
     [SerializeField] float _undissolveTime;
@@ -85,7 +86,7 @@ public class CharacterCostumization : MonoBehaviour
     void ChangeBody()
     {
         currentBody.sharedMesh = bodySkins[currentBodyIndex];
-        _skinDataOutput._bodyMesh = currentBody.sharedMesh;
+        _skinDataOutput._bodyMeshIndex = currentBodyIndex;
     }
 
     public void SwapHeadPiece(bool next)
@@ -100,7 +101,7 @@ public class CharacterCostumization : MonoBehaviour
     void ChangeHead()
     {
         currentHead.sharedMesh = headSkins[currentHeadIndex];
-        _skinDataOutput._headMesh = currentHead.sharedMesh;
+        _skinDataOutput._headMeshIndex = currentHeadIndex;
     }
 
     IEnumerator Dissolve(Material dissolveMat, bool isBody)

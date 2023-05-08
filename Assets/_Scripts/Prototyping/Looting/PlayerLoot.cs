@@ -6,8 +6,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityRandom = UnityEngine.Random;
+using Fusion;
 
-public class PlayerLoot : MonoBehaviour
+public class PlayerLoot : NetworkBehaviour
 {
     [SerializeField] private float _pickUpRadius;
     [SerializeField] [Range(0, 6)] private int _maxPickupsInMenu;
@@ -57,9 +58,21 @@ public class PlayerLoot : MonoBehaviour
         ClearLists();
         GetNearestPickup();
         ShowInList();
-        VisualiseInMenu();
+        //VisualiseInMenu();
 
-        if (_timeSinceLastPickupAttempt >= _inputCooldown) DetectPlayerInput();
+        //if (_timeSinceLastPickupAttempt >= _inputCooldown) DetectPlayerInput();
+    }
+
+    public override void FixedUpdateNetwork()
+    {
+        if (GetInput(out NetworkInputData networkInputData))
+        {
+            if(_timeSinceLastPickupAttempt >= _inputCooldown && _nearestPickup != null && networkInputData.isInteractPressed)
+            {
+                _nearestPickup.PickMeUp(_combatHandler);
+                _timeSinceLastPickupAttempt = 0;
+            }
+        }
     }
 
     private void ClearLists()

@@ -9,6 +9,7 @@ public class PlayerMaterialHandler : NetworkBehaviour
     private SkinnedMeshRenderer _bodyRenderer;
     private SkinnedMeshRenderer _headRenderer;
     [SerializeField] private PlayerSkinData _skinData;
+    private CharacterCostumization _characterCostumization;
 
     [Header("Flash on Damage")]
     [SerializeField] private float _flashDuration;
@@ -19,21 +20,37 @@ public class PlayerMaterialHandler : NetworkBehaviour
     private Material _bodyMat;
     private Material _headMat;
 
+    [Networked] private int _bodyIndex { get; set; }
+    [Networked] private int _headIndex { get; set; }
+
+    private void Awake()
+    {
+        _characterCostumization = GetComponent<CharacterCostumization>();
+    }
+
     public override void Spawned()
     {
         base.Spawned();
+
+        _bodyIndex = 0;
+        _headIndex = 0;
+
         if (!HasInputAuthority) this.enabled = false;
+
+        _bodyIndex = _skinData._bodyMeshIndex;
+        _headIndex = _skinData._headMeshIndex;
+
         RPC_ChangeSkin();
 
     }
 
-    
+    [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
     void RPC_ChangeSkin()
     {
         _bodyRenderer = transform.GetChild(0).GetComponent<SkinnedMeshRenderer>();
         _headRenderer = transform.GetChild(1).GetComponent<SkinnedMeshRenderer>();
-        _bodyRenderer.sharedMesh = _skinData._bodyMesh;
-        _headRenderer.sharedMesh = _skinData._headMesh;
+        _bodyRenderer.sharedMesh = _characterCostumization.bodyParts[_skinData._bodyMeshIndex].sharedMesh;
+        _headRenderer.sharedMesh = _characterCostumization.headParts[_skinData._headMeshIndex].sharedMesh;
         _bodyMat = _bodyRenderer.materials[0];
         _headMat = _headRenderer.materials[0];
     }

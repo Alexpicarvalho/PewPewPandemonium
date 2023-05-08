@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1545150094688118226}
   - component: {fileID: 1545150094691509746}
   - component: {fileID: 1545150094690412338}
+  - component: {fileID: 7301763897417691690}
   m_Layer: 0
   m_Name: IceGunDefault
   m_TagString: Untagged
@@ -83,3 +84,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7301763897417691690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545150094688156146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2305
+  NetworkGuid:
+    RawGuidValue: 706c97aa8d177e1449c87cb36a81056d
+  NestedObjects: []
+  NetworkedBehaviours: []
+  SimulationBehaviours: []

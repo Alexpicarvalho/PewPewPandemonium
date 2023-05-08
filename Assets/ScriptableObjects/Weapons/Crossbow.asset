@@ -19,7 +19,7 @@ MonoBehaviour:
   _bulletGO: {fileID: 429543989968508660, guid: 0630c0157af498a48850695f41ae35a3, type: 3}
   _muzzleFlash: {fileID: 4779800532271133379, guid: da31205b1a641cb40adbb11bfa094fd5, type: 3}
   _weaponIcon: {fileID: 2800000, guid: 6278b8db6ad6aa44b8d449192001a735, type: 3}
-  _groundPickUpPrefab: {fileID: 0}
+  _groundPickUpPrefab: {fileID: 6679746688503811354, guid: c1de7eb591dc6384cbaed94f032721cd, type: 3}
   _visualEffect: {fileID: 0}
   _extraEffectType: 0
   _extraEffectTimeToShutOff: 0

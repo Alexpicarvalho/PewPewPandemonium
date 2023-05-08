@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8105082179318007125}
   - component: {fileID: 8105082179319301493}
   - component: {fileID: 8105082179320301493}
+  - component: {fileID: 8900767499453848616}
   m_Layer: 0
   m_Name: HuntingRifleDefault
   m_TagString: Untagged
@@ -83,3 +84,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8900767499453848616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8105082179318372725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2305
+  NetworkGuid:
+    RawGuidValue: b09ec5d8c38278946a04894adb8f59e2
+  NestedObjects: []
+  NetworkedBehaviours: []
+  SimulationBehaviours: []

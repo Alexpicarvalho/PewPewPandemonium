@@ -55,6 +55,7 @@ public class GunSO : Item
     [SerializeField] public ShootingStatus _currentShootingStatus;
     private Transform _firePoint;
     [HideInInspector] public GameObject _weaponClone;
+    //public NetworkObject _weaponClone;
     [HideInInspector] public GameObject _vfxClone;
     public WeaponSkillSO _weaponSkill;
     public int _ownerID;
@@ -113,7 +114,16 @@ public class GunSO : Item
 
     public virtual void PlaceInHand(Transform parentBone)
     {
+        RPC_PlaceInHand( parentBone);
+    }
+
+    //[Rpc(RpcSources.InputAuthority, RpcTargets.All)]
+    void RPC_PlaceInHand(Transform parentBone)
+    {
+        if (!_runnerNetworkbehaviour) Debug.Log("NAO TEM RUNNER");
+        if (!parentBone) Debug.Log("NAO TEM BONE");
         _weaponClone = Instantiate(_weaponGO);
+        //_weaponClone = _runnerNetworkbehaviour.Runner.Spawn(_weaponGO);
         //_firePoint = _weaponClone.transform.GetChild(0);
         _weaponClone.transform.parent = parentBone;
         _weaponClone.transform.localPosition = _positionInHand;
@@ -149,6 +159,11 @@ public class GunSO : Item
     {
         return _weaponClone;
     }
+
+    //public NetworkObject GetSwapped()
+    //{
+    //    return _weaponClone;
+    //}
 
     public virtual void NormalShoot()
     {
@@ -276,6 +291,7 @@ public class GunSO : Item
     public void DropWeapon()
     {
         Destroy(_weaponClone);
+        //_runnerNetworkbehaviour.Runner.Despawn(_weaponClone);
         Destroy(_vfxClone);
         _weaponSkill.DestroySpell();
         if (!_groundPickUpPrefab) return;

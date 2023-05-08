@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "SkinData", fileName = "skinData")]
 public class PlayerSkinData : ScriptableObject
 {
-    public Mesh _bodyMesh;
-    public Mesh _headMesh;
+    public int _bodyMeshIndex;
+    public int _headMeshIndex;
 
 }

@@ -160,6 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1247223829425884222}
   - component: {fileID: 1247223829433148382}
+  - component: {fileID: -4954148879369866976}
   m_Layer: 0
   m_Name: BazookaDefault
   m_TagString: Untagged
@@ -204,3 +205,26 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-4954148879369866976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247223829425721374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2305
+  NetworkGuid:
+    RawGuidValue: f3aa0537edf19a840a5ee3762f7bb9ed
+  NestedObjects: []
+  NetworkedBehaviours: []
+  SimulationBehaviours: []

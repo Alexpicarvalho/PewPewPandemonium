@@ -21,8 +21,8 @@ public class PlayerCombatHandler : NetworkBehaviour
 
     [Header("Runtime Variables")]
     [HideInInspector] public bool _reloading = false;
-    [HideInInspector] public GunSO _weaponSlot1;
-    [HideInInspector] public GunSO _weaponSlot2;
+    /*[HideInInspector] */public GunSO _weaponSlot1;
+    /*[HideInInspector]*/ public GunSO _weaponSlot2;
     /*[HideInInspector]*/ public GunSO _gun;
     /*[HideInInspector]*/ public GrenadeSO _grenade;
     public UtilitySO _utility;
@@ -45,9 +45,11 @@ public class PlayerCombatHandler : NetworkBehaviour
         _animator.Play("Slash");
     }
 
-    
-    private void Awake()
+
+    public override void Spawned()
     {
+        Debug.Log("Entrein Spawned PCH");
+
         _id = GetComponent<Object_ID>();
         _swapReady = true;
         _animator = GetComponent<Animator>();
@@ -57,6 +59,8 @@ public class PlayerCombatHandler : NetworkBehaviour
             _weaponSlot2 = Instantiate(_startingWeapon);
             SetupWeapon(_weaponSlot2);
         }
+        else Debug.Log("No Starting Weapon");
+
         _gun = _weaponSlot2;
         SwapWeapons();
         _grenade = Instantiate(_grenade);
@@ -206,24 +210,28 @@ public class PlayerCombatHandler : NetworkBehaviour
 
     public void SetupWeapon(GunSO newWeapon)
     {
-        newWeapon.PlaceInHand(_hand);
+        
         newWeapon.SetWeaponValues(_firePoint, _id);
+        //if (!HasStateAuthority) return;
+        newWeapon.PlaceInHand(_hand);
     }
 
     private void SwapWeapons()
     {
-        if (!HasInputAuthority) return;
+        //if (!HasStateAuthority) return;
         if (!_weaponSlot1 || !_weaponSlot2 || !_swapReady) return; //If player doesn't have 2 weapons returns
         NextWeapon();
     }
 
     private void NextWeapon()
     {
-        _gun._weaponClone.SetActive(false);
+        //_gun._weaponClone.SetActive(false);
+        _gun._weaponClone.gameObject.SetActive(false);
         _swapReady = false;
         if (_gun == _weaponSlot1) _gun = _weaponSlot2;
         else _gun = _weaponSlot1;
-        _gun._weaponClone.SetActive(true);
+        //_gun._weaponClone.SetActive(true);
+        _gun._weaponClone.gameObject.SetActive(true);
         StartCoroutine(ReadySwap());
     }
 

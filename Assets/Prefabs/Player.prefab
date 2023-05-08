@@ -3914,7 +3914,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c9ab00b25f60ef45bf70d53a3f640c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
   bodyParts:
   - {fileID: 2775284666685925391, guid: 4cbbd316309d8c449a798736f2f26360, type: 3}
   - {fileID: 1654840587406671676, guid: b73e02d5889341a4286c4e3848c02c9f, type: 3}
@@ -4099,7 +4098,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 945aa3a0a6518434bb7e7c48b90d30ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
   _pickUpRadius: 3
   _maxPickupsInMenu: 6
   _pickupLayerMask:
@@ -4195,13 +4193,11 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 5151311613721021895}
   - {fileID: 4920267075732269096}
-  - {fileID: 4920267075732269097}
   - {fileID: 4920267075732269088}
   - {fileID: 1606084920}
   - {fileID: 312757882}
   - {fileID: 4920267075732269100}
   - {fileID: 4920267075732269101}
-  - {fileID: 974983751090955264}
   - {fileID: 6916487375287019265}
   - {fileID: 39697780263629218}
   - {fileID: 272023887418494293}

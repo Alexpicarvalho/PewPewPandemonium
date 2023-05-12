@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1801837882127437957}
   - component: {fileID: 1801837882128536133}
   - component: {fileID: -5695397346555769601}
+  - component: {fileID: 809437987790590318}
   m_Layer: 0
   m_Name: HMGDefault
   m_TagString: Untagged
@@ -105,5 +106,23 @@ MonoBehaviour:
   NetworkGuid:
     RawGuidValue: 0ad09dd81121ac247850956387ca9111
   NestedObjects: []
-  NetworkedBehaviours: []
+  NetworkedBehaviours:
+  - {fileID: 809437987790590318}
   SimulationBehaviours: []
+--- !u!114 &809437987790590318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801837882130795653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c36b7cfff6c0f643accbd156a15e804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  _myRenderers: []
+  _hideParts: []
+  _hiden: 0
+  _isLocal: 0

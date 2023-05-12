@@ -24,7 +24,7 @@ MonoBehaviour:
   _indicatorScale: {x: 0, y: 0, z: 0}
   _indicatorPosition: {x: 0, y: 0, z: 0}
   _indicatorRotation: {x: 0, y: 0, z: 0}
-  _skillIcon: {fileID: 2800000, guid: 62dc7b532c3a77e4bafa505069b2832c, type: 3}
+  _skillIcon: {fileID: 2800000, guid: 6c536606446590e4e88a914bd5a805f3, type: 3}
   _amount: 1
   _pushForce: 0
   _tickAmount: 1

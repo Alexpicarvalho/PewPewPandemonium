@@ -31,14 +31,14 @@ public class WeaponPickUp : Pickup
         _rb.isKinematic = false;
         Vector3 temp = (Vector3.up + RandomDirectionalVector() * (Random.Range(0, 2) * 2 - 1)) * _startThrowForce;
         _rb.AddForce(temp);
-        _gun = Instantiate(_weaponToGive);
-        _gun._weaponTier = _weaponToGiveTier;
         SelectGlowColor();
     }
 
     public override void Spawned()
     {
         base.Spawned();
+        _gun = Instantiate(_weaponToGive);
+        _gun._weaponTier = _weaponToGiveTier;
         SelectGlowColor();
     }
 

@@ -40,11 +40,13 @@ public class General_Stats : NetworkBehaviour, IHitable
     [SerializeField] Slider _shieldSlider;
     [SerializeField] List<NetworkBehaviour> _scriptsToDisable;
     private Animator _anim;
-
+    private PlayerFSM _playerState;
     private void Start()
     {
+        _playerState = GetComponent<PlayerFSM>();
         _anim = GetComponent<Animator>();
-        _currentHp = MaxHP -50;
+
+        _currentHp = MaxHP;
         _currentShield = _startingShield;
         _dead = false;
         
@@ -111,7 +113,9 @@ public class General_Stats : NetworkBehaviour, IHitable
         //if (!HasStateAuthority) return;
         Debug.Log("I DIED!");
         _dead = true;
-        OnDeathScripts(false);
+        _playerState.TransitionState(PlayerFSM.GeneralState.Dead);
+        GetComponent<PlayerCombatHandler>().OnDeathDropWeapons();
+        //OnDeathScripts(false);
         _anim.SetTrigger("Die");
         Invoke("RPC_Revive", 3.0f);
     }
@@ -120,9 +124,10 @@ public class General_Stats : NetworkBehaviour, IHitable
     public void ResetHealth()
     {
         _dead = false;
+        _playerState.TransitionState(PlayerFSM.GeneralState.Alive);
         _currentHp = MaxHP;
         _currentShield = _startingShield;
-        OnDeathScripts(true);
+        //OnDeathScripts(true);
         //Temp
         if (_shieldText != null) _shieldText.text = ((int)_currentShield).ToString() + " / " + MaxShield;
         if (_hpText != null) _hpText.text = ((int)_currentHp).ToString() + " / " + MaxHP;

@@ -5114,8 +5114,8 @@ GameObject:
   - component: {fileID: 4843726950152460521}
   - component: {fileID: 5618637082914980241}
   - component: {fileID: 7493940110754327141}
-  - component: {fileID: -483590109302586536}
   - component: {fileID: -1141621281658232351}
+  - component: {fileID: -5086424304904336850}
   m_Layer: 0
   m_Name: ShotgunPickup
   m_TagString: Untagged
@@ -5233,34 +5233,6 @@ MonoBehaviour:
   _hideParts: []
   _hiden: 0
   _isLocal: 0
---- !u!114 &-483590109302586536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6679746688503811354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
-  InterpolationSpace: 0
-  InterpolationTarget: {fileID: 6486989210399072680}
-  InterpolateErrorCorrection: 1
-  InterpolatedErrorCorrectionSettings:
-    MinRate: 3.3
-    MaxRate: 10
-    PosBlendStart: 0.25
-    PosBlendEnd: 1
-    PosMinCorrection: 0.025
-    PosTeleportDistance: 2
-    RotBlendStart: 0.1
-    RotBlendEnd: 0.5
-    RotTeleportRadians: 1.5
-  UseLegacySharedModeInterpolation: 0
-  TargetInterpolationDelay: 0.03
 --- !u!114 &-1141621281658232351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5285,8 +5257,36 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 4843726950152460521}
   - {fileID: 7493940110754327141}
-  - {fileID: -483590109302586536}
+  - {fileID: -5086424304904336850}
   SimulationBehaviours: []
+--- !u!114 &-5086424304904336850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6679746688503811354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1710889294, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  InterpolationSpace: 0
+  InterpolationTarget: {fileID: 0}
+  InterpolateErrorCorrection: 1
+  InterpolatedErrorCorrectionSettings:
+    MinRate: 3.3
+    MaxRate: 10
+    PosBlendStart: 0.25
+    PosBlendEnd: 1
+    PosMinCorrection: 0.025
+    PosTeleportDistance: 2
+    RotBlendStart: 0.1
+    RotBlendEnd: 0.5
+    RotTeleportRadians: 1.5
+  UseLegacySharedModeInterpolation: 0
+  TargetInterpolationDelay: 0.03
 --- !u!1 &6679746688503811356
 GameObject:
   m_ObjectHideFlags: 0

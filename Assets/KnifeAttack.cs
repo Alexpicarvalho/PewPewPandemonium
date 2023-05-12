@@ -21,6 +21,15 @@ public class KnifeAttack : MonoBehaviour
     Damage damage = new Damage(1);
     List<Transform> possibleTargets = new List<Transform>();
 
+    private PlayerFSM _playerState;
+
+
+    private void Awake()
+    {
+        _playerState = GetComponent<PlayerFSM>();   
+    }
+
+
     public void KnifeDetectTargets()
     {
         if (_currentRecastIndex >= _numberOfRecasts) 
@@ -76,6 +85,7 @@ public class KnifeAttack : MonoBehaviour
             Debug.LogWarning("Name of colldier: " + target.name);
             DealDamage(target);
         }
+
         possibleTargets.Clear();
     }
 

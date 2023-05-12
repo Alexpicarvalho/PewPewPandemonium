@@ -27,15 +27,16 @@ public class GunSO : Item
     [SerializeField] public string _shootingAnimTrigger;
     [SerializeField] public FireingType _fireingType;
     [SerializeField] public WeaponSkillSO _weaponSkillRef;
-    [SerializeField] public WeaponTier _weaponTier;
+    [SerializeField] public bool _noSkill = false;
+    [Networked][field : SerializeField] public WeaponTier _weaponTier { get; set; }
     //[SerializeField] public float _skillDamage;
     [SerializeField] private float _damageMultiplier = 1;
     [SerializeField] private int _bulletsPerMinute;
     [SerializeField] public int _magazineSize;
     [SerializeField] public float _reloadTime;
     [SerializeField] private float _critDamageMultiplier = 2;
-    [SerializeField] [Range(0, 1)] private float _weaponWeight;
-    [SerializeField] [Range(-1, 1)] private float _weaponSights;
+    [SerializeField] [Range(0, 1)] public float _weaponWeight;
+    [SerializeField] [Range(0, 1)] public float _weaponSights;
     [SerializeField] [Range(0, 1)] private float _weaponInaccuracy;
     [SerializeField] public float _maxInaccuracy = 10;
     [SerializeField] public float _maxDisplacement = .1f;
@@ -114,7 +115,7 @@ public class GunSO : Item
 
     public virtual void PlaceInHand(Transform parentBone)
     {
-        RPC_PlaceInHand( parentBone);
+        RPC_PlaceInHand(parentBone);
     }
 
     //[Rpc(RpcSources.InputAuthority, RpcTargets.All)]
@@ -141,10 +142,10 @@ public class GunSO : Item
             in NormalShoot()
             */
         }
-        if(_currentShootingStatus == ShootingStatus.Reloading)
+        if (_currentShootingStatus == ShootingStatus.Reloading)
         {
             _timeSinceReloadStart += Time.deltaTime;
-            if(_timeSinceReloadStart >= _reloadTime) Reload();
+            if (_timeSinceReloadStart >= _reloadTime) Reload();
         }
 
         if (_currentShootingStatus == ShootingStatus.BetweenShots)
@@ -169,9 +170,9 @@ public class GunSO : Item
     {
         if (_currentShootingStatus != ShootingStatus.ShotReady || _firePoint == null) return;
 
-        if(_coneShooting) { ConeShoot(); return; }
+        if (_coneShooting) { ConeShoot(); return; }
         else ShootForward();
-        
+
     }
     private void ShootForward()
     {
@@ -179,10 +180,13 @@ public class GunSO : Item
         _bulletsInMag--;
         _timeSinceLastShot = 0;
 
-        if (_muzzleFlash) _runnerNetworkbehaviour.Runner.Spawn(_muzzleFlash, _firePoint.position, Quaternion.identity);
-        var bullet = _runnerNetworkbehaviour.Runner.Spawn(_bulletGO, _firePoint.position, Quaternion.LookRotation(_firePoint.forward));
-        bullet.transform.Translate(GetDisplacement(), 0, GetDisplacement());
-        bullet.transform.Rotate(0, GetInaccuracy(), 0, Space.Self);
+        if (_runnerNetworkbehaviour.HasStateAuthority)
+        {
+            if (_muzzleFlash) _runnerNetworkbehaviour.Runner.Spawn(_muzzleFlash, _firePoint.position, Quaternion.identity);
+            var bullet = _runnerNetworkbehaviour.Runner.Spawn(_bulletGO, _firePoint.position, Quaternion.LookRotation(_firePoint.forward));
+            bullet.transform.Translate(GetDisplacement(), 0, GetDisplacement());
+            bullet.transform.Rotate(0, GetInaccuracy(), 0, Space.Self);
+        }
         //bullet.GetComponent<Damager>().SetDamage();
         if (_soundData != null) _audioSource.PlayOneShot(_soundData.GetRandomSound(), _soundData.GetClipVolume());
         //PlayExtraEffect();
@@ -213,13 +217,14 @@ public class GunSO : Item
     }
 
     private void ShootSideBullets()
-    {  
+    {
+        if (!_runnerNetworkbehaviour.HasStateAuthority) return;
         int _bulletsToSpawn = _bulletsFired - 1;
         for (int i = 1; i <= _bulletsToSpawn / 2; i++)
         {
             Quaternion rotation = Quaternion.AngleAxis((_fireingConeAngle / _bulletsToSpawn) * i, Vector3.up);
             Vector3 direction = (rotation * _firePoint.forward).normalized;
-   
+
             var bullet = _runnerNetworkbehaviour.Runner.Spawn(_bulletGO, _firePoint.position, Quaternion.LookRotation(direction));
             bullet.transform.Translate(GetDisplacement(), 0, GetDisplacement());
             bullet.transform.Rotate(0, GetInaccuracy(), 0, Space.Self);
@@ -237,7 +242,7 @@ public class GunSO : Item
         }
     }
 
-   
+
 
     private void PlayExtraEffect()
     {
@@ -256,6 +261,7 @@ public class GunSO : Item
 
     public virtual void CastSkill(Vector3 target = default)
     {
+        if (_noSkill) return;
         // Cast Skill In Weapon Skill Scriptable Object
         _weaponSkill.ExecuteSpell(target);
     }
@@ -290,15 +296,25 @@ public class GunSO : Item
 
     public void DropWeapon()
     {
+        Debug.Log("DROPPING");
         Destroy(_weaponClone);
         //_runnerNetworkbehaviour.Runner.Despawn(_weaponClone);
         Destroy(_vfxClone);
         _weaponSkill.DestroySpell();
-        if (!_groundPickUpPrefab) return;
-
+        if (!_groundPickUpPrefab)
+        {
+            Debug.Log("No pickup Prefab");
+            return;
+        }
+        if (!_runnerNetworkbehaviour.HasStateAuthority)
+        {
+            Debug.Log("No Runner");
+            return;
+        }
         var drop = _runnerNetworkbehaviour.Runner.Spawn(_groundPickUpPrefab, _firePoint.position + Vector3.up, Quaternion.identity);
         //var dropRB = drop.GetComponent<Rigidbody>();
-        drop.GetComponent<WeaponPickUp>()._weaponToGive = this;
+        //drop.GetComponent<WeaponPickUp>()._weaponToGive = this;
+        drop.GetComponent<WeaponPickUp>()._weaponToGiveTier = this._weaponTier;
         Debug.LogWarning("Successfully pooped weapon");
         //dropRB.isKinematic = false;
         //dropRB.AddForce(Vector3.up + Vector3.forward * 100f);

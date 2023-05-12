@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using UnityEngine.UI;
 
 public class PlayerMovement : NetworkBehaviour
 {
@@ -12,7 +13,9 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] float _startSpeed = 1.0f;
     [SerializeField] float _maxSpeed;
     private float curSpeed;
-    [Networked] [field: SerializeField] public float _currentSpeed
+    [Networked]
+    [field: SerializeField]
+    public float _currentSpeed
     {
         get => curSpeed;
         set
@@ -37,7 +40,7 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private AnimationCurve speedCurve;
     [SerializeField] private GameObject _rollingSmoke;
     private float _timeSinceLastDodge;
-    public int _currentDodgeCharges;
+    [Networked] public int _currentDodgeCharges { get; private set; }   
 
     [Header("Mouse")]
     [SerializeField] public LayerMask layerMask;
@@ -48,6 +51,7 @@ public class PlayerMovement : NetworkBehaviour
     private CreateFootPrint _footPrinter;
     Rigidbody rb;
     private Object_ID _id;
+    private PlayerFSM _playerState;
 
     [Header("Runtime Variables")]
     private float vel = 0;
@@ -61,6 +65,10 @@ public class PlayerMovement : NetworkBehaviour
     public bool _prowlerActive = false;
     public bool _trackSpeedUp = false;
     [HideInInspector] public float _trackSpeed;
+
+    [Header("Visuals")]
+    [SerializeField] Slider _dodge1Slider;
+    [SerializeField] Slider _dodge2Slider;
 
     //READ ONLY
     public float Speed => _currentSpeed;
@@ -98,6 +106,7 @@ public class PlayerMovement : NetworkBehaviour
         rb = GetComponent<Rigidbody>();
         iTime = GetComponent<ITime>();
         _id = GetComponent<Object_ID>();
+        _playerState = GetComponent<PlayerFSM>();
     }
 
 
@@ -121,13 +130,18 @@ public class PlayerMovement : NetworkBehaviour
         //{
         //    Dodge();
         //}
+    }
 
+    public override void Render()
+    {
+        base.Render();
 
     }
+
     public override void FixedUpdateNetwork()
     {
         //if (!this.HasStateAuthority) return;
-        if (GetInput(out NetworkInputData networkInputData))
+        if (GetInput(out NetworkInputData networkInputData) && _playerState.movementState != PlayerFSM.MovementState.Locked)
         {
             //Vector3 moveDirection = transform.forward * networkInputData.movementInput.y + transform.right * networkInputData.movementInput.x;
             Vector3 moveDirection = new Vector3(networkInputData.movementInput.x, 0, networkInputData.movementInput.y);
@@ -135,9 +149,23 @@ public class PlayerMovement : NetworkBehaviour
             movementDirection = moveDirection;
             if (moveDirection.magnitude != 0.0f && _canMove)
             {
+                _playerState.TransitionState(PlayerFSM.MovementState.Moving);
                 //Debug.Log("Current Speed is " + _currentSpeed);
                 rb.MovePosition(transform.position + (1 + _perkSpeedModifier) * _currentSpeed * iTime.personalTimeScale * Runner.DeltaTime * moveDirection);
                 //anim.SetBool("Moving", true);  
+                _footPrinter.ready = true;
+                movementDirectionIndicator.transform.rotation = Quaternion.LookRotation(movementDirection);
+            }
+            else
+            {
+                _footPrinter.ready = false;
+                _playerState.TransitionState(PlayerFSM.MovementState.Idle);
+            }
+
+            if (_canMove && _playerState.movementState != PlayerFSM.MovementState.Locked /*&& Object.HasInputAuthority*/)
+            {
+                rb.MoveRotation(Quaternion.LookRotation(CalculateLookAt(networkInputData.mousePosition)));
+
             }
 
             //Animation
@@ -153,24 +181,23 @@ public class PlayerMovement : NetworkBehaviour
                 anim.SetFloat("movSpeedMult", movSpeedMult);
             }
 
+            
+
         }
 
-        if (networkInputData.isDodgePressed) RPC_Dodge(); 
+        if (networkInputData.isDodgePressed) RPC_Dodge();
 
-
+        
         //Vector3 mousePos = MousePosition();
-        if (_canMove /*&& Object.HasInputAuthority*/) 
-        {
-            rb.MoveRotation(Quaternion.LookRotation(CalculateLookAt(networkInputData.mousePosition)));
-        } 
+        
         if (movementDirection.magnitude != 0.0f && _canMove)
         {
             _currentSpeed += accelaration * Runner.DeltaTime;
             _currentSpeed = Mathf.Clamp(_currentSpeed, _startSpeed, _maxSpeed);
             //Debug.Log("Current Speed IS " + _currentSpeed);
-            _footPrinter.ready = true;
+           
             movementDirectionIndicator.GetComponent<Animator>().SetBool("On", true);
-            movementDirectionIndicator.transform.rotation = Quaternion.LookRotation(movementDirection);
+            
             CalculateAnimatorMovementValue(movementDirection);
 
 
@@ -178,7 +205,7 @@ public class PlayerMovement : NetworkBehaviour
         else
         {
             _currentSpeed = _startSpeed;
-            _footPrinter.ready = false;
+            
             movementDirectionIndicator.GetComponent<Animator>().SetBool("On", false);
             //anim.SetBool("Moving", false);
             float angle = Mathf.SmoothDamp(anim.GetFloat("MovBlend"), 1000, ref vel, 1f);
@@ -193,8 +220,22 @@ public class PlayerMovement : NetworkBehaviour
 
     private void RechargeDodge()
     {
-        if (_currentDodgeCharges == _maxDodgeCharges) return;
-
+        if (_currentDodgeCharges == _maxDodgeCharges)
+        {
+            _dodge1Slider.value = 1;
+            _dodge2Slider.value = 1;
+            return;
+        }
+        else if(_currentDodgeCharges == 1)
+        {
+            _dodge1Slider.value = 1;
+            _dodge2Slider.value = _timeSinceLastDodge / _dodgeRechargeCooldown;
+        }
+        else
+        {
+            _dodge2Slider.value = 0;
+            _dodge1Slider.value = _timeSinceLastDodge / _dodgeRechargeCooldown;
+        }
         _timeSinceLastDodge += Time.deltaTime;
 
         if (_timeSinceLastDodge >= _dodgeRechargeCooldown)
@@ -204,19 +245,23 @@ public class PlayerMovement : NetworkBehaviour
         }
     }
 
-    [Rpc(RpcSources.All, RpcTargets.All)]
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
     public void RPC_Dodge()
     {
-        if (_currentDodgeCharges <= 0) return;
+        if (_currentDodgeCharges <= 0 || _playerState.movementState == PlayerFSM.MovementState.Locked || _playerState.combatState == PlayerFSM.CombatState.Casting) return;
         anim.Play("Rollin Blend Tree");
         _timeSinceLastDodge = 0;
         _currentDodgeCharges--;
         StartCoroutine(DodgeMove());
     }
 
-    
+
     IEnumerator DodgeMove()
     {
+        Vector3 storedMoveDirection = movementDirection;
+        if (storedMoveDirection.magnitude < .1f) storedMoveDirection = transform.forward;
+        _playerState.TransitionState(PlayerFSM.CombatState.Locked);
+        _playerState.TransitionState(PlayerFSM.MovementState.Rolling);
         _sleepAnimFloat = true;
         _canMove = false;
         //_rollingSmoke?.SetActive(true);
@@ -227,12 +272,14 @@ public class PlayerMovement : NetworkBehaviour
             //    * dodgeSpeed * iTime.personalTimeScale * movementDirection);
 
             rb.velocity = (speedCurve.Evaluate(Runner.SimulationRenderTime - startTime) / dodgeDuration)
-                * dodgeSpeed * iTime.personalTimeScale * movementDirection;
+                * dodgeSpeed * iTime.personalTimeScale * storedMoveDirection;
 
             yield return null;
         }
         _sleepAnimFloat = false;
         _canMove = true;
+        _playerState.TransitionState(PlayerFSM.CombatState.Idle);
+        _playerState.TransitionState(PlayerFSM.MovementState.Idle);
         //_rollingSmoke?.SetActive(false);
     }
 
@@ -267,14 +314,14 @@ public class PlayerMovement : NetworkBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer != LayerMask.NameToLayer("TrackerPrint") || other.GetComponent<Object_ID>().my_ID == _id.my_ID) return;
-       
+
         PerkModifySpeed(_trackSpeed);
         _trackSpeedUp = true;
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.layer != LayerMask.NameToLayer("TrackerPrint") || other.GetComponent<Object_ID>().my_ID == _id.my_ID) return;
-        
+
         PerkModifySpeed(-_trackSpeed);
         _trackSpeedUp = false;
     }

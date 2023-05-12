@@ -19,14 +19,14 @@ MonoBehaviour:
   _bulletGO: {fileID: 8570545901289635318, guid: 3716fe9528889f9488f3ee72a5146fda, type: 3}
   _muzzleFlash: {fileID: 1227067792111776, guid: 5d9718dfb9b6a874d93fcbd5cb7cb816, type: 3}
   _weaponIcon: {fileID: 2800000, guid: 62dc7b532c3a77e4bafa505069b2832c, type: 3}
-  _groundPickUpPrefab: {fileID: 2273022344544888768, guid: ce38cda54dcb7c34b83651657aa3a764, type: 3}
+  _groundPickUpPrefab: {fileID: 6679746688503811354, guid: e3c26a4b016834c4bab30d4e389e6462, type: 3}
   _visualEffect: {fileID: 0}
   _extraEffectType: 0
   _extraEffectTimeToShutOff: 0
   _shootingAnimTrigger: Shoot
   _fireingType: 0
   _weaponSkillRef: {fileID: 11400000, guid: cc5323cf69af93546a1b55263d65ae58, type: 2}
-  _weaponTier: 0
+  <_weaponTier>k__BackingField: 0
   _damageMultiplier: 1
   _bulletsPerMinute: 80
   _magazineSize: 8

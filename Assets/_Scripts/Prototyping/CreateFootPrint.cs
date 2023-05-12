@@ -20,20 +20,24 @@ public class CreateFootPrint : NetworkBehaviour
 
 
     [Networked] public bool ready {get; set;}
-    float _timeSinceLastRc = 0;
+    [Networked] float _timeSinceLastRc { get; set;}
     bool firstSpawner = true;
     // Start is called before the first frame update
     void Start()
     {
-        if(!Object.HasInputAuthority) this.enabled = false;
+        //if(!Object.HasInputAuthority) this.enabled = false;
         _id = GetComponent<Object_ID>();
         StartCoroutine(MakeReady());
     }
 
     // Update is called once per frame
-    void Update()
+    public override void FixedUpdateNetwork()
     {
-        if (ready) _timeSinceLastRc += Time.deltaTime;
+        base.FixedUpdateNetwork();
+    
+        if (!HasStateAuthority) return;
+
+        if (ready) _timeSinceLastRc += Runner.DeltaTime;
 
         if (_timeSinceLastRc >= _delayBetweenCasts && ready)
         {
@@ -43,26 +47,28 @@ public class CreateFootPrint : NetworkBehaviour
             if (firstSpawner)
             {
                 firstSpawner = false;
-                var track1 = Runner.Spawn(_footPrintPrefab, new Vector3(spawner1.position.x, spawner1.position.y + _heightOffset, spawner1.position.z)
+                NetworkObject track1 = Runner.Spawn(_footPrintPrefab, new Vector3(spawner1.position.x, spawner1.position.y + _heightOffset, spawner1.position.z)
                 , Quaternion.LookRotation(_moveDirectionIndicator.forward));
 
-                var track2 = Runner.Spawn(_trackerPrintPrefab, new Vector3(spawner1.position.x, spawner1.position.y + _heightOffset, spawner1.position.z)
+                NetworkObject track2 = Runner.Spawn(_trackerPrintPrefab, new Vector3(spawner1.position.x, spawner1.position.y + _heightOffset, spawner1.position.z)
                 , Quaternion.LookRotation(_moveDirectionIndicator.forward));
 
                 track1.GetComponent<Object_ID>().CreateID(_id);
                 track2.GetComponent<Object_ID>().CreateID(_id);
+
             }
             else
             {
                 firstSpawner = true;
-                var track1 = Runner.Spawn(_footPrintPrefab, new Vector3(spawner2.position.x, spawner2.position.y + _heightOffset, spawner2.position.z)
+                NetworkObject track1 = Runner.Spawn(_footPrintPrefab, new Vector3(spawner2.position.x, spawner2.position.y + _heightOffset, spawner2.position.z)
                 , Quaternion.LookRotation(_moveDirectionIndicator.forward));
 
-                var track2 = Runner.Spawn(_trackerPrintPrefab, new Vector3(spawner2.position.x, spawner2.position.y + _heightOffset, spawner2.position.z)
+                NetworkObject track2 = Runner.Spawn(_trackerPrintPrefab, new Vector3(spawner2.position.x, spawner2.position.y + _heightOffset, spawner2.position.z)
                 , Quaternion.LookRotation(_moveDirectionIndicator.forward));
 
                 track1.GetComponent<Object_ID>().CreateID(_id);
                 track2.GetComponent<Object_ID>().CreateID(_id);
+
             }
 
 

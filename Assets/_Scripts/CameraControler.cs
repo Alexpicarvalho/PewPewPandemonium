@@ -14,12 +14,14 @@ public class CameraControler : NetworkBehaviour
     [SerializeField] float _defaultCameraDistance;
     [SerializeField] float _shootingCameraDistance;
     [SerializeField] float _waitBeforeDistanceReset;
+    [SerializeField] float _confirmStopShooting = .7f;
+    [SerializeField] PlayerCombatHandler _combatHandler;
     private CinemachineVirtualCamera _cinCam;
     bool _shooting = false;
     private Camera _mainCam;
     private CinemachineBrain _cmBrain;
     private Transform _player;
-
+    float _stopShootingTimer = 0;
     private void Start()
     {
         _cinCam = GetComponent<CinemachineVirtualCamera>();
@@ -39,15 +41,18 @@ public class CameraControler : NetworkBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        _stopShootingTimer += Time.deltaTime;
+
+        if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
         {
-            _shooting = true;
-            _cameraDistance = _shootingCameraDistance;
             StopCoroutine(ResetCamera());
+            _stopShootingTimer = 0;
+            _shooting = true;
+            _cameraDistance =_defaultCameraDistance + _shootingCameraDistance * _combatHandler._gun._weaponSights;
         }
         else
         {
-            StopCoroutine(ResetCamera());
+            if(_stopShootingTimer >= _confirmStopShooting)
             StartCoroutine(ResetCamera());
         }
 

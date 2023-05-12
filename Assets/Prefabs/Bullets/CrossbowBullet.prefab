@@ -263,18 +263,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  __amount: 30
+  __amount: 50
   _addForce: 0
   _tickAmount: 0
   _damageOverTimeDuration: 0
   _impact: {fileID: 458320537626344600, guid: b4bc86fafdaad344b970825610d77f07, type: 3}
   _unparentOnDestroy: []
   _speed: 40
-  _lifeTime: 10
+  _lifeTime: 2.2
   _shrinkOnDestroyDuration: 0.1
-  _minDamagePercent: 0.2
-  _decaysAfterSeconds: 0
-  _decayRateSecond: 0
+  _minDamagePercent: 0.6
+  _decaysAfterSeconds: 1
+  _decayRateSecond: 0.2
 --- !u!136 &4928211996242501344
 CapsuleCollider:
   m_ObjectHideFlags: 0

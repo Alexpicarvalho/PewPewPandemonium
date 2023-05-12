@@ -23,6 +23,12 @@ public class Shoeprint : NetworkBehaviour
         StartCoroutine(FadeFootPrint());
     }
 
+    public override void Spawned()
+    {
+        base.Spawned();
+        
+    }
+
     private void SetColor()
     {
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, Mathf.Infinity, _layerMask))
@@ -50,7 +56,7 @@ public class Shoeprint : NetworkBehaviour
             _parent.transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, t);
             yield return null;
         }
-        Runner.Despawn(_object);
+        if (HasStateAuthority) Runner.Despawn(_object);
     }
 
     private void OnDrawGizmos()

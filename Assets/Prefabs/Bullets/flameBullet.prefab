@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  __amount: 1
+  __amount: 2
   _addForce: 0
   _tickAmount: 1
   _damageOverTimeDuration: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
   _speed: 18
   _lifeTime: 0.4
   _shrinkOnDestroyDuration: 0
-  _minDamagePercent: 0.2
+  _minDamagePercent: 1
   _decaysAfterSeconds: 0
   _decayRateSecond: 0
 --- !u!114 &9174018690277930492
@@ -248,8 +248,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2308645757374907721}
     m_Modifications:
+    - target: {fileID: 1046549180469127110, guid: bfa0278993e0a264f8193c48e4948628, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1741693452841693106, guid: bfa0278993e0a264f8193c48e4948628, type: 3}
       propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3310297209757070170, guid: bfa0278993e0a264f8193c48e4948628, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8764043878647920493, guid: bfa0278993e0a264f8193c48e4948628, type: 3}

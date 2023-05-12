@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 7775909171455001625}
   - component: {fileID: 7775909171456001753}
   - component: {fileID: -2886407734841860405}
+  - component: {fileID: -4968368348795081478}
   m_Layer: 0
   m_Name: AssaultRifleDefault
   m_TagString: Untagged
@@ -137,5 +138,23 @@ MonoBehaviour:
   NetworkGuid:
     RawGuidValue: 26c304c542935a646a21dd134e1c2cea
   NestedObjects: []
-  NetworkedBehaviours: []
+  NetworkedBehaviours:
+  - {fileID: -4968368348795081478}
   SimulationBehaviours: []
+--- !u!114 &-4968368348795081478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7775909171458005017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c36b7cfff6c0f643accbd156a15e804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  _myRenderers: []
+  _hideParts: []
+  _hiden: 0
+  _isLocal: 0

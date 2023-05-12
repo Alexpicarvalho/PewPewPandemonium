@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 315fbd0bad51258428f522d0875e36fa, type: 3}
-  m_Name: Type2SkillTest
+  m_Name: PewPewNoSkill
   m_EditorClassIdentifier: 
   _cooldown: 3
   _skillDescription: 
   _skillState: 0
-  _animatorTrigger: RailgunSkill
+  _animatorTrigger: 
   _skillVFX: {fileID: 8602379007152908207, guid: 5dc69f8b77a1fd54dbac4dc26b55beb1, type: 3}
   _activeTime: 0
   _firePoint: {fileID: 0}
@@ -24,7 +24,7 @@ MonoBehaviour:
   _indicatorScale: {x: 10, y: 10, z: 10}
   _indicatorPosition: {x: 0, y: 0, z: 0}
   _indicatorRotation: {x: 0, y: 0, z: 0}
-  _skillIcon: {fileID: 2800000, guid: 16d69e71094a47d438a0de5a2a24112e, type: 3}
+  _skillIcon: {fileID: 2800000, guid: 3ae8d5b7dc46cd54d884233a7a579d6c, type: 3}
   _amount: 30
   _pushForce: 0
   _tickAmount: 1
@@ -32,3 +32,5 @@ MonoBehaviour:
   _finalDamage: 0
   _timeSinceActivation: 0
   _timeSinceLastUse: 0
+  _ownerID: 0
+  _skillIsNetworkRigidbody: 0

@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 3563187009788436388}
   - component: {fileID: -909323493734510788}
   - component: {fileID: 156732734860480154}
-  - component: {fileID: 555608394784846640}
+  - component: {fileID: 7222772536157443088}
   m_Layer: 0
   m_Name: FlamethrowerBomb
   m_TagString: Untagged
@@ -242,9 +242,9 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: -909323493734510788}
-  - {fileID: 555608394784846640}
+  - {fileID: 7222772536157443088}
   SimulationBehaviours: []
---- !u!114 &555608394784846640
+--- !u!114 &7222772536157443088
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -253,7 +253,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7946412071082161508}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Script: {fileID: 1710889294, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0

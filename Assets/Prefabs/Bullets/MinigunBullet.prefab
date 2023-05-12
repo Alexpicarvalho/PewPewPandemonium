@@ -5065,11 +5065,11 @@ MonoBehaviour:
   _impact: {fileID: 3915230876885144064, guid: 1b688a6214a9fe1459a70bea846d23c2, type: 3}
   _unparentOnDestroy: []
   _speed: 20
-  _lifeTime: 10
+  _lifeTime: 1.4
   _shrinkOnDestroyDuration: 0.1
-  _minDamagePercent: 0.2
-  _decaysAfterSeconds: 0
-  _decayRateSecond: 0
+  _minDamagePercent: 0.4
+  _decaysAfterSeconds: 0.8
+  _decayRateSecond: 0.3
 --- !u!114 &26151687490776118
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -138,6 +138,7 @@ public class Projectile : Damager
 
     private void DestroyAfter()
     {
+        if (!HasStateAuthority) return;
         StartCoroutine(DestroyMe());
     }
 

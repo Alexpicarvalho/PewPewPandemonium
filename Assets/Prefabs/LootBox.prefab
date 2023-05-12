@@ -5003,8 +5003,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  _maxHp: 10
-  _currentHP: 10
+  _maxHp: 50
+  _currentHP: 50
   _rarity: 1
   _glowEffect: {fileID: 1047172597790082075}
   _glowCommon: {fileID: 2100000, guid: a1c824aa54d77c543a0f759032225274, type: 2}

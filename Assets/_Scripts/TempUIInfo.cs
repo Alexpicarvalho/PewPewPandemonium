@@ -32,6 +32,15 @@ public class TempUIInfo : NetworkBehaviour
     public Animator _weaponUIAnimator;
     public Animator _skillUIAnimator;
     bool firstFrame = true;
+    bool listenToSwap = false;
+
+    [Header("Bullets")]
+    public Image[] _bulletsIcon;
+
+    [Header("Stats")]
+    public Image _shieldImage;
+    public Image _brokenShield;
+    public Animator _heartAnim;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,60 +68,110 @@ public class TempUIInfo : NetworkBehaviour
     void LateUpdate()
     {
 
-        if (_playerCombatHandler._weaponSlot2)
+        if(_playerCombatHandler._weaponSlot2 != null)
         {
-            _weapon1UI.gameObject.SetActive(true);
             _weaponImage.texture = _playerCombatHandler._weaponSlot2._weaponIcon;
-            
-            switch (_playerCombatHandler._weaponSlot2._weaponTier)
-            {
-                case WeaponTier.Tier3:
-                    _border1.color = Color.green;
-                    break;
-                case WeaponTier.Tier2:
-                    _border1.color = Color.blue;
-                    break;
-                case WeaponTier.Tier1:
-                    _border1.color = new Color(1,0,1);
-                    break;
-                case WeaponTier.Special:
-                    _border1.color = new Color(1,.5f,.5f);
-                    break;
-                default:
-                    break;
-            }
+
+            //switch (_playerCombatHandler._weaponSlot2._weaponTier)
+            //{
+            //    case WeaponTier.Tier3:
+            //        _border1.color = Color.green;
+            //        break;
+            //    case WeaponTier.Tier2:
+            //        _border1.color = Color.blue;
+            //        break;
+            //    case WeaponTier.Tier1:
+            //        _border1.color = new Color(1, 0, 1);
+            //        break;
+            //    case WeaponTier.Special:
+            //        _border1.color = new Color(1, .5f, .5f);
+            //        break;
+            //    default:
+            //        break;
+            //}
         }
-        else
+        if (_playerCombatHandler._weaponSlot1 != null)
         {
-            _weapon1UI.gameObject.SetActive(false);
-        } 
-        if (_playerCombatHandler._weaponSlot1)
-        {
+            listenToSwap = true;
             _weapon2UI.gameObject.SetActive(true);
             _offWeaponImage.texture = _playerCombatHandler._weaponSlot1._weaponIcon;
-            //_skillImage.texture = _playerCombatHandler._weaponSlot1._weaponSkill._skillIcon;
-            switch (_playerCombatHandler._weaponSlot1._weaponTier)
-            {
-                case WeaponTier.Tier3:
-                    _border2.color = Color.green;
-                    break;
-                case WeaponTier.Tier2:
-                    _border2.color = Color.blue;
-                    break;
-                case WeaponTier.Tier1:
-                    _border2.color = new Color(1, 0, 1);
-                    break;
-                case WeaponTier.Special:
-                    _border2.color = new Color(1, .5f, .5f);
-                    break;
-                default:
-                    break;
-            }
+            //switch (_playerCombatHandler._weaponSlot1._weaponTier)
+            //{
+            //    case WeaponTier.Tier3:
+            //        _border2.color = Color.green;
+            //        break;
+            //    case WeaponTier.Tier2:
+            //        _border2.color = Color.blue;
+            //        break;
+            //    case WeaponTier.Tier1:
+            //        _border2.color = new Color(1, 0, 1);
+            //        break;
+            //    case WeaponTier.Special:
+            //        _border2.color = new Color(1, .5f, .5f);
+            //        break;
+            //    default:
+            //        break;
+            //}
         }
         else
         {
             _weapon2UI.gameObject.SetActive(false);
-        }
+        } 
+
+        //if (_playerCombatHandler._weaponSlot2)
+        //{
+        //    _weapon1UI.gameObject.SetActive(true);
+        //    _weaponImage.texture = _playerCombatHandler._weaponSlot2._weaponIcon;
+            
+        //    switch (_playerCombatHandler._weaponSlot2._weaponTier)
+        //    {
+        //        case WeaponTier.Tier3:
+        //            _border1.color = Color.green;
+        //            break;
+        //        case WeaponTier.Tier2:
+        //            _border1.color = Color.blue;
+        //            break;
+        //        case WeaponTier.Tier1:
+        //            _border1.color = new Color(1,0,1);
+        //            break;
+        //        case WeaponTier.Special:
+        //            _border1.color = new Color(1,.5f,.5f);
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
+        //else
+        //{
+        //    _weapon1UI.gameObject.SetActive(false);
+        //} 
+        //if (_playerCombatHandler._weaponSlot1)
+        //{
+        //    _weapon2UI.gameObject.SetActive(true);
+        //    _offWeaponImage.texture = _playerCombatHandler._weaponSlot1._weaponIcon;
+        //    //_skillImage.texture = _playerCombatHandler._weaponSlot1._weaponSkill._skillIcon;
+        //    switch (_playerCombatHandler._weaponSlot1._weaponTier)
+        //    {
+        //        case WeaponTier.Tier3:
+        //            _border2.color = Color.green;
+        //            break;
+        //        case WeaponTier.Tier2:
+        //            _border2.color = Color.blue;
+        //            break;
+        //        case WeaponTier.Tier1:
+        //            _border2.color = new Color(1, 0, 1);
+        //            break;
+        //        case WeaponTier.Special:
+        //            _border2.color = new Color(1, .5f, .5f);
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
+        //else
+        //{
+        //    _weapon2UI.gameObject.SetActive(false);
+        //}
 
 
         //Skill Cooldown Zone
@@ -164,13 +223,30 @@ public class TempUIInfo : NetworkBehaviour
         }
 
 
-        if (_lastFrameWeapon && _lastFrameWeapon != _playerCombatHandler._gun)
+        if (_lastFrameWeapon && _lastFrameWeapon != _playerCombatHandler._gun && listenToSwap)
         {
-            _weaponUIAnimator.SetTrigger("Swap1");
-            _skillUIAnimator.SetTrigger("Flip");
+            //_weaponUIAnimator.SetTrigger("Swap1");
+            //_skillUIAnimator.SetTrigger("Flip");
             //_weaponUIAnimator.SetBool("Swap",true);
             //StartCoroutine(SetBoolFalse());
         }
+
+
+        if(_playerStats.CurrentShield <= 0)
+        {
+            _brokenShield.enabled = true;
+            _shieldImage.enabled = false;
+        }
+        else
+        {
+            _brokenShield.enabled = false;
+            _shieldImage.enabled = true;
+        }
+
+        if (_playerStats.CurrentHp <= _playerStats.MaxHP / 2) _heartAnim.SetBool("LowHP", true);
+        else _heartAnim.SetBool("LowHP", false);
+
+
 
 
 
@@ -181,12 +257,24 @@ public class TempUIInfo : NetworkBehaviour
         }
         else
         {
-            _ammoText.color = Color.green;
+            _ammoText.color = Color.white;
             _ammoText.text = _playerCombatHandler._gun._bulletsInMag.ToString() +
-                " / " + _playerCombatHandler._gun._magazineSize.ToString();
+                " \n " + _playerCombatHandler._gun._magazineSize.ToString();
+
+            for (int i = 0; i < _bulletsIcon.Length; i++)
+            {
+                _bulletsIcon[i].fillAmount = ((float)_playerCombatHandler._gun._bulletsInMag / (float)_playerCombatHandler._gun._magazineSize);
+            }
+
         }
 
         _lastFrameWeapon = _playerCombatHandler._gun;
+    }
+
+    public void CallSwap()
+    {
+        _weaponUIAnimator.SetTrigger("Swap1");
+        _skillUIAnimator.SetTrigger("Flip");
     }
 
     public void SwapSkillIcon()
@@ -200,5 +288,6 @@ public class TempUIInfo : NetworkBehaviour
         Debug.Log("Set Bool False");
         _weaponUIAnimator.SetBool("Swap", false);
     }
+
 
 }

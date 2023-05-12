@@ -11,20 +11,27 @@ public class PlayerCombatHandler : NetworkBehaviour
 {
     [Header("Starting Weapon")]
     [SerializeField] GunSO _startingWeapon;
-    
+
 
     [Header("Requirements")]
     [SerializeField] Transform _hand;
     [SerializeField] Transform _firePoint;
     private Animator _animator;
     private Object_ID _id;
+    private PlayerFSM _playerState;
+    public TempUIInfo _uiInfo;
 
     [Header("Runtime Variables")]
     [HideInInspector] public bool _reloading = false;
-    /*[HideInInspector] */public GunSO _weaponSlot1;
-    /*[HideInInspector]*/ public GunSO _weaponSlot2;
-    /*[HideInInspector]*/ public GunSO _gun;
-    /*[HideInInspector]*/ public GrenadeSO _grenade;
+    /*[HideInInspector] */
+    public GunSO _weaponSlot1;
+    /*[HideInInspector]*/
+    public GunSO _weaponSlot2;
+    /*[HideInInspector]*/
+    public GunSO _gun;
+    public GunSO _offGun;
+    /*[HideInInspector]*/
+    public GrenadeSO _grenade;
     public UtilitySO _utility;
     private Vector3 _currentSkillTargetLocation;
     //[HideInInspector] public UtilitySO _utility;
@@ -40,7 +47,7 @@ public class PlayerCombatHandler : NetworkBehaviour
     private float _reloadTimeReduction;
 
     //Temporary Knife Combat
-    void KnifeAttack() 
+    void KnifeAttack()
     {
         _animator.Play("Slash");
     }
@@ -53,6 +60,7 @@ public class PlayerCombatHandler : NetworkBehaviour
         _id = GetComponent<Object_ID>();
         _swapReady = true;
         _animator = GetComponent<Animator>();
+        _playerState = GetComponent<PlayerFSM>();
         //TEMP 
         if (_startingWeapon)
         {
@@ -81,76 +89,37 @@ public class PlayerCombatHandler : NetworkBehaviour
         _grenade.UpdateState();
         _utility.UpdateUtilityStatus();
 
-        //if (Input.GetKeyDown(KeyCode.V))
-        //{
-        //    KnifeAttack();
-        //}
-
-
-        //if (Input.GetButton("Fire1"))
-        //{
-        //    _gun.NormalShoot();
-        //    _animator.SetTrigger(_gun._shootingAnimTrigger);
-
-        //}
-
-        //if (Input.GetButton("Fire2"))
-        //{
-        //    _gun._weaponSkill.ShowSkillIndicator();
-        //}
-        //else if (Input.GetButtonUp("Fire2"))
-        //{
-        //    CallSkill();
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.Tab))
-        //{
-        //    SwapWeapons();
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    _grenade.Throw(MousePosition());
-        //    //_grenade.EnableIndicator();
-        //}
-        //else if (Input.GetKeyUp(KeyCode.Q))
-        //{
-        //   // _grenade.DisableIndicator();
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.E)) _utility.Use();
-
-
-        //_grenade.DrawProjection();
-
     }
 
     public override void FixedUpdateNetwork()
     {
         if (GetInput(out NetworkInputData networkInputData))
         {
-            if (networkInputData.isMouse1ButtonPressed)
+            if (networkInputData.isMouse1ButtonPressed &&
+                _playerState.combatState != PlayerFSM.CombatState.Locked &&
+                _playerState.combatState != PlayerFSM.CombatState.Casting)
             {
                 _gun.NormalShoot();
                 _animator.SetTrigger(_gun._shootingAnimTrigger);
+                _playerState.combatState = PlayerFSM.CombatState.Shooting;
             }
-
-            if (networkInputData.isMouse2ButtonPressed)
+            _currentSkillTargetLocation = networkInputData.mousePosition;
+            if (networkInputData.isMouse2ButtonPressed && _playerState.combatState != PlayerFSM.CombatState.Locked)
             {
                 CallSkill();
             }
 
-            if (networkInputData.isGrenadePressed)   //NEEDS TO BE REPLACED IN INPUTS BY ON KEY UP IF WE WANT INDICATORS
+            if (networkInputData.isGrenadePressed && _playerState.combatState != PlayerFSM.CombatState.Locked && _playerState.combatState != PlayerFSM.CombatState.Casting)   
             {
                 _grenade.Throw(networkInputData.mousePosition + Vector3.up * 0.1f);
             }
-            if(networkInputData.isWeaponSwapPressed) SwapWeapons();
+            if (networkInputData.isWeaponSwapPressed && _playerState.combatState != PlayerFSM.CombatState.Locked && _playerState.combatState != PlayerFSM.CombatState.Casting) SwapWeapons();
 
-            if (networkInputData.isUtilityPressed) _utility.Use();
+            if (networkInputData.isUtilityPressed && _playerState.combatState != PlayerFSM.CombatState.Locked && _playerState.combatState != PlayerFSM.CombatState.Casting) _utility.Use();
 
-            if (networkInputData.isMeleePressed) KnifeAttack();
+            if (networkInputData.isMeleePressed && _playerState.combatState != PlayerFSM.CombatState.Locked && _playerState.combatState != PlayerFSM.CombatState.Casting) KnifeAttack();
 
-            if (networkInputData.isReloadPressed) _gun.ForceReload();
+            if (networkInputData.isReloadPressed && _playerState.combatState != PlayerFSM.CombatState.Locked && _playerState.combatState != PlayerFSM.CombatState.Casting) _gun.ForceReload();
 
         }
     }
@@ -175,20 +144,24 @@ public class PlayerCombatHandler : NetworkBehaviour
         else
         {
             _gun.DropWeapon();
+            //_gun = null;
             if (_gun == _weaponSlot1)
             {
                 Debug.LogWarning("3");
                 _weaponSlot1 = Instantiate(_newGun);
                 _gun = _weaponSlot1;
+                _offGun = _weaponSlot2;
             }
             else
             {
                 Debug.LogWarning("4");
                 _weaponSlot2 = Instantiate(_newGun);
                 _gun = _weaponSlot2;
+                _offGun = _weaponSlot1;
             }
             SetupWeapon(_gun);
         }
+        //GetComponent<Hideable>().UpdateRenderers();
         SwapWeapons();
     }
 
@@ -210,7 +183,7 @@ public class PlayerCombatHandler : NetworkBehaviour
 
     public void SetupWeapon(GunSO newWeapon)
     {
-        
+
         newWeapon.SetWeaponValues(_firePoint, _id);
         //if (!HasStateAuthority) return;
         newWeapon.PlaceInHand(_hand);
@@ -220,6 +193,7 @@ public class PlayerCombatHandler : NetworkBehaviour
     {
         //if (!HasStateAuthority) return;
         if (!_weaponSlot1 || !_weaponSlot2 || !_swapReady) return; //If player doesn't have 2 weapons returns
+        _uiInfo.CallSwap();
         NextWeapon();
     }
 
@@ -228,8 +202,16 @@ public class PlayerCombatHandler : NetworkBehaviour
         //_gun._weaponClone.SetActive(false);
         _gun._weaponClone.gameObject.SetActive(false);
         _swapReady = false;
-        if (_gun == _weaponSlot1) _gun = _weaponSlot2;
-        else _gun = _weaponSlot1;
+        if (_gun == _weaponSlot1)
+        {
+            _gun = _weaponSlot2;
+            _offGun = _weaponSlot1;
+        }
+        else
+        {
+            _gun = _weaponSlot1;
+            _offGun = _weaponSlot2;
+        } 
         //_gun._weaponClone.SetActive(true);
         _gun._weaponClone.gameObject.SetActive(true);
         StartCoroutine(ReadySwap());
@@ -237,18 +219,18 @@ public class PlayerCombatHandler : NetworkBehaviour
 
     private void CallSkill()
     {
-        if (_gun._weaponSkill._skillState != WeaponSkillSO.SkillState.Ready) return;
+        if (_gun._weaponSkill._skillState != WeaponSkillSO.SkillState.Ready || _gun._noSkill) return;
 
-        _currentSkillTargetLocation = MousePosition();
         _gun._weaponSkill._skillState = WeaponSkillSO.SkillState.Casting;
-        
+        _playerState.TransitionState(PlayerFSM.CombatState.Casting);
+
         if (_gun._weaponSkill._animatorTrigger != "") _animator.SetTrigger(_gun._weaponSkill._animatorTrigger);
         else ExecuteSkill();
 
-        
-        
+
+
         Debug.LogWarning("Set it to cast");
-        
+
     }
 
     public void StartCastingVFX()
@@ -258,6 +240,26 @@ public class PlayerCombatHandler : NetworkBehaviour
     public void ExecuteSkill()
     {
         _gun.CastSkill(_currentSkillTargetLocation);
+        _playerState.TransitionState(PlayerFSM.CombatState.Idle);
+    }
+
+    public void OnDeathDropWeapons()
+    {
+        //Debug.Log("DROPPING!");
+        //if (_weaponSlot2 != null) _gun.DropWeapon();
+        //if (_weaponSlot1 != null) _offGun.DropWeapon();
+
+        //_gun = null;
+        //_offGun = null;
+        //_weaponSlot1 = null;
+        //_weaponSlot2 = null;
+
+        //_weaponSlot1 = Instantiate(_startingWeapon);
+        //SetupWeapon(_weaponSlot2);
+        //_gun = _weaponSlot2;
+        ////SwapWeapons();
+
+
     }
 
     //public IEnumerator ReadyNextShot()
@@ -292,8 +294,8 @@ public class PlayerCombatHandler : NetworkBehaviour
         while (t < 100)
         {
             float x = initVel * t * Mathf.Cos(angle);
-            float y = initVel * t * Mathf.Sin(angle) - (1f / 2f) * Physics.gravity.y * Mathf.Pow(t,2);
-            transform.position = new Vector3(x,y,0);
+            float y = initVel * t * Mathf.Sin(angle) - (1f / 2f) * Physics.gravity.y * Mathf.Pow(t, 2);
+            transform.position = new Vector3(x, y, 0);
             t += Time.deltaTime;
             yield return null;
         }

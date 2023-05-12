@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 2196376887940251523}
   - component: {fileID: 2196376887932522599}
   - component: {fileID: -2884359380554199779}
+  - component: {fileID: 864292049155945681}
   m_Layer: 0
   m_Name: MiniGunDefault
   m_TagString: Untagged
@@ -163,8 +164,26 @@ MonoBehaviour:
   NetworkGuid:
     RawGuidValue: 79cfad6d28604f54a97b32d45af9d2b2
   NestedObjects: []
-  NetworkedBehaviours: []
+  NetworkedBehaviours:
+  - {fileID: 864292049155945681}
   SimulationBehaviours: []
+--- !u!114 &864292049155945681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2196376887939949475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c36b7cfff6c0f643accbd156a15e804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  _myRenderers: []
+  _hideParts: []
+  _hiden: 0
+  _isLocal: 0
 --- !u!1 &2196376887939949477
 GameObject:
   m_ObjectHideFlags: 0

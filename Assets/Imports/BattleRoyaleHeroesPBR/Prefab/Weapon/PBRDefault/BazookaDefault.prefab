@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 1247223829425884222}
   - component: {fileID: 1247223829433148382}
   - component: {fileID: -4954148879369866976}
+  - component: {fileID: -4135021678730710422}
   m_Layer: 0
   m_Name: BazookaDefault
   m_TagString: Untagged
@@ -226,5 +227,23 @@ MonoBehaviour:
   NetworkGuid:
     RawGuidValue: f3aa0537edf19a840a5ee3762f7bb9ed
   NestedObjects: []
-  NetworkedBehaviours: []
+  NetworkedBehaviours:
+  - {fileID: -4135021678730710422}
   SimulationBehaviours: []
+--- !u!114 &-4135021678730710422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247223829425721374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c36b7cfff6c0f643accbd156a15e804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  _myRenderers: []
+  _hideParts: []
+  _hiden: 0
+  _isLocal: 0

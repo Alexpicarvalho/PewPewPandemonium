@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3323609523918464870}
   - component: {fileID: 3323609523919431078}
   - component: {fileID: 8537677353271409654}
+  - component: {fileID: 293614136366256382}
   m_Layer: 0
   m_Name: SniperRifleDefault
   m_TagString: Untagged
@@ -105,5 +106,23 @@ MonoBehaviour:
   NetworkGuid:
     RawGuidValue: d4481c76bd8df8844b540671759a53e0
   NestedObjects: []
-  NetworkedBehaviours: []
+  NetworkedBehaviours:
+  - {fileID: 293614136366256382}
   SimulationBehaviours: []
+--- !u!114 &293614136366256382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3323609523921369958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c36b7cfff6c0f643accbd156a15e804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  _myRenderers: []
+  _hideParts: []
+  _hiden: 0
+  _isLocal: 0

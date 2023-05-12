@@ -14,19 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: 
   _description: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 2800000, guid: ac93df6721bf93f42964b291336fd939, type: 3}
   _weaponGO: {fileID: 3823321262691816068, guid: 226c568e48d1bbc45a3110f8660d2e2c, type: 3}
-  _bulletGO: {fileID: 1367524025346344, guid: aa244785eac6408478ce67b9ddf90ea2, type: 3}
+  _bulletGO: {fileID: 1367524025346344, guid: 237700f4a34724f4b8bd6a2d98926bb4, type: 3}
   _muzzleFlash: {fileID: 4779800532271133379, guid: da31205b1a641cb40adbb11bfa094fd5, type: 3}
-  _weaponIcon: {fileID: 0}
+  _weaponIcon: {fileID: 2800000, guid: ac93df6721bf93f42964b291336fd939, type: 3}
   _groundPickUpPrefab: {fileID: 0}
   _visualEffect: {fileID: 0}
   _extraEffectType: 0
   _extraEffectTimeToShutOff: 0
   _shootingAnimTrigger: 
   _fireingType: 1
-  _weaponSkillRef: {fileID: 11400000, guid: 1bf6fb3b7c4c63d40b1950aa428ed43f, type: 2}
-  _weaponTier: 0
+  _weaponSkillRef: {fileID: 11400000, guid: f4f3340eec62e08489077c087bdfe842, type: 2}
+  _noSkill: 1
+  <_weaponTier>k__BackingField: 0
   _damageMultiplier: 1
   _bulletsPerMinute: 120
   _magazineSize: 15

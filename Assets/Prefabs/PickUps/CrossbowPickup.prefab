@@ -5442,7 +5442,7 @@ GameObject:
   - component: {fileID: 5618637082914980241}
   - component: {fileID: 7493940110754327141}
   - component: {fileID: 2085208755731563644}
-  - component: {fileID: 6604375604704199283}
+  - component: {fileID: 5620967912887185951}
   m_Layer: 0
   m_Name: CrossbowPickup
   m_TagString: Untagged
@@ -5582,9 +5582,9 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 4843726950152460521}
   - {fileID: 7493940110754327141}
-  - {fileID: 6604375604704199283}
+  - {fileID: 5620967912887185951}
   SimulationBehaviours: []
---- !u!114 &6604375604704199283
+--- !u!114 &5620967912887185951
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5593,12 +5593,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6679746688503811354}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Script: {fileID: 1710889294, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   InterpolationSpace: 0
-  InterpolationTarget: {fileID: 6486989210399072680}
+  InterpolationTarget: {fileID: 0}
   InterpolateErrorCorrection: 1
   InterpolatedErrorCorrectionSettings:
     MinRate: 3.3

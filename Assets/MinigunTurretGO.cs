@@ -53,6 +53,7 @@ public class MinigunTurretGO : NetworkBehaviour
     private void Update()
     {
         if (!_active) return;
+        if (_gun._bulletsInMag == 0) StartCoroutine(DestroyAfer(true));
         _gun.UpdateWeaponStatus();
         _targetsInRange.Clear();
         _currentTarget = null;
@@ -129,9 +130,11 @@ public class MinigunTurretGO : NetworkBehaviour
         Runner.Spawn(_onDestroyExplosionVFX, transform.position, Quaternion.identity);
     }
 
-    IEnumerator DestroyAfer()
+    IEnumerator DestroyAfer(bool now = false)
     {
-        yield return new WaitForSeconds(_lifeTime + _activationDelay);
+        if (now) yield return null;
+        else yield return new WaitForSeconds(_lifeTime + _activationDelay);
+
         DestroyMe();
         Runner.Despawn(transform.parent.gameObject.GetComponent<NetworkObject>());
     }

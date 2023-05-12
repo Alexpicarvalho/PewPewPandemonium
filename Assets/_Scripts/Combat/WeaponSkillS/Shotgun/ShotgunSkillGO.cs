@@ -42,11 +42,14 @@ public class ShotgunSkillGO : Projectile
     {
         Vector3 startingPos = target.transform.position;
         Vector3 pullDirection = (_startPos - startingPos).normalized;
+        var fsm = target.GetComponent<PlayerFSM>();
+        if (fsm != null) fsm.TransitionState(PlayerFSM.GeneralState.Stunned);
         while (CheckDistance(target))
         {
             target.transform.position += _pullForce * Time.deltaTime * pullDirection;
             yield return null;
         }
+        if (fsm != null) fsm.TransitionState(PlayerFSM.GeneralState.Alive);
         Destroy(gameObject);
         
     }

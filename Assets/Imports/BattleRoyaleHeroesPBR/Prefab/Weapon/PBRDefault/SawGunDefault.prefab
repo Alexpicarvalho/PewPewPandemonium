@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 5416553806760257178}
   - component: {fileID: 5416553806750730622}
   - component: {fileID: 342899260234856089}
+  - component: {fileID: 1176058811823502396}
   m_Layer: 0
   m_Name: SawGunDefault
   m_TagString: Untagged
@@ -163,8 +164,26 @@ MonoBehaviour:
   NetworkGuid:
     RawGuidValue: 2cecb33133bf7b249b23daad68d0df10
   NestedObjects: []
-  NetworkedBehaviours: []
+  NetworkedBehaviours:
+  - {fileID: 1176058811823502396}
   SimulationBehaviours: []
+--- !u!114 &1176058811823502396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5416553806760229562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c36b7cfff6c0f643accbd156a15e804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  _myRenderers: []
+  _hideParts: []
+  _hiden: 0
+  _isLocal: 0
 --- !u!1 &5416553806760229564
 GameObject:
   m_ObjectHideFlags: 0

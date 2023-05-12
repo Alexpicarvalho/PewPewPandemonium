@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2440554163672563446}
   - component: {fileID: 2440554163673562166}
   - component: {fileID: 2624551356638524211}
+  - component: {fileID: -4995525003215121876}
   m_Layer: 0
   m_Name: GravityGunDefault
   m_TagString: Untagged
@@ -105,5 +106,23 @@ MonoBehaviour:
   NetworkGuid:
     RawGuidValue: aa9e0e616408abf4896f703b691204ed
   NestedObjects: []
-  NetworkedBehaviours: []
+  NetworkedBehaviours:
+  - {fileID: -4995525003215121876}
   SimulationBehaviours: []
+--- !u!114 &-4995525003215121876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2440554163675751158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c36b7cfff6c0f643accbd156a15e804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  _myRenderers: []
+  _hideParts: []
+  _hiden: 0
+  _isLocal: 0

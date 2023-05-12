@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8842376448995045161}
   - component: {fileID: 8842376448988135625}
   - component: {fileID: -4243658246694109756}
+  - component: {fileID: -7959946130758824249}
   m_Layer: 0
   m_Name: ElectricGunDefault
   m_TagString: Untagged
@@ -76,8 +77,26 @@ MonoBehaviour:
   NetworkGuid:
     RawGuidValue: 71c7a22b614cbb443877d9ba29e9999d
   NestedObjects: []
-  NetworkedBehaviours: []
+  NetworkedBehaviours:
+  - {fileID: -7959946130758824249}
   SimulationBehaviours: []
+--- !u!114 &-7959946130758824249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8842376448995406601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c36b7cfff6c0f643accbd156a15e804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  _myRenderers: []
+  _hideParts: []
+  _hiden: 0
+  _isLocal: 0
 --- !u!1 &8842376448995406603
 GameObject:
   m_ObjectHideFlags: 0

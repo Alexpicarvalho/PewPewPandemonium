@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3506613558083032846}
   - component: {fileID: 3506613558081934798}
   - component: {fileID: 5412132982492108864}
+  - component: {fileID: 2227832264059522808}
   m_Layer: 0
   m_Name: ChemicalGunDefault
   m_TagString: Untagged
@@ -105,5 +106,23 @@ MonoBehaviour:
   NetworkGuid:
     RawGuidValue: ce5dc50b63174014f92200f39ed282d1
   NestedObjects: []
-  NetworkedBehaviours: []
+  NetworkedBehaviours:
+  - {fileID: 2227832264059522808}
   SimulationBehaviours: []
+--- !u!114 &2227832264059522808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3506613558083865358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c36b7cfff6c0f643accbd156a15e804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  _myRenderers: []
+  _hideParts: []
+  _hiden: 0
+  _isLocal: 0

@@ -74,12 +74,17 @@ public class GrenadeSO : Item
 
         _onCooldown = true;
         _timeSinceLastUse = 0;
-        var grenadeGO = _runnerNetworkBehaviour.Runner.Spawn(_grenadeGO, _firePoint.position, Quaternion.identity);
-        var grenadeScript = grenadeGO.GetComponent<Grenade>();
-        grenadeScript.CalculateThrowVelocity(target, _heightDisplacement);
-        grenadeScript.Launch();
-        grenadeScript.SetSpawnEffect(_spawnEffect);
-        grenadeScript.SetDamage(_damage);
+
+        if (_runnerNetworkBehaviour.HasStateAuthority)
+        {
+            var grenadeGO = _runnerNetworkBehaviour.Runner.Spawn(_grenadeGO, _firePoint.position, Quaternion.identity);
+            var grenadeScript = grenadeGO.GetComponent<Grenade>();
+            grenadeScript.CalculateThrowVelocity(target, _heightDisplacement);
+            grenadeScript.Launch();
+            grenadeScript.SetSpawnEffect(_spawnEffect);
+            grenadeScript.SetDamage(_damage);
+        }
+        
     }
 
     public virtual void DropGrenade()

@@ -4267,6 +4267,7 @@ MonoBehaviour:
   _swipeAngle: 220
   _swipeRange: 2.4
   _numberOfRaycasts: 20
+  _damage: 0
   _startOffset: {x: 0, y: 0.5, z: 0}
   _impactVisual: {fileID: 1097547250643060, guid: 8f3e5201995fd4c41a47e57b3ed209ae, type: 3}
   _numberOfRecasts: 2
@@ -4414,6 +4415,7 @@ MonoBehaviour:
   - {fileID: 3400246039576948737}
   - {fileID: 5593785319645916508}
   - {fileID: 420357894}
+  - {fileID: 5425594858172735828}
   SimulationBehaviours: []
 --- !u!114 &56216049236393390
 MonoBehaviour:
@@ -9368,6 +9370,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed0c72e0997bd124db68dd0003edee27, type: 3}
+--- !u!114 &5425594858172735828 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3863927670631054258, guid: ed0c72e0997bd124db68dd0003edee27, type: 3}
+  m_PrefabInstance: {fileID: 9139202745055992550}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87b2ab33abc703744bedbcf99d9fed1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5425594859010754650 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3863927670934065852, guid: ed0c72e0997bd124db68dd0003edee27, type: 3}

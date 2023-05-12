@@ -71,7 +71,7 @@ public class LootBox : NetworkBehaviour, IHitable
     }
 
 
-    [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
+    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
     private void RPC_SendLootInfoToServer()
     {
         if (!HasStateAuthority) return;
@@ -93,6 +93,7 @@ public class LootBox : NetworkBehaviour, IHitable
 
         }
         Runner.Despawn(Object);
+        Destroy(gameObject);
     }
 
     private void PlayExplosion()

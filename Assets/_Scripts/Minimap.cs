@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fusion;
 
-public class Minimap : MonoBehaviour
+public class Minimap : NetworkBehaviour
 {
-    [SerializeField] Transform target;
+    [SerializeField] public Transform target;
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+       // target = transform.parent.parent;
+        //if (!target.GetComponent<NetworkObject>().HasInputAuthority && target.GetComponent<NetworkObject>().HasStateAuthority) Destroy(transform.parent);
     }
 
     // Update is called once per frame

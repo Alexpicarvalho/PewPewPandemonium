@@ -19,7 +19,8 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
         if (Object.HasInputAuthority)
         {
             Local = this;
-            
+
+            GetComponentInChildren<Minimap>().target = transform;
 
             //Camera myCamera = GetComponentInChildren<Camera>();
             //myCamera.enabled = true;

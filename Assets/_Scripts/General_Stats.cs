@@ -100,7 +100,7 @@ public class General_Stats : NetworkBehaviour, IHitable
     void OverflowDamage(float damage)
     {
         _currentHp -= damage;
-        if(_currentHp <= 0)
+        if(_currentHp <= 0 && !_dead)
         {
             _currentHp = 0;
             RPC_Die();

@@ -3617,6 +3617,14 @@ PrefabInstance:
       propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
       value: -7561450256615020098
       objectReference: {fileID: 0}
+    - target: {fileID: 879227090332536136, guid: ae48fb35269fc9844832bb5362b24de3, type: 3}
+      propertyPath: __currentHp
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 879227090332536136, guid: ae48fb35269fc9844832bb5362b24de3, type: 3}
+      propertyPath: _startingShield
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 892623080049284632, guid: ae48fb35269fc9844832bb5362b24de3, type: 3}
       propertyPath: Flags
       value: 133633

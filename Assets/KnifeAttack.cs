@@ -9,6 +9,7 @@ public class KnifeAttack : MonoBehaviour
     [SerializeField] float _swipeAngle;
     [SerializeField] float _swipeRange;
     [SerializeField] int _numberOfRaycasts;
+    [SerializeField] float _damage;
     [SerializeField] Vector3 _startOffset;
     [SerializeField] GameObject _impactVisual;
 
@@ -18,7 +19,6 @@ public class KnifeAttack : MonoBehaviour
     int _currentRecastIndex = 0;
     List<Transform> _dontRecastHit = new List<Transform>();
 
-    Damage damage = new Damage(1);
     List<Transform> possibleTargets = new List<Transform>();
 
     private PlayerFSM _playerState;
@@ -107,7 +107,7 @@ public class KnifeAttack : MonoBehaviour
         //else handle Damage normally
         else 
         {
-            hitable.HandleHit(damage);
+            hitable.HandleHit(new Damage(_damage));
             _dontRecastHit.Add(other);
         }
         Instantiate(_impactVisual, other.transform.position, Quaternion.LookRotation((other.transform.position - transform.position).normalized));

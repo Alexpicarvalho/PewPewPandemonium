@@ -4065,6 +4065,7 @@ MonoBehaviour:
   _swipeAngle: 220
   _swipeRange: 2.4
   _numberOfRaycasts: 20
+  _damage: 50
   _startOffset: {x: 0, y: 0.5, z: 0}
   _impactVisual: {fileID: 1097547250643060, guid: 8f3e5201995fd4c41a47e57b3ed209ae, type: 3}
   _numberOfRecasts: 2
@@ -10444,21 +10445,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7102466736169248403, guid: 52e786c339bad94478c1026e0c0152a4, type: 3}
   m_PrefabInstance: {fileID: 5593785319427710358}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3384083855794638600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3400246038943890181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
 --- !u!95 &530213140960846474
 Animator:
   serializedVersion: 4
@@ -10479,6 +10465,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3384083855794638600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3400246038943890181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!224 &3400246038993703552 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7102466736153071382, guid: 52e786c339bad94478c1026e0c0152a4, type: 3}

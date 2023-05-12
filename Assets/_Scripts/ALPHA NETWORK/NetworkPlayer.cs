@@ -20,7 +20,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
         {
             Local = this;
 
-            GetComponentInChildren<Minimap>().target = transform;
+            //GetComponentInChildren<Minimap>().target = transform;
 
             //Camera myCamera = GetComponentInChildren<Camera>();
             //myCamera.enabled = true;

@@ -6,7 +6,7 @@ using System;
 
 public class GameManager : NetworkBehaviour
 {
-    public CircleController circleController;
+    //public CircleController circleController;
     public List<NetworkPlayer> players = new List<NetworkPlayer>();
     //[SyncVar]
     public int numPlayers;
@@ -18,15 +18,15 @@ public class GameManager : NetworkBehaviour
         if (Runner.IsServer)
         {
             // Start the shrinking animation on the master client
-            circleController.StartShrinking();
+            //circleController.StartShrinking();
         }
     }
 
-    //public override void OnStartServer()
-    //{
-    //    numPlayers = players.Count;
-    //    numAlivePlayers = numPlayers;
-    //}
+    public override void Spawned()
+    {
+        numPlayers = players.Count;
+        numAlivePlayers = numPlayers;
+    }
 
     void Update()
     {
@@ -36,7 +36,7 @@ public class GameManager : NetworkBehaviour
             if (Runner.IsServer)
             {
                 // Stop the shrinking animation on the master client
-                circleController.StopShrinking();
+                //circleController.StopShrinking();
                 //CheckForWinner();
             }
 

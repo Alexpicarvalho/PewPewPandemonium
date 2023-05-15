@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fusion;
 
 [RequireComponent(typeof(LineRenderer))]
 public class CircleHandler : MonoBehaviour
@@ -9,7 +10,7 @@ public class CircleHandler : MonoBehaviour
 	public int Segments;
 	[Range(0, 5000)]
 	public float XRadius;
-	[Range(0, 5000)]
+	//[Range(0, 5000)]
 	public float YRadius;  //THIS IS NOT USED - SHOULD BE ELIMINATED
 
 	[Range(10, 100)]

@@ -6,7 +6,7 @@ using System;
 
 public class GameManager : NetworkBehaviour
 {
-    //public CircleController circleController;
+    //public CircleHandler circle;
     public List<NetworkPlayer> players = new List<NetworkPlayer>();
     //[SyncVar]
     public int numPlayers;

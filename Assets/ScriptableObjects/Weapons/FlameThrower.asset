@@ -26,14 +26,15 @@ MonoBehaviour:
   _shootingAnimTrigger: 
   _fireingType: 0
   _weaponSkillRef: {fileID: 11400000, guid: 4b1ffe5556e067445adee32b74144586, type: 2}
-  _weaponTier: 0
+  _noSkill: 0
+  <_weaponTier>k__BackingField: 0
   _damageMultiplier: 1
   _bulletsPerMinute: 1200
   _magazineSize: 100
   _reloadTime: 2
   _critDamageMultiplier: 2
   _weaponWeight: 0
-  _weaponSights: 0
+  _weaponSights: 0.1
   _weaponInaccuracy: 0.5
   _maxInaccuracy: 25
   _maxDisplacement: 0

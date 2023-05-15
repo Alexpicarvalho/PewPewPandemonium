@@ -4,6 +4,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using static UnityEngine.ParticleSystem;
 using Fusion;
+using AlexCarvalho_Utils;
 
 [RequireComponent(typeof(Rigidbody))]
 public class LootBox : NetworkBehaviour, IHitable
@@ -18,6 +19,7 @@ public class LootBox : NetworkBehaviour, IHitable
     [SerializeField] private Material _glowCommon;
     [SerializeField] private Material _glowRare;
     [SerializeField] private Material _glowEpic;
+    [SerializeField] private Vector3 _spawnHeightOffset;
 
     [Header("Explosions")]
     [SerializeField] private GameObject _commonExplosionVFX;
@@ -35,6 +37,7 @@ public class LootBox : NetworkBehaviour, IHitable
 
     private void Start()
     {
+        transform.position = My_Utils.SnapToGroundGetPosition(transform.position) + _spawnHeightOffset;
         _drops = LootBoxManager.Instance.BoxRequestDrops(_rarity);
         SetGlowColor();
     }

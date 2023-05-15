@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
 
-public class Minimap : NetworkBehaviour
+public class Minimap : MonoBehaviour
 {
     [SerializeField] public Transform target;
     // Start is called before the first frame update

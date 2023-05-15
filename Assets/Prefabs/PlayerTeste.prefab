@@ -1161,12 +1161,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 560b1a7b991f4f14c930f7050780e423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
   _defaultCameraDistance: 15
   _shootingCameraDistance: 20
   _waitBeforeDistanceReset: 0.7
   _confirmStopShooting: 0.7
   _combatHandler: {fileID: 0}
+  _minZaxisOffset: 0
+  _maxZaxisOffset: 0
+  _zeroOffsetRadius: 0
+  _maxOffsetRadius: 0
 --- !u!114 &761370638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1200,8 +1203,7 @@ MonoBehaviour:
   NetworkGuid:
     RawGuidValue: 00000000000000000000000000000000
   NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 761370637}
+  NetworkedBehaviours: []
   SimulationBehaviours: []
 --- !u!1 &774619989
 GameObject:
@@ -4412,10 +4414,8 @@ MonoBehaviour:
   - {fileID: 4213692187291135969}
   - {fileID: 8963244312948826838}
   - {fileID: 5848223842253460550}
-  - {fileID: 3400246039576948737}
   - {fileID: 5593785319645916508}
   - {fileID: 420357894}
-  - {fileID: 5425594858172735828}
   SimulationBehaviours: []
 --- !u!114 &56216049236393390
 MonoBehaviour:
@@ -4455,6 +4455,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f26f1144d4054e4eb26364a92c73f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mouseRaycastLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &8963244312948826838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7879,17 +7882,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7102466735281839606, guid: 52e786c339bad94478c1026e0c0152a4, type: 3}
   m_PrefabInstance: {fileID: 5593785319427710358}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3400246039576948737 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7102466735720181143, guid: 52e786c339bad94478c1026e0c0152a4, type: 3}
-  m_PrefabInstance: {fileID: 5593785319427710358}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b7c97932dabba444b4a58c54f48a113, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &3400246039576948738 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7102466735720181140, guid: 52e786c339bad94478c1026e0c0152a4, type: 3}
@@ -9370,17 +9362,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed0c72e0997bd124db68dd0003edee27, type: 3}
---- !u!114 &5425594858172735828 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3863927670631054258, guid: ed0c72e0997bd124db68dd0003edee27, type: 3}
-  m_PrefabInstance: {fileID: 9139202745055992550}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87b2ab33abc703744bedbcf99d9fed1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5425594859010754650 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3863927670934065852, guid: ed0c72e0997bd124db68dd0003edee27, type: 3}

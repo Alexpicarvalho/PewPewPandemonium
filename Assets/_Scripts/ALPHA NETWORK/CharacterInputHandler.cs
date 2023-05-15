@@ -5,6 +5,9 @@ using Fusion;
 
 public class CharacterInputHandler : MonoBehaviour
 {
+
+    [SerializeField] LayerMask _mouseRaycastLayer;
+
     Vector2 moveInputVector = Vector2.zero;
     Vector3 mousePosition = Vector3.zero;
     Vector2 viewInputVector = Vector2.zero;
@@ -89,7 +92,7 @@ public class CharacterInputHandler : MonoBehaviour
         RaycastHit hit;
         Plane plane = new Plane(Vector3.up, transform.position);
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, _mouseRaycastLayer))
         {
             return new Vector3(hit.point.x, hit.point.y, hit.point.z);
         }

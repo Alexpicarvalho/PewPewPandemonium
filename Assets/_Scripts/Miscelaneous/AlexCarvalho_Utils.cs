@@ -59,7 +59,7 @@ namespace AlexCarvalho_Utils
             if (whatIsGround == default) whatIsGround = ~0;
             if (Physics.Raycast(raycastPos, Vector3.down, out RaycastHit hit, Mathf.Infinity, whatIsGround))
             {
-                Debug.Log("Alex Utils Hit Ground");
+                Debug.Log("Alex Utils Hit" + hit.collider.name);
                 return hit.point.y;
             }
             else

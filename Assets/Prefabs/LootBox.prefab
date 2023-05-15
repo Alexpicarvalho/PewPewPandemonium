@@ -5010,6 +5010,7 @@ MonoBehaviour:
   _glowCommon: {fileID: 2100000, guid: a1c824aa54d77c543a0f759032225274, type: 2}
   _glowRare: {fileID: 2100000, guid: 4c007d08bf9b0fc4287ac19ea29cae79, type: 2}
   _glowEpic: {fileID: 2100000, guid: 58c1404c9f9d8d6448d8a952ca340b3b, type: 2}
+  _spawnHeightOffset: {x: 0, y: 0.34, z: 0}
   _commonExplosionVFX: {fileID: 1612255617566175962, guid: 5e1a3b466d777b449a05754f218adc60, type: 3}
   _rareExplosionVFX: {fileID: 1612255617566175962, guid: 7b186484d85245b4db3a5311cec5cfb5, type: 3}
   _epicExplosionVFX: {fileID: 1612255617566175962, guid: 294f3dc2fd838e94e8b6c2dc4f992683, type: 3}

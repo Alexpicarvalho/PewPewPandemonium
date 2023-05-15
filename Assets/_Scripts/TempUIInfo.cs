@@ -6,29 +6,29 @@ using UnityEngine.UI;
 using System;
 using Fusion;
 
-public class TempUIInfo : NetworkBehaviour
+public class TempUIInfo : MonoBehaviour
 {
-    [SerializeField] GameObject _player;
-    [SerializeField] TextMeshProUGUI _ammoText;
-    [SerializeField] Transform _weapon1UI;
-    [SerializeField] Transform _weapon2UI;
-    [SerializeField] Transform _skillUI;
-    RawImage _weaponImage;
-    RawImage _offWeaponImage;
-    [SerializeField] RawImage _skillImage;
-    [SerializeField] Image _cooldownMask;
-    [SerializeField] RawImage _grenadeImage;
-    [SerializeField] Image _cooldownMaskNade;
-    [SerializeField] RawImage _utilityImage;
-    [SerializeField] Image _cooldownMaskUtility;
-    TextMeshProUGUI _cooldownText;
-    TextMeshProUGUI _cooldownNadeText;
-    TextMeshProUGUI _cooldownUtilityText;
-    private Image _border1;
-    private Image _border2;
-    private PlayerCombatHandler _playerCombatHandler;
-    private General_Stats _playerStats;
-    private GunSO _lastFrameWeapon;
+    [SerializeField] public Transform _player;
+    [SerializeField] public TextMeshProUGUI _ammoText;
+    [SerializeField] public Transform _weapon1UI;
+    [SerializeField] public Transform _weapon2UI;
+    [SerializeField] public Transform _skillUI;
+    public RawImage _weaponImage;
+    public RawImage _offWeaponImage;
+    [SerializeField] public RawImage _skillImage;
+    [SerializeField] public Image _cooldownMask;
+    [SerializeField] public RawImage _grenadeImage;
+    [SerializeField] public Image _cooldownMaskNade;
+    [SerializeField] public RawImage _utilityImage;
+    [SerializeField] public Image _cooldownMaskUtility;
+    public TextMeshProUGUI _cooldownText;
+    public TextMeshProUGUI _cooldownNadeText;
+    public TextMeshProUGUI _cooldownUtilityText;
+    public Image _border1;
+    public Image _border2;
+    public PlayerCombatHandler _playerCombatHandler;
+    public General_Stats _playerStats;
+    public GunSO _lastFrameWeapon;
     public Animator _weaponUIAnimator;
     public Animator _skillUIAnimator;
     bool firstFrame = true;
@@ -45,7 +45,7 @@ public class TempUIInfo : NetworkBehaviour
     void Start()
     {
 
-        if(!GetComponentInParent<NetworkObject>().HasInputAuthority) transform.gameObject.SetActive(false);
+        //if(!GetComponentInParent<NetworkObject>().HasInputAuthority) transform.gameObject.SetActive(false);
 
 
 

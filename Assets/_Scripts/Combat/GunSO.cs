@@ -28,7 +28,7 @@ public class GunSO : Item
     [SerializeField] public FireingType _fireingType;
     [SerializeField] public WeaponSkillSO _weaponSkillRef;
     [SerializeField] public bool _noSkill = false;
-    [Networked][field : SerializeField] public WeaponTier _weaponTier { get; set; }
+    [Networked] [field: SerializeField] public WeaponTier _weaponTier { get; set; }
     //[SerializeField] public float _skillDamage;
     [SerializeField] private float _damageMultiplier = 1;
     [SerializeField] private int _bulletsPerMinute;
@@ -207,7 +207,10 @@ public class GunSO : Item
         if (_bulletsFired % 2 == 1) ShootForward();
         else
         {
-            _runnerNetworkbehaviour.Runner.Spawn(_muzzleFlash, _firePoint.position, Quaternion.identity);
+            if (_runnerNetworkbehaviour.HasStateAuthority)
+            {
+                _runnerNetworkbehaviour.Runner.Spawn(_muzzleFlash, _firePoint.position, Quaternion.identity);
+            }
             _currentShootingStatus = ShootingStatus.BetweenShots;
             _bulletsInMag--;
             _timeSinceLastShot = 0;
@@ -224,21 +227,27 @@ public class GunSO : Item
         {
             Quaternion rotation = Quaternion.AngleAxis((_fireingConeAngle / _bulletsToSpawn) * i, Vector3.up);
             Vector3 direction = (rotation * _firePoint.forward).normalized;
-
-            var bullet = _runnerNetworkbehaviour.Runner.Spawn(_bulletGO, _firePoint.position, Quaternion.LookRotation(direction));
-            bullet.transform.Translate(GetDisplacement(), 0, GetDisplacement());
-            bullet.transform.Rotate(0, GetInaccuracy(), 0, Space.Self);
-            bullet.GetComponent<Damager>().SetDamage();
+            if (_runnerNetworkbehaviour.HasStateAuthority)
+            {
+                var bullet = _runnerNetworkbehaviour.Runner.Spawn(_bulletGO, _firePoint.position, Quaternion.LookRotation(direction));
+                bullet.transform.Translate(GetDisplacement(), 0, GetDisplacement());
+                bullet.transform.Rotate(0, GetInaccuracy(), 0, Space.Self);
+                bullet.GetComponent<Damager>().SetDamage();
+            }
         }
         for (int i = 1; i <= _bulletsToSpawn / 2; i++)
         {
             Quaternion rotation = Quaternion.AngleAxis((_fireingConeAngle / _bulletsToSpawn) * i, Vector3.up);
             Vector3 direction = (Quaternion.Inverse(rotation) * _firePoint.forward).normalized;
 
-            var bullet = _runnerNetworkbehaviour.Runner.Spawn(_bulletGO, _firePoint.position, Quaternion.LookRotation(direction));
-            bullet.transform.Translate(GetDisplacement(), 0, GetDisplacement());
-            bullet.transform.Rotate(0, GetInaccuracy(), 0, Space.Self);
-            bullet.GetComponent<Damager>().SetDamage();
+            if (_runnerNetworkbehaviour.HasStateAuthority)
+            {
+                var bullet = _runnerNetworkbehaviour.Runner.Spawn(_bulletGO, _firePoint.position, Quaternion.LookRotation(direction));
+                bullet.transform.Translate(GetDisplacement(), 0, GetDisplacement());
+                bullet.transform.Rotate(0, GetInaccuracy(), 0, Space.Self);
+                bullet.GetComponent<Damager>().SetDamage();
+            }
+
         }
     }
 

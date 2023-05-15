@@ -34,7 +34,7 @@ MonoBehaviour:
   _reloadTime: 1.5
   _critDamageMultiplier: 2
   _weaponWeight: 0
-  _weaponSights: 0
+  _weaponSights: 0.8
   _weaponInaccuracy: 0
   _maxInaccuracy: 10
   _maxDisplacement: 0.1

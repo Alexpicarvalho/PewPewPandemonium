@@ -8,12 +8,11 @@ using Cinemachine;
 using Fusion;
 
 
-public class CameraControler : NetworkBehaviour
+public class CameraControler : MonoBehaviour
 {
     float _cameraDistance;
     [SerializeField] float _defaultCameraDistance;
     [SerializeField] float _shootingCameraDistance;
-    [SerializeField] float _waitBeforeDistanceReset;
     [SerializeField] float _confirmStopShooting = .7f;
     [SerializeField] PlayerCombatHandler _combatHandler;
     private CinemachineVirtualCamera _cinCam;
@@ -22,14 +21,26 @@ public class CameraControler : NetworkBehaviour
     private CinemachineBrain _cmBrain;
     private Transform _player;
     float _stopShootingTimer = 0;
+
+    [Header("Camera Feel")]
+    [SerializeField] private float _minZaxisOffset;
+    [SerializeField] private float _maxZaxisOffset;
+    [SerializeField] private float _zeroOffsetRadius;
+    [SerializeField] private float _maxOffsetRadius;
+    private float _ZaxisOffset;
+    Vector2 _screenCenter;
+    CinemachineFramingTransposer _transposer;
+
     private void Start()
     {
         _cinCam = GetComponent<CinemachineVirtualCamera>();
+        _transposer = _cinCam.GetCinemachineComponent<CinemachineFramingTransposer>();
         _cameraDistance = _defaultCameraDistance;
         _mainCam = Camera.main;
         _cmBrain = _mainCam.GetComponent<CinemachineBrain>();
+        _screenCenter = new Vector2(Screen.width / 2, Screen.height / 1.1f);
         //_player = transform.parent;
-        
+
 
     }
 
@@ -37,6 +48,7 @@ public class CameraControler : NetworkBehaviour
     {
         if (_cinCam.Follow != null) return;
         _cinCam.Follow = target;
+        _combatHandler = target.GetComponent<PlayerCombatHandler>();
     }
 
     private void Update()
@@ -45,41 +57,43 @@ public class CameraControler : NetworkBehaviour
 
         if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
         {
-            StopCoroutine(ResetCamera());
             _stopShootingTimer = 0;
-            _shooting = true;
-            _cameraDistance =_defaultCameraDistance + _shootingCameraDistance * _combatHandler._gun._weaponSights;
+            _cameraDistance = _defaultCameraDistance + (_shootingCameraDistance - _defaultCameraDistance) * _combatHandler._gun._weaponSights;
         }
         else
         {
-            if(_stopShootingTimer >= _confirmStopShooting)
-            StartCoroutine(ResetCamera());
+            if (_stopShootingTimer >= _confirmStopShooting) _cameraDistance = _defaultCameraDistance ;
         }
 
-        //_cameraDistance -= Input.GetAxis("Mouse ScrollWheel");
-        //_cameraDistance = Mathf.Clamp(_cameraDistance,6, 20);
-        var componentBase = _cinCam.GetCinemachineComponent(CinemachineCore.Stage.Body);
-        if (componentBase is CinemachineFramingTransposer)
-        {
-            (componentBase as CinemachineFramingTransposer).m_CameraDistance = _cameraDistance;
-        }
+        Debug.Log("Camerda Distance is " + _cameraDistance);
+
+        _transposer.m_CameraDistance = _cameraDistance;
     }
 
     public void LateUpdate()
     {
         //Debug.Log("Entered Network Update cycle");
         _cmBrain.ManualUpdate();
+        SetViewOffset();
     }
+
+    private void SetViewOffset()
+    {
+        float distanceToCenter = Vector2.Distance(Input.mousePosition, _screenCenter);
+
+        if (distanceToCenter <= _zeroOffsetRadius) _ZaxisOffset = _minZaxisOffset;
+        else
+        {
+            float t = Mathf.InverseLerp(_zeroOffsetRadius, _maxOffsetRadius, distanceToCenter);
+            _ZaxisOffset = Mathf.Lerp(_minZaxisOffset, _maxZaxisOffset, t); 
+            _ZaxisOffset = Mathf.Clamp(_ZaxisOffset, _minZaxisOffset, _maxZaxisOffset);
+        }
+        _transposer.m_TrackedObjectOffset = Vector3.forward * _ZaxisOffset;
+    }
+
     public void AddRemoveRenderLayers(LayerMask layerToAdd, LayerMask layerToRemove)
     {
         _mainCam.cullingMask += layerToAdd;
         _mainCam.cullingMask -= layerToRemove;
-    }
-
-    private IEnumerator ResetCamera()
-    {
-        yield return new WaitForSeconds(_waitBeforeDistanceReset);
-        _cameraDistance = _defaultCameraDistance;
-        _shooting = false;
     }
 }

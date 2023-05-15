@@ -24,25 +24,35 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
 
             //Camera myCamera = GetComponentInChildren<Camera>();
             //myCamera.enabled = true;
-            
+
 
             //disable main camera
             //Camera.main.gameObject.SetActive(false);
 
+            FindObjectOfType<CameraControler>().SetFollowTarget(transform);
+            FindObjectOfType<Minimap>().target = transform;
+            var UI = transform.Find("UI");
+            if (UI != null)
+            {
+                UI.gameObject.SetActive(true);
+                UI.GetComponent<TempUIInfo>()._player = transform;
+            }
+
             Debug.Log("Spawned local player with ID -> " + Object.Id);
         }
-        else {
+        else
+        {
             // disable the camera if we are not the local player
             //Camera localCamera = GetComponentInChildren<Camera>();
             //localCamera.enabled = false;
 
-            CinemachineVirtualCamera cmCam = GetComponentInChildren<CinemachineVirtualCamera>();
-            cmCam.enabled = false;
+            //CinemachineVirtualCamera cmCam = GetComponentInChildren<CinemachineVirtualCamera>();
+            //cmCam.enabled = false;
 
             //AudioListener audioListener = GetComponentInChildren<AudioListener>();
             //audioListener.enabled = false;
 
-            Debug.Log("Spawned remote player"); 
+            Debug.Log("Spawned remote player");
         }
 
         transform.name = $"Player_{Object.Id}";

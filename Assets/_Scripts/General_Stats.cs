@@ -81,6 +81,15 @@ public class General_Stats : NetworkBehaviour, IHitable
 
     public void GainShield(float amount)
     {
+        if (!HasStateAuthority) return;
+        _currentShield += amount;
+        if (_currentShield > MaxShield) _currentShield = MaxShield;
+
+        //TEMP
+        if (_shieldText != null) _shieldText.text = ((int)_currentShield).ToString() + " / " + MaxShield;
+        if (_hpText != null) _hpText.text = ((int)_currentHp).ToString() + " / " + MaxHP;
+        //if (_shieldSlider != null) _shieldSlider.value = _currentShield / MaxShield;
+        //if (_hpSlider != null) _hpSlider.value = _currentHp / MaxHP;
 
     }
     public void GainHealth(float amount)

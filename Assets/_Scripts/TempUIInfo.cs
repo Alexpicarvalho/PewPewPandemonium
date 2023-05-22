@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using System;
 using Fusion;
 
-public class TempUIInfo : MonoBehaviour
+public class TempUIInfo : NetworkBehaviour
 {
     [SerializeField] public Transform _player;
     [SerializeField] public TextMeshProUGUI _ammoText;
@@ -47,8 +47,6 @@ public class TempUIInfo : MonoBehaviour
 
         //if(!GetComponentInParent<NetworkObject>().HasInputAuthority) transform.gameObject.SetActive(false);
 
-
-
         _playerCombatHandler = _player.GetComponent<PlayerCombatHandler>();
         _playerStats = _player.GetComponent<General_Stats>();
         _weaponImage = _weapon1UI.GetChild(2).GetComponent<RawImage>();
@@ -64,11 +62,18 @@ public class TempUIInfo : MonoBehaviour
         _utilityImage.texture = _playerCombatHandler._utility._icon;
     }
 
+    public override void Spawned()
+    {
+        base.Spawned();
+        if(!HasInputAuthority) transform.gameObject.SetActive(false);
+    }
+
     // Update is called once per frame
     void LateUpdate()
     {
 
-        if(_playerCombatHandler._weaponSlot2 != null)
+
+        if (_playerCombatHandler._weaponSlot2 != null)
         {
             _weaponImage.texture = _playerCombatHandler._weaponSlot2._weaponIcon;
 

@@ -16,7 +16,7 @@ public class BarValue : MonoBehaviour
 
     enum ValueType { HPBar, ShieldBar }
     // Start is called before the first frame updates
-    void Start()
+    void Awake()
     {
         _playerStats = GetComponentInParent<General_Stats>();
         _barSlider = GetComponent<Slider>();

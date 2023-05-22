@@ -1917,7 +1917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  _startingWeapon: {fileID: 11400000, guid: 4b28d5bbb9c51964da4463229175b6d2, type: 2}
+  _startingWeapon: {fileID: 11400000, guid: f639ffdc311bbd74095f5da629ab9b71, type: 2}
   _hand: {fileID: 231212214069097103}
   _firePoint: {fileID: 407297159}
   _uiInfo: {fileID: 3400246039576948737}
@@ -2104,7 +2104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   _maxHP: 100
-  _maxShield: 50
+  _maxShield: 100
   _isPushable: 0
   _startingShield: 25
   __currentHp: 0
@@ -2236,6 +2236,7 @@ MonoBehaviour:
   - {fileID: 7626743907143717972}
   - {fileID: 7619224180933671274}
   - {fileID: 823525077775382497}
+  - {fileID: 3400246039576948737}
   - {fileID: 5593785319645916508}
   - {fileID: 420357894}
   SimulationBehaviours: []
@@ -6980,7 +6981,7 @@ PrefabInstance:
     - target: {fileID: 7102466735720181143, guid: 52e786c339bad94478c1026e0c0152a4, type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 231212215010212256}
+      objectReference: {fileID: 231212215010212286}
     - target: {fileID: 7102466736169248402, guid: 52e786c339bad94478c1026e0c0152a4, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -265

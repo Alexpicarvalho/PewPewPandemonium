@@ -13,7 +13,6 @@ public class Pickup : NetworkBehaviour
     public Rarity _rarity;
     [HideInInspector] public Collider _groundChecker;
     [HideInInspector] public bool _canPickUp;
-    [HideInInspector] public List<PlayerCombatHandler> _playersInRange = new List<PlayerCombatHandler>();
     [HideInInspector] public Transform _center;
     // Start is called before the first frame update
     public virtual void Start()

@@ -19117,6 +19117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e607c0ad9fd279945bd82cb7ecddbd4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   _destroyAfterTime: 3
 --- !u!114 &-8888545842253458014
 MonoBehaviour:
@@ -19140,6 +19141,7 @@ MonoBehaviour:
     RawGuidValue: 294f3dc2fd838e94e8b6c2dc4f992683
   NestedObjects: []
   NetworkedBehaviours:
+  - {fileID: 3750073574659473772}
   - {fileID: -7765684560098887849}
   SimulationBehaviours: []
 --- !u!114 &-7765684560098887849

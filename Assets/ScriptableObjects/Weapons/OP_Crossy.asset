@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1eeb2c3cf977f41b5eb64512b1e0de, type: 3}
+  m_Name: OP_Crossy
+  m_EditorClassIdentifier: 
+  _name: 
+  _description: 
+  _icon: {fileID: 2800000, guid: 6278b8db6ad6aa44b8d449192001a735, type: 3}
+  _weaponGO: {fileID: 2797637213908533713, guid: ca77f62d2888f6c4a874efb77151ed72, type: 3}
+  _bulletGO: {fileID: 429543989968508660, guid: 0630c0157af498a48850695f41ae35a3, type: 3}
+  _muzzleFlash: {fileID: 4779800532271133379, guid: da31205b1a641cb40adbb11bfa094fd5, type: 3}
+  _weaponIcon: {fileID: 2800000, guid: 6278b8db6ad6aa44b8d449192001a735, type: 3}
+  _groundPickUpPrefab: {fileID: 6679746688503811354, guid: c1de7eb591dc6384cbaed94f032721cd, type: 3}
+  _visualEffect: {fileID: 0}
+  _extraEffectType: 0
+  _extraEffectTimeToShutOff: 0
+  _shootingAnimTrigger: 
+  _fireingType: 0
+  _weaponSkillRef: {fileID: 11400000, guid: 950e9b91a0a3cf0469bc4457c388c018, type: 2}
+  _noSkill: 0
+  <_weaponTier>k__BackingField: 0
+  _damageMultiplier: 1
+  _bulletsPerMinute: 600
+  _magazineSize: 100
+  _reloadTime: 1.5
+  _critDamageMultiplier: 2
+  _weaponWeight: 0
+  _weaponSights: 0.8
+  _weaponInaccuracy: 0
+  _maxInaccuracy: 10
+  _maxDisplacement: 0.1
+  _coneShooting: 1
+  _bulletsFired: 3
+  _fireingConeAngle: 15
+  _soundData: {fileID: 0}
+  _bulletsInMag: 0
+  _currentShootingStatus: 0
+  _weaponClone: {fileID: 0}
+  _vfxClone: {fileID: 0}
+  _weaponSkill: {fileID: 0}
+  _ownerID: 0
+  _positionInHand: {x: 0.109, y: -0.026, z: 0.142}
+  _rotationInHand: {x: 0.5006671, y: 0.49933192, z: 0.49933192, w: 0.5006671}
+  _playerAnimator: {fileID: 0}
+  _weaponAnimator: {fileID: 0}
+  _timeBetweenShots: 0

@@ -14518,7 +14518,8 @@ GameObject:
   - component: {fileID: 1025319483}
   - component: {fileID: 1025319482}
   - component: {fileID: 1025319481}
-  m_Layer: 16
+  - component: {fileID: 1025319487}
+  m_Layer: 0
   m_Name: ZoneWall
   m_TagString: ZoneWall
   m_Icon: {fileID: 0}
@@ -14670,9 +14671,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44cabfe06053ce54e85a578da1082acf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
   damagePerTick: 10
   tickInterval: 1
   exitDelay: 1
+  circleLevel: 1
 --- !u!136 &1025319484
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -14737,6 +14743,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025319479}
   m_Mesh: {fileID: -5076798556035486163, guid: 33c49877d4be0e2449a4582ce5e52193, type: 3}
+--- !u!114 &1025319487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025319479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2561
+  NetworkGuid:
+    RawGuidValue: 9baf650fc7ea42c2b56a01ba0b5ffb0b
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 1025319483}
+  SimulationBehaviours: []
 --- !u!4 &1029867410 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4120510040622602, guid: fa1171c4c28a81e40a4541222c24d8ad, type: 3}
@@ -15675,12 +15705,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4307906653718738, guid: e32aaa936bc750a46baf1468a7e955a4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4307906653718738, guid: e32aaa936bc750a46baf1468a7e955a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4307906653718738, guid: e32aaa936bc750a46baf1468a7e955a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.06
       objectReference: {fileID: 0}
     - target: {fileID: 4307906653718738, guid: e32aaa936bc750a46baf1468a7e955a4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16908,8 +16942,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1171678829}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -0.06, z: 0}
+  m_LocalScale: {x: 1, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 442697586}
@@ -18989,7 +19023,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1343258263
 Transform:
   m_ObjectHideFlags: 0

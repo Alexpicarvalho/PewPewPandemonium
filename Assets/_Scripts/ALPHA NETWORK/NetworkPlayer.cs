@@ -55,6 +55,8 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
             Debug.Log("Spawned remote player");
         }
 
+        ZoneDamage.Instance.AddPlayerInside(transform);
+
         transform.name = $"Player_{Object.Id}";
     }
 

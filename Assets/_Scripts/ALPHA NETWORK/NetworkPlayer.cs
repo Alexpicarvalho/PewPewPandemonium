@@ -56,6 +56,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
         }
 
         ZoneDamage.Instance.AddPlayerInside(transform);
+        GameManager.Instance.AddPlayerToList(transform);
 
         transform.name = $"Player_{Object.Id}";
     }

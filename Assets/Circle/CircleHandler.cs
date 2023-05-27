@@ -4,7 +4,7 @@ using UnityEngine;
 using Fusion;
 
 [RequireComponent(typeof(LineRenderer))]
-public class CircleHandler : MonoBehaviour
+public class CircleHandler : NetworkBehaviour
 {
 	[Range(0, 360)]
 	public int Segments;
@@ -50,6 +50,7 @@ public class CircleHandler : MonoBehaviour
 
 	void Update()
 	{
+		if (!Object.HasStateAuthority) return;
 		ZoneWall.transform.localScale = new Vector3((XRadius * 0.01f), 1, (XRadius * 0.01f));
 
 		if (Shrinking)

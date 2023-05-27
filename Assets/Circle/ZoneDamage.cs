@@ -17,9 +17,6 @@ public class ZoneDamage : NetworkBehaviour/*, IPlayerJoined*/
 
     private float lastTickTime;        // Time of the last tick
     private bool isPlayerInZone;       // Flag to track player's zone status
-    private General_Stats player;
-    private Damage damage;
-
 
     //Para mais tarde
 
@@ -33,54 +30,27 @@ public class ZoneDamage : NetworkBehaviour/*, IPlayerJoined*/
         else Instance = this;
     }
 
-    private void Start()
-    {
-        //damage = new Damage(damagePerTick);
-
-
-    }
-
     public void AddPlayerInside(Transform player)
     {
-
         if (!_playersInside.Contains(player)) _playersInside.Add(player);
     }
 
-
-
     private void OnTriggerEnter(Collider other)
     {
-
         if (!other.CompareTag("Player")) return;
-
-
 
         Debug.Log("Player Entrou");
         if (!_playersInside.Contains(other.transform)) _playersInside.Add(other.transform);
         if (_playersOutside.Contains(other.transform)) _playersOutside.Remove(other.transform);
-
-
-        //if (other.CompareTag("Player"))
-        //{
-        //    isPlayerInZone = true;
-        //    lastTickTime = Time.time + exitDelay;
-        //}
     }
 
     private void OnTriggerExit(Collider other)
     {
-
         if (!other.CompareTag("Player")) return;
 
         Debug.Log("Player Saiu");
         if (_playersInside.Contains(other.transform))_playersInside.Remove(other.transform);
         if (!_playersOutside.Contains(other.transform)) _playersOutside.Add(other.transform);
-
-
-        //if (other.CompareTag("Player"))
-        //{
-        //    isPlayerInZone = false;
-        //}
     }
 
     private void Update()
@@ -92,12 +62,6 @@ public class ZoneDamage : NetworkBehaviour/*, IPlayerJoined*/
             lastTickTime = 0;
             DamagePlayersOutside();
         }
-
-        //if (isPlayerInZone && Time.time >= lastTickTime + tickInterval)
-        //{
-        //    lastTickTime = Time.time;
-        //    ApplyDamageToPlayer();
-        //}
     }
 
     private void DamagePlayersOutside()
@@ -107,15 +71,4 @@ public class ZoneDamage : NetworkBehaviour/*, IPlayerJoined*/
             player.GetComponent<IHitable>().HandleHit(new Damage(damagePerTick * circleLevel));
         }
     }
-
-    private void ApplyDamageToPlayer()
-    {
-        //Damage the player [TickDamage] amount
-        player.HandleHit(damage);
-    }
-
-    //public void PlayerJoined(PlayerRef player)
-    //{
-    //   player.
-    //}
 }

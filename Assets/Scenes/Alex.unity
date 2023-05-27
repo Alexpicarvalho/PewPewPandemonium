@@ -14519,6 +14519,7 @@ GameObject:
   - component: {fileID: 1025319482}
   - component: {fileID: 1025319481}
   - component: {fileID: 1025319487}
+  - component: {fileID: 1025319488}
   m_Layer: 0
   m_Name: ZoneWall
   m_TagString: ZoneWall
@@ -14555,6 +14556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5604468b6daaeef48a0adfae0a11f6da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   Segments: 64
   XRadius: 50
   YRadius: 50
@@ -14766,7 +14768,37 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 1025319483}
+  - {fileID: 1025319481}
+  - {fileID: 1025319488}
   SimulationBehaviours: []
+--- !u!114 &1025319488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025319479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  InterpolationSpace: 0
+  InterpolationTarget: {fileID: 1067684066}
+  InterpolateErrorCorrection: 1
+  InterpolatedErrorCorrectionSettings:
+    MinRate: 3.3
+    MaxRate: 10
+    PosBlendStart: 0.25
+    PosBlendEnd: 1
+    PosMinCorrection: 0.025
+    PosTeleportDistance: 2
+    RotBlendStart: 0.1
+    RotBlendEnd: 0.5
+    RotTeleportRadians: 1.5
+  UseLegacySharedModeInterpolation: 0
+  TargetInterpolationDelay: 0.03
 --- !u!4 &1029867410 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4120510040622602, guid: fa1171c4c28a81e40a4541222c24d8ad, type: 3}
@@ -22356,6 +22388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5604468b6daaeef48a0adfae0a11f6da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   Segments: 64
   XRadius: 50
   YRadius: 0

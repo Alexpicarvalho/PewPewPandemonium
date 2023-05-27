@@ -6,26 +6,29 @@ using System;
 
 public class GameManager : NetworkBehaviour
 {
-    //public CircleHandler circle;
-    public List<NetworkPlayer> players = new List<NetworkPlayer>();
-    //[SyncVar]
+    public static GameManager Instance;
+    public List<Transform> _players = new List<Transform>();
     public int numPlayers;
-    //[SyncVar]
     public int numAlivePlayers;
 
-    void Start()
-    {
-        if (Runner.IsServer)
-        {
-            // Start the shrinking animation on the master client
-            //circleController.StartShrinking();
-        }
-    }
+    //void Start()
+    //{
+    //    if (Runner.IsServer)
+    //    {
+    //        // Start the shrinking animation on the master client
+    //        //circleController.StartShrinking();
+    //    }
+    //}
 
     public override void Spawned()
-    {
-        numPlayers = players.Count;
+    {       
+        numPlayers = _players.Count;
         numAlivePlayers = numPlayers;
+    }
+
+    public void AddPlayerToList(Transform player)
+    {
+        if (!_players.Contains(player)) _players.Add(player);
     }
 
     void Update()
@@ -35,9 +38,7 @@ public class GameManager : NetworkBehaviour
         {
             if (Runner.IsServer)
             {
-                // Stop the shrinking animation on the master client
-                //circleController.StopShrinking();
-                //CheckForWinner();
+                CheckForWinner();
             }
 
             // End the game
@@ -45,32 +46,30 @@ public class GameManager : NetworkBehaviour
         }
     }
 
-    //[Networked]
-    //void CheckForWinner()
-    //{
-    //    if (numAlivePlayers == 1)
-    //    {
-    //        foreach (NetworkPlayer player in players)
-    //        {
-    //            if (player.isAlive)
-    //            {
-    //                Debug.Log(player.name + " wins!");
-    //                break;
-    //            }
-    //        }
-    //    }
-    //}
+    void CheckForWinner()
+    {
+        if (numAlivePlayers == 1)
+        {
+            foreach (var player in _players)
+            {
+                if (player != null)
+                {
+                    Debug.Log(player.name + " wins!");
+                    break;
+                }
+            }
+        }
+    }
 
-    //[Networked]
-    //public void PlayerDied()
-    //{
-    //    numAlivePlayers--;
-    //    CheckForWinner();
-    //}
+    public void PlayerDied()
+    {
+        numAlivePlayers--;
+        CheckForWinner();
+    }
 
     private void EndGame()
     {
-        //throw new NotImplementedException();
+        Runner.SetActiveScene("Menu");
     }
 
     private bool IsGameOver()

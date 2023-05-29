@@ -75,6 +75,8 @@ public class OutOfSightMask : NetworkBehaviour
         RaycastHit hit;
         IHideable target = caster.GetComponent<IHideable>();
 
+        if (target == null) return;
+
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, _noLoSBlock))
         {
             if (hit.collider != _playerCollider || !target.Hiden())

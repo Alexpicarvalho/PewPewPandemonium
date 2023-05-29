@@ -28587,6 +28587,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiRefs: {fileID: 0}
+--- !u!114 &1989183744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989183738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2561
+  NetworkGuid:
+    RawGuidValue: f5b461b8acc64b5daa0bbe3f291bbd2e
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 1989183745}
+  SimulationBehaviours: []
+--- !u!114 &1989183745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989183738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 940a84c4e1552dc4c933298c0fefa5fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  _players: []
+  numPlayers: 0
+  numAlivePlayers: 0
 --- !u!1001 &1989699239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29069,7 +29109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
+  m_TrackedObjectOffset: {x: 0, y: 0, z: 6}
   m_LookaheadTime: 1
   m_LookaheadSmoothing: 8
   m_LookaheadIgnoreY: 1

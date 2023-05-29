@@ -55,6 +55,8 @@ public class ZoneDamage : NetworkBehaviour/*, IPlayerJoined*/
 
     private void Update()
     {
+        if (_playersInside.Count + _playersOutside.Count == 0) return;
+
         lastTickTime += Runner.DeltaTime;
 
         if (lastTickTime > tickInterval)

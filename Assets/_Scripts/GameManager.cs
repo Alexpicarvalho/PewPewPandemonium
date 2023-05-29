@@ -8,8 +8,14 @@ public class GameManager : NetworkBehaviour
 {
     public static GameManager Instance;
     public List<Transform> _players = new List<Transform>();
-    public int numPlayers;
-    public int numAlivePlayers;
+    public int numPlayers = 0;
+    public int numAlivePlayers = 0;
+
+    private void Awake()
+    {
+        if(Instance != null) Destroy(Instance);
+        else Instance = this;   
+    }
 
     //void Start()
     //{
@@ -33,6 +39,8 @@ public class GameManager : NetworkBehaviour
 
     void Update()
     {
+        if (_players.Count == 0) return;
+
         // Check if the game is over
         if (IsGameOver())
         {

@@ -47,7 +47,7 @@ public class OutOfSightMask : NetworkBehaviour
         {
             if (collider.GetComponent<IHideable>() == null)
             {
-                Debug.LogError("CAREFUL, ENTETY IN TARGET LAYER DOESN'T HAVE HIDEABLE COMPONENT! Entety name: " + collider.name);
+               // Debug.LogError("CAREFUL, ENTETY IN TARGET LAYER DOESN'T HAVE HIDEABLE COMPONENT! Entety name: " + collider.name);
             }
             if (!_targetsInRange.Contains(collider.transform))
             {

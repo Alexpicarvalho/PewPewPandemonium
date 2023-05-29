@@ -13,15 +13,12 @@ public class Hideable : NetworkBehaviour, IHideable
 
     public bool _isLocal;
 
-    private void Awake()
-    { 
-        GetRenderers();
-    }
-    private void Start()
+    public override void Spawned()
     {
+        base.Spawned();
+        GetRenderers();
         if (Object.HasInputAuthority) RevertIssues();
     }
-
     private void GetRenderers()
     {
         Renderer[] renderers = GetComponentsInChildren<Renderer>();

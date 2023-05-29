@@ -29,7 +29,7 @@ public class OutOfSightMask : NetworkBehaviour
     public override void Spawned()
     {
         base.Spawned();
-        if (!Object.HasInputAuthority) this.enabled = false;
+        //if (!Object.HasInputAuthority) this.enabled = false;
         _player = transform.gameObject;
         _playerCollider = _player.GetComponent<Collider>();
 

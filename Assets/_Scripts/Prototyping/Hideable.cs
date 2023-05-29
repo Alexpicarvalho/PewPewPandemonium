@@ -16,6 +16,12 @@ public class Hideable : NetworkBehaviour, IHideable
     public override void Spawned()
     {
         base.Spawned();
+        StartCoroutine(GetAllRenderingInfo());
+    }
+
+    IEnumerator GetAllRenderingInfo()
+    {
+        yield return new WaitForSeconds(.2f);
         GetRenderers();
         if (Object.HasInputAuthority) RevertIssues();
     }
@@ -65,12 +71,12 @@ public class Hideable : NetworkBehaviour, IHideable
     {
         foreach (Renderer item in _myRenderers)
         {
-            item.enabled = false;
+            if (item) item.enabled = false;
         }
 
         foreach (GameObject item in _hideParts)
         {
-            item.SetActive(false);
+            if (item) item.SetActive(false);
         }
     }
     private void EnableRendering()

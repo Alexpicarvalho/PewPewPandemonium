@@ -51,7 +51,7 @@ public class OutOfSightMask : NetworkBehaviour
             {
                 // Debug.LogError("CAREFUL, ENTETY IN TARGET LAYER DOESN'T HAVE HIDEABLE COMPONENT! Entety name: " + collider.name);
             }
-            else if (!_targetsInRange.Contains(collider.transform))
+            else if (!_targetsInRange.Contains(collider.transform) || collider.transform != transform)
             {
                 _targetsInRange.Add(collider.transform);
             }
@@ -83,12 +83,18 @@ public class OutOfSightMask : NetworkBehaviour
             {
                 target.HideMe();
             }
+
+            else if(hit.collider == _playerCollider && target.Hiden())
+            {
+                target.RevealMe();
+            }
+
             //else if (hit.collider == _playerCollider && target.Hiden())
             //{
             //    target.RevealMe();
             //}
         }
-        else if (target.Hiden()) target.RevealMe();
+        //else if (target.Hiden()) target.RevealMe();
     }
 
 

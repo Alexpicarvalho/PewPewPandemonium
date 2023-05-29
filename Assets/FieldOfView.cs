@@ -31,16 +31,22 @@ public class FieldOfView : NetworkBehaviour
 
     void Start()
 	{
-        if (!GetComponentInParent<NetworkObject>().HasInputAuthority)
-        {
-            Debug.LogError("Disabled Field Off View, no Input Authority");
-            this.enabled = false;
-        }
-        viewMesh = new Mesh();
+        
+		//StartCoroutine("FindTargetsWithDelay", .2f);
+	}
+
+    public override void Spawned()
+    {
+        base.Spawned();
+		if (!HasInputAuthority)
+		{
+			Debug.LogError("Disabled Field Off View, no Input Authority");
+			Destroy(gameObject);
+		}
+		viewMesh = new Mesh();
 		viewMesh.name = "View Mesh";
 		viewMeshFilter.mesh = viewMesh;
 
-		//StartCoroutine("FindTargetsWithDelay", .2f);
 	}
 
 

@@ -14555,6 +14555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5604468b6daaeef48a0adfae0a11f6da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   Segments: 64
   XRadius: 50
   YRadius: 50
@@ -14766,6 +14767,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 1025319483}
+  - {fileID: 1025319481}
   SimulationBehaviours: []
 --- !u!4 &1029867410 stripped
 Transform:
@@ -22356,6 +22358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5604468b6daaeef48a0adfae0a11f6da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   Segments: 64
   XRadius: 50
   YRadius: 0

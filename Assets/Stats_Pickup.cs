@@ -51,7 +51,8 @@ public class Stats_Pickup : Pickup
                     {
                         playerStats.GainHealth((float)_healthReturn.Evaluate(0, Random.value));
                         var effect = Runner.Spawn(_healedEffect, other.transform.position, Quaternion.identity);
-                        effect.GetComponent<FollowTarget>()._followTarget = other.transform;
+                        effect.transform.parent = other.transform;
+                        //effect.GetComponent<FollowTarget>()._followTarget = other.transform;
                         if (HasStateAuthority) Runner.Despawn(Object);
                     }
 
@@ -65,7 +66,8 @@ public class Stats_Pickup : Pickup
                     {
                         playerStats.GainShield((float)_shieldReturn.Evaluate(0, Random.value));
                         var effect = Runner.Spawn(_shieldedEffect, other.transform.position, Quaternion.identity);
-                        effect.GetComponent<FollowTarget>()._followTarget = other.transform;
+                        effect.transform.parent = other.transform;
+                        //effect.GetComponent<FollowTarget>()._followTarget = other.transform;
                         if (HasStateAuthority) Runner.Despawn(Object);
                         
                     }

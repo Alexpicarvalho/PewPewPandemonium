@@ -79,15 +79,16 @@ public class OutOfSightMask : NetworkBehaviour
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, _noLoSBlock))
         {
-            if (hit.collider != _playerCollider || !target.Hiden())
+            if (hit.collider != _playerCollider && !target.Hiden())
             {
                 target.HideMe();
             }
-            else if (hit.collider == _playerCollider && target.Hiden())
-            {
-                target.RevealMe();
-            }
+            //else if (hit.collider == _playerCollider && target.Hiden())
+            //{
+            //    target.RevealMe();
+            //}
         }
+        else if (target.Hiden()) target.RevealMe();
     }
 
 

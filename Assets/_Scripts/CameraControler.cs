@@ -69,7 +69,7 @@ public class CameraControler : MonoBehaviour
             if (_stopShootingTimer >= _confirmStopShooting) _cameraDistance = _defaultCameraDistance ;
         }
 
-        Debug.Log("Camerda Distance is " + _cameraDistance);
+        Debug.Log("Camera Distance is " + _cameraDistance);
 
         _transposer.m_CameraDistance = _cameraDistance;
     }

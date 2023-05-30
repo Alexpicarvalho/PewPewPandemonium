@@ -245,19 +245,24 @@ public class PlayerCombatHandler : NetworkBehaviour
 
     public void OnDeathDropWeapons()
     {
-        //Debug.Log("DROPPING!");
-        //if (_weaponSlot2 != null) _gun.DropWeapon();
-        //if (_weaponSlot1 != null) _offGun.DropWeapon();
+        Debug.Log("DROPPING!");
+        if (_weaponSlot2 != null) _gun.DropWeapon();
+        if (_weaponSlot1 != null) _offGun.DropWeapon();
 
-        //_gun = null;
-        //_offGun = null;
-        //_weaponSlot1 = null;
-        //_weaponSlot2 = null;
+        Destroy(_gun);
+        Destroy(_offGun);
+        Destroy(_weaponSlot1);
+        Destroy(_weaponSlot2);
+
+        _gun = null;
+        _offGun = null;
+        _weaponSlot1 = null;
+        _weaponSlot2 = null;
 
         //_weaponSlot1 = Instantiate(_startingWeapon);
         //SetupWeapon(_weaponSlot2);
         //_gun = _weaponSlot2;
-        ////SwapWeapons();
+        //SwapWeapons();
 
 
     }

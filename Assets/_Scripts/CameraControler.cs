@@ -6,7 +6,9 @@ using UnityEngine;
 using UnityRandom = UnityEngine.Random;
 using Cinemachine;
 using Fusion;
-
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using ExitGames.Client.Photon.StructWrapping;
 
 public class CameraControler : MonoBehaviour
 {
@@ -27,6 +29,8 @@ public class CameraControler : MonoBehaviour
     [SerializeField] private float _maxZaxisOffset;
     [SerializeField] private float _zeroOffsetRadius;
     [SerializeField] private float _maxOffsetRadius;
+    [SerializeField] private Volume _postProcessing;
+    private ColorAdjustments _colorAdj;
     private float _ZaxisOffset;
     Vector2 _screenCenter;
     CinemachineFramingTransposer _transposer;

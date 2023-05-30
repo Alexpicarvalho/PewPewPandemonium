@@ -39,6 +39,7 @@ public class General_Stats : NetworkBehaviour, IHitable
     [SerializeField] Slider _hpSlider;
     [SerializeField] Slider _shieldSlider;
     [SerializeField] List<NetworkBehaviour> _scriptsToDisable;
+    [SerializeField] bool _respawnActive = false;
     private Animator _anim;
     private PlayerFSM _playerState;
     private void Start()
@@ -126,7 +127,7 @@ public class General_Stats : NetworkBehaviour, IHitable
         GetComponent<PlayerCombatHandler>().OnDeathDropWeapons();
         //OnDeathScripts(false);
         _anim.SetTrigger("Die");
-        Invoke("RPC_Revive", 3.0f);
+        if(_respawnActive) Invoke("RPC_Revive", 3.0f);
     }
 
     //TEST ONLY 

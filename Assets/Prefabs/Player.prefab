@@ -525,6 +525,7 @@ MonoBehaviour:
   _maxZaxisOffset: 0
   _zeroOffsetRadius: 0
   _maxOffsetRadius: 0
+  _postProcessing: {fileID: 0}
 --- !u!114 &761370638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1926,7 +1927,7 @@ MonoBehaviour:
   _weaponSlot2: {fileID: 0}
   _gun: {fileID: 0}
   _offGun: {fileID: 0}
-  _grenade: {fileID: 11400000, guid: fd4d1c12b83821d41852824a858437fe, type: 2}
+  _grenade: {fileID: 11400000, guid: 089fc3ffdd52bd2409214d41b9ebe096, type: 2}
   _utility: {fileID: 11400000, guid: 431ae79472d9e43469c851343d01532e, type: 2}
   _swapCooldown: 0.6
 --- !u!114 &4920267075732269097
@@ -2115,6 +2116,7 @@ MonoBehaviour:
   _scriptsToDisable:
   - {fileID: 4920267075732269096}
   - {fileID: 5151311613721021895}
+  _respawnActive: 0
 --- !u!114 &974983751090955264
 MonoBehaviour:
   m_ObjectHideFlags: 0

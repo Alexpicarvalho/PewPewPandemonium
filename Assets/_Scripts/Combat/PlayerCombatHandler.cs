@@ -263,7 +263,7 @@ public class PlayerCombatHandler : NetworkBehaviour
         //SetupWeapon(_weaponSlot2);
         //_gun = _weaponSlot2;
         //SwapWeapons();
-
+        ResetStartWeapon();
 
     }
 

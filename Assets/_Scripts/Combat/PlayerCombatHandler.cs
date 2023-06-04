@@ -249,10 +249,10 @@ public class PlayerCombatHandler : NetworkBehaviour
         if (_weaponSlot2 != null) _gun.DropWeapon();
         if (_weaponSlot1 != null) _offGun.DropWeapon();
 
-        Destroy(_gun);
-        Destroy(_offGun);
-        Destroy(_weaponSlot1);
-        Destroy(_weaponSlot2);
+        //Destroy(_gun);
+        //Destroy(_offGun);
+        //Destroy(_weaponSlot1);
+        //Destroy(_weaponSlot2);
 
         _gun = null;
         _offGun = null;
@@ -279,7 +279,7 @@ public class PlayerCombatHandler : NetworkBehaviour
         }
         else Debug.Log("No Starting Weapon");
 
-        _gun = _weaponSlot2;
+        _gun = Instantiate(_weaponSlot2);
         SwapWeapons();
     }
 

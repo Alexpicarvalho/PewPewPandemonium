@@ -39,7 +39,7 @@ public class General_Stats : NetworkBehaviour, IHitable
     [SerializeField] Slider _hpSlider;
     [SerializeField] Slider _shieldSlider;
     [SerializeField] List<NetworkBehaviour> _scriptsToDisable;
-    [SerializeField] bool _respawnActive = false;
+    [SerializeField] public bool _respawnActive = false;
     private Animator _anim;
     private PlayerFSM _playerState;
     private void Start()

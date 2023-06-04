@@ -267,6 +267,22 @@ public class PlayerCombatHandler : NetworkBehaviour
 
     }
 
+    public void ResetStartWeapon()
+    {
+        if (GetComponent<General_Stats>()._respawnActive == false) return;
+
+        //TEMP 
+        if (_startingWeapon)
+        {
+            _weaponSlot2 = Instantiate(_startingWeapon);
+            SetupWeapon(_weaponSlot2);
+        }
+        else Debug.Log("No Starting Weapon");
+
+        _gun = _weaponSlot2;
+        SwapWeapons();
+    }
+
     //public IEnumerator ReadyNextShot()
     //{
     //    yield return new WaitForSeconds(_timeBetweenShots);

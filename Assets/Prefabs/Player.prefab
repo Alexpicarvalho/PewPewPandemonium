@@ -2116,7 +2116,7 @@ MonoBehaviour:
   _scriptsToDisable:
   - {fileID: 4920267075732269096}
   - {fileID: 5151311613721021895}
-  _respawnActive: 1
+  _respawnActive: 0
 --- !u!114 &974983751090955264
 MonoBehaviour:
   m_ObjectHideFlags: 0

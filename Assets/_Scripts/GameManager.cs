@@ -8,23 +8,18 @@ public class GameManager : NetworkBehaviour
 {
     public static GameManager Instance;
     public List<Transform> _players = new List<Transform>();
+    public List<Transform> _deadPlayers = new List<Transform>();
     public int numPlayers = 0;
     public int numAlivePlayers = 0;
+
+    public GameObject deathPanel;  
+    public GameObject winnerPanel;
 
     private void Awake()
     {
         if(Instance != null) Destroy(Instance);
         else Instance = this;   
     }
-
-    //void Start()
-    //{
-    //    if (Runner.IsServer)
-    //    {
-    //        // Start the shrinking animation on the master client
-    //        //circleController.StartShrinking();
-    //    }
-    //}
 
     public override void Spawned()
     {       
@@ -63,16 +58,24 @@ public class GameManager : NetworkBehaviour
                 if (player != null)
                 {
                     Debug.Log(player.name + " wins!");
+                    ShowWinnerPanel();
                     break;
                 }
             }
         }
     }
 
-    public void PlayerDied()
+    public void PlayerDied(Transform player)
     {
         numAlivePlayers--;
         CheckForWinner();
+
+        _deadPlayers.Add(player);
+
+        foreach(var playerDead in _deadPlayers)
+        {
+            ShowDeathPanel();
+        }
     }
 
     private void EndGame()
@@ -85,5 +88,15 @@ public class GameManager : NetworkBehaviour
         if (numAlivePlayers <= 0)
             return true;
         else return false;
+    }
+
+    private void ShowDeathPanel()
+    {
+        deathPanel.SetActive(true);
+    }
+
+    private void ShowWinnerPanel()
+    {
+        winnerPanel.SetActive(true);
     }
 }
